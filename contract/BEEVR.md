@@ -1,5 +1,5 @@
 
-![alt text](../fac-logo.png)
+![alt text](./fac-logo.png)
 
 **June 23rd 2017** 
 # **BEEVR** Letter Of Engagement
