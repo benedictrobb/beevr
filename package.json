@@ -1,0 +1,26 @@
+{
+  "name": "beevr",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon src/start.js",
+    "start": "node src/start.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/benedictrobb/BEEVR.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/benedictrobb/BEEVR/issues"
+  },
+  "homepage": "https://github.com/benedictrobb/BEEVR#readme",
+  "dependencies": {
+    "hapi": "^16.4.3",
+    "hapi-auth-cookie": "^7.0.0",
+    "pg": "^6.4.0"
+  }
+}
