@@ -1,14 +1,7 @@
-/*
-
- *
- * The Dashboard is only visible to logged in users
- * Route: /dashboard
- *
- */
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
+console.log('Dashboard');
 class Dashboard extends Component {
   render() {
     return (

@@ -1,5 +1,5 @@
 /**
- * LoadingIndicator.react.js
+ * LoadingIndicator.js
  *
  * A loading indicator, copied from https://github.com/tobiasahlin/SpinKit
  *
@@ -7,8 +7,7 @@
 
 import React from 'react';
 
-// Since this component doesn't need any state, make it a stateless component
-function LoadingIndicator() {
+LoadingIndicator = () => {
   return (
     <div>Loading
       <div className="sk-fading-circle">

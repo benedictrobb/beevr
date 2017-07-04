@@ -21,8 +21,6 @@ import ReactDOM from 'react-dom';
 import { Provider } from 'react-redux';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 import homeReducer from './reducers/index.js';
-
-
 import LoginPage from './components/pages/LoginPage.js';
 import RegisterPage from './components/pages/RegisterPage.js';
 import Dashboard from './components/pages/Dashboard.js';
@@ -35,6 +33,7 @@ import App from './components/app.js';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
 
+console.log(store);
 
 function checkAuth(nextState, replaceState) {
   let { loggedIn } = store.getState();
@@ -42,7 +41,7 @@ function checkAuth(nextState, replaceState) {
   // check if the path isn't dashboard
   // that way we can apply specific logic
   // to display/render the path we want to
-  if (nextState.location.pathname !== '/dashboard') {
+  if (nextState.location.pathname !== '/') {
     if (loggedIn) {
       if (nextState.location.state && nextState.location.pathname) {
         replaceState(null, nextState.location.pathname);
@@ -65,19 +64,16 @@ function checkAuth(nextState, replaceState) {
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
-
   <Provider store={store}>
-   <Router>
+    <Router>
       <Route component={App}>
 
-        // <Route onEnter={checkAuth}>
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
           <Route path="/" component={Dashboard} />
-              <Route onEnter={checkAuth}>
-        </Route>
-        <Route path="*" component={NotFound} />
-      </Route>
+          <Route onEnter={checkAuth} />
+          <Route path="*" component={NotFound} />
+
       </Route>
     </Router>
   </Provider>,

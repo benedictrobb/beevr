@@ -11,13 +11,11 @@
  */
 
 import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
-// Object.assign is not yet fully supported in all browsers, so we fallback to
-// a polyfill
+
 const assign = Object.assign
-// || require('object.assign');
 import auth from '../utils/auth';
 
-// The initial application state
+
 const initialState = {
   formState: {
     username: '',

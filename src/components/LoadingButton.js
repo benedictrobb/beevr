@@ -1,5 +1,5 @@
 /**
- * LoadingButton.react.js
+ * LoadingButton.js
  *
  * Wraps the loading indicator in a tag with the .btn--loading class
  */

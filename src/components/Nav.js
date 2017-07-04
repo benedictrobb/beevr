@@ -1,6 +1,6 @@
 /**
  *
- * Nav.react.js
+ * Nav.js
  *
  * This component renders the navigation bar
  *
@@ -17,11 +17,11 @@ class Nav extends Component {
     // based on the current authentication state.
     const navButtons = this.props.loggedIn ? (
         <div>
-          <Link to="/dashboard" className="btn btn--dash btn--nav">Dashboard</Link>
+
           {this.props.currentlySending ? (
             <LoadingButton className="btn--nav" />
           ) : (
-            <a href="#" className="btn btn--login btn--nav" onClick={this._logout}>Logout</a>
+            <a href="#" className="btn btn--login btn--nav" onClick={this._logout.bind(this)}>Logout</a>
           )}
         </div>
       ) : (

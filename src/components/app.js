@@ -1,16 +1,3 @@
-// import React, { Component } from 'react';
-// import LoginForm from './Form.js';
-//
-// export default class App extends Component {
-//   render() {
-//     return (
-//       <div>
-//       <div>Hello world</div>
-//       <LoginForm />
-//       </div>
-//     );
-//   }
-// }
 
 /**
  *
