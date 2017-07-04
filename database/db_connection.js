@@ -10,16 +10,16 @@ if (!process.env.DATABASE_URL) {
 
 const params = url.parse(process.env.DATABASE_URL);
 const [username, password] = params.auth.split(':');
+console.log(params);
 
 const options = {
   host: params.hostname,
   port: params.port,
   database: params.pathname.split('/')[1],
   max: process.env.DB_MAX_CONNECTIONS || 2,
+  user: username,
+  password: password
 };
-
-if (username) { options.user = username; }
-if (password) { options.password = password; }
 
 options.ssl = (options.host !== 'localhost');
 
