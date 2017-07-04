@@ -7,7 +7,7 @@
 
 import React from 'react';
 
-LoadingIndicator = () => {
+var LoadingIndicator = () => {
   return (
     <div>Loading
       <div className="sk-fading-circle">
