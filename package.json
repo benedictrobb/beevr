@@ -32,15 +32,17 @@
   },
   "homepage": "https://github.com/benedictrobb/BEEVR#readme",
   "dependencies": {
+    "babel-preset-stage-1": "^6.1.18",
+    "bcryptjs": "^2.4.3",
     "hapi": "^16.4.3",
     "hapi-auth-cookie": "^7.0.0",
-    "pg": "^6.4.0",
-    "babel-preset-stage-1": "^6.1.18",
     "lodash": "^3.10.1",
+    "pg": "^6.4.0",
     "react": "^0.14.3",
     "react-dom": "^0.14.3",
     "react-redux": "4.3.0",
     "react-router": "^2.0.1",
-    "redux": "^3.0.4"
+    "redux": "^3.0.4",
+    "redux-thunk": "^1.2.0"
   }
 }
