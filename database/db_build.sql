@@ -3,42 +3,42 @@ BEGIN;
 DROP TABLE IF EXISTS students, residents, jobs;
 
 CREATE TABLE students (
-	student_id      SERIAL          PRIMARY KEY NOT NULL,
-	first_name		VARCHAR(25)		NOT NULL,
-	last_name		VARCHAR(100)	NOT NULL,
-	email		    VARCHAR(50)     NOT NULL,
-	password		VARCHAR(500)	,
-	DOB				DATE			NOT NULL,
-	univ_school		VARCHAR(250)	NOT NULL,
-	job_cat			VARCHAR(1000)	NOT NULL,
-	picture			VARCHAR(500)	NOT NULL,
-	bio		        VARCHAR(1500)   NOT NULL,
-	phone			VARCHAR(15)     NOT NULL
+    student_id      SERIAL          PRIMARY KEY NOT NULL,
+    first_name      VARCHAR(25)     NOT NULL,
+    last_name       VARCHAR(100)    NOT NULL,
+    email           VARCHAR(50)     NOT NULL,
+    password        VARCHAR(500)	,
+    DOB             DATE            NOT NULL,
+    univ_school     VARCHAR(250)    NOT NULL,
+    job_cat         VARCHAR(1000)   NOT NULL,
+    picture         VARCHAR(500)    NOT NULL,
+    bio             VARCHAR(1500)   NOT NULL,
+    phone           VARCHAR(15)     NOT NULL
 );
 
 CREATE TABLE residents (
-	resident_id     SERIAL          PRIMARY KEY NOT NULL,
-	first_name		VARCHAR(25)		NOT NULL,
-	last_name		VARCHAR(100)	NOT NULL,
-	email		    VARCHAR(50)     NOT NULL,
-	password		VARCHAR(500)	,
-	address			VARCHAR(100) 	NOT NULL,
-	DOB				DATE			NOT NULL,
-	picture			VARCHAR(500)	NOT NULL,
-	bio		        VARCHAR(1500)   NOT NULL,
-	phone			VARCHAR(15)     NOT NULL
+    resident_id     SERIAL          PRIMARY KEY NOT NULL,
+    first_name      VARCHAR(25)     NOT NULL,
+    last_name       VARCHAR(100)    NOT NULL,
+    email           VARCHAR(50)     NOT NULL,
+    password        VARCHAR(500)    ,
+    address         VARCHAR(100)    NOT NULL,
+    DOB             DATE            NOT NULL,
+    picture         VARCHAR(500)    NOT NULL,
+    bio             VARCHAR(1500)   NOT NULL,
+    phone           VARCHAR(15)     NOT NULL
 );
 
 CREATE TABLE jobs (
-	job_id			SERIAL			PRIMARY KEY,
-	start_date		DATE 			NOT NULL,
-	start_time		TIME 			NOT NULL,
-	end_date		DATE			NOT NULL,
-	end_time		TIME 			NOT NULL,
-	description		VARCHAR(1000)	NOT NULL,
-	rate 			DECIMAL(5,2)	NOT NULL,
-	student_id 		INTEGER			,
-	resident_id 	INTEGER 		REFERENCES residents(resident_id)
+    job_id          SERIAL          PRIMARY KEY,
+    start_date      DATE            NOT NULL,
+    start_time      TIME            NOT NULL,
+    end_date        DATE            NOT NULL,
+    end_time        TIME            NOT NULL,
+    description     VARCHAR(1000)   NOT NULL,
+    rate            DECIMAL(5,2)    NOT NULL,
+    student_id      INTEGER         ,
+    resident_id     INTEGER         REFERENCES residents(resident_id)
 );
 
 INSERT INTO students(first_name, last_name, email, DOB, univ_school, job_cat, picture, bio, phone) VALUES
