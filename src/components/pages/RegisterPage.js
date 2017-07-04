@@ -20,7 +20,7 @@ class RegisterPage extends Component {
             <div className="form-page__wrapper">
                 <div className="form-page__form-wrapper">
                     <div className="form-page__form-header">
-                        <h2 className="form-page__form-heading">Register</h2>
+                        <h2 className="form-page__form-heading">Register As Student</h2>
                     </div>
                     {/* While the form is sending, show the loading indicator,
                         otherwise show "Register" on the submit button */}

@@ -12,13 +12,13 @@ class Form_Register_Student extends Component {
       <form className="form" onSubmit={this._onSubmit.bind(this)}>
         <ErrorMessage />
         <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="First Name">Password</label>
-        <input className="form__field-input" id="First Name" type="First Name" value={this.props.data.password} placeholder="First Name"  onChange={this._changePassword.bind(this)} />
+        <label className="form__field-label" htmlFor="First Name">First Name</label>
+        <input className="form__field-input" id="First Name" type="text" placeholder="First Name"  />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Last Name">Last Name</label>
-        <input className="form__field-input" id="Last Name" type="Last Name" value={this.props.data.password} placeholder="Last Name"  onChange={this._changePassword.bind(this)} />
+        <input className="form__field-input" id="Last Name" type="text" placeholder="Last Name" />
 
         </div>
         <div className="form__field-wrapper">
@@ -33,37 +33,59 @@ class Form_Register_Student extends Component {
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Date Of Birth">Date of Birth</label>
-          <input className="form__field-input" id="Date Of Birth" type="Date Of Birth" value={this.props.data.password} placeholder="Date Of Birth"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="Date Of Birth" type="text" placeholder="Date Of Birth" />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="University/School">University/School</label>
-          <input className="form__field-input" id="University/School" type="University/School" value={this.props.data.password} placeholder="University/School"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="University/School" type="text" placeholder="University/School"  />
 
         </div>
 
-        <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="Job categories">Job categories</label>
-          <input className="form__field-input" id="Job categories" type="Job categories" value={this.props.data.password} placeholder="Job categories"  onChange={this._changePassword.bind(this)} />
-
-        </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Bio">Bio</label>
-          <input className="form__field-input" id="Bio" type="Bio" value={this.props.data.password} placeholder="Bio"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="Bio" type="text" placeholder="Bio"  />
 
         </div>
 
         <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="Picture">Picture</label>
-          <input className="form__field-input" id="Picture" type="Picture" value={this.props.data.password} placeholder="Picture"  onChange={this._changePassword.bind(this)} />
+        <label className="form__field-label" htmlFor="Picture">Profile picture</label>
+          <input className="form__field-input" id="Picture" type="file" placeholder="Picture"  />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Phone number">Phone number</label>
-          <input className="form__field-input" id="Phone number" type="Phone number" value={this.props.data.password} placeholder="Phone number"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="Phone number" type="text" placeholder="Phone number"  />
+
+        </div>
+
+        <div className="form__field-wrapper">
+        <label className="form__field-label" htmlFor="Job categories">Pick up to 8 jobs categories</label>
+        <input className="form__field-input" id="job category1" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category2" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category3" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category4" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category5" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category6" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category7" type="text" placeholder="Select" list="jobs"  />
+        <input className="form__field-input" id="job category8" type="text" placeholder="Select" list="jobs"  />
+        <datalist id="jobs">
+        <option value="Dog-walking" />
+        <option value="Tutoring- Spanish" />
+        <option value="Home maintenance" />
+        <option value="Tutoring- Mathematics" />
+        <option value="Cat Sitting" />
+        <option value="Plant watering" />
+        <option value="Babysitting" />
+        <option value="Cooking" />
+        <option value="House Cleaning" />
+        <option value="Band playing" />
+        <option value="Photography" />
+        <option value="Other" />
+        </datalist>
 
         </div>
 
