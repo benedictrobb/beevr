@@ -26,7 +26,7 @@
 import bcrypt from 'bcryptjs';
 import { SET_AUTH, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
 import * as errorMessages  from '../constants/MessageConstants';
-import auth from '../utils/auth';
+import beevrAPI from '../utils/beevrAPI.js';
 import genSalt from '../utils/salt';
 import { browserHistory } from 'react-router';
 
@@ -45,17 +45,9 @@ export function login(username, password) {
       dispatch(sendingRequest(false));
       return;
     }
-    // Generate salt for password encryption
-    const salt = genSalt(username);
-    // Encrypt password
-    bcrypt.hash(password, salt, (err, hash) => {
-      // Something wrong while hashing
-      if (err) {
-        dispatch(setErrorMessage(errorMessages.GENERAL_ERROR));
-        return;
-      }
+
       // Use auth.js to fake a request
-      auth.login(username, hash, (success, err) => {
+      beevrAPI.login(username, hash, (success, err) => {
         // When the request is finished, hide the loading indicator
         dispatch(sendingRequest(false));
         dispatch(setAuthState(success));
@@ -90,7 +82,7 @@ export function login(username, password) {
 export function logout() {
   return (dispatch) => {
     dispatch(sendingRequest(true));
-    auth.logout((success, err) => {
+    beevrAPI.logout((success, err) => {
       if (success === true) {
         dispatch(sendingRequest(false))
         dispatch(setAuthState(false));
@@ -117,17 +109,9 @@ export function register(username, password) {
       dispatch(sendingRequest(false));
       return;
     }
-    // Generate salt for password encryption
-    const salt = genSalt(username);
-    // Encrypt password
-    bcrypt.hash(password, salt, (err, hash) => {
-      // Something wrong while hashing
-      if (err) {
-        dispatch(setErrorMessage(errorMessages.GENERAL_ERROR));
-        return;
-      }
+
       // Use auth.js to fake a request
-      auth.register(username, hash, (success, err) => {
+      beevrAPI.register(username, hash, (success, err) => {
         // When the request is finished, hide the loading indicator
         dispatch(sendingRequest(false));
         dispatch(setAuthState(success));

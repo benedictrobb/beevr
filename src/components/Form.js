@@ -7,11 +7,6 @@
  */
 
 import React, { Component } from 'react';
-import { changeForm } from '../actions/AppActions';
-import LoadingButton from './LoadingButton.js';
-import ErrorMessage from './ErrorMessage.js';
-const assign = Object.assign;
-
 
 class LoginForm extends Component {
   render() {
@@ -20,12 +15,13 @@ class LoginForm extends Component {
         <ErrorMessage />
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="username">Username</label>
-          <input className="form__field-input" type="text" id="username" value={this.props.data.username} placeholder="email" onChange={this._changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-
+          <input className="form__field-input" type="text" id="username" value={this.props.data.username}
+           placeholder="email" onChange={this._changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="password">Password</label>
-          <input className="form__field-input" id="password" type="password" value={this.props.data.password} placeholder="password"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="password" type="password" value={this.props.data.password}
+           placeholder="password"  onChange={this._changePassword.bind(this)} />
 
         </div>
         <div className="form__submit-btn-wrapper">
