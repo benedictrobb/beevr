@@ -42,6 +42,6 @@
     "react-redux": "4.3.0",
     "react-router": "^2.0.1",
     "redux": "^3.0.4",
-    "redux-thunk": "^1.2.0"
+    "redux-thunk": "^2.2.0"
   }
 }
