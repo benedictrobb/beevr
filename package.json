@@ -11,7 +11,7 @@
     "type": "git",
     "url": "git+https://github.com/benedictrobb/BEEVR.git"
   },
-  "author": "",
+  "author": "Maja Kudlicka Antonio Trabalza",
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/benedictrobb/BEEVR/issues"
@@ -33,8 +33,14 @@
   "dependencies": {
     "babel-preset-stage-1": "^6.1.18",
     "bcryptjs": "^2.4.3",
+    "blipp": "^2.3.0",
+    "env2": "^2.2.0",
+    "h2o2": "^5.4.0",
     "hapi": "^16.4.3",
+    "hapi-auth-basic": "^4.2.0",
     "hapi-auth-cookie": "^7.0.0",
+    "hapi-context-credentials": "^2.0.0",
+    "inert": "^4.2.0",
     "lodash": "^3.10.1",
     "pg": "^6.4.0",
     "react": "^0.14.3",
@@ -43,6 +49,7 @@
     "react-redux": "4.3.0",
     "react-router": "^2.0.1",
     "redux": "^3.0.4",
-    "redux-thunk": "^1.0.2"
+    "redux-thunk": "^1.0.2",
+    "vision": "^4.1.1"
   }
 }
