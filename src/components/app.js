@@ -17,14 +17,15 @@ class App extends Component {
   render() {
     return(
       <div className="wrapper">
-        <Nav loggedIn={this.props.data.loggedIn} history={this.props.history} location={this.props.location} dispatch={this.props.dispatch} currentlySending={this.props.data.currentlySending} />
+        <Nav loggedIn={this.props.data.loggedIn} history={this.props.history} location={this.props.location}
+         dispatch={this.props.dispatch} currentlySending={this.props.data.currentlySending} />
         { this.props.children }
       </div>
     )
   }
 }
 
-// export default App;
+
 
 // REDUX STUFF
 
