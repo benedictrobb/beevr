@@ -13,36 +13,36 @@ class Form_Register_Student extends Component {
         <ErrorMessage />
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="First Name">First Name</label>
-        <input className="form__field-input"
-         id="First Name"
-         type="text"
-         placeholder="First Name"  />
+         <input className="form__field-input"
+          id="First Name"
+          type="text"
+          placeholder="First Name"  />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Last Name">Last Name</label>
-        <input className="form__field-input" id="Last Name" type="text" placeholder="Last Name" />
+         <input className="form__field-input" id="Last Name" type="text" placeholder="Last Name" />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="username">Username</label>
           <input className="form__field-input"
-           type="text" id="username"
-           value={this.props.data.username}
-           placeholder="email"
-           onChange={this._changeUsername.bind(this)}
-           autoCorrect="off"
-           autoCapitalize="off"
-           spellCheck="false" />
+            type="text" id="username"
+            value={this.props.data.username}
+            placeholder="email"
+            onChange={this._changeUsername.bind(this)}
+            autoCorrect="off"
+            autoCapitalize="off"
+            spellCheck="false" />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="password">Password</label>
           <input className="form__field-input"
-          id="password" type="password"
-          value={this.props.data.password}
-          placeholder="password"
-          onChange={this._changePassword.bind(this)} />
+            id="password" type="password"
+            value={this.props.data.password}
+            placeholder="password"
+            onChange={this._changePassword.bind(this)} />
 
         </div>
         <div className="form__field-wrapper">
@@ -78,28 +78,28 @@ class Form_Register_Student extends Component {
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Job categories">Pick up to 8 jobs categories</label>
-        <input className="form__field-input" id="job category1" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category2" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category3" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category4" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category5" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category6" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category7" type="text" placeholder="Select" list="jobs"  />
-        <input className="form__field-input" id="job category8" type="text" placeholder="Select" list="jobs"  />
-        <datalist id="jobs">
-        <option value="Dog-walking" />
-        <option value="Tutoring- Spanish" />
-        <option value="Home maintenance" />
-        <option value="Tutoring- Mathematics" />
-        <option value="Cat Sitting" />
-        <option value="Plant watering" />
-        <option value="Babysitting" />
-        <option value="Cooking" />
-        <option value="House Cleaning" />
-        <option value="Band playing" />
-        <option value="Photography" />
-        <option value="Other" />
-        </datalist>
+         <input className="form__field-input" id="job category1" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category2" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category3" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category4" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category5" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category6" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category7" type="text" placeholder="Select" list="jobs"  />
+         <input className="form__field-input" id="job category8" type="text" placeholder="Select" list="jobs"  />
+            <datalist id="jobs">
+                <option value="Dog-walking" />
+                <option value="Tutoring- Spanish" />
+                <option value="Home maintenance" />
+                <option value="Tutoring- Mathematics" />
+                <option value="Cat Sitting" />
+                <option value="Plant watering" />
+                <option value="Babysitting" />
+                <option value="Cooking" />
+                <option value="House Cleaning" />
+                <option value="Band playing" />
+                <option value="Photography" />
+                <option value="Other" />
+            </datalist>
 
         </div>
 
