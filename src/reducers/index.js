@@ -22,7 +22,7 @@ const initialState = {
     password: ''
   },
   currentlySending: false,
-  loggedIn: auth.loggedIn(),
+  loggedIn: beevrAPI.loggedIn(),
   errorMessage: ''
 };
 

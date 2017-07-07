@@ -1,7 +1,5 @@
 import React, { Component } from 'react';
-import { changeForm } from '../actions/AppActions';
-import LoadingButton from './LoadingButton.js';
-import ErrorMessage from './ErrorMessage.js';
+
 
 const assign = Object.assign;
 
@@ -23,12 +21,14 @@ class Form_Register_Student extends Component {
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="username">Username</label>
-          <input className="form__field-input" type="text" id="username" value={this.props.data.username} placeholder="email" onChange={this._changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
+          <input className="form__field-input" type="text" id="username" value={this.props.data.username}
+           placeholder="email" onChange={this._changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="password">Password</label>
-          <input className="form__field-input" id="password" type="password" value={this.props.data.password} placeholder="password"  onChange={this._changePassword.bind(this)} />
+          <input className="form__field-input" id="password" type="password" value={this.props.data.password}
+           placeholder="password"  onChange={this._changePassword.bind(this)} />
 
         </div>
         <div className="form__field-wrapper">
@@ -40,26 +40,22 @@ class Form_Register_Student extends Component {
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="University/School">University/School</label>
           <input className="form__field-input" id="University/School" type="text" placeholder="University/School"  />
-
         </div>
 
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Bio">Bio</label>
           <input className="form__field-input" id="Bio" type="text" placeholder="Bio"  />
-
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Picture">Profile picture</label>
           <input className="form__field-input" id="Picture" type="file" placeholder="Picture"  />
-
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Phone number">Phone number</label>
           <input className="form__field-input" id="Phone number" type="text" placeholder="Phone number"  />
-
         </div>
 
         <div className="form__field-wrapper">
@@ -86,7 +82,6 @@ class Form_Register_Student extends Component {
         <option value="Photography" />
         <option value="Other" />
         </datalist>
-
         </div>
 
         <div className="form__submit-btn-wrapper">

@@ -71,6 +71,18 @@ server.register(plugins, (err) => {
             });
         }
     });
+    
+    server.route({
+        method: 'GET',
+        path: '/test',
+        handler: (request, reply) => {
+            reply({
+                name: pkg.name,
+                version: pkg.version,
+                message: 'Welcome to BEEVR!'
+            });
+        }
+    });
 
     server.start(err => {
         if (err) {
