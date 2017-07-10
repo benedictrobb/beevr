@@ -13,7 +13,7 @@
 import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
 
 const assign = Object.assign
-import auth from '../utils/auth';
+import beevrAPI from '../utils/beevrAPI';
 
 
 const initialState = {

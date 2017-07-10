@@ -9,7 +9,7 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import Form from '../Form.js';
-import auth from '../../utils/auth';
+import beevrAPI from '../../utils/beevrAPI';
 import { login } from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
 
@@ -35,7 +35,7 @@ class LoginPage extends Component {
 
 
     _login(username, password) {
- 
+
         this.props.dispatch(login(username, password));
     }
 }

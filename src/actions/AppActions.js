@@ -72,8 +72,8 @@ export function login(username, password) {
           }
         }
       });
-    });
-  }
+    };
+
 }
 
 /**
@@ -134,9 +134,9 @@ export function register(username, password) {
           }
         }
       });
-    });
+    };
   }
-}
+
 
 /**
  * Sets the authentication state of the application
