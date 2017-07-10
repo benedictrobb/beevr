@@ -1,3 +1,4 @@
+require('env2')('./config.env');
 module.exports = {
     entry: [
         './src/client/index.js'
@@ -22,7 +23,7 @@ module.exports = {
     devServer: {
         proxy: {
             '/api': {
-                target: 'http://trkdz-spectre-devuan:4000',
+                target: `http://localhost:${process.env.PORT || 4000}`,
                 secure: false
             }
         },
