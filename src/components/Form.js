@@ -7,6 +7,7 @@
  */
 
 import React, { Component } from 'react';
+import ErrorMessage from './ErrorMessage.js';
 
 
 class LoginForm extends Component {
