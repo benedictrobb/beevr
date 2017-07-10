@@ -41,7 +41,6 @@ class LoginPage extends Component {
 
 
     _login(username, password) {
- 
         this.props.dispatch(login(username, password));
     }
 }

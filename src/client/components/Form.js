@@ -8,7 +8,6 @@
 
 import React, { Component } from 'react';
 
-
 class LoginForm extends Component {
   render() {
     return(
@@ -18,7 +17,6 @@ class LoginForm extends Component {
         <label className="form__field-label" htmlFor="username">Username</label>
           <input className="form__field-input" type="text" id="username" value={this.props.data.username}
            placeholder="email" onChange={this._changeUsername.bind(this)} autoCorrect="off" autoCapitalize="off" spellCheck="false" />
-
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="password">Password</label>

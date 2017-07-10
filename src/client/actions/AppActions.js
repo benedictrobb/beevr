@@ -110,7 +110,6 @@ export function register(username, password) {
       return;
     }
 
-
       // Use auth.js to fake a request
       beevrAPI.register(username, hash, (success, err) => {
         // When the request is finished, hide the loading indicator
