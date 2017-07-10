@@ -5,8 +5,6 @@ const pkg = require('../../package.json');
 const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
-const hapiAuth = require('hapi-auth-basic');
-const credentials = require('hapi-context-credentials');
 const fs = require('fs');
 const env = require('env2');
 env('./config.env');
@@ -71,7 +69,7 @@ server.register(plugins, (err) => {
     
     server.route({
         method: 'GET',
-        path: '/fuck',
+        path: '/api',
         handler: (request, reply) => {
             reply({
                 name: pkg.name,
