@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import ErrorMessage from './ErrorMessage.js';
-
-=======
 import { changeForm } from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
->>>>>>> master
 
 const assign = Object.assign;
 
