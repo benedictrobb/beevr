@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import ErrorMessage from './ErrorMessage.js';
 
 
 const assign = Object.assign;
