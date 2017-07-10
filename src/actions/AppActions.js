@@ -72,9 +72,9 @@ export function login(username, password) {
           }
         }
       });
-    });
   }
-}
+  }
+
 
 /**
  * Logs the current user out
@@ -134,9 +134,9 @@ export function register(username, password) {
           }
         }
       });
-    });
+    };
   }
-}
+
 
 /**
  * Sets the authentication state of the application
