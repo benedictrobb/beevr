@@ -26,6 +26,7 @@ class Nav extends Component {
         </div>
       ) : (
         <div>
+          <Link to="/" className="btn btn--login btn--nav">Home</Link>
           <Link to="/register" className="btn btn--login btn--nav">Register</Link>
           <Link to="/login" className="btn btn--login btn--nav">Login</Link>
         </div>
@@ -34,7 +35,6 @@ class Nav extends Component {
     return(
       <div className="nav">
         <div className="nav__wrapper">
-          <Link to="/" className="nav__logo-wrapper"><h1>Home</h1></Link>
           { navButtons }
         </div>
       </div>
