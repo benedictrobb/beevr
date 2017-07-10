@@ -9,11 +9,11 @@ const assign = Object.assign;
 class Form_Register_Student extends Component {
   render() {
     return(
-      <form className="form" onSubmit={this._onSubmit.bind(this)}>
+      <form className="form-group" onSubmit={this._onSubmit.bind(this)}>
         <ErrorMessage />
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="First Name">First Name</label>
-         <input className="form__field-input"
+         <input className="form-control"
           id="First Name"
           type="text"
           placeholder="First Name"  />
@@ -21,12 +21,12 @@ class Form_Register_Student extends Component {
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Last Name">Last Name</label>
-         <input className="form__field-input" id="Last Name" type="text" placeholder="Last Name" />
+         <input className="form-control" id="Last Name" type="text" placeholder="Last Name" />
 
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="username">Email</label>
-          <input className="form__field-input"
+          <input className="form-control"
             type="text" id="username"
             value={this.props.data.username}
             placeholder="email"
@@ -38,7 +38,7 @@ class Form_Register_Student extends Component {
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="password">Password</label>
-          <input className="form__field-input"
+          <input className="form-control"
             id="password" type="password"
             value={this.props.data.password}
             placeholder="password"
@@ -47,45 +47,45 @@ class Form_Register_Student extends Component {
         </div>
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Date Of Birth">Date of Birth</label>
-          <input className="form__field-input" id="Date Of Birth" type="text" placeholder="Date Of Birth" />
+          <input className="form-control" id="Date Of Birth" type="text" placeholder="Date Of Birth" />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="University/School">University/School</label>
-          <input className="form__field-input" id="University/School" type="text" placeholder="University/School"  />
+          <input className="form-control" id="University/School" type="text" placeholder="University/School"  />
 
         </div>
 
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Bio">Bio</label>
-          <input className="form__field-input" id="Bio" type="text" placeholder="Bio"  />
+          <input className="form-control" id="Bio" type="text" placeholder="Bio"  />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Picture">Profile picture</label>
-          <input className="form__field-input" id="Picture" type="file" placeholder="Picture"  />
+          <input className="form-control" id="Picture" type="file" placeholder="Picture"  />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Phone number">Phone number</label>
-          <input className="form__field-input" id="Phone number" type="text" placeholder="Phone number"  />
+          <input className="form-control" id="Phone number" type="text" placeholder="Phone number"  />
 
         </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Job categories">Pick up to 8 jobs categories</label>
-         <input className="form__field-input" id="job category1" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category2" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category3" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category4" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category5" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category6" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category7" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category8" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category1" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category2" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category3" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category4" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category5" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category6" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category7" type="text" placeholder="Select" list="jobs"  />
+         <input className="form-control" id="job category8" type="text" placeholder="Select" list="jobs"  />
             <datalist id="jobs">
                 <option value="Dog-walking" />
                 <option value="Tutoring- Spanish" />
