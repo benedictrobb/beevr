@@ -83,7 +83,7 @@ class Form_Register_Resident extends Component {
           {this.props.currentlySending ? (
             <LoadingButton />
           ) : (
-            <button className="form__submit-btn" type="submit">{this.props.btnText}</button>
+            <button className="btn btn-primary" type="submit">{this.props.btnText}</button>
           )}
         </div>
       </form>
