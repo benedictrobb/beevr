@@ -1,15 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { Link } from 'react-router';
 
-console.log('Dashboard');
-class Dashboard extends Component {
+
+class BrowseStudents extends Component {
   render() {
     return (
       <article>
         <section className="text-section">
-          <p>Student</p>
-          <p>Resident</p>
+          <label className="form__field-label" htmlFor="Browse Students">Browse Students</label>
+          <input className="form__field-input" id="Browse Students" placeholder="Browse Students" />
         </section>
       </article>
     );
@@ -24,4 +23,4 @@ function select(state) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Dashboard);
+export default connect(select)(BrowseStudents);
