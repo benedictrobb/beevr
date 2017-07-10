@@ -1,10 +1,10 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
-import Form_Register_Student from '../Form_Register_Student.js';
+import Form_Register_Resident from '../Form_Register_Resident.js';
 import { sendingRequest, register } from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
 
-class RegisterPage extends Component {
+class RegisterResident extends Component {
     render() {
         const dispatch = this.props.dispatch;
         const { formState, currentlySending } = this.props.data;
@@ -16,7 +16,7 @@ class RegisterPage extends Component {
                     </div>
                     {/* While the form is sending, show the loading indicator,
                         otherwise show "Register" on the submit button */}
-                <Form_Register_Student data={formState} dispatch={dispatch} location={location} history={this.props.history}
+                <Form_Register_Resident data={formState} dispatch={dispatch} location={location} history={this.props.history}
                  onSubmit={this._register.bind(this)} btnText={"Register"} currentlySending={currentlySending}/>
                 </div>
             </div>
@@ -37,4 +37,4 @@ function select(state) {
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(RegisterPage);
+export default connect(select)(RegisterResident);

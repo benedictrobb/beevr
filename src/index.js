@@ -12,6 +12,7 @@ import NotFound from './components/pages/NotFound.js';
 import App from './components/app.js';
 import BrowseJobs from './components/pages/SearchJobs.js';
 import BrowseStudents from './components/pages/SearchStudents.js';
+import RegisterResident from './components/pages/RegisterResident';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -56,6 +57,7 @@ ReactDOM.render(
 
           <Route path="/login" component={LoginPage} />
           <Route path="/register" component={RegisterPage} />
+            <Route path="/registerresident" component={RegisterResident} />
           <Route path="/browsejobs" component={BrowseJobs} />
           <Route path="/browsestudents" component={BrowseStudents} />
           <Route path="/" component={Dashboard} />

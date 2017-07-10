@@ -25,7 +25,7 @@ class Form_Register_Resident extends Component {
 
         </div>
         <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="username">Username</label>
+        <label className="form__field-label" htmlFor="username">Email</label>
           <input className="form__field-input"
             type="text" id="username"
             value={this.props.data.username}
@@ -45,18 +45,31 @@ class Form_Register_Resident extends Component {
             onChange={this._changePassword.bind(this)} />
 
         </div>
+
+        <div className="form__field-wrapper">
+        <label className="form__field-label" htmlFor="University/School">Address</label>
+        <input className="form__field-input" id="University/School" type="text" placeholder="University/School"  />
+
+        </div>
+
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Date Of Birth">Date of Birth</label>
           <input className="form__field-input" id="Date Of Birth" type="text" placeholder="Date Of Birth" />
 
         </div>
 
+
         <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="University/School">University/School</label>
-          <input className="form__field-input" id="University/School" type="text" placeholder="University/School"  />
+        <label className="form__field-label" htmlFor="Picture">Profile picture</label>
+        <input className="form__field-input" id="Picture" type="file" placeholder="Picture"  />
 
         </div>
 
+        <div className="form__field-wrapper">
+        <label className="form__field-label" htmlFor="Phone number">Phone number</label>
+        <input className="form__field-input" id="Phone number" type="text" placeholder="Phone number"  />
+
+        </div>
 
         <div className="form__field-wrapper">
         <label className="form__field-label" htmlFor="Bio">Bio</label>
@@ -64,44 +77,7 @@ class Form_Register_Resident extends Component {
 
         </div>
 
-        <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="Picture">Profile picture</label>
-          <input className="form__field-input" id="Picture" type="file" placeholder="Picture"  />
 
-        </div>
-
-        <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="Phone number">Phone number</label>
-          <input className="form__field-input" id="Phone number" type="text" placeholder="Phone number"  />
-
-        </div>
-
-        <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="Job categories">Pick up to 8 jobs categories</label>
-         <input className="form__field-input" id="job category1" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category2" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category3" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category4" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category5" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category6" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category7" type="text" placeholder="Select" list="jobs"  />
-         <input className="form__field-input" id="job category8" type="text" placeholder="Select" list="jobs"  />
-            <datalist id="jobs">
-                <option value="Dog-walking" />
-                <option value="Tutoring- Spanish" />
-                <option value="Home maintenance" />
-                <option value="Tutoring- Mathematics" />
-                <option value="Cat Sitting" />
-                <option value="Plant watering" />
-                <option value="Babysitting" />
-                <option value="Cooking" />
-                <option value="House Cleaning" />
-                <option value="Band playing" />
-                <option value="Photography" />
-                <option value="Other" />
-            </datalist>
-
-        </div>
 
         <div className="form__submit-btn-wrapper">
           {this.props.currentlySending ? (

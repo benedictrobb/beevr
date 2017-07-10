@@ -1,12 +1,7 @@
 import React, { Component } from 'react';
-<<<<<<< HEAD
-import ErrorMessage from './ErrorMessage';
-
-=======
 import { changeForm } from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
->>>>>>> master
 
 const assign = Object.assign;
 
@@ -30,7 +25,7 @@ class Form_Register_Student extends Component {
 
         </div>
         <div className="form__field-wrapper">
-        <label className="form__field-label" htmlFor="username">Username</label>
+        <label className="form__field-label" htmlFor="username">Email</label>
           <input className="form__field-input"
             type="text" id="username"
             value={this.props.data.username}
