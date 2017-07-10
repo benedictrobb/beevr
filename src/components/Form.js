@@ -7,7 +7,12 @@
  */
 
 import React, { Component } from 'react';
+<<<<<<< HEAD
 import ErrorMessage from './ErrorMessage'
+=======
+import ErrorMessage from './ErrorMessage.js';
+const assign = Object.assign;
+>>>>>>> master
 
 
 class LoginForm extends Component {

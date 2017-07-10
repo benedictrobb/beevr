@@ -9,7 +9,11 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import Form from '../Form.js';
+<<<<<<< HEAD
 import beevrAPI from '../../utils/beevrAPI';
+=======
+import beevrAPI from '../../utils/beevrAPI.js';
+>>>>>>> master
 import { login } from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
 

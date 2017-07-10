@@ -72,9 +72,15 @@ export function login(username, password) {
           }
         }
       });
+<<<<<<< HEAD
     };
 
 }
+=======
+  }
+  }
+
+>>>>>>> master
 
 /**
  * Logs the current user out
