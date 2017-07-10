@@ -24,7 +24,7 @@ server.connection({
     },*/
 });
 
-const plugins = [inert, blipp, hapiAuth, cookieAuth, credentials];
+const plugins = [ inert, blipp, cookieAuth ];
     
 server.register(plugins, (err) => {
     if (err) throw err;
