@@ -11,18 +11,18 @@
 import React, { Component } from 'react';
 import Nav from './Nav.js';
 import { connect } from 'react-redux';
-import auth from '../utils/auth.js';
+import beevrAPI from '../utils/beevrAPI.js';
 
 class App extends Component {
-  render() {
-    return(
-      <div className="wrapper">
-        <Nav loggedIn={this.props.data.loggedIn} history={this.props.history} location={this.props.location}
-         dispatch={this.props.dispatch} currentlySending={this.props.data.currentlySending} />
-        { this.props.children }
-      </div>
-    )
-  }
+    render() {
+        return(
+            <div className="wrapper">
+                <Nav loggedIn={this.props.data.loggedIn} history={this.props.history} location={this.props.location}
+                    dispatch={this.props.dispatch} currentlySending={this.props.data.currentlySending} />
+                { this.props.children }
+            </div>
+        );
+    }
 }
 
 

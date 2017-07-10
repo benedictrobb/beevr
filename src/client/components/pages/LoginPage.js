@@ -9,11 +9,17 @@
 import React, { Component} from 'react';
 import { connect } from 'react-redux';
 import Form from '../Form.js';
-import auth from '../../utils/auth';
+import beevrAPI from '../../utils/beevrAPI.js';
 import { login } from '../../actions/AppActions';
-import LoadingIndicator from '../LoadingIndicator.js';
+import Loadingindicator from '../Loadingindicator.js';
 
 class LoginPage extends Component {
+
+    componentWillMount() {
+    fetch( 'https://swapi.co/api/people/?format=json' )
+      .then( response => response.json() )
+      .then( ({results: items}) => this.setState({items}))
+    }
 
     render() {
         const dispatch = this.props.dispatch;

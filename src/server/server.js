@@ -1,11 +1,8 @@
 'use strict';
 const Hapi = require('hapi');
-//const routes = require('./routes');
 const _ = require('lodash');
 const pkg = require('../../package.json');
 const inert = require('inert');
-const h2o2 = require('h2o2');
-const vision = require('vision');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const hapiAuth = require('hapi-auth-basic');
@@ -29,23 +26,23 @@ server.connection({
     },*/
 });
 
-const plugins = [inert, vision, h2o2, blipp, hapiAuth, cookieAuth, credentials];
+const plugins = [inert, blipp, hapiAuth, cookieAuth, credentials];
     
 server.register(plugins, (err) => {
-  if (err) throw err;
-
+    if (err) throw err;
+            
     console.log('=> Registered plugins:', {
         plugins: _.keysIn(server.registrations).join(', ')
     });
     
-    const options = {
+    const cookieAuthOptions = {
         password: process.env.COOKIE_PASSWORD,
         cookie: 'logged-in',
         isSecure: false,
         ttl: 24 * 60 * 60 * 1000,
     };
 
-    server.auth.strategy('base', 'cookie', 'optional', options);
+    server.auth.strategy('base', 'cookie', 'required', 'cookieAuthOptions');
 
     server.route({
         method: 'GET',
@@ -62,7 +59,7 @@ server.register(plugins, (err) => {
     // serve up some sample JSON data
     server.route({
         method: 'GET',
-        path: '/data',
+        path: '/info',
         handler: (request, reply) => {
             reply({
                 name: pkg.name,
@@ -74,22 +71,22 @@ server.register(plugins, (err) => {
     
     server.route({
         method: 'GET',
-        path: '/test',
+        path: '/fuck',
         handler: (request, reply) => {
             reply({
                 name: pkg.name,
                 version: pkg.version,
-                message: 'Welcome to BEEVR!'
+                message: 'Welcome to BEEVR Maja!'
             });
         }
     });
 
     server.start(err => {
         if (err) {
-        throw err;
-    }
+            throw err;
+        }
     
-    console.log(`=> BEEVR Server running at: ${server.info.uri}`);
+        console.log(`=> BEEVR Server running at: ${server.info.uri}`);
     });
 });
 
