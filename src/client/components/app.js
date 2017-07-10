@@ -11,7 +11,7 @@
 import React, { Component } from 'react';
 import Nav from './Nav.js';
 import { connect } from 'react-redux';
-import beevrAPI from '../utils/beevrAPI.js';
+import beevrAPI from '../../utils/beevrAPI.js';
 
 class App extends Component {
     render() {
@@ -29,9 +29,9 @@ class App extends Component {
 
 // Which props do we want to inject, given the global state?
 function select(state) {
-  return {
-    data: state
-  };
+    return {
+        data: state
+    };
 }
 
 // Wrap the component to inject dispatch and state into it

@@ -24,7 +24,7 @@ server.connection({
     },*/
 });
 
-const plugins = [ inert, blipp, cookieAuth ];
+const plugins = [inert, blipp, cookieAuth];
     
 server.register(plugins, (err) => {
     if (err) throw err;
@@ -40,7 +40,7 @@ server.register(plugins, (err) => {
         ttl: 24 * 60 * 60 * 1000,
     };
 
-    server.auth.strategy('base', 'cookie', 'required', 'cookieAuthOptions');
+    server.auth.strategy('session','cookie','optional', cookieAuthOptions);
 
     server.route({
         method: 'GET',
