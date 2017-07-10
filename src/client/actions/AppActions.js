@@ -75,7 +75,6 @@ export function login(username, password) {
     };
 }
 
-
 /**
  * Logs the current user out
  */
