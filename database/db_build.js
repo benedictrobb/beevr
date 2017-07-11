@@ -6,12 +6,12 @@ const buildDatabase = () => {
 
 
     connection.query(dbSchema, (err, res) => {
-    if (err) {
-        console.log(err);
-        throw new Error('Cannot create database');
-    } else {
-        console.log('Database created with result: ',res);
-    }
+        if (err) {
+            console.log(err);
+            throw new Error('Cannot create database');
+        } else {
+            console.log('Database created with result: ',res);
+        }
     });
 };
 

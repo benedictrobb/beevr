@@ -1,5 +1,3 @@
-import request from './fakeRequest';
-
 /**
  * Authentication lib
  * @type {Object}
@@ -7,24 +5,24 @@ import request from './fakeRequest';
 var beevrAPI = {
 
 
-  login(username, password, callback) {
+    login(username, password, callback) {
 
-  },
-  /**
+    },
+    /**
    * Logs the current user out
    */
-  logout(callback) {
+    logout(callback) {
+        
+    },
 
-  },
+    loggedIn() {
 
-  loggedIn() {
+    },
 
-  },
+    register(username, password, callback) {
 
-  register(username, password, callback) {
-
-  },
-  onChange() {}
-}
+    },
+    onChange() {}
+};
 
 module.exports = beevrAPI;

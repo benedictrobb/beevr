@@ -16,7 +16,6 @@ const assign = Object.assign
 import beevrAPI from '../utils/beevrAPI.js';
 
 
-
 const initialState = {
   formState: {
     username: '',
