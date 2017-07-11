@@ -4,8 +4,10 @@
     "description": "",
     "main": "index.js",
     "scripts": {
-        "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "webpack-dev-server"
+        "start": "webpack-dev-server -d --config webpack.dev.config.js --progress --colors",
+        "prod": "NODE_ENV=production node server/server.js",
+        "build": "webpack --config webpack.prod.config.js -p --progress --colors",
+        "postinstall": "webpack --config webpack.prod.config.js -p --progress --colors"
     },
     "repository": {
         "type": "git",
@@ -52,5 +54,5 @@
         "webpack": "^1.12.9",
         "webpack-dev-server": "^1.14.0"
     },
-    "homepage": "https://github.com/benedictrobb/BEEVR#readme",
+    "homepage": "https://github.com/benedictrobb/BEEVR#readme"
 }

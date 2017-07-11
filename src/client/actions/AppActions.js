@@ -24,11 +24,16 @@
  */
 
 import bcrypt from 'bcryptjs';
-import { SET_AUTH, CHANGE_FORM, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
-import * as errorMessages  from '../constants/MessageConstants';
+import {
+    SET_AUTH,
+    CHANGE_FORM,
+    SENDING_REQUEST,
+    SET_ERROR_MESSAGE
+} from '../constants/AppConstants';
+import * as errorMessages from '../constants/MessageConstants';
 import beevrAPI from '../../utils/beevrAPI.js';
 import genSalt from '../../utils/salt';
-import { browserHistory } from 'react-router';
+import {browserHistory} from 'react-router';
 
 /**
  * Logs an user in
@@ -36,11 +41,16 @@ import { browserHistory } from 'react-router';
  * @param  {string} password The password of the user to be logged in
  */
 export function login(username, password) {
-    return (dispatch) => {
-    // Show the loading indicator, hide the last error
+    return dispatch => {
+        // Show the loading indicator, hide the last error
         dispatch(sendingRequest(true));
         // If no username or password was specified, throw a field-missing error
-        if (anyElementsEmpty({ username, password })) {
+        if (
+            anyElementsEmpty({
+                username,
+                password
+            })
+        ) {
             dispatch(setErrorMessage(errorMessages.FIELD_MISSING));
             dispatch(sendingRequest(false));
             return;
@@ -48,16 +58,18 @@ export function login(username, password) {
 
         // Use auth.js to fake a request
         beevrAPI.login(username, hash, (success, err) => {
-        // When the request is finished, hide the loading indicator
+            // When the request is finished, hide the loading indicator
             dispatch(sendingRequest(false));
             dispatch(setAuthState(success));
             if (success === true) {
                 // If the login worked, forward the user to the dashboard and clear the form
                 forwardTo('/dashboard');
-                dispatch(changeForm({
-                    username: '',
-                    password: ''
-                }));
+                dispatch(
+                    changeForm({
+                        username: '',
+                        password: ''
+                    })
+                );
             } else {
                 switch (err.type) {
                 case 'user-doesnt-exist':
@@ -79,7 +91,7 @@ export function login(username, password) {
  * Logs the current user out
  */
 export function logout() {
-    return (dispatch) => {
+    return dispatch => {
         dispatch(sendingRequest(true));
         beevrAPI.logout((success, err) => {
             if (success === true) {
@@ -99,11 +111,16 @@ export function logout() {
  * @param  {string} password The password of the new user
  */
 export function register(username, password) {
-    return (dispatch) => {
-    // Show the loading indicator, hide the last error
+    return dispatch => {
+        // Show the loading indicator, hide the last error
         dispatch(sendingRequest(true));
         // If no username or password was specified, throw a field-missing error
-        if (anyElementsEmpty({ username, password })) {
+        if (
+            anyElementsEmpty({
+                username,
+                password
+            })
+        ) {
             dispatch(setErrorMessage(errorMessages.FIELD_MISSING));
             dispatch(sendingRequest(false));
             return;
@@ -111,16 +128,18 @@ export function register(username, password) {
 
         // Use auth.js to fake a request
         beevrAPI.register(username, hash, (success, err) => {
-        // When the request is finished, hide the loading indicator
+            // When the request is finished, hide the loading indicator
             dispatch(sendingRequest(false));
             dispatch(setAuthState(success));
             if (success) {
                 // If the register worked, forward the user to the homepage and clear the form
                 forwardTo('/dashboard');
-                dispatch(changeForm({
-                    username: '',
-                    password: ''
-                }));
+                dispatch(
+                    changeForm({
+                        username: '',
+                        password: ''
+                    })
+                );
             } else {
                 switch (err.type) {
                 case 'username-exists':
@@ -135,13 +154,15 @@ export function register(username, password) {
     };
 }
 
-
 /**
  * Sets the authentication state of the application
  * @param {boolean} newState True means a user is logged in, false means no user is logged in
  */
 export function setAuthState(newState) {
-    return { type: SET_AUTH, newState };
+    return {
+        type: SET_AUTH,
+        newState
+    };
 }
 
 /**
@@ -152,7 +173,10 @@ export function setAuthState(newState) {
  * @return {object}                   Formatted action for the reducer to handle
  */
 export function changeForm(newState) {
-    return { type: CHANGE_FORM, newState };
+    return {
+        type: CHANGE_FORM,
+        newState
+    };
 }
 
 /**
@@ -161,17 +185,22 @@ export function changeForm(newState) {
  * @return {object}          Formatted action for the reducer to handle
  */
 export function sendingRequest(sending) {
-    return { type: SENDING_REQUEST, sending };
+    return {
+        type: SENDING_REQUEST,
+        sending
+    };
 }
-
 
 /**
  * Sets the errorMessage state, which displays the ErrorMessage component when it is not empty
  * @param message
  */
 function setErrorMessage(message) {
-    return (dispatch) => {
-        dispatch({ type: SET_ERROR_MESSAGE, message });
+    return dispatch => {
+        dispatch({
+            type: SET_ERROR_MESSAGE,
+            message
+        });
 
         const form = document.querySelector('.form-page__form-wrapper');
         if (form) {
@@ -184,7 +213,10 @@ function setErrorMessage(message) {
 
             // Remove the error message after 3 seconds
             setTimeout(() => {
-                dispatch({ type: SET_ERROR_MESSAGE, message: '' });
+                dispatch({
+                    type: SET_ERROR_MESSAGE,
+                    message: ''
+                });
             }, 3000);
         }
     };
@@ -198,7 +230,6 @@ function forwardTo(location) {
     console.log('forwardTo(' + location + ')');
     browserHistory.push(location);
 }
-
 
 /**
  * Checks if any elements of a JSON object are empty
