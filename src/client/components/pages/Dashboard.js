@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import Axios from 'axios'
 import { Link } from 'react-router';
 
-//console.log('Dashboard');
+
 class Dashboard extends Component {
     constructor() {
         super();
