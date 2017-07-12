@@ -23,7 +23,7 @@ module.exports = {
     },
     devServer: {
         proxy: {
-            '/api': {
+            '/api/jobs': {
                 target: `http://localhost:${process.env.PORT || 4000}`,
                 secure: false
             }

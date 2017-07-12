@@ -42,7 +42,7 @@
         "babel-preset-react": "^6.1.18",
         "chai": "^3.5.0",
         "chai-jquery": "^2.0.0",
-        "eslint": "^4.1.1",
+        "eslint": "^4.2.0",
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-jsx-a11y": "^6.0.2",
         "eslint-plugin-react": "^7.1.0",

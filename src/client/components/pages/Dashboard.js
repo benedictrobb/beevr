@@ -12,7 +12,7 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        Axios.get('/api')
+        Axios.get('/api/jobs')
             .then((response) => {
                 console.log(response.data);
                 var data = response.data;
