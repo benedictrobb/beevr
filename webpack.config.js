@@ -1,21 +1,23 @@
+const path = require('path');
 require('env2')('./config.env');
+
 module.exports = {
-    entry: [
-        './src/client/index.js'
-    ],
+    entry: ['./src/client/index.js'],
     output: {
-        path: __dirname,
-        publicPath: '/',
+        path: path.join(__dirname, 'public'),
+        publicPath: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
     module: {
-        loaders: [{
-            exclude: /node_modules/,
-            loader: 'babel',
-            query: {
-                presets: ['react', 'es2015', 'stage-1']
+        loaders: [
+            {
+                exclude: /node_modules/,
+                loader: 'babel',
+                query: {
+                    presets: ['react', 'es2015', 'stage-1']
+                }
             }
-        }]
+        ]
     },
     resolve: {
         extensions: ['', '.js', '.jsx']
@@ -28,6 +30,7 @@ module.exports = {
             }
         },
         historyApiFallback: true,
-        contentBase: './'
+        contentBase: path.join(__dirname, 'public'),
+        publicPath: path.join(__dirname, 'public')
     }
 };
