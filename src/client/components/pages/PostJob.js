@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form_Post_Job from '../Form_Post_Job';
 import {sendingRequest, register} from '../../actions/AppActions';
-import LoadingIndicator from '../LoadingIndicator.js';
+import LoadingIndicator from '../Loadingindicator.js';
 
 class PostJob extends Component {
     render() {

@@ -9,7 +9,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form from '../Form.js';
-import beevrAPI from '../../../utils/beevrAPI.js';
+import beevrAPI from '../../utils/beevrAPI.js';
 import {login} from '../../actions/AppActions';
 import Loadingindicator from '../Loadingindicator.js';
 
