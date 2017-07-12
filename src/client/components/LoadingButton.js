@@ -5,7 +5,7 @@
  */
 
 import React from 'react';
-import Loadingindicator from './Loadingindicator.js';
+import LoadingIndicator from './LoadingIndicator.js';
 
 function LoadingButton(props) {
     return (
