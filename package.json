@@ -49,8 +49,8 @@
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
         "react-addons-test-utils": "^0.14.7",
-        "webpack": "^1.12.9",
-        "webpack-dev-server": "^1.14.0"
+        "webpack": "^2.2.0",
+        "webpack-dev-server": "^2.5.0"
     },
     "homepage": "https://github.com/benedictrobb/BEEVR#readme"
 }
