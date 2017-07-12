@@ -23,7 +23,6 @@
  *    created in the second step
  */
 
-import bcrypt from 'bcryptjs';
 import {
     SET_AUTH,
     CHANGE_FORM,
@@ -32,7 +31,6 @@ import {
 } from '../constants/AppConstants';
 import * as errorMessages from '../constants/MessageConstants';
 import beevrAPI from '../utils/beevrAPI.js';
-import genSalt from '../../utils/salt';
 import {browserHistory} from 'react-router';
 
 /**
@@ -51,8 +49,7 @@ export function login(username, password) {
             return;
         }
 
-        // Use auth.js to fake a request
-        beevrAPI.login(username, hash, (success, err) => {
+        beevrAPI.login(username, password, (success, err) => {
             // When the request is finished, hide the loading indicator
             dispatch(sendingRequest(false));
             dispatch(setAuthState(success));
@@ -116,8 +113,7 @@ export function register(username, password) {
             return;
         }
 
-        // Use auth.js to fake a request
-        beevrAPI.register(username, hash, (success, err) => {
+        beevrAPI.register(username, password, (success, err) => {
             // When the request is finished, hide the loading indicator
             dispatch(sendingRequest(false));
             dispatch(setAuthState(success));
