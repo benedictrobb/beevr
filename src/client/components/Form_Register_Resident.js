@@ -5,7 +5,7 @@ import ErrorMessage from './ErrorMessage.js';
 
 const assign = Object.assign;
 
-class Form_Register_Student extends Component {
+class Form_Register_Resident extends Component {
     render() {
         return (
             <form className="form-group" onSubmit={this._onSubmit.bind(this)}>
@@ -64,6 +64,20 @@ class Form_Register_Student extends Component {
                 <div className="form__field-wrapper">
                     <label
                         className="form__field-label"
+                        htmlFor="University/School "
+                    >
+                        Address
+                    </label>
+                    <input
+                        className="form-control"
+                        id="University/School"
+                        type="text"
+                        placeholder="University/School"
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label
+                        className="form__field-label"
                         htmlFor="Date Of Birth"
                     >
                         Date of Birth
@@ -75,34 +89,6 @@ class Form_Register_Student extends Component {
                         placeholder="Date Of Birth"
                     />
                 </div>
-
-                <div className="form__field-wrapper">
-                    <label
-                        className="form__field-label"
-                        htmlFor="University/School"
-                    >
-                        University/School
-                    </label>
-                    <input
-                        className="form-control"
-                        id="University/School"
-                        type="text"
-                        placeholder="University/School"
-                    />
-                </div>
-
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Bio">
-                        Bio
-                    </label>
-                    <input
-                        className="form-control"
-                        id="Bio"
-                        type="text"
-                        placeholder="Bio"
-                    />
-                </div>
-
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Picture">
                         Profile picture
@@ -114,7 +100,6 @@ class Form_Register_Student extends Component {
                         placeholder="Picture"
                     />
                 </div>
-
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Phone number">
                         Phone number
@@ -126,86 +111,17 @@ class Form_Register_Student extends Component {
                         placeholder="Phone number"
                     />
                 </div>
-
                 <div className="form__field-wrapper">
-                    <label
-                        className="form__field-label"
-                        htmlFor="Job categories"
-                    >
-                        Pick up to 8 jobs categories
+                    <label className="form__field-label" htmlFor="Bio">
+                        Bio
                     </label>
                     <input
                         className="form-control"
-                        id="job category1"
+                        id="Bio"
                         type="text"
-                        placeholder="Select"
-                        list="jobs"
+                        placeholder="Bio"
                     />
-                    <input
-                        className="form-control"
-                        id="job category2"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category3"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category4"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category5"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category6"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category7"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        id="job category8"
-                        type="text"
-                        placeholder="Select"
-                        list="jobs"
-                    />
-                    <datalist id="jobs">
-                        <option value="Dog-walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="Photography" />
-                        <option value="Other" />
-                    </datalist>
                 </div>
-
                 <div className="form__submit-btn-wrapper">
                     {this.props.currentlySending
                         ? <LoadingButton />
@@ -252,10 +168,10 @@ class Form_Register_Student extends Component {
     }
 }
 
-Form_Register_Student.propTypes = {
+Form_Register_Resident.propTypes = {
     onSubmit: React.PropTypes.func.isRequired,
     btnText: React.PropTypes.string.isRequired,
     data: React.PropTypes.object.isRequired
 };
 
-export default Form_Register_Student;
+export default Form_Register_Resident;

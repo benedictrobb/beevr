@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import { DateRange } from 'react-date-range';
+import React, {Component} from 'react';
+import {DateRange} from 'react-date-range';
 
 class DateRange extends Component {
     handleSelect(range) {
