@@ -14,7 +14,7 @@ const server = new Hapi.Server();
 const PORT = process.env.PORT || 4000;
 
 const dbconnection = require('../../database/db_connection.js');
-const jobsQuery = `SELECT * FROM jobs WHERE CATEGORY = 'dog walking' AND end_date < NOW() ORDER BY start_date;`;
+const jobsQuery = `SELECT * FROM jobs WHERE CATEGORY = "dog walking" AND end_date < NOW() ORDER BY start_date;`;
 
 server.connection({
     port: PORT,
@@ -57,7 +57,6 @@ server.register(plugins, (err) => {
         }
     });
 
-    // serve up some data from the database
     server.route({
         method: 'GET',
         path: '/api/jobs',
@@ -66,7 +65,7 @@ server.register(plugins, (err) => {
                 if (err) console.error(`
                     Failed to retrieve data from the database.
                     Aborting`);
-                reply({
+                else reply({
                     name: 'jobsList',
                     message: 'Welcome to BEEVR!',
                     jobsList: res.rows
