@@ -40,7 +40,7 @@
         "react-redux": "4.3.0",
         "react-router": "^2.0.1",
         "redux": "^3.0.4",
-        "webpack": "^1.12.9",
+        "webpack": "^2.2.0",
         "redux-thunk": "^2.2.0"
     },
     "devDependencies": {
@@ -53,7 +53,7 @@
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
         "react-addons-test-utils": "^0.14.7",
-        "webpack-dev-server": "^1.14.0"
+        "webpack-dev-server": "^2.5.0"
     },
     "homepage": "https://github.com/benedictrobb/BEEVR#readme"
 }
