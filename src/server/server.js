@@ -76,6 +76,24 @@ server.register(plugins, err => {
 
     server.route({
         method: 'GET',
+        path: '/api/random_jobs',
+        handler: (request, reply) => {
+            data.getRandomJobs((err, res) => {
+                if (err)
+                    console.error(`
+                    Failed to retrieve data from the database.
+                    Aborting`);
+                reply({
+                    name: 'jobsList',
+                    message: 'Welcome to BEEVR!',
+                    jobsList: res
+                });
+            });
+        }
+    });
+
+    server.route({
+        method: 'GET',
         path: '/api',
         handler: (request, reply) => {
             reply({

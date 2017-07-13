@@ -18,6 +18,19 @@ data.getJobs = (term, callback) => {
     );
 };
 
+data.getRandomJobs = callback => {
+    dbConnection.query(
+        `SELECT * FROM jobs WHERE end_date < NOW()
+         ORDER BY start_date LIMIT 10`,
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+            callback(null, res.rows);
+        }
+    );
+};
+
 data.getStudents = (term, callback) => {
     dbConnection.query(
         `SELECT * FROM students

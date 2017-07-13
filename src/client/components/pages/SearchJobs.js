@@ -17,10 +17,10 @@ class BrowseJobs extends Component {
     }
 
     componentWillMount() {
-        // Axios.get('/api/jobs').then(response => {
-        //     var data = response.data;
-        //     this.setState({data});
-        // });
+        Axios.get('/api/random_jobs').then(response => {
+            var data = response.data;
+            this.setState({data});
+        });
     }
 
     formatDate(date) {
@@ -92,12 +92,28 @@ class BrowseJobs extends Component {
                         Browse Jobs
                     </label>
                     <input
-                        className="form__field-input"
+                        className="form-control"
                         id="Browse Jobs"
+                        type="text"
                         placeholder="Browse Jobs"
+                        list="jobs"
                         onChange={this._onChange}
                         value={this.state.term}
                     />
+                    <datalist id="jobs">
+                        <option value="dog walking" />
+                        <option value="Tutoring- Spanish" />
+                        <option value="Home maintenance" />
+                        <option value="Tutoring- Mathematics" />
+                        <option value="Cat Sitting" />
+                        <option value="Plant watering" />
+                        <option value="Babysitting" />
+                        <option value="Cooking" />
+                        <option value="House Cleaning" />
+                        <option value="Band playing" />
+                        <option value="photography" />
+                        <option value="Other" />
+                    </datalist>
                     <button type="submit" className="btn btn-primary">
                         Submit
                     </button>
@@ -114,13 +130,31 @@ class BrowseJobs extends Component {
                         >
                             Browse Jobs
                         </label>
+
                         <input
-                            className="form__field-input"
+                            className="form-control"
                             id="Browse Jobs"
+                            type="text"
                             placeholder="Browse Jobs"
+                            list="jobs"
                             onChange={this._onChange}
                             value={this.state.term}
                         />
+                        <datalist id="jobs">
+                            <option value="dog walking" />
+                            <option value="Tutoring- Spanish" />
+                            <option value="Home maintenance" />
+                            <option value="Tutoring- Mathematics" />
+                            <option value="Cat Sitting" />
+                            <option value="Plant watering" />
+                            <option value="Babysitting" />
+                            <option value="Cooking" />
+                            <option value="House Cleaning" />
+                            <option value="Band playing" />
+                            <option value="photography" />
+                            <option value="Other" />
+                        </datalist>
+
                         <button type="submit" className="btn btn-primary">
                             Submit
                         </button>
