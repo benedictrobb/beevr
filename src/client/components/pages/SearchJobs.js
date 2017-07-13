@@ -13,7 +13,7 @@ class BrowseJobs extends Component {
 
     componentWillMount() {
         Axios.get('/api/jobs').then(response => {
-            console.log(response.data.jobsList);
+            console.log(response);
             var data = response.data;
             this.setState({data});
         });
