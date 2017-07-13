@@ -23,10 +23,14 @@ class BrowseJobs extends Component {
         return (
             <div>
                 <h2>
-                    {job.category}
+                    {job.job_title}
                 </h2>
+                <h4>
+                    <label>Category: </label>
+                    {job.category}
+                </h4>
                 <p>
-                    {' '}{job.description}{' '}
+                    {job.description}
                 </p>
                 <label>Start Date</label>
                 <p>
@@ -35,6 +39,18 @@ class BrowseJobs extends Component {
                 <label>Start Time</label>
                 <p>
                     {job.start_time}
+                </p>
+                <label>End Date</label>
+                <p>
+                    {job.end_date}
+                </p>
+                <label>End Time</label>
+                <p>
+                    {job.end_time}
+                </p>
+                <label>Rate</label>
+                <p>
+                    {job.rate}
                 </p>
             </div>
         );
