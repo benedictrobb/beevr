@@ -10,11 +10,15 @@
  *   });
  */
 
-import { CHANGE_FORM, SET_AUTH, SENDING_REQUEST, SET_ERROR_MESSAGE } from '../constants/AppConstants';
+import {
+    CHANGE_FORM,
+    SET_AUTH,
+    SENDING_REQUEST,
+    SET_ERROR_MESSAGE
+} from '../constants/AppConstants';
 
 const assign = Object.assign;
-import beevrAPI from '../../utils/beevrAPI.js';
-
+import beevrAPI from '../utils/beevrAPI.js';
 
 const initialState = {
     formState: {

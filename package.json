@@ -2,10 +2,13 @@
     "name": "beevr",
     "version": "1.0.0",
     "description": "",
-    "main": "index.js",
+    "main": "src/server/server.js",
     "scripts": {
         "test": "echo \"Error: no test specified\" && exit 1",
-        "start": "webpack-dev-server"
+        "dev": "webpack-dev-server",
+        "start": "node src/server/server.js",
+        "postinstall": "npm run build",
+        "build": "webpack -p"
     },
     "repository": {
         "type": "git",
@@ -30,16 +33,17 @@
         "react": "^0.14.3",
         "react-date-range": "^0.9.4",
         "react-dom": "^0.14.3",
-        "react-redux": "4.3.0",
-        "react-router": "^2.0.1",
-        "redux": "^3.0.4",
-        "redux-thunk": "^2.2.0"
-    },
-    "devDependencies": {
         "babel-core": "^6.2.1",
         "babel-loader": "^6.2.0",
         "babel-preset-es2015": "^6.1.18",
         "babel-preset-react": "^6.1.18",
+        "react-redux": "4.3.0",
+        "react-router": "^2.0.1",
+        "redux": "^3.0.4",
+        "webpack": "^2.2.0",
+        "redux-thunk": "^2.2.0"
+    },
+    "devDependencies": {
         "chai": "^3.5.0",
         "chai-jquery": "^2.0.0",
         "eslint": "^4.2.0",
@@ -49,8 +53,7 @@
         "jsdom": "^8.1.0",
         "mocha": "^2.4.5",
         "react-addons-test-utils": "^0.14.7",
-        "webpack": "^1.12.9",
-        "webpack-dev-server": "^1.14.0"
+        "webpack-dev-server": "^2.5.0"
     },
     "homepage": "https://github.com/benedictrobb/BEEVR#readme"
 }
