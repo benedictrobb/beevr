@@ -55,7 +55,6 @@ server.register(plugins, err => {
         }
     });
 
-    // serve up some data from the database
     server.route({
         method: 'GET',
         path: '/api/jobs',
