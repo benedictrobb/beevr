@@ -33,8 +33,9 @@ class BrowseJobs extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
-        console.log(this.state.term);
-        Axios.get('/api/jobs').then(response => {
+        Axios.get('/api/jobs', {
+            params: {term: this.state.term}
+        }).then(response => {
             var data = response.data;
             this.setState({data});
         });

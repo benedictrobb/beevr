@@ -60,8 +60,7 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs('dog walking', (err, res) => {
-                console.log(res.rows);
+            data.getJobs(request.url.query.term, (err, res) => {
                 if (err)
                     console.error(`
                     Failed to retrieve data from the database.
