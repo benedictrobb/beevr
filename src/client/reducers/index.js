@@ -16,8 +16,8 @@ import home from './home'
 import studentDashboard from './student_dashboard'
 
 export default combineReducers({
-  // home,
-  // studentDashboard
+  home,
+  studentDashboard
 })
 
 

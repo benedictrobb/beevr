@@ -22,6 +22,7 @@ const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
 
 console.log(store);
+console.log('IS ANYTHIN CHANGING??');
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
