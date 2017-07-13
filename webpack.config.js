@@ -1,10 +1,11 @@
+const path = require('path');
 require('env2')('./config.env');
 
 module.exports = {
     entry: ['./src/client/index.js'],
     output: {
-        path: __dirname,
-        publicPath: '/',
+        path: path.join(__dirname, 'public'),
+        publicPath: path.join(__dirname, 'public'),
         filename: 'bundle.js'
     },
     module: {
@@ -29,6 +30,7 @@ module.exports = {
             }
         },
         historyApiFallback: true,
-        contentBase: './'
+        contentBase: path.join(__dirname, 'public'),
+        publicPath: path.join(__dirname, 'public')
     }
 };

@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form_Register_Student from '../Form_Register_Student.js';
 import {sendingRequest, register} from '../../actions/AppActions';
-import Loadingindicator from '../Loadingindicator.js';
+import LoadingIndicator from '../LoadingIndicator.js';
 
 class RegisterPage extends Component {
     render() {
