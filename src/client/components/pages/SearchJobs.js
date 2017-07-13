@@ -6,6 +6,8 @@ class BrowseJobs extends Component {
     constructor() {
         super();
         this.renderJobs = this.renderJobs.bind(this);
+        this.formatDate = this.formatDate.bind(this);
+        this.formatTime = this.formatTime.bind(this);
         this.state = {
             data: {}
         };
@@ -17,6 +19,14 @@ class BrowseJobs extends Component {
             var data = response.data;
             this.setState({data});
         });
+    }
+
+    formatDate(date) {
+        return date.slice(0, 10);
+    }
+
+    formatTime(time) {
+        return time.slice(0, 5);
     }
 
     renderJobs(job) {
@@ -34,19 +44,19 @@ class BrowseJobs extends Component {
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {job.start_date}
+                    {this.formatDate(job.start_date)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {job.start_time}
+                    {this.formatTime(job.start_time)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {job.end_date}
+                    {this.formatDate(job.end_date)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {job.end_time}
+                    {this.formatTime(job.end_time)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -55,6 +65,7 @@ class BrowseJobs extends Component {
             </div>
         );
     }
+
     render() {
         let data = this.state.data.jobsList;
 
