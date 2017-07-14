@@ -77,16 +77,20 @@ data.postResidents = (object, callback) => {
 };
 
 data.postJobs = (object, callback) => {
+    console.log(object);
     dbConnection.query(
-        `INSERT INTO jobs(start_date, start_time, end_date, end_time, description,
-                    rate, resident_id) VALUES ($1, $2, $3, $4, $5, $6, $7)`,
-        [object.start_date],
-        [object.start_time],
-        [object.end_date],
-        [object.end_time],
-        [object.description],
-        [object.rate],
-        [object.resident_id],
+        'INSERT INTO jobs(job_title, start_date, start_time, end_date, end_time, description, category, rate, resident_id) VALUES (\'IS IT WORKING?!\',\'03/07/2017\',\'10:00\',\'03/07/2017\',\'18:00\',\'555-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?\',\'dog walking\',75.00,1)',
+        // `INSERT INTO jobs(start_date, start_time, end_date, end_time, description,
+        //             rate, resident_id, category, job_title) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        // [object.start_date],
+        // [object.start_time],
+        // [object.end_date],
+        // [object.end_time],
+        // [object.description],
+        // [object.rate],
+        // [object.resident_id],
+        // [object.category],
+        // [object.job_title],
         (err, res) => {
             if (err) {
                 callback(err);

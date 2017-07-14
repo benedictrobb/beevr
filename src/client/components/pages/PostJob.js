@@ -1,13 +1,52 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form_Post_Job from '../Form_Post_Job';
-import {sendingRequest, register} from '../../actions/AppActions';
+import {sendingRequest} from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
+import * as actions from '../../actions/post_job.js';
+import axios from 'axios';
+
+const testObject = {
+    start_date: '01/12/90',
+    start_time: '12:00',
+    end_date: '12/12/12',
+    end_time: '07:00',
+    job_title: 'Hello Chello',
+    description: 'Lorem Ipsum',
+    rate: '100',
+    resident_id: '1',
+    category: 'photography'
+};
 
 class PostJob extends Component {
+    constructor() {
+        super();
+    }
+
+    componentWillMount() {
+        //this.props.postJobs
+        axios
+            .post('/api/jobs', {
+                start_date: '01/12/90',
+                start_time: '12:00',
+                end_date: '12/12/12',
+                end_time: '07:00',
+                job_title: 'Hello Chello',
+                description: 'Lorem Ipsum',
+                rate: '100',
+                resident_id: '1',
+                category: 'photography'
+            })
+            .then(function(response) {
+                console.log(response);
+            })
+            .catch(function(error) {
+                console.log(error);
+            });
+    }
     render() {
-        const dispatch = this.props.dispatch;
-        const {formState, currentlySending} = this.props.data;
+        // const dispatch = this.props.dispatch;
+        // const {currentlySending} = this.props.data;
         return (
             <div className="form-page__wrapper">
                 <div className="form-page__form-wrapper">
@@ -16,23 +55,15 @@ class PostJob extends Component {
                     </div>
                     {/* While the form is sending, show the loading indicator,
                         otherwise show "Register" on the submit button */}
-                    <Form_Post_Job
-                        data={formState}
-                        dispatch={dispatch}
-                        location={location}
-                        history={this.props.history}
-                        btnText={'Submit'}
-                        currentlySending={currentlySending}
-                    />
+                    <Form_Post_Job btnText={'Submit'} />
                 </div>
             </div>
         );
     }
 }
 
-function select(state) {
-    return {data: state};
+function mapStateToProps(state) {
+    return {};
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(PostJob);
+export default connect(mapStateToProps, actions)(PostJob);
