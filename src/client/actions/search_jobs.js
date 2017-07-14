@@ -29,7 +29,7 @@ export const fetchJobs = () => dispatch => {
         });
 };
 
-export const fetchSelectedJobs = () => dispatch => {
+export const fetchSelectedJobs = term => dispatch => {
     console.log('fetch jobs called');
     dispatch({
         type: FETCH_SELECTED_JOBS,
@@ -38,7 +38,7 @@ export const fetchSelectedJobs = () => dispatch => {
 
     axios
         .get('/api/jobs', {
-            params: {term: 'dog walking'}
+            params: {term: term}
         })
         .then(response => {
             // if (response.status === 200) ??

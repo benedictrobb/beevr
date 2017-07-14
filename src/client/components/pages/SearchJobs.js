@@ -11,10 +11,7 @@ class BrowseJobs extends Component {
         this.formatTime = this.formatTime.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onChange = this._onChange.bind(this);
-        // this.state = {
-        //     data: {},
-        //     term: ''
-        // };
+        this.state = {term: ''};
     }
 
     componentWillMount() {
@@ -31,17 +28,11 @@ class BrowseJobs extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchSelectedJobs();
-        // Axios.get('/api/jobs', {
-        //     params: {term: this.state.term}
-        // }).then(response => {
-        //     var data = response.data;
-        //     this.setState({data});
-        // });
+        this.props.fetchSelectedJobs(this.state.term);
     }
 
     _onChange(evt) {
-        // this.setState({term: evt.target.value});
+        this.setState({term: evt.target.value});
     }
 
     renderJobs(job) {
@@ -98,6 +89,7 @@ class BrowseJobs extends Component {
                         placeholder="Browse Jobs"
                         list="jobs"
                         onChange={this._onChange}
+                        value={this.state.term}
                     />
                     <datalist id="jobs">
                         <option value="dog walking" />
@@ -137,6 +129,7 @@ class BrowseJobs extends Component {
                             placeholder="Browse Jobs"
                             list="jobs"
                             onChange={this._onChange}
+                            value={this.state.term}
                         />
                         <datalist id="jobs">
                             <option value="dog walking" />
