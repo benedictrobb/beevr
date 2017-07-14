@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Axios from 'axios';
+import * as actions from '../../actions/search_jobs.js';
 
 class BrowseJobs extends Component {
     constructor() {
@@ -10,17 +11,17 @@ class BrowseJobs extends Component {
         this.formatTime = this.formatTime.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onChange = this._onChange.bind(this);
-        this.state = {
-            data: {},
-            term: ''
-        };
+        // this.state = {
+        //     data: {},
+        //     term: ''
+        // };
     }
 
     componentWillMount() {
-        Axios.get('/api/random_jobs').then(response => {
-            var data = response.data;
-            this.setState({data});
-        });
+        // Axios.get('/api/random_jobs').then(response => {
+        //     var data = response.data;
+        //     this.setState({data});
+        // });
     }
 
     formatDate(date) {
@@ -33,16 +34,17 @@ class BrowseJobs extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
-        Axios.get('/api/jobs', {
-            params: {term: this.state.term}
-        }).then(response => {
-            var data = response.data;
-            this.setState({data});
-        });
+        // Axios.get('/api/jobs', {
+        //     params: {term: this.state.term}
+        // }).then(response => {
+        //     var data = response.data;
+        //     this.setState({data});
+        // });
+        this.props.fetchJobs();
     }
 
     _onChange(evt) {
-        this.setState({term: evt.target.value});
+        // this.setState({term: evt.target.value});
     }
 
     renderJobs(job) {
@@ -83,9 +85,9 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        let data = this.state.data.jobsList;
+        let jobsList = this.props.jobs.jobsList;
 
-        if (!data) {
+        if (!jobsList) {
             return (
                 <form onSubmit={this._onSubmit}>
                     <label className="form__field-label" htmlFor="Browse Jobs">
@@ -98,7 +100,6 @@ class BrowseJobs extends Component {
                         placeholder="Browse Jobs"
                         list="jobs"
                         onChange={this._onChange}
-                        value={this.state.term}
                     />
                     <datalist id="jobs">
                         <option value="dog walking" />
@@ -138,7 +139,6 @@ class BrowseJobs extends Component {
                             placeholder="Browse Jobs"
                             list="jobs"
                             onChange={this._onChange}
-                            value={this.state.term}
                         />
                         <datalist id="jobs">
                             <option value="dog walking" />
@@ -168,9 +168,9 @@ class BrowseJobs extends Component {
     }
 }
 
-function select(state) {
-    return {data: state};
+function mapStateToProps(state) {
+    console.log(state);
+    return {jobs: state.searchJobs.jobsRequest.response};
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(BrowseJobs);
+export default connect(mapStateToProps, actions)(BrowseJobs);

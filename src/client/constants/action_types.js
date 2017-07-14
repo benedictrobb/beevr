@@ -1,0 +1,1 @@
+export const FETCH_STUDENT_JOBS = 'FETCH_STUDENT_JOBS';
