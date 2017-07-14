@@ -11,7 +11,6 @@ class BrowseJobs extends Component {
         this.formatTime = this.formatTime.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onChange = this._onChange.bind(this);
-        // this.state = {term: ''};
     }
 
     componentWillMount() {
@@ -32,7 +31,6 @@ class BrowseJobs extends Component {
     }
 
     _onChange(evt) {
-        // this.setState({term: evt.target.value});
         this.props.setTerm(evt.target.value);
     }
 
@@ -161,7 +159,6 @@ class BrowseJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state);
     return {
         jobs: state.searchJobs.jobsRequest.response,
         term: state.searchJobs.term
