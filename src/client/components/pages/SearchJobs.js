@@ -18,10 +18,6 @@ class BrowseJobs extends Component {
     }
 
     componentWillMount() {
-        // Axios.get('/api/random_jobs').then(response => {
-        //     var data = response.data;
-        //     this.setState({data});
-        // });
         this.props.fetchJobs();
     }
 
@@ -35,6 +31,7 @@ class BrowseJobs extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
+        this.props.fetchSelectedJobs();
         // Axios.get('/api/jobs', {
         //     params: {term: this.state.term}
         // }).then(response => {
@@ -171,7 +168,9 @@ class BrowseJobs extends Component {
 
 function mapStateToProps(state) {
     console.log(state);
-    return {jobs: state.searchJobs.jobsRequest.response};
+    return {
+        jobs: state.searchJobs.jobsRequest.response
+    };
 }
 
 export default connect(mapStateToProps, actions)(BrowseJobs);

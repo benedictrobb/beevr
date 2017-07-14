@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import {FETCH_SELECTED_JOBS} from '../constants/action_types.js';
 import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
 
 export const fetchJobs = () => dispatch => {
@@ -19,17 +19,38 @@ export const fetchJobs = () => dispatch => {
                 status: 'success',
                 response: response.data
             });
-            // } else {
-            //   dispatch({
-            //       type: FETCH_STUDENT_JOBS,
-            //       status: 'error',
-            //       error: error
-            //   })
-            // }
         })
         .catch(err => {
             dispatch({
                 type: FETCH_STUDENT_JOBS,
+                status: 'error',
+                error: err
+            });
+        });
+};
+
+export const fetchSelectedJobs = () => dispatch => {
+    console.log('fetch jobs called');
+    dispatch({
+        type: FETCH_SELECTED_JOBS,
+        status: 'pending'
+    });
+
+    axios
+        .get('/api/jobs', {
+            params: {term: 'dog walking'}
+        })
+        .then(response => {
+            // if (response.status === 200) ??
+            dispatch({
+                type: FETCH_SELECTED_JOBS,
+                status: 'success',
+                response: response.data
+            });
+        })
+        .catch(err => {
+            dispatch({
+                type: FETCH_SELECTED_JOBS,
                 status: 'error',
                 error: err
             });
