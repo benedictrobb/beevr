@@ -85,7 +85,8 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        let jobsList = this.props.jobs.jobsList;
+        let {jobs} = this.props;
+        let jobsList = jobs && jobs.jobsList;
 
         if (!jobsList) {
             return (
@@ -160,7 +161,7 @@ class BrowseJobs extends Component {
                         </button>
                     </form>
                     <ul>
-                        {data.map(this.renderJobs)}
+                        {jobsList.map(this.renderJobs)}
                     </ul>
                 </section>
             </article>

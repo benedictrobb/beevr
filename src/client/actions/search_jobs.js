@@ -33,7 +33,7 @@ export const fetchJobs = () => dispatch => {
             dispatch({
                 type: FETCH_STUDENT_JOBS,
                 status: 'error',
-                error: error
+                error: err
             });
         });
 };
