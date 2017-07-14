@@ -22,6 +22,7 @@ class BrowseJobs extends Component {
         //     var data = response.data;
         //     this.setState({data});
         // });
+        this.props.fetchJobs();
     }
 
     formatDate(date) {
@@ -40,7 +41,6 @@ class BrowseJobs extends Component {
         //     var data = response.data;
         //     this.setState({data});
         // });
-        this.props.fetchJobs();
     }
 
     _onChange(evt) {

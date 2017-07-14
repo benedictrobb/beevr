@@ -10,9 +10,7 @@ export const fetchJobs = () => dispatch => {
     });
 
     axios
-        .get('/api/jobs', {
-            params: {term: 'dog walking'}
-        })
+        .get('/api/random_jobs')
         .then(response => {
             console.log(response);
             // if (response.status === 200) ??
