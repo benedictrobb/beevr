@@ -11,7 +11,7 @@ class BrowseJobs extends Component {
         this.formatTime = this.formatTime.bind(this);
         this._onSubmit = this._onSubmit.bind(this);
         this._onChange = this._onChange.bind(this);
-        this.state = {term: ''};
+        // this.state = {term: ''};
     }
 
     componentWillMount() {
@@ -28,11 +28,12 @@ class BrowseJobs extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchSelectedJobs(this.state.term);
+        this.props.fetchSelectedJobs(this.props.term);
     }
 
     _onChange(evt) {
-        this.setState({term: evt.target.value});
+        // this.setState({term: evt.target.value});
+        this.props.setTerm(evt.target.value);
     }
 
     renderJobs(job) {
@@ -89,7 +90,7 @@ class BrowseJobs extends Component {
                         placeholder="Browse Jobs"
                         list="jobs"
                         onChange={this._onChange}
-                        value={this.state.term}
+                        value={this.props.term}
                     />
                     <datalist id="jobs">
                         <option value="dog walking" />
@@ -129,7 +130,7 @@ class BrowseJobs extends Component {
                             placeholder="Browse Jobs"
                             list="jobs"
                             onChange={this._onChange}
-                            value={this.state.term}
+                            value={this.props.term}
                         />
                         <datalist id="jobs">
                             <option value="dog walking" />
@@ -162,7 +163,8 @@ class BrowseJobs extends Component {
 function mapStateToProps(state) {
     console.log(state);
     return {
-        jobs: state.searchJobs.jobsRequest.response
+        jobs: state.searchJobs.jobsRequest.response,
+        term: state.searchJobs.term
     };
 }
 

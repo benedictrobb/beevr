@@ -1,6 +1,7 @@
 import axios from 'axios';
 import {FETCH_SELECTED_JOBS} from '../constants/action_types.js';
 import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
+import {SET_TERM} from '../constants/action_types.js';
 
 export const fetchJobs = () => dispatch => {
     console.log('fetch jobs called');
@@ -55,4 +56,11 @@ export const fetchSelectedJobs = term => dispatch => {
                 error: err
             });
         });
+};
+
+export const setTerm = term => dispatch => {
+    dispatch({
+        type: SET_TERM,
+        response: term
+    });
 };
