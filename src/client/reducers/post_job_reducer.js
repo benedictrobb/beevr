@@ -1,7 +1,8 @@
 import {POST_JOB} from '../constants/action_types.js';
 
 const initialState = {
-    newJob: {}
+    newJob: {},
+    jobData: {}
 };
 
 export default (state = initialState, action) => {

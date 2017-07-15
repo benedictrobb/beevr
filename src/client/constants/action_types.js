@@ -1,0 +1,4 @@
+export const FETCH_STUDENT_JOBS = 'FETCH_STUDENT_JOBS';
+export const FETCH_SELECTED_JOBS = 'FETCH_SELECTED_JOBS';
+export const SET_TERM = 'SET_TERM';
+export const POST_JOB = 'POST_JOB';

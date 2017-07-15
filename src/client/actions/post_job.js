@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {POST_JOB} from '../constants/action_types.js';
 
-export const postJob = () => dispatch => {
+export const postJob = job => dispatch => {
     console.log('iside PostJOb');
     dispatch({
         type: POST_JOB,
@@ -9,17 +9,7 @@ export const postJob = () => dispatch => {
     });
 
     axios
-        .post('/api/jobs', {
-            start_date: '03/07/2017',
-            start_time: '12:00',
-            end_date: '12/12/12',
-            end_time: '07:00',
-            job_title: 'Hello Chello',
-            description: 'Lorem Ipsum',
-            rate: '100.00',
-            resident_id: '1',
-            category: 'fishing'
-        })
+        .post('/api/jobs', job)
         .then(response => {
             console.log('iside then response');
             dispatch({

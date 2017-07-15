@@ -10,31 +10,61 @@ class Form_Post_Job extends Component {
     constructor() {
         super();
         this._onSubmit = this._onSubmit.bind(this);
+        this._onChangeStartDate=this._onChangeStartDate.bind(this);
+        this._onChangeStartTime=this._onChangeStartTime.bind(this);
+        this._onChangeEndDate=this._onChangeEndDate.bind(this);
+        this._onChangeEndTime=this._onChangeEndTime.bind(this);
+        this._onChangeTitle=this._onChangeTitle.bind(this);
+        this._onChangeRate=this._onChangeRate.bind(this);
+        this._onChangeDescription= this._onChangeDescription.bind(this);
+        this._onChangeCategory=this._onChangeCategory.bind(this);
+
+        this.state = { jobData: {} };
     }
 
-    _onSubmit() {
-        console.log('inside onSubmit');
-        this.props.postJob();
-        //     axios
-        //         .post('/api/jobs', {
-        //             start_date: '03/07/2017',
-        //             start_time: '12:00',
-        //             end_date: '12/12/12',
-        //             end_time: '07:00',
-        //             job_title: 'Hello Chello',
-        //             description: 'Lorem Ipsum',
-        //             rate: '100.00',
-        //             resident_id: '1',
-        //             category: 'horse riding'
-        //         })
-        //         .then(function(response) {
-        //             console.log(response);
-        //         })
-        //         .catch(function(error) {
-        //             console.log(error);
-        //         });
+    _onSubmit(evt) {
+      evt.preventDefault();
+      console.log('inside onSubmit');
+        this.props.postJob(this.state.jobData);
     }
+
+    _onChangeStartDate(evt) {
+      console.log(this.state);
+        this.setState(this.state.jobData:{ start_date: event.target.value });
+    }
+
+    _onChangeStartTime(evt) {
+        this.setState(this.state.jobData: { start_time: event.target.value });
+    }
+
+    _onChangeEndDate(evt) {
+        this.setState(this.state.jobData: {end_date: event.target.value });
+    }
+
+    _onChangeEndTime(evt) {
+        this.setState(this.state.jobData: {end_time: event.target.value });
+    }
+
+    _onChangeTitle(evt) {
+        this.setState(this.state.jobData: {job_title: event.target.value });
+    }
+
+    _onChangeDescription(evt) {
+        this.setState(this.state.jobData: {description: event.target.value });
+    }
+
+    _onChangeRate(evt) {
+        this.setState(this.state.jobData: {rate: event.target.value });
+    }
+
+    _onChangeCategory(evt) {
+        this.setState(this.state.jobData: {category: event.target.value });
+    }
+
     render() {
+      if (!this.state){
+        return <div>Loading</div>;
+      }
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <ErrorMessage />
@@ -47,6 +77,21 @@ class Form_Post_Job extends Component {
                         id="Start Date"
                         type="date"
                         placeholder="Start Date"
+                        value={this.state.jobData.start_date}
+                        onChange={this._onChangeStartDate}
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Job Title">
+                        Job Title
+                    </label>
+                    <input
+                        className="form-control"
+                        id="Job Title"
+                        type="text"
+                        placeholder="Job Title"
+                        value={this.state.jobData.job_title}
+                        onChange={this._onChangeTitle}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -58,6 +103,8 @@ class Form_Post_Job extends Component {
                         id="Start Time"
                         type="time"
                         placeholder="Start Time"
+                        value={this.state.jobData.stat_time}
+                        onChange={this._onChangeStartTime}
                     />
                 </div>
 
@@ -70,6 +117,8 @@ class Form_Post_Job extends Component {
                         id="End Date"
                         type="date"
                         placeholder="End Date"
+                        value={this.state.jobData.end_date}
+                        onChange={this._onChangeEndDate}
                     />
                 </div>
 
@@ -82,6 +131,9 @@ class Form_Post_Job extends Component {
                         id="End Time"
                         type="time"
                         placeholder="End Time"
+                        value={this.state.jobData.end_time}
+                        onChange={this._onChangeEndTime}
+
                     />
                 </div>
 
@@ -94,6 +146,8 @@ class Form_Post_Job extends Component {
                     type="text"
                     placeholder="Select a job category"
                     list="jobs"
+                    value={this.state.jobData.category}
+                    onChange={this._onChangeCategory}
                 />
                 <datalist id="jobs">
                     <option value="Dog-walking" />
@@ -119,6 +173,8 @@ class Form_Post_Job extends Component {
                         id="Rate"
                         type="text"
                         placeholder="Rate"
+                        value={this.state.jobData.rate}
+                        onChange={this._onChangeRate}
                     />
                     <label htmlFor="£">£</label>
                 </div>
@@ -136,6 +192,8 @@ class Form_Post_Job extends Component {
                         id="Job description"
                         cols="50"
                         rows="6"
+                        value={this.state.jobData.description}
+                        onChange={this._onChangeDescription}
                     >
                         Job description
                     </textarea>
