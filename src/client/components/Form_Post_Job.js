@@ -2,11 +2,41 @@ import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
+import axios from 'axios';
+import * as actions from '../actions/post_job.js';
+import {connect} from 'react-redux';
 
 class Form_Post_Job extends Component {
+    constructor() {
+        super();
+        this._onSubmit = this._onSubmit.bind(this);
+    }
+
+    _onSubmit() {
+        console.log('inside onSubmit');
+        this.props.postJob();
+        //     axios
+        //         .post('/api/jobs', {
+        //             start_date: '03/07/2017',
+        //             start_time: '12:00',
+        //             end_date: '12/12/12',
+        //             end_time: '07:00',
+        //             job_title: 'Hello Chello',
+        //             description: 'Lorem Ipsum',
+        //             rate: '100.00',
+        //             resident_id: '1',
+        //             category: 'horse riding'
+        //         })
+        //         .then(function(response) {
+        //             console.log(response);
+        //         })
+        //         .catch(function(error) {
+        //             console.log(error);
+        //         });
+    }
     render() {
         return (
-            <form className="form-group">
+            <form className="form-group" onSubmit={this._onSubmit}>
                 <ErrorMessage />
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Start Date">
@@ -115,7 +145,7 @@ class Form_Post_Job extends Component {
                     {this.props.currentlySending
                         ? <LoadingButton />
                         : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
+                              Submit
                         </button>}
                 </div>
             </form>
@@ -123,4 +153,10 @@ class Form_Post_Job extends Component {
     }
 }
 
-export default Form_Post_Job;
+function mapStateToProps(state) {
+    return {
+        newJob: state.postJob.newJob.response
+    };
+}
+
+export default connect(mapStateToProps, actions)(Form_Post_Job);

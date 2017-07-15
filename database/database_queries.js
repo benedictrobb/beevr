@@ -77,7 +77,8 @@ data.postResidents = (object, callback) => {
 };
 
 data.postJobs = (object, callback) => {
-    // console.log('object is', object);
+    console.log('inside databse query');
+    // This needs to be refactored into a parametised query but I dont know how to get it to work
     dbConnection.query(
         `INSERT INTO jobs(job_title, start_date, start_time, end_date,
           end_time, description, category, rate, resident_id) VALUES
@@ -98,6 +99,7 @@ data.postJobs = (object, callback) => {
             if (err) {
                 callback(err);
             }
+
             callback(null, res.rows);
         }
     );
