@@ -8,6 +8,7 @@ import * as actions from '../../actions/register_student'
 
 class RegisterPage extends Component {
     render() {
+        console.log('hey',this.state,this.props);
         const dispatch = this.props.dispatch;
         const {formState, currentlySending} = this.props;
         return (

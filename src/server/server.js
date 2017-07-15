@@ -87,12 +87,22 @@ server.register(plugins, err => {
 
     server.route({
         method: 'GET',
-        path: '/api',
+        path: '/api/register',
         handler: (request, reply) => {
-            reply({
-                name: pkg.name,
-                version: pkg.version,
-                message: 'Welcome to BEEVR Maja!'
+            dbconnection.query(regStudents, (err, res) => {
+                if (err) { console.error(`
+                replyFailed to retrieve data from the database.
+                        Aborting`);
+                    reply(err.message);
+                }
+                else if (res.rows[0].exists) {
+                    console.log('username exists!');
+                    reply({
+                        name: 'registration',
+                        message: 'Register to BEEVR!',
+                        registration: res.rows
+                    });
+                };
             });
         }
     });

@@ -10,15 +10,17 @@
  *   });
  */
 
-import { combineReducers } from 'redux'
+import { combineReducers } from 'redux';
 
-import home from './home'
-import studentDashboard from './student_dashboard'
+import home from './home';
+import studentDashboard from './student_dashboard';
+import studentRegistration from './student_registration';
 
 export default combineReducers({
-  home,
-  studentDashboard
-})
+    home,
+    studentDashboard,
+    studentRegistration
+});
 
 
 // before

@@ -32,6 +32,21 @@ data.getStudents = (term, callback) => {
     );
 };
 
+data.regStudents = (object, callback) => {
+    dbConnection.query(
+        `SELECT exists(SELECT students.email FROM students WHERE students.email = $1) FROM students`,
+        [object.email],
+        (err, res) => {
+            console.log(res.rows);
+            if (err) {
+                callback(err);
+            }
+            callback(null, res.rows);
+        }
+    );
+};
+
+
 data.postStudents = (object, callback) => {
     dbConnection.query(
         `INSERT INTO students(first_name, last_name, email, DOB,

@@ -3,19 +3,19 @@ import {
     SET_AUTH,
     SENDING_REQUEST,
     SET_ERROR_MESSAGE
-} from '../constants/AppConstants';
+} from "../constants/AppConstants";
 
 const assign = Object.assign;
-import beevrAPI from '../utils/beevrAPI.js';
+import beevrAPI from "../utils/beevrAPI.js";
 
 const initialState = {
     formState: {
-        username: '',
-        password: ''
+        username: "",
+        password: ""
     },
     currentlySending: false,
     loggedIn: beevrAPI.loggedIn(),
-    errorMessage: ''
+    errorMessage: ""
 };
 
 // Takes care of changing the application state
@@ -43,5 +43,5 @@ export default function homeReducer(state = initialState, action) {
             };
         default:
             return state;
-        }
     }
+}

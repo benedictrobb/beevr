@@ -32,7 +32,7 @@ import {
 import * as errorMessages from '../constants/MessageConstants';
 import beevrAPI from '../utils/beevrAPI.js';
 import {browserHistory} from 'react-router';
-
+import FETCH_STUDENT_EMAIL from '../constants/action_types';
 /**
  * Logs an user in
  * @param  {string} username The username of the user to be logged in
@@ -102,43 +102,65 @@ export function logout() {
  * @param  {string} username The username of the new user
  * @param  {string} password The password of the new user
  */
-export function register(username, password) {
-    return dispatch => {
-        // Show the loading indicator, hide the last error
-        dispatch(sendingRequest(true));
-        // If no username or password was specified, throw a field-missing error
-        if (anyElementsEmpty({username, password})) {
-            dispatch(setErrorMessage(errorMessages.FIELD_MISSING));
-            dispatch(sendingRequest(false));
-            return;
-        }
+export const register = (username, password) => dispatch {
+    // Show the loading indicator, hide the last error
+    dispatch({
+        type: FETCH_STUDENT_EMAIL,
+        status: 'pending'
+    })
+    
+    axios.get('api/register')
+        .then((response) => {
+            console.log(response);
 
-        beevrAPI.register(username, password, (success, err) => {
-            // When the request is finished, hide the loading indicator
-            dispatch(sendingRequest(false));
-            dispatch(setAuthState(success));
-            if (success) {
-                // If the register worked, forward the user to the homepage and clear the form
-                forwardTo('/dashboard');
-                dispatch(
-                    changeForm({
-                        username: '',
-                        password: ''
-                    })
-                );
-            } else {
-                switch (err.type) {
-                case 'username-exists':
-                    dispatch(setErrorMessage(errorMessages.USERNAME_TAKEN));
-                    return;
-                default:
-                    dispatch(setErrorMessage(errorMessages.GENERAL_ERROR));
-                    return;
+            dispatch({
+                type: FETCH_STUDENT_EMAIL,
+                status: 'success',
+                response: response.data
+            })
+        })
+        .catch(err => {
+            dispatch({
+                type: FETCH_STUDENT_EMAIL,
+                status: 'error',
+                error: error
+            })
+        })        
+        
+    //sendingRequest(true));
+        //// If no username or password was specified, throw a field-missing error
+        //if (anyElementsEmpty({username, password})) {
+            //dispatch(setErrorMessage(errorMessages.FIELD_MISSING));
+            //dispatch(sendingRequest(false));
+            //return;
+        //}
+
+        //beevrAPI.register(username, password, (success, err) => {
+            //// When the request is finished, hide the loading indicator
+            //dispatch(sendingRequest(false));
+            //dispatch(setAuthState(success));
+            //if (success) {
+                //// If the register worked, forward the user to the homepage and clear the form
+                //forwardTo('/dashboard');
+                //dispatch(
+                    //changeForm({
+                        //username: '',
+                        //password: ''
+                    //})
+                //);
+            //} else {
+                //switch (err.type) {
+                //case 'username-exists':
+                    //dispatch(setErrorMessage(errorMessages.USERNAME_TAKEN));
+                    //return;
+                //default:
+                    //dispatch(setErrorMessage(errorMessages.GENERAL_ERROR));
+                    //return;
                 }
-            }
-        });
-    };
-}
+            //}
+        //});
+    //};
+//}
 
 /**
  * Sets the authentication state of the application
