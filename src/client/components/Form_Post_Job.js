@@ -5,6 +5,7 @@ import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -19,6 +20,7 @@ class Form_Post_Job extends Component {
         this._onChangeDescription = this._onChangeDescription.bind(this);
         this._onChangeCategory = this._onChangeCategory.bind(this);
 
+        //resident id hardcoded for now
         this.state = {
             jobData: {
                 resident_id: 1
@@ -28,7 +30,6 @@ class Form_Post_Job extends Component {
 
     _onSubmit(evt) {
         evt.preventDefault();
-        console.log(this.state.jobData);
         this.props.postJob(this.state.jobData);
     }
 
@@ -36,6 +37,7 @@ class Form_Post_Job extends Component {
         var jobData = this.state.jobData;
         jobData.start_date = evt.target.value;
         this.setState({jobData});
+        this.props.history.push('/');
     }
 
     _onChangeStartTime(evt) {
