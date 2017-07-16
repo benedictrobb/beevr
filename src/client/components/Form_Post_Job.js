@@ -10,61 +10,80 @@ class Form_Post_Job extends Component {
     constructor() {
         super();
         this._onSubmit = this._onSubmit.bind(this);
-        this._onChangeStartDate=this._onChangeStartDate.bind(this);
-        this._onChangeStartTime=this._onChangeStartTime.bind(this);
-        this._onChangeEndDate=this._onChangeEndDate.bind(this);
-        this._onChangeEndTime=this._onChangeEndTime.bind(this);
-        this._onChangeTitle=this._onChangeTitle.bind(this);
-        this._onChangeRate=this._onChangeRate.bind(this);
-        this._onChangeDescription= this._onChangeDescription.bind(this);
-        this._onChangeCategory=this._onChangeCategory.bind(this);
+        this._onChangeStartDate = this._onChangeStartDate.bind(this);
+        this._onChangeStartTime = this._onChangeStartTime.bind(this);
+        this._onChangeEndDate = this._onChangeEndDate.bind(this);
+        this._onChangeEndTime = this._onChangeEndTime.bind(this);
+        this._onChangeTitle = this._onChangeTitle.bind(this);
+        this._onChangeRate = this._onChangeRate.bind(this);
+        this._onChangeDescription = this._onChangeDescription.bind(this);
+        this._onChangeCategory = this._onChangeCategory.bind(this);
 
-        this.state = { jobData: {} };
+        this.state = {
+            jobData: {
+                resident_id: 1
+            }
+        };
     }
 
     _onSubmit(evt) {
-      evt.preventDefault();
-      console.log('inside onSubmit');
+        evt.preventDefault();
+        console.log(this.state.jobData);
         this.props.postJob(this.state.jobData);
     }
 
     _onChangeStartDate(evt) {
-      console.log(this.state);
-        this.setState(this.state.jobData:{ start_date: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.start_date = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeStartTime(evt) {
-        this.setState(this.state.jobData: { start_time: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.start_time = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeEndDate(evt) {
-        this.setState(this.state.jobData: {end_date: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.end_date = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeEndTime(evt) {
-        this.setState(this.state.jobData: {end_time: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.end_time = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeTitle(evt) {
-        this.setState(this.state.jobData: {job_title: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.job_title = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeDescription(evt) {
-        this.setState(this.state.jobData: {description: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.description = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeRate(evt) {
-        this.setState(this.state.jobData: {rate: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.rate = evt.target.value;
+        this.setState({jobData});
     }
 
     _onChangeCategory(evt) {
-        this.setState(this.state.jobData: {category: event.target.value });
+        var jobData = this.state.jobData;
+        jobData.category = evt.target.value;
+        this.setState({jobData});
     }
 
     render() {
-      if (!this.state){
-        return <div>Loading</div>;
-      }
+        if (!this.state) {
+            return <div>Loading</div>;
+        }
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <ErrorMessage />
@@ -133,7 +152,6 @@ class Form_Post_Job extends Component {
                         placeholder="End Time"
                         value={this.state.jobData.end_time}
                         onChange={this._onChangeEndTime}
-
                     />
                 </div>
 

@@ -11,7 +11,6 @@ export const postJob = job => dispatch => {
     axios
         .post('/api/jobs', job)
         .then(response => {
-            console.log('iside then response');
             dispatch({
                 type: POST_JOB,
                 status: 'success',

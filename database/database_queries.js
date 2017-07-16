@@ -78,6 +78,7 @@ data.postResidents = (object, callback) => {
 
 data.postJobs = (object, callback) => {
     console.log('inside databse query');
+    console.log('object insde the database is ', object);
     // This needs to be refactored into a parametised query but I dont know how to get it to work
     dbConnection.query(
         `INSERT INTO jobs(job_title, start_date, start_time, end_date,
