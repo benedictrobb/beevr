@@ -6,13 +6,25 @@ const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
+const path = require('path');
 const env = require('env2');
 const data = require('../../database/database_queries.js');
 env('./config.env');
 
-const server = new Hapi.Server();
+const server = new Hapi.Server({
+    connections: {
+        routes: {
+            files: {
+                relativeTo: path.join(__dirname, '..', '..', 'public')
+            }
+        }
+    }
+});
 
 const PORT = process.env.PORT || 4000;
+
+const dbconnection = require('../../database/db_connection.js');
+const jobsQuery = 'SELECT * FROM jobs WHERE CATEGORY = \'dog walking\' AND end_date < NOW() ORDER BY start_date;';
 
 server.connection({
     port: PORT
@@ -48,8 +60,8 @@ server.register(plugins, err => {
         path: '/{path*}',
         handler: {
             directory: {
-                path: './public',
-                listing: false,
+                path: '.',
+                redirectToSlash: true,
                 index: true
             }
         }

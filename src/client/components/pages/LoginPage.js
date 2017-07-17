@@ -11,7 +11,7 @@ import {connect} from 'react-redux';
 import Form from '../Form.js';
 import beevrAPI from '../../utils/beevrAPI.js';
 import {login} from '../../actions/AppActions';
-import Loadingindicator from '../Loadingindicator.js';
+import LoadingIndicator from '../LoadingIndicator.js';
 
 class LoginPage extends Component {
     /*componentWillMount() {
