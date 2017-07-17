@@ -28,7 +28,7 @@ import {
     CHANGE_FORM,
     SENDING_REQUEST,
     SET_ERROR_MESSAGE
-} from '../constants/AppConstants';
+} from '../constants/action_types.js';
 import * as errorMessages from '../constants/MessageConstants';
 import beevrAPI from '../utils/beevrAPI.js';
 import {browserHistory} from 'react-router';
