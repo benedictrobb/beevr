@@ -15,7 +15,11 @@ import {
     SET_AUTH,
     SENDING_REQUEST,
     SET_ERROR_MESSAGE
+<<<<<<< HEAD
 } from '../constants/action_types.js';
+=======
+} from '../constants/AppConstants';
+>>>>>>> master
 
 const assign = Object.assign;
 import beevrAPI from '../utils/beevrAPI.js';

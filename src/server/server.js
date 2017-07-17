@@ -52,40 +52,23 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs(request.url.query.term, (err, res) => {
-                if (err)
-                    reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
-                else {
-                    reply({
-                        name: 'jobsList',
-                        message: 'Welcome to BEEVR!',
-                        jobsList: res
-                    });
-                }
-            });
-        }
-    });
-
-    server.route({
-        method: 'POST',
-        path: '/api/jobs',
-        handler: (request, reply) => {
-            console.log(request.payload);
-            data.postJobs(request.payload, (err, res) => {
-                if (err) {
-                    reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
-                } else {
-                    reply({
-                        name: 'newJob',
-                        message: 'Welcome to BEEVR!',
-                        newJob: res
-                    });
-                }
-            });
+            data.getJobs(
+                request.url.query.term,
+                (err, res) => {
+                    if (err)
+                        reply.status(500)(
+                            'Failed to connect load data from the database'
+                        );
+                    else {
+                        reply({
+                            name: 'jobsList',
+                            message: 'Welcome to BEEVR!',
+                            jobsList: res
+                        });
+                    }
+                },
+                request.url.query.term
+            );
         }
     });
 
