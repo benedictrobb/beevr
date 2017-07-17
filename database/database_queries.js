@@ -81,7 +81,6 @@ data.postResidents = (object, callback) => {
 };
 
 data.postJobs = (object, callback) => {
-    // This needs to be refactored into a parametised query
     dbConnection.query(
         `INSERT INTO jobs(job_title, start_date, start_time, end_date, end_time, description,
                     rate, resident_id, category) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
