@@ -73,6 +73,26 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'POST',
+        path: '/api/jobs',
+        handler: (request, reply) => {
+            data.postJobs(request.payload, (err, res) => {
+                if (err) {
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                } else {
+                    reply({
+                        name: 'newJob',
+                        message: 'Welcome to BEEVR!',
+                        newJob: res
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
         method: 'GET',
         path: '/api/random_jobs',
         handler: (request, reply) => {
