@@ -19,7 +19,6 @@ class RegisterResident extends Component {
                     <Form_Register_Resident
                         data={formState}
                         dispatch={dispatch}
-                        location={location}
                         history={this.props.history}
                         onSubmit={this._register.bind(this)}
                         btnText={'Register'}
