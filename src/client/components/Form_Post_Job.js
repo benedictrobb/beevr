@@ -35,50 +35,82 @@ class Form_Post_Job extends Component {
 
     _onChangeStartDate(evt) {
         var jobData = this.state.jobData;
-        jobData.start_date = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                start_date: evt.target.value
+            }
+        });
     }
 
     _onChangeStartTime(evt) {
         var jobData = this.state.jobData;
-        jobData.start_time = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                start_time: evt.target.value
+            }
+        });
     }
 
     _onChangeEndDate(evt) {
         var jobData = this.state.jobData;
-        jobData.end_date = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                end_date: evt.target.value
+            }
+        });
     }
 
     _onChangeEndTime(evt) {
         var jobData = this.state.jobData;
-        jobData.end_time = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                end_time: evt.target.value
+            }
+        });
     }
 
     _onChangeTitle(evt) {
         var jobData = this.state.jobData;
-        jobData.job_title = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                job_title: evt.target.value
+            }
+        });
     }
 
     _onChangeDescription(evt) {
         var jobData = this.state.jobData;
-        jobData.description = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                description: evt.target.value
+            }
+        });
     }
 
     _onChangeRate(evt) {
         var jobData = this.state.jobData;
-        jobData.rate = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                rate: evt.target.value
+            }
+        });
     }
 
     _onChangeCategory(evt) {
         var jobData = this.state.jobData;
-        jobData.category = evt.target.value;
-        this.setState({jobData});
+        this.setState({
+            jobData: {
+                ...jobData,
+                category: evt.target.value
+            }
+        });
     }
 
     render() {

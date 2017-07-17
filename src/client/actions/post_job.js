@@ -2,7 +2,6 @@ import axios from 'axios';
 import {POST_JOB} from '../constants/action_types.js';
 
 export const postJob = job => dispatch => {
-    console.log('iside PostJOb');
     dispatch({
         type: POST_JOB,
         status: 'pending'

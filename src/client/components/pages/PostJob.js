@@ -18,8 +18,6 @@ import LoadingIndicator from '../LoadingIndicator.js';
 
 class PostJob extends Component {
     render() {
-        // const dispatch = this.props.dispatch;
-        // const {currentlySending} = this.props.data;
         return (
             <div className="form-page__wrapper">
                 <div className="form-page__form-wrapper">

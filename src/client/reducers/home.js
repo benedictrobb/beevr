@@ -15,7 +15,7 @@ import {
     SET_AUTH,
     SENDING_REQUEST,
     SET_ERROR_MESSAGE
-} from '../constants/AppConstants';
+} from '../constants/action_types.js';
 
 const assign = Object.assign;
 import beevrAPI from '../utils/beevrAPI.js';
@@ -34,24 +34,28 @@ const initialState = {
 export default function homeReducer(state = initialState, action) {
     switch (action.type) {
     case CHANGE_FORM:
-        return assign({}, state, {
+        return {
+            ...state,
             formState: action.newState
-        });
+        };
         break;
     case SET_AUTH:
-        return assign({}, state, {
+        return {
+            ...state,
             loggedIn: action.newState
-        });
+        };
         break;
     case SENDING_REQUEST:
-        return assign({}, state, {
+        return {
+            ...state,
             currentlySending: action.sending
-        });
+        };
         break;
     case SET_ERROR_MESSAGE:
-        return assign({}, state, {
+        return {
+            ...state,
             errorMessage: action.message
-        });
+        };
     default:
         return state;
     }

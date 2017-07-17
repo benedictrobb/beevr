@@ -16,13 +16,6 @@ const PORT = process.env.PORT || 4000;
 
 server.connection({
     port: PORT
-    /*tls: process.env.NODE_ENV !== 'production' && {
-      key: fs.readFileSync('./keys/key.pem'),
-      cert: fs.readFileSync('./keys/cert.pem'),
-  },
-  state: {
-  isSameSite: 'Lax',
-  },*/
 });
 
 const plugins = [inert, blipp, cookieAuth];
@@ -64,14 +57,13 @@ server.register(plugins, err => {
                     reply.status(500)(
                         'Failed to connect load data from the database'
                     );
-                console.log(err);
-                // else {
-                reply({
-                    name: 'jobsList',
-                    message: 'Welcome to BEEVR!',
-                    jobsList: res
-                });
-                // }
+                else {
+                    reply({
+                        name: 'jobsList',
+                        message: 'Welcome to BEEVR!',
+                        jobsList: res
+                    });
+                }
             });
         }
     });
@@ -82,19 +74,17 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             console.log(request.payload);
             data.postJobs(request.payload, (err, res) => {
-                if (err) console.log(error);
-                // reply.status(500)(
-                //     'Failed to connect load data from the database'
-                // );
-                console.log(err);
-                // else {
-                console.log(res);
-                reply({
-                    name: 'newJob',
-                    message: 'Welcome to BEEVR!',
-                    newJob: res
-                });
-                // }
+                if (err) {
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                } else {
+                    reply({
+                        name: 'newJob',
+                        message: 'Welcome to BEEVR!',
+                        newJob: res
+                    });
+                }
             });
         }
     });
