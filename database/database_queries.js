@@ -2,34 +2,36 @@ const dbConnection = require('./db_connection.js');
 
 data = {};
 
-data.getJobs = (term, callback) => {
-    dbConnection.query(
-        `SELECT * FROM jobs
+data.getJobs = (callback, term) => {
+    if (!term) {
+        dbConnection.query(
+            `SELECT * FROM jobs WHERE end_date < NOW()
+         ORDER BY start_date LIMIT 10;`,
+            (err, res) => {
+                if (err) {
+                    callback(err);
+                }
+                callback(null, res.rows);
+            }
+        );
+    } else {
+        dbConnection.query(
+            `SELECT * FROM jobs
                       WHERE CATEGORY = $1
                       AND end_date < NOW()
                       ORDER BY start_date;`,
-        [term],
-        (err, res) => {
-            if (err) {
-                callback(err);
+            [term],
+            (err, res) => {
+                if (err) {
+                    callback(err);
+                }
+                callback(null, res.rows);
             }
-            callback(null, res.rows);
-        }
-    );
+        );
+    }
 };
 
-data.getRandomJobs = callback => {
-    dbConnection.query(
-        `SELECT * FROM jobs WHERE end_date < NOW()
-         ORDER BY start_date LIMIT 10`,
-        (err, res) => {
-            if (err) {
-                callback(err);
-            }
-            callback(null, res.rows);
-        }
-    );
-};
+data.getRandomJobs = callback => {};
 
 data.getStudents = (term, callback) => {
     dbConnection.query(

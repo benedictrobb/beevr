@@ -9,8 +9,8 @@ class BrowseJobs extends Component {
         this.renderJobs = this.renderJobs.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
-        this._onSubmit = this._onSubmit.bind(this);
-        this._onChange = this._onChange.bind(this);
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onJobSearchChange = this.onJobSearchChange.bind(this);
     }
 
     componentWillMount() {
@@ -25,12 +25,12 @@ class BrowseJobs extends Component {
         return time.slice(0, 5);
     }
 
-    _onSubmit(evt) {
+    onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchSelectedJobs(this.props.term);
+        this.props.fetchJobs(this.props.term);
     }
 
-    _onChange(evt) {
+    onJobSearchChange(evt) {
         this.props.setTerm(evt.target.value);
     }
 
@@ -77,7 +77,7 @@ class BrowseJobs extends Component {
 
         if (!jobsList) {
             return (
-                <form onSubmit={this._onSubmit}>
+                <form onSubmit={this.onSubmit}>
                     <label className="form__field-label" htmlFor="Browse Jobs">
                         Browse Jobs
                     </label>
@@ -87,8 +87,8 @@ class BrowseJobs extends Component {
                         type="text"
                         placeholder="Browse Jobs"
                         list="jobs"
-                        onChange={this._onChange}
-                        value={this.props.term}
+                        onChange={this.onJobSearchChange}
+                        value={this.props.SearchTerm}
                     />
                     <datalist id="jobs">
                         <option value="dog walking" />
@@ -113,7 +113,7 @@ class BrowseJobs extends Component {
         return (
             <article>
                 <section className="text-section">
-                    <form onSubmit={this._onSubmit}>
+                    <form onSubmit={this.onSubmit}>
                         <label
                             className="form__field-label"
                             htmlFor="Browse Jobs"
@@ -127,8 +127,8 @@ class BrowseJobs extends Component {
                             type="text"
                             placeholder="Browse Jobs"
                             list="jobs"
-                            onChange={this._onChange}
-                            value={this.props.term}
+                            onChange={this.onJobSearchChange}
+                            value={this.props.SearchTerm}
                         />
                         <datalist id="jobs">
                             <option value="dog walking" />
@@ -161,7 +161,7 @@ class BrowseJobs extends Component {
 function mapStateToProps(state) {
     return {
         jobs: state.searchJobs.jobsRequest.response,
-        term: state.searchJobs.term
+        SearchTerm: state.searchJobs.term
     };
 }
 

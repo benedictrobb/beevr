@@ -59,7 +59,7 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs(request.url.query.term, (err, res) => {
+            data.getJobs((err, res) => {
                 if (err)
                     reply.status(500)(
                         'Failed to connect load data from the database'
@@ -71,7 +71,7 @@ server.register(plugins, err => {
                         jobsList: res
                     });
                 }
-            });
+            }, request.url.query.term);
         }
     });
 

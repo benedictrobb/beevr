@@ -18,15 +18,6 @@ export default (state = initialState, action) => {
                 response: action.response
             }
         };
-    case FETCH_SELECTED_JOBS:
-        return {
-            ...state,
-            jobsRequest: {
-                status: action.status,
-                error: action.error,
-                response: action.response
-            }
-        };
 
     case SET_TERM:
         return {
