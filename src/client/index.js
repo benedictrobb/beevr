@@ -1,5 +1,6 @@
 import React from 'react';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension';
 import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
@@ -17,9 +18,12 @@ import PostJob from './components/pages/PostJob';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
+const store = createStore(homeReducer, composeWithDevTools(
+    applyMiddleware(thunk)
+));
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(homeReducer);
+//const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+//const store = createStoreWithMiddleware(homeReducer);
 
 console.log(store);
 
