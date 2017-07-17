@@ -37,7 +37,6 @@ class Form_Post_Job extends Component {
         var jobData = this.state.jobData;
         jobData.start_date = evt.target.value;
         this.setState({jobData});
-        this.props.history.push('/');
     }
 
     _onChangeStartTime(evt) {
