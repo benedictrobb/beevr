@@ -1,0 +1,27 @@
+{
+  "name": "beevr-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "dependencies": {
+    "blipp": "^2.3.0",
+    "env2": "^2.2.0",
+    "hapi": "^16.4.3",
+    "hapi-auth-cookie": "^7.0.0",
+    "inert": "^4.2.0",
+    "lodash": "^4.17.4",
+    "pg": "^6.4.1"
+  },
+  "devDependencies": {
+    "eslint": "^4.2.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^6.0.2",
+    "eslint-plugin-react": "^7.1.0"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node server.js"
+  },
+  "author": "Antonio Trabalza Maja Kudlicka",
+  "license": "ISC"
+}

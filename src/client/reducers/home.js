@@ -16,9 +16,9 @@ import {
     SENDING_REQUEST,
     SET_ERROR_MESSAGE
 } from '../constants/action_types.js';
+import beevrAPI from '../utils/beevrAPI.js';
 
 const assign = Object.assign;
-import beevrAPI from '../utils/beevrAPI.js';
 
 const initialState = {
     formState: {

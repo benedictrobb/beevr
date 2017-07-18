@@ -34,7 +34,6 @@ class LoginPage extends Component {
                     <Form
                         data={formState}
                         dispatch={dispatch}
-                        location={location}
                         history={this.props.history}
                         onSubmit={this._login.bind(this)}
                         btnText={'Login'}

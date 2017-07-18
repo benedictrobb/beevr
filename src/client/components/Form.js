@@ -45,11 +45,9 @@ class LoginForm extends Component {
                     />
                 </div>
                 <div className="form__submit-btn-wrapper">
-                    {this.props.currentlySending
-                        ? <LoadingButton />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
+                    <button className="btn btn-primary" type="submit">
+                        {this.props.btnText}
+                    </button>}
                 </div>
             </form>
         );
@@ -80,8 +78,8 @@ class LoginForm extends Component {
 
     // Emits a change of the form state to the application state
     _emitChange(newState) {
-        this.props.dispatch(changeForm(newState));
-    }
+        this.props.dispatch(newState);
+    }//changeForm();
 
     // onSubmit call the passed onSubmit function
     _onSubmit(evt) {
