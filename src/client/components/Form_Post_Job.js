@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {changeForm} from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';

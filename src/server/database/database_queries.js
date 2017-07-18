@@ -50,16 +50,16 @@ data.getStudents = (term, callback) => {
 data.postStudents = (StudentObject, callback) => {
     dbConnection.query(
         `INSERT INTO students(first_name, last_name, email, DOB,
-                      univ_school, job_cat, picture, bio, phone)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+                      univ_school, bio, phone)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7)`,
         [
             StudentObject.first_name,
             StudentObject.last_name,
             StudentObject.email,
             StudentObject.dob,
             StudentObject.uni,
-            StudentObject.job_cat,
-            StudentObject.picture,
+            //StudentObject.job_cat,
+            //StudentObject.picture,
             StudentObject.bio,
             StudentObject.phone
         ],

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import {changeForm} from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
@@ -30,7 +29,7 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.onSubmit(this.props.data.studentEmail, this.props.data.password);
+        this.props.registerStudent(this.state.student);
     }
 
     onChangeStudentFirstName(evt) {
@@ -161,7 +160,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         type="text"
                         id="username"
-                        value={this.props.data.studentEmail}
+                        value={this.state.student.studentEmail}
                         placeholder="email"
                         onChange={this.onChangeStudentEmail}
                         autoCorrect="off"
@@ -177,7 +176,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         id="password"
                         type="password"
-                        value={this.props.data.password}
+                        value={this.state.student.password}
                         placeholder="password"
                         onChange={this.onChangePassword}
                     />
@@ -194,7 +193,7 @@ class Form_Register_Student extends Component {
                         id="Date Of Birth"
                         type="text"
                         placeholder="Date Of Birth"
-                        value={this.props.data.DOB}
+                        value={this.state.student.DOB}
                         onChange={this.onChangeDOB}
                     />
                 </div>
@@ -211,7 +210,7 @@ class Form_Register_Student extends Component {
                         id="University/School"
                         type="text"
                         placeholder="University/School"
-                        value={this.props.data.university}
+                        value={this.state.student.university}
                         onChange={this.onChangeUniversity}
                     />
                 </div>
@@ -225,7 +224,7 @@ class Form_Register_Student extends Component {
                         id="Bio"
                         type="text"
                         placeholder="Bio"
-                        value={this.props.data.bio}
+                        value={this.state.student.bio}
                         onChange={this.onChangeBio}
                     />
                 </div>
@@ -239,7 +238,7 @@ class Form_Register_Student extends Component {
                         id="Picture"
                         type="file"
                         placeholder="Picture"
-                        value={this.props.data.picture}
+                        value={this.state.student.picture}
                         onChange={this.onChangePicture}
                     />
                 </div>
@@ -253,7 +252,7 @@ class Form_Register_Student extends Component {
                         id="Phone number"
                         type="text"
                         placeholder="Phone number"
-                        value={this.props.data.phone}
+                        value={this.state.student.phone}
                         onChange={this.onChangePhone}
                     />
                 </div>

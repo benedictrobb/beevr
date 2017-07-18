@@ -112,6 +112,28 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'POST',
+        path: '/api/register',
+        handler: (request, reply) => {
+            data.registerStudent(
+                (err, res) => {
+                    if (err)
+                        reply.status(500)(
+                            'Failed to connect load data from the database'
+                        );
+                    else {
+                        reply({
+                            name: 'studentList',
+                            message: 'Welcome to BEEVR!',
+                            studentList: res
+                        });
+                    }
+                }
+            );
+        }
+    });
+
+    server.route({
         method: 'GET',
         path: '/api',
         handler: (request, reply) => {
