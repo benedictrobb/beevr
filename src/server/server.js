@@ -53,7 +53,6 @@ server.register(plugins, err => {
         path: '/api/jobs',
         handler: (request, reply) => {
             data.getJobs(
-                request.url.query.term,
                 (err, res) => {
                     if (err)
                         reply.status(500)(
