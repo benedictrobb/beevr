@@ -2,13 +2,130 @@ import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
+import axios from 'axios';
+import * as actions from '../actions/register_student.js';
+import {connect} from 'react-redux';
+import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 
-const assign = Object.assign;
 
 class Form_Register_Student extends Component {
+    constructor() {
+        super();
+        this.onSubmit = this.onSubmit.bind(this);
+        this.onChangeStudentFirstName = this.onChangeStudentFirstName.bind(this);
+        this.onChangeStudentLastName = this.onChangeStudentLastName.bind(this);
+        this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
+        this.onChangePassword = this.onChangePassword.bind(this);
+        this.onChangeDOB = this.onChangeDOB.bind(this);
+        this.onChangeUniversity = this.onChangeUniversity.bind(this);
+        this.onChangeBio = this.onChangeBio.bind(this);
+        this.onChangePicture = this.onChangePicture.bind(this);
+        this.onChangePhone = this.onChangePhone.bind(this);
+
+        this.state = {
+            student: {
+            }
+        };
+    }
+
+    onSubmit(evt) {
+        evt.preventDefault();
+        this.props.onSubmit(this.props.data.studentEmail, this.props.data.password);
+    }
+
+    onChangeStudentFirstName(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                firstName: evt.target.value
+            }
+        });
+    }
+
+    onChangeStudentLastName(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                lastName: evt.target.value
+            }
+        });
+    }
+
+    onChangeStudentEmail(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                studentEmail: evt.target.value
+            }
+        });
+    }
+
+    onChangePassword(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                password: evt.target.value
+            }
+        });
+    }
+
+    onChangeDOB(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                DOB: evt.target.value
+            }
+        });
+    }
+
+    onChangeUniversity(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                univerisity: evt.target.value
+            }
+        });
+    }
+    
+    onChangeBio(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                bio: evt.target.value
+            }
+        });
+    }
+
+    onChangePicture(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                picture: evt.target.value
+            }
+        });
+    }
+
+    onChangePhone(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                phone: evt.target.value
+            }
+        });
+    }
+
     render() {
         return (
-            <form className="form-group" onSubmit={this._onSubmit.bind(this)}>
+            <form className="form-group" onSubmit={this.onSubmit}>
                 <ErrorMessage />
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="First Name">
@@ -19,6 +136,8 @@ class Form_Register_Student extends Component {
                         id="First Name"
                         type="text"
                         placeholder="First Name"
+                        value={this.state.student.firstName}
+                        onChange={this.onChangeStudentFirstName}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -30,6 +149,8 @@ class Form_Register_Student extends Component {
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
+                        value={this.state.student.lastName}
+                        onChange={this.onChangeStudentLastName}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -40,9 +161,9 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         type="text"
                         id="username"
-                        value={this.props.data.username}
+                        value={this.props.data.studentEmail}
                         placeholder="email"
-                        onChange={this._changeUsername.bind(this)}
+                        onChange={this.onChangeStudentEmail}
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -58,7 +179,7 @@ class Form_Register_Student extends Component {
                         type="password"
                         value={this.props.data.password}
                         placeholder="password"
-                        onChange={this._changePassword.bind(this)}
+                        onChange={this.onChangePassword}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -73,6 +194,8 @@ class Form_Register_Student extends Component {
                         id="Date Of Birth"
                         type="text"
                         placeholder="Date Of Birth"
+                        value={this.props.data.DOB}
+                        onChange={this.onChangeDOB}
                     />
                 </div>
 
@@ -88,6 +211,8 @@ class Form_Register_Student extends Component {
                         id="University/School"
                         type="text"
                         placeholder="University/School"
+                        value={this.props.data.university}
+                        onChange={this.onChangeUniversity}
                     />
                 </div>
 
@@ -100,6 +225,8 @@ class Form_Register_Student extends Component {
                         id="Bio"
                         type="text"
                         placeholder="Bio"
+                        value={this.props.data.bio}
+                        onChange={this.onChangeBio}
                     />
                 </div>
 
@@ -112,6 +239,8 @@ class Form_Register_Student extends Component {
                         id="Picture"
                         type="file"
                         placeholder="Picture"
+                        value={this.props.data.picture}
+                        onChange={this.onChangePicture}
                     />
                 </div>
 
@@ -124,6 +253,8 @@ class Form_Register_Student extends Component {
                         id="Phone number"
                         type="text"
                         placeholder="Phone number"
+                        value={this.props.data.phone}
+                        onChange={this.onChangePhone}
                     />
                 </div>
 
@@ -216,46 +347,18 @@ class Form_Register_Student extends Component {
             </form>
         );
     }
-
-    // Change the username in the app state
-    _changeUsername(evt) {
-        var newState = this._mergeWithCurrentState({
-            username: evt.target.value
-        });
-
-        this._emitChange(newState);
-    }
-
-    // Change the password in the app state
-    _changePassword(evt) {
-        var newState = this._mergeWithCurrentState({
-            password: evt.target.value
-        });
-
-        this._emitChange(newState);
-    }
-
-    // Merges the current state with a change
-    _mergeWithCurrentState(change) {
-        return assign(this.props.data, change);
-    }
-
-    // Emits a change of the form state to the application state
-    _emitChange(newState) {
-        this.props.dispatch(changeForm(newState));
-    }
-
-    // onSubmit call the passed onSubmit function
-    _onSubmit(evt) {
-        evt.preventDefault();
-        this.props.onSubmit(this.props.data.username, this.props.data.password);
-    }
 }
 
-Form_Register_Student.propTypes = {
-    onSubmit: React.PropTypes.func.isRequired,
-    btnText: React.PropTypes.string.isRequired,
-    data: React.PropTypes.object.isRequired
-};
+function mapStateToProps(state) {
+    return {
+        student: state.registerStudent.student.response
+    };
+}
 
-export default Form_Register_Student;
+//Form_Register_Student.propTypes = {
+    //onSubmit: React.PropTypes.func.isRequired,
+    //btnText: React.PropTypes.string.isRequired,
+    //data: React.PropTypes.object.isRequired
+//};
+
+export default connect(mapStateToProps, actions)(Form_Register_Student);
