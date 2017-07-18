@@ -13,6 +13,7 @@ class BrowseStudents extends Component {
 
     componentWillMount() {
         this.props.fetchStudents();
+        console.log(this.props);
     }
 
     onSubmit(evt) {
@@ -64,14 +65,17 @@ class BrowseStudents extends Component {
         if (!studentList) {
             return (
                 <form onSubmit={this.onSubmit}>
-                    <label className="form__field-label" htmlFor="Browse Jobs">
-                        Browse Jobs
+                    <label
+                        className="form__field-label"
+                        htmlFor="Browse Students"
+                    >
+                        Browse Students
                     </label>
                     <input
                         className="form-control"
-                        id="Browse Jobs"
+                        id="Browse Students"
                         type="text"
-                        placeholder="Browse Jobs"
+                        placeholder="Browse Students"
                         list="students"
                         onChange={this.onStudentSearchChange}
                         value={this.props.SearchTerm}
@@ -102,16 +106,16 @@ class BrowseStudents extends Component {
                     <form onSubmit={this.onSubmit}>
                         <label
                             className="form__field-label"
-                            htmlFor="Browse Jobs"
+                            htmlFor="Browse Students"
                         >
-                            Browse Jobs
+                            Browse Students
                         </label>
 
                         <input
                             className="form-control"
-                            id="Browse Jobs"
+                            id="Browse Students"
                             type="text"
-                            placeholder="Browse Jobs"
+                            placeholder="Browse Students"
                             list="students"
                             onChange={this.onStudentSearchChange}
                             value={this.props.SearchTerm}
@@ -145,9 +149,10 @@ class BrowseStudents extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('inside mapStateToProps ', state.searchStudents);
     return {
-        // students: state.searchJobs.studentsRequest.response,
-        SearchTerm: state.searchJobs.term
+        students: state.searchStudents.studentsRequest.response,
+        SearchTerm: state.searchStudents.term
     };
 }
 

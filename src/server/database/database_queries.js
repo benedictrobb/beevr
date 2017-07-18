@@ -32,6 +32,7 @@ data.getJobs = (callback, term) => {
 };
 
 data.getStudents = callback => {
+    console.log('inside database_queries');
     dbConnection.query(
         'SELECT * FROM students',
         // WHERE CATEGORY = $1`,
