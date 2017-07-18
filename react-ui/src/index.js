@@ -10,16 +10,16 @@ import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import homeReducer from './client/reducers/index.js';
-import LoginPage from './client/components/pages/LoginPage.js';
-import RegisterPage from './client/components/pages/RegisterPage.js';
-import Dashboard from './client/components/pages/Dashboard.js';
-import NotFound from './client/components/pages/NotFound.js';
-import App from './client/components/app.js';
-import BrowseJobs from './client/components/pages/SearchJobs.js';
-import BrowseStudents from './client/components/pages/SearchStudents.js';
-import RegisterResident from './client/components/pages/RegisterResident';
-import PostJob from './client/components/pages/PostJob';
+import homeReducer from './reducers/index.js';
+import LoginPage from './components/pages/LoginPage.js';
+import RegisterPage from './components/pages/RegisterPage.js';
+import Dashboard from './components/pages/Dashboard.js';
+import NotFound from './components/pages/NotFound.js';
+import App from './components/app.js';
+import BrowseJobs from './components/pages/SearchJobs.js';
+import BrowseStudents from './components/pages/SearchStudents.js';
+import RegisterResident from './components/pages/RegisterResident';
+import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
