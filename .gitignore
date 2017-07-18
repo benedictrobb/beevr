@@ -2,6 +2,7 @@
 
 # dependencies
 /node_modules
+/react-ui/node_modules
 
 # testing
 /coverage
@@ -15,9 +16,9 @@
 .env.development.local
 .env.test.local
 .env.production.local
+config.env
 
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-config.env

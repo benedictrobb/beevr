@@ -1,7 +1,7 @@
 'use strict';
 const Hapi = require('hapi');
 const _ = require('lodash');
-const pkg = require('./package.json');
+const pkg = require('../package.json');
 const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
