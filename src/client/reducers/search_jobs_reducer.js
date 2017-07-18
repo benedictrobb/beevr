@@ -1,5 +1,4 @@
 import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
-import {FETCH_SELECTED_JOBS} from '../constants/action_types.js';
 import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
