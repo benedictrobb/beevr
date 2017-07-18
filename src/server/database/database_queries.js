@@ -31,13 +31,11 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getRandomJobs = callback => {};
-
-data.getStudents = (term, callback) => {
+data.getStudents = callback => {
     dbConnection.query(
-        `SELECT * FROM students
-                      WHERE CATEGORY = $1`,
-        [term],
+        'SELECT * FROM students',
+        // WHERE CATEGORY = $1`,
+        // [term],
         (err, res) => {
             if (err) {
                 callback(err);
