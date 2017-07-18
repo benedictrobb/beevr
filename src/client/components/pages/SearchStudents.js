@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Axios from 'axios';
 import * as actions from '../../actions/search_students.js';
+import {Link} from 'react-router';
 
 class BrowseStudents extends Component {
     constructor() {
@@ -13,7 +14,6 @@ class BrowseStudents extends Component {
 
     componentWillMount() {
         this.props.fetchStudents();
-        console.log(this.props);
     }
 
     onSubmit(evt) {
@@ -25,17 +25,6 @@ class BrowseStudents extends Component {
         this.props.setTerm(evt.target.value);
     }
 
-    // student_id      SERIAL          PRIMARY KEY NOT NULL,
-    // first_name      VARCHAR(25)     NOT NULL,
-    // last_name       VARCHAR(100)    NOT NULL,
-    // email           VARCHAR(50)     NOT NULL,
-    // password        VARCHAR(500)	,
-    // DOB             DATE            NOT NULL,
-    // univ_school     VARCHAR(250)    NOT NULL,
-    // student_cat         VARCHAR(1000)   NOT NULL,
-    // picture         VARCHAR(500)    NOT NULL,
-    // bio             VARCHAR(1500)   NOT NULL,
-    // phone
     renderStudents(student) {
         return (
             <div key={student.student_id}>
@@ -43,7 +32,6 @@ class BrowseStudents extends Component {
                     {student.first_name}
                 </h2>
                 <h4>
-                    <label>Categories: </label>
                     {student.univ_school}
                 </h4>
                 <label>Bio</label>
@@ -64,40 +52,46 @@ class BrowseStudents extends Component {
 
         if (!studentList) {
             return (
-                <form onSubmit={this.onSubmit}>
-                    <label
-                        className="form__field-label"
-                        htmlFor="Browse Students"
-                    >
-                        Browse Students
-                    </label>
-                    <input
-                        className="form-control"
-                        id="Browse Students"
-                        type="text"
-                        placeholder="Browse Students"
-                        list="students"
-                        onChange={this.onStudentSearchChange}
-                        value={this.props.SearchTerm}
-                    />
-                    <datalist id="students">
-                        <option value="dog walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="photography" />
-                        <option value="Other" />
-                    </datalist>
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
+                <section>
+                    <form onSubmit={this.onSubmit}>
+                        <label
+                            className="form__field-label"
+                            htmlFor="Browse Students"
+                        >
+                            Browse Students
+                        </label>
+                        <input
+                            className="form-control"
+                            id="Browse Students"
+                            type="text"
+                            placeholder="Browse Students"
+                            list="students"
+                            onChange={this.onStudentSearchChange}
+                            value={this.props.SearchTerm}
+                        />
+                        <datalist id="students">
+                            <option value="dog walking" />
+                            <option value="Tutoring- Spanish" />
+                            <option value="Home maintenance" />
+                            <option value="Tutoring- Mathematics" />
+                            <option value="Cat Sitting" />
+                            <option value="Plant watering" />
+                            <option value="Babysitting" />
+                            <option value="Cooking" />
+                            <option value="House Cleaning" />
+                            <option value="Band playing" />
+                            <option value="photography" />
+                            <option value="Other" />
+                        </datalist>
+                        <button type="submit" className="btn btn-primary">
+                            Submit
+                        </button>
+                    </form>
+
+                    <Link to="/postjob" className="btn btn-primary">
+                        Post A Job
+                    </Link>
+                </section>
             );
         }
         return (
@@ -139,6 +133,9 @@ class BrowseStudents extends Component {
                             Submit
                         </button>
                     </form>
+                    <Link to="/postjob" className="btn btn-primary">
+                        Post A Job
+                    </Link>
                     <ul>
                         {studentList.map(this.renderStudents)}
                     </ul>
@@ -149,7 +146,6 @@ class BrowseStudents extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('inside mapStateToProps ', state.searchStudents);
     return {
         students: state.searchStudents.studentsRequest.response,
         SearchTerm: state.searchStudents.term

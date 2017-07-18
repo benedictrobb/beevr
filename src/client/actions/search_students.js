@@ -4,7 +4,6 @@ import {FETCH_STUDENTS} from '../constants/action_types.js';
 import {FETCH_SELECTED_STUDENTS} from '../constants/action_types.js';
 
 export const fetchStudents = () => dispatch => {
-    console.log('inside fetchStudents');
     dispatch({
         type: FETCH_STUDENTS,
         status: 'pending'
