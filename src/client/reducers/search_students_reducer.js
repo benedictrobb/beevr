@@ -4,13 +4,12 @@ import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
     studentsRequest: {},
-    term: ''
+    searchTerm: ''
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
     case FETCH_STUDENTS:
-        console.log('inside small reducer');
         return {
             ...state,
             studentsRequest: {

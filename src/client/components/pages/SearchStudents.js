@@ -18,7 +18,7 @@ class BrowseStudents extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchStudents(this.props.term);
+        this.props.fetchStudents(this.props.searchTerm);
     }
 
     onStudentSearchChange(evt) {
@@ -67,7 +67,7 @@ class BrowseStudents extends Component {
                             placeholder="Browse Students"
                             list="students"
                             onChange={this.onStudentSearchChange}
-                            value={this.props.SearchTerm}
+                            value={this.props.searchTerm}
                         />
                         <datalist id="students">
                             <option value="dog walking" />
@@ -112,7 +112,7 @@ class BrowseStudents extends Component {
                             placeholder="Browse Students"
                             list="students"
                             onChange={this.onStudentSearchChange}
-                            value={this.props.SearchTerm}
+                            value={this.props.searchTerm}
                         />
                         <datalist id="students">
                             <option value="dog walking" />
@@ -148,7 +148,7 @@ class BrowseStudents extends Component {
 function mapStateToProps(state) {
     return {
         students: state.searchStudents.studentsRequest.response,
-        SearchTerm: state.searchStudents.term
+        searchTerm: state.searchStudents.term
     };
 }
 

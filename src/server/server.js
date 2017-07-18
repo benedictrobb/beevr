@@ -73,9 +73,7 @@ server.register(plugins, err => {
         path: '/api/students',
         handler: (request, reply) => {
             data.getStudents((err, res) => {
-                console.log('inside data.getStudents');
                 if (err)
-                    // console.log(err);
                     reply.status(500)(
                         'Failed to connect load data from the database'
                     );
@@ -86,7 +84,7 @@ server.register(plugins, err => {
                         studentList: res
                     });
                 }
-            });
+            }, request.url.query.searchTerm);
         }
     });
 

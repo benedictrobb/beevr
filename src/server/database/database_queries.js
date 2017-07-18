@@ -31,16 +31,15 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getStudents = callback => {
-    console.log('inside database_queries');
+data.getStudents = (callback, term) => {
     dbConnection.query(
-        'SELECT * FROM students',
-        // WHERE CATEGORY = $1`,
-        // [term],
+        'SELECT * FROM students WHERE $1 = ANY (job_cat)',
+        [term],
         (err, res) => {
             if (err) {
                 callback(err);
             }
+
             callback(null, res.rows);
         }
     );
