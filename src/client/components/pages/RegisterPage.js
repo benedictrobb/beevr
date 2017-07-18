@@ -19,7 +19,6 @@ class RegisterPage extends Component {
                     <Form_Register_Student
                         data={formState}
                         dispatch={dispatch}
-                        location={location}
                         history={this.props.history}
                         onSubmit={this._register.bind(this)}
                         btnText={'Register'}
