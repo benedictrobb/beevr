@@ -32,17 +32,27 @@ data.getJobs = (callback, term) => {
 };
 
 data.getStudents = (callback, term) => {
-    dbConnection.query(
-        'SELECT * FROM students WHERE $1 = ANY (job_cat)',
-        [term],
-        (err, res) => {
+    if (!term) {
+        dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
             if (err) {
                 callback(err);
             }
 
             callback(null, res.rows);
-        }
-    );
+        });
+    } else {
+        dbConnection.query(
+            'SELECT * FROM students WHERE $1 = ANY (job_cat)',
+            [term],
+            (err, res) => {
+                if (err) {
+                    callback(err);
+                }
+
+                callback(null, res.rows);
+            }
+        );
+    }
 };
 
 data.postStudents = (StudentObject, callback) => {

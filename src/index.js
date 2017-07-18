@@ -28,8 +28,6 @@ import registerServiceWorker from './registerServiceWorker';
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
 
-console.log(store);
-
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
 
