@@ -59,7 +59,7 @@ function checkAuth(nextState, replaceState) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <Router history={browserHistory}>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
@@ -67,7 +67,7 @@ ReactDOM.render(
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />
                 <Route path="/postjob" component={PostJob} />
-                <Route path="/jobdetail" component={JobDetail} />
+                <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />

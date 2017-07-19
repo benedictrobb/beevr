@@ -44,8 +44,6 @@ class BrowseJobs extends Component {
         this.props.setTerm(evt.target.value);
     }
 
-    //I use onMouseOver event to update state, is there a way to use onClick?
-
     renderJobs(job) {
         return (
             <div key={job.job_id}>
@@ -54,7 +52,7 @@ class BrowseJobs extends Component {
                         this.props.selectJob(job.job_id);
                     }}
                 >
-                    <Link to="/jobdetail">
+                    <Link to={`/jobdetail/${job.job_id}`}>
                         {job.job_title}
                     </Link>
                 </h2>
