@@ -60,7 +60,7 @@ function checkAuth(nextState, replaceState) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <Router history = { browserHistory }>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
