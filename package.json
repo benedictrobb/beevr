@@ -21,6 +21,7 @@
         "hapi-auth-cookie": "^7.0.0",
         "inert": "^4.2.0",
         "lodash": "^4.17.4",
+        "node-ses": "^2.0.5",
         "pg": "^6.4.1"
     },
     "devDependencies": {

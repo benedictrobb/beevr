@@ -21,7 +21,7 @@ import BrowseStudents from './components/pages/SearchStudents.js';
 import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
-import JobDetail from './client/components/pages/JobDetail.js';
+import JobDetail from './components/pages/JobDetail.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
