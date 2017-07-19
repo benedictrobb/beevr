@@ -2,6 +2,7 @@ import axios from 'axios';
 import {FETCH_SELECTED_JOBS} from '../constants/action_types.js';
 import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
 import {SET_TERM} from '../constants/action_types.js';
+import {SET_SELECTED_JOB} from '../constants/action_types.js';
 
 export const fetchJobs = term => dispatch => {
     dispatch({
@@ -33,5 +34,14 @@ export const setTerm = Searchterm => dispatch => {
     dispatch({
         type: SET_TERM,
         response: Searchterm
+    });
+};
+
+export const selectJob = Job => dispatch => {
+    console.log('inside actions');
+    console.log('job is ', Job);
+    dispatch({
+        type: SET_SELECTED_JOB,
+        response: Job
     });
 };

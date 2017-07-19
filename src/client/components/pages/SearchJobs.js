@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Axios from 'axios';
 import * as actions from '../../actions/search_jobs.js';
+import {Link} from 'react-router';
 
 class BrowseJobs extends Component {
     constructor() {
@@ -10,7 +11,9 @@ class BrowseJobs extends Component {
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
         this.onSubmit = this.onSubmit.bind(this);
+        this.formatDesc = this.formatDesc.bind(this);
         this.onJobSearchChange = this.onJobSearchChange.bind(this);
+        // this.onClick = this.onClick.bind(this);
     }
 
     componentWillMount() {
@@ -25,6 +28,13 @@ class BrowseJobs extends Component {
         return time.slice(0, 5);
     }
 
+    formatDesc(desc) {
+        if (desc.length <= 100) {
+            return desc;
+        } else {
+            return desc.slice(0, 100) + '...';
+        }
+    }
     onSubmit(evt) {
         evt.preventDefault();
         this.props.fetchJobs(this.props.term);
@@ -34,18 +44,26 @@ class BrowseJobs extends Component {
         this.props.setTerm(evt.target.value);
     }
 
+    //I use onMouseOver event to update state, is there a way to use onClick?
+
     renderJobs(job) {
         return (
             <div key={job.job_id}>
-                <h2>
-                    {job.job_title}
+                <h2
+                    onMouseOver={() => {
+                        this.props.selectJob(job.job_id);
+                    }}
+                >
+                    <Link to="/jobdetail">
+                        {job.job_title}
+                    </Link>
                 </h2>
                 <h4>
                     <label>Category: </label>
                     {job.category}
                 </h4>
                 <p>
-                    {job.description}
+                    {this.formatDesc(job.description)}
                 </p>
                 <label>Start Date</label>
                 <p>
@@ -159,9 +177,11 @@ class BrowseJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log('inside mapStateToProps ', state.searchJobs);
     return {
         jobs: state.searchJobs.jobsRequest.response,
-        SearchTerm: state.searchJobs.term
+        SearchTerm: state.searchJobs.term,
+        selectedJob: state.searchJobs.selectedJob
     };
 }
 
