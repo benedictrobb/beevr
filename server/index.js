@@ -1,13 +1,13 @@
 'use strict';
 const Hapi = require('hapi');
 const _ = require('lodash');
-const pkg = require('../../package.json');
+const pkg = require('../package.json');
 const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
-const data = require('../../database/database_queries.js');
+const data = require('./database/database_queries.js');
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -41,7 +41,7 @@ server.register(plugins, err => {
         path: '/{path*}',
         handler: {
             directory: {
-                path: './public',
+                path: './react-ui/build',
                 listing: false,
                 index: true
             }
@@ -53,7 +53,6 @@ server.register(plugins, err => {
         path: '/api/jobs',
         handler: (request, reply) => {
             data.getJobs(
-                request.url.query.term,
                 (err, res) => {
                     if (err)
                         reply.status(500)(

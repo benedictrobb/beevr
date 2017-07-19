@@ -1,3 +1,9 @@
+//import React from 'react';
+//import ReactDOM from 'react-dom';
+//import './index.css';
+//import App from './App';
+
+//ReactDOM.render(<App />, document.getElementById('root'));
 import React from 'react';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -14,6 +20,7 @@ import BrowseJobs from './components/pages/SearchJobs.js';
 import BrowseStudents from './components/pages/SearchStudents.js';
 import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
+import registerServiceWorker from './registerServiceWorker';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -53,7 +60,7 @@ function checkAuth(nextState, replaceState) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
-        <Router>
+        <Router history = { browserHistory }>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
@@ -67,5 +74,6 @@ ReactDOM.render(
             </Route>
         </Router>
     </Provider>,
-    document.querySelector('.container')
+    document.getElementById('app')
 );
+registerServiceWorker();

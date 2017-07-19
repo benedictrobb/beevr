@@ -1,25 +1,10 @@
-/*
- * LoginPage
- *
- * Users login on this page
- * Route: /login
- *
- */
-
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Form from '../Form.js';
-import beevrAPI from '../../utils/beevrAPI.js';
-import {login} from '../../actions/AppActions';
+import Form_Register_Resident from '../Form_Register_Resident.js';
+import {sendingRequest, register} from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
 
-class LoginPage extends Component {
-    /*componentWillMount() {
-    fetch( 'https://swapi.co/api/people/?format=json' )
-      .then( response => response.json() )
-      .then( ({results: items}) => this.setState({items}))
-    }*/
-
+class RegisterResident extends Component {
     render() {
         const dispatch = this.props.dispatch;
         const {formState, currentlySending} = this.props.data;
@@ -27,17 +12,16 @@ class LoginPage extends Component {
             <div className="form-page__wrapper">
                 <div className="form-page__form-wrapper">
                     <div className="form-page__form-header">
-                        <h2 className="form-page__form-heading">Login</h2>
+                        <h2 className="form-page__form-heading">Register</h2>
                     </div>
                     {/* While the form is sending, show the loading indicator,
-                        otherwise show "Log in" on the submit button */}
-                    <Form
+                        otherwise show "Register" on the submit button */}
+                    <Form_Register_Resident
                         data={formState}
                         dispatch={dispatch}
-                        location={location}
                         history={this.props.history}
-                        onSubmit={this._login.bind(this)}
-                        btnText={'Login'}
+                        onSubmit={this._register.bind(this)}
+                        btnText={'Register'}
                         currentlySending={currentlySending}
                     />
                 </div>
@@ -45,15 +29,15 @@ class LoginPage extends Component {
         );
     }
 
-    _login(username, password) {
-        this.props.dispatch(login(username, password));
+    // Register a user
+    _register(username, password) {
+        this.props.dispatch(register(username, password));
     }
 }
 
-// Which props do we want to inject, given the global state?
 function select(state) {
     return {data: state};
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(LoginPage);
+export default connect(select)(RegisterResident);
