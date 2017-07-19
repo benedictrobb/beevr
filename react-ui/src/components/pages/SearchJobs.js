@@ -27,7 +27,7 @@ class BrowseJobs extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchJobs(this.props.term);
+        this.props.fetchJobs(this.props.SearchTerm);
     }
 
     onJobSearchChange(evt) {
