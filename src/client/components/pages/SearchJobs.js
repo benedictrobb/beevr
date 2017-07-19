@@ -47,11 +47,7 @@ class BrowseJobs extends Component {
     renderJobs(job) {
         return (
             <div key={job.job_id}>
-                <h2
-                    onMouseOver={() => {
-                        this.props.selectJob(job.job_id);
-                    }}
-                >
+                <h2>
                     <Link to={`/jobdetail/${job.job_id}`}>
                         {job.job_title}
                     </Link>
@@ -175,7 +171,6 @@ class BrowseJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log('inside mapStateToProps ', state.searchJobs);
     return {
         jobs: state.searchJobs.jobsRequest.response,
         SearchTerm: state.searchJobs.term,
