@@ -11,18 +11,6 @@ class JobDetail extends Component {
         console.log(this.jobs);
     }
 
-    componentWillMount() {
-        if (!this.props.jobs) {
-            this.props.fetchJobs;
-        }
-    }
-
-    // toObject(arr) {
-    //     var rv = {};
-    //     for (var i = 0; i < arr.length; ++i) rv[arr[i].job_id] = arr[i];
-    //     return rv;
-    // }
-
     formatDate(date) {
         return date.slice(0, 10);
     }
@@ -32,7 +20,9 @@ class JobDetail extends Component {
     }
 
     renderJob() {
+        console.log('this.props.jobs are ', this.props.jobs);
         if (!this.props.jobs) {
+            this.props.fetchJobs;
             return <div>Loading</div>;
         }
         var jobObj = {};
@@ -91,9 +81,7 @@ class JobDetail extends Component {
 
 function mapStateToProps(state, ownProps) {
     if (!state.searchJobs.jobsRequest.response) {
-        return {
-            jobs: []
-        };
+        return {};
     }
     return {
         job_id: ownProps.params.id,
