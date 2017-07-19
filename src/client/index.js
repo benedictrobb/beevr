@@ -18,8 +18,12 @@ import PostJob from './components/pages/PostJob';
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(homeReducer);
+//const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStore(homeReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
+);
 
 console.log(store);
 

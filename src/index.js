@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import homeReducer from './client/reducers/index.js';
 import LoginPage from './client/components/pages/LoginPage.js';
 import RegisterPage from './client/components/pages/RegisterPage.js';
@@ -25,8 +26,13 @@ import registerServiceWorker from './registerServiceWorker';
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(homeReducer);
+//const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+//const store = createStoreWithMiddleware(homeReducer);
+const store = createStore(homeReducer,
+    composeWithDevTools(
+        applyMiddleware(thunk)
+    )
+);
 
 console.log(store);
 
