@@ -41,7 +41,7 @@ server.register(plugins, err => {
         path: '/{path*}',
         handler: {
             directory: {
-                path: './public',
+                path: './react-ui/build',
                 listing: false,
                 index: true
             }
