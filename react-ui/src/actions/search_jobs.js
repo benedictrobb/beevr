@@ -30,10 +30,10 @@ export const fetchJobs = term => dispatch => {
         });
 };
 
-export const setTerm = Searchterm => dispatch => {
+export const setTerm = SearchTerm => dispatch => {
     dispatch({
         type: SET_TERM,
-        response: Searchterm
+        response: SearchTerm
     });
 };
 

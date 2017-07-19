@@ -1,38 +1,43 @@
 {
-  "name": "beevr",
-  "version": "0.1.0",
-  "private": true,
-  "dependencies": {
-    "blipp": "^2.3.0",
-    "env2": "^2.2.0",
-    "hapi": "^16.4.3",
-    "hapi-auth-cookie": "^7.0.0",
-    "inert": "^4.2.0",
-    "lodash": "^4.17.4",
-    "pg": "^6.4.1",
-    "react": "^15.6.1",
-    "axios": "^0.16.2",
-    "react-dom": "^15.6.1",
-    "react-scripts": "1.0.10",
-    "react-redux": "^5.0.5",
-    "react-router": "2.0.1",
-    "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
-  },
-  "scripts": {
-    "start": "react-scripts start",
-    "build": "react-scripts build",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject",
-    "server": "node src/server/server.js"
-  },
-  "devDependencies": {
-    "eslint": "^4.2.0",
-    "eslint-plugin-import": "^2.7.0",
-    "eslint-plugin-jsx-a11y": "^6.0.2",
-    "eslint-plugin-react": "^7.1.0"
-  },
-  "proxy": "http://localhost:4000",
-  "author": "Antonio Trabalza Maja Kudlicka",
-  "license": "ISC"
+    "name": "beevr-server",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "engines": {
+        "node": "6.11.x"
+    },
+    "scripts": {
+        "start": "node server",
+        "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+    },
+    "cacheDirectories": [
+        "node_modules",
+        "react-ui/node_modules"
+    ],
+    "dependencies": {
+        "blipp": "^2.3.0",
+        "env2": "^2.2.0",
+        "hapi": "^16.4.3",
+        "hapi-auth-cookie": "^7.0.0",
+        "inert": "^4.2.0",
+        "lodash": "^4.17.4",
+        "pg": "^6.4.1"
+    },
+    "devDependencies": {
+        "eslint": "^4.2.0",
+        "eslint-plugin-import": "^2.7.0",
+        "eslint-plugin-jsx-a11y": "^6.0.2",
+        "eslint-plugin-react": "^7.1.0"
+    },
+    "devServer": {
+        "disableHostCheck": true
+    },
+    "keywords": [
+        "node",
+        "heroku",
+        "create-react-app",
+        "react"
+    ],
+    "author": "Antonio Trabalza Maja Kudlicka",
+    "license": "ISC"
 }

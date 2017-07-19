@@ -10,16 +10,16 @@ import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import homeReducer from './client/reducers/index.js';
-import LoginPage from './client/components/pages/LoginPage.js';
-import RegisterPage from './client/components/pages/RegisterPage.js';
-import Dashboard from './client/components/pages/Dashboard.js';
-import NotFound from './client/components/pages/NotFound.js';
-import App from './client/components/app.js';
-import BrowseJobs from './client/components/pages/SearchJobs.js';
-import BrowseStudents from './client/components/pages/SearchStudents.js';
-import RegisterResident from './client/components/pages/RegisterResident';
-import PostJob from './client/components/pages/PostJob';
+import homeReducer from './reducers/index.js';
+import LoginPage from './components/pages/LoginPage.js';
+import RegisterPage from './components/pages/RegisterPage.js';
+import Dashboard from './components/pages/Dashboard.js';
+import NotFound from './components/pages/NotFound.js';
+import App from './components/app.js';
+import BrowseJobs from './components/pages/SearchJobs.js';
+import BrowseStudents from './components/pages/SearchStudents.js';
+import RegisterResident from './components/pages/RegisterResident';
+import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 import JobDetail from './client/components/pages/JobDetail.js';
 
@@ -28,6 +28,8 @@ import JobDetail from './client/components/pages/JobDetail.js';
 
 const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStoreWithMiddleware(homeReducer);
+
+console.log(store);
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
@@ -66,8 +68,8 @@ ReactDOM.render(
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />
-                <Route path="/postjob" component={PostJob} />
                 <Route path="/jobdetail/:id" component={JobDetail} />
+                <Route path="/postjob" component={PostJob} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />
