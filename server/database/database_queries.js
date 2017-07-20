@@ -47,21 +47,22 @@ data.getStudents = (term, callback) => {
     );
 };
 
-data.postStudents = (StudentObject, callback) => {
+data.postStudents = (studentObject, callback) => {
     dbConnection.query(
-        `INSERT INTO students(first_name, last_name, email, DOB,
-                      univ_school, job_cat, picture, bio, phone)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        `INSERT INTO students(first_name, last_name, email, password, DOB,
+                      univ_school, bio, picture, phone, job_cat)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
         [
-            StudentObject.first_name,
-            StudentObject.last_name,
-            StudentObject.email,
-            StudentObject.dob,
-            StudentObject.uni,
-            StudentObject.job_cat,
-            StudentObject.picture,
-            StudentObject.bio,
-            StudentObject.phone
+            studentObject.first_name,
+            studentObject.last_name,
+            studentObject.email,
+            studentObject.password,
+            studentObject.DOB,
+            studentObject.univ_school,
+            studentObject.bio,
+            studentObject.picture,
+            studentObject.phone,
+            studentObject.job_cat
         ],
         (err, res) => {
             if (err) {

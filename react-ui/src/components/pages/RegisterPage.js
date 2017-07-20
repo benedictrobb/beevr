@@ -1,38 +1,45 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form_Register_Student from '../Form_Register_Student.js';
-import {sendingRequest, register} from '../../actions/AppActions';
 import LoadingIndicator from '../LoadingIndicator.js';
+import * as actions from '../../actions/register_student.js';
 
 class RegisterPage extends Component {
     render() {
         const dispatch = this.props.dispatch;
         const {formState, currentlySending} = this.props.data;
         return (
-            <div className="form-page__wrapper">
-                <div className="form-page__form-wrapper">
-                    <div className="form-page__form-header">
-                        <h2 className="form-page__form-heading">Register</h2>
-                    </div>
-                    {/* While the form is sending, show the loading indicator,
-                        otherwise show "Register" on the submit button */}
+            <div className="row">
+                <div className="col-md-4 col-md-offset-4">
                     <Form_Register_Student
-                        data={formState}
-                        dispatch={dispatch}
-                        history={this.props.history}
-                        onSubmit={this._register.bind(this)}
-                        btnText={'Register'}
-                        currentlySending={currentlySending}
+                        btnText={'Sign Up'}
                     />
                 </div>
             </div>
+            //<div className="form-page__wrapper">
+                //<div className="form-page__form-wrapper">
+                    //<div className="form-page__form-header">
+                        //<h2 className="form-page__form-heading">Register as student</h2>
+                    //</div>
+                    //{[> While the form is sending, show the loading indicator,
+                        //otherwise show "Register" on the submit button */}
+                    //<Form_Register_Student
+                        //data={formState}
+                        //dispatch={dispatch}
+                        //history={this.props.history}
+                        ////onSubmit={this._register.bind(this)}
+                        //btnText={'Register'}
+                        //currentlySending={currentlySending}
+                    ///>
+                //</div>
+            //</div>
         );
     }
 
     // Register a user
-    _register(username, password) {
-        this.props.dispatch(register(username, password));
-    }
+    //_register(username, password) {
+    //this.props.dispatch(_register(username, password));
+    //}
 }
 
 function select(state) {

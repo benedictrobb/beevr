@@ -22,7 +22,8 @@ const assign = Object.assign;
 
 const initialState = {
     formState: {
-        username: '',
+        studentEmail: '',
+        residentEmail: '',
         password: ''
     },
     currentlySending: false,
