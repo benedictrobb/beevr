@@ -12,7 +12,7 @@ CREATE TABLE students (
     DOB             DATE            ,
     univ_school     VARCHAR(250)    NOT NULL,
     bio             VARCHAR(1500)   NOT NULL,
-    picture         VARCHAR(500)    ,
+    picture         BYTEA           ,
     phone           VARCHAR(15)     NOT NULL,
     job_cat         VARCHAR(1000)   
 );
@@ -26,7 +26,7 @@ CREATE TABLE residents (
     DOB             DATE            ,
     address         VARCHAR(200)    NOT NULL,
     bio             VARCHAR(1500)   NOT NULL,
-    picture         VARCHAR(500)    ,
+    picture         BYTEA           ,
     phone           VARCHAR(15)     NOT NULL
 );
 
