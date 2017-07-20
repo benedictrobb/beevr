@@ -18,12 +18,9 @@ import {
 } from '../constants/action_types.js';
 import beevrAPI from '../utils/beevrAPI.js';
 
-const assign = Object.assign;
-
 const initialState = {
     formState: {
-        studentEmail: '',
-        residentEmail: '',
+        email: '',
         password: ''
     },
     currentlySending: false,

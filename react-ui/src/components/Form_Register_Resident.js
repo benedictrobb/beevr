@@ -1,111 +1,122 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import {Router, Route, IndexRoute, browseHistory} from 'react-router';
+import * as actions from '../actions/register_resident.js';
+import {connect} from 'react-redux';
 
 class Form_Register_Resident extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
-        this.onChangeResidentFirstName = this.onChangeResidentFirstName.bind(this);
-        this.onChangeResidentLastName = this.onChangeResidentLastName.bind(this);
-        this.onChangeResidentEmail = this.onChangeResidentEmail.bind(this);
-        this.onChangePassword = this.onChangePassword.bind(this);
-        this.onChangeDOB = this.onChangeDOB.bind(this);
-        this.onChangeBio = this.onChangeBio.bind(this);
-        this.onChangePhone = this.onChangePhone.bind(this);
-        this.onChangePicture = this.onChangePicture.bind(this);
+        this.onChange = this.onChange.bind(this);
+        //this.onChangeResidentFirstName = this.onChangeResidentFirstName.bind(this);
+        //this.onChangeResidentLastName = this.onChangeResidentLastName.bind(this);
+        //this.onChangeResidentEmail = this.onChangeResidentEmail.bind(this);
+        //this.onChangePassword = this.onChangePassword.bind(this);
+        //this.onChangeDOB = this.onChangeDOB.bind(this);
+        //this.onChangeBio = this.onChangeBio.bind(this);
+        //this.onChangePhone = this.onChangePhone.bind(this);
+        //this.onChangePicture = this.onChangePicture.bind(this);
 
         this.state = {
-            resident: {
-            }
+            residentObject: {}
         };
     }
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.registerResident(this.state.resident);
+        this.props.registerResident(this.state.residentObject);
     }
 
-    onChangeResidentFirstName(evt) {
-        var resident = this.state.resident;
+    onChange(evt) {
+        var residentObject = this.state.residentObject;
         this.setState({
-            resident: {
-                ...resident,
-                firstName: evt.target.value
+            residentObject: {
+                ...residentObject,
+                [evt.target.name]: evt.target.value
             }
         });
     }
+    
+    //onChangeResidentFirstName(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //firstName: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangeResidentLastName(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                lastName: evt.target.value
-            }
-        });
-    }
+    //onChangeResidentLastName(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //lastName: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangeResidentEmail(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                residentEmail: evt.target.value
-            }
-        });
-    }
+    //onChangeResidentEmail(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //residentObjectEmail: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangePassword(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                password: evt.target.value
-            }
-        });
-    }
+    //onChangePassword(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //password: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangeDOB(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                DOB: evt.target.value
-            }
-        });
-    }
+    //onChangeDOB(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //DOB: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangeBio(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                bio: evt.target.value
-            }
-        });
-    }
+    //onChangeBio(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //bio: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangePicture(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                picture: evt.target.value
-            }
-        });
-    }
+    //onChangePicture(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //picture: evt.target.value
+            //}
+        //});
+    //}
 
-    onChangePhone(evt) {
-        var resident = this.state.resident;
-        this.setState({
-            resident: {
-                ...resident,
-                phone: evt.target.value
-            }
-        });
-    }
+    //onChangePhone(evt) {
+        //var residentObject = this.state.residentObject;
+        //this.setState({
+            //residentObject: {
+                //...residentObject,
+                //phone: evt.target.value
+            //}
+        //});
+    //}
 
     render() {
         return (
@@ -117,11 +128,12 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="first_name"
                         id="First Name"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.resident.firstName}
-                        onChange={this.onChangeResidentFirstName}
+                        value={this.state.residentObject.first_name}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -130,11 +142,12 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="last_name"
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.resident.lastName}
-                        onChange={this.onChangeResidentLastName}
+                        value={this.state.residentObject.last_name}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -143,11 +156,12 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="email"
                         type="text"
                         id="username"
-                        value={this.state.resident.residentEmail}
+                        value={this.state.residentObject.email}
                         placeholder="email"
-                        onChange={this.onChangeResidentEmail}
+                        onChange={this.onChange}
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -159,11 +173,12 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="password"
                         id="password"
                         type="password"
-                        value={this.state.resident.password}
+                        value={this.state.residentObject.password}
                         placeholder="password"
-                        onChange={this.onChangePassword}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -175,37 +190,26 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="DOB"
                         id="Date Of Birth"
-                        type="text"
+                        type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.resident.DOB}
-                        onChange={this.onChangeDOB}
+                        value={this.state.residentObject.DOB}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Picture">
-                        Profile picture
+                    <label className="form__field-label" htmlFor="Bio">
+                        Address
                     </label>
                     <input
                         className="form-control"
-                        id="Picture"
-                        type="file"
-                        placeholder="Picture"
-                        value={this.state.resident.picture}
-                        onChange={this.onChangePicture}
-                    />
-                </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Phone number">
-                        Phone number
-                    </label>
-                    <input
-                        className="form-control"
-                        id="Phone number"
+                        name="address"
+                        id="Address"
                         type="text"
-                        placeholder="Phone number"
-                        value={this.state.resident.phone}
-                        onChange={this.onChangePhone}
+                        placeholder="Address"
+                        value={this.state.residentObject.address}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__field-wrapper">
@@ -214,11 +218,40 @@ class Form_Register_Resident extends Component {
                     </label>
                     <input
                         className="form-control"
+                        name="bio"
                         id="Bio"
                         type="text"
                         placeholder="Bio"
-                        value={this.state.resident.bio}
-                        onChange={this.onChangeBio}
+                        value={this.state.residentObject.bio}
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Picture">
+                        Profile picture
+                    </label>
+                    <input
+                        className="form-control"
+                        name="picture"
+                        id="Picture"
+                        type="file"
+                        placeholder="Picture"
+                        value={this.state.residentObject.picture}
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Phone number">
+                        Phone number
+                    </label>
+                    <input
+                        className="form-control"
+                        name="phone"
+                        id="Phone number"
+                        type="text"
+                        placeholder="Phone number"
+                        value={this.state.residentObject.phone}
+                        onChange={this.onChange}
                     />
                 </div>
                 <div className="form__submit-btn-wrapper">
@@ -239,3 +272,10 @@ class Form_Register_Resident extends Component {
 //btnText: React.PropTypes.string.isRequired,
 //data: React.PropTypes.object.isRequired
 //};
+function mapStateToProps(state) {
+    return {
+        residentObject: state.registerResident.residentObject.response
+    };
+}
+
+export default connect(mapStateToProps, actions)(Form_Register_Resident);

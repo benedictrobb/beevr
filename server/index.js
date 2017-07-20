@@ -113,7 +113,7 @@ server.register(plugins, err => {
     
     server.route({
         method: 'POST',
-        path: '/api/register',
+        path: '/api/reg-student',
         handler: (request, reply) => {
             console.log(request.payload);
             data.postStudents(request.payload, (err, res) => {
@@ -125,8 +125,28 @@ server.register(plugins, err => {
                 else {
                     reply({
                         name: 'studentObject',
-                        message: 'Welcome to BEEVR!',
                         studentObject: res
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/api/reg-resident',
+        handler: (request, reply) => {
+            console.log(request.payload);
+            data.postResidents(request.payload, (err, res) => {
+                if (err) {
+                    reply(
+                        'Failed to connect load data from the database'
+                    ).code(500);
+                }
+                else {
+                    reply({
+                        name: 'residentObject',
+                        residentObject: res
                     });
                 }
             });

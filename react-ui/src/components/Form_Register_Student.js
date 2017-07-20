@@ -1,25 +1,14 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import axios from 'axios';
 import * as actions from '../actions/register_student.js';
 import {connect} from 'react-redux';
-import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        //this.onChangeStudentFirstName = this.onChangeStudentFirstName.bind(this);
-        //this.onChangeStudentLastName = this.onChangeStudentLastName.bind(this);
-        //this.onChangeStudentEmail = this.onChangeStudentEmail.bind(this);
-        //this.onChangePassword = this.onChangePassword.bind(this);
-        //this.onChangeDOB = this.onChangeDOB.bind(this);
-        //this.onChangeUniversity = this.onChangeUniversity.bind(this);
-        //this.onChangeBio = this.onChangeBio.bind(this);
-        //this.onChangePicture = this.onChangePicture.bind(this);
-        //this.onChangePhone = this.onChangePhone.bind(this);
 
         this.state = {
             studentObject: {}
@@ -40,96 +29,6 @@ class Form_Register_Student extends Component {
             }
         });
     }
-    
-    //onChangeStudentFirstName(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //firstName: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeStudentLastName(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //lastName: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeStudentEmail(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //studentEmail: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePassword(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //password: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeDOB(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //DOB: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeUniversity(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //univerisity: evt.target.value
-            //}
-        //});
-    //}
-    
-    //onChangeBio(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //bio: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePicture(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //picture: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePhone(evt) {
-        //var student = this.state.student;
-        //this.setState({
-            //student: {
-                //...student,
-                //phone: evt.target.value
-            //}
-        //});
-    //}
 
     render() {
         return (
@@ -204,11 +103,11 @@ class Form_Register_Student extends Component {
                     </label>
                     <input
                         className="form-control"
-                        name="dob"
+                        name="DOB"
                         id="Date Of Birth"
-                        type="text"
+                        type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.studentObject.dob}
+                        value={this.state.studentObject.DOB}
                         onChange={this.onChange}
                     />
                 </div>
@@ -375,10 +274,11 @@ function mapStateToProps(state) {
     };
 }
 
-//Form_Register_Student.propTypes = {
-    //onSubmit: React.PropTypes.func.isRequired,
-    //btnText: React.PropTypes.string.isRequired,
-    //data: React.PropTypes.object.isRequired
-//};
+////Form_Register_Student.propTypes = {
+    ////onSubmit: React.PropTypes.func.isRequired,
+    ////btnText: React.PropTypes.string.isRequired,
+    ////data: React.PropTypes.object.isRequired
+////};
 
 export default connect(mapStateToProps, actions)(Form_Register_Student);
+//export default Form_Register_Student;

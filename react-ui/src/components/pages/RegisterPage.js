@@ -1,18 +1,19 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 import Form_Register_Student from '../Form_Register_Student.js';
 import LoadingIndicator from '../LoadingIndicator.js';
-import * as actions from '../../actions/register_student.js';
+import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 
 class RegisterPage extends Component {
     render() {
         const dispatch = this.props.dispatch;
-        const {formState, currentlySending} = this.props.data;
+        //const {formState, currentlySending} = this.props.data;
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
+                    <h2>Register As Student</h2>
                     <Form_Register_Student
                         btnText={'Sign Up'}
+                        //student={this.props.studentObject}
                     />
                 </div>
             </div>
@@ -42,9 +43,23 @@ class RegisterPage extends Component {
     //}
 }
 
-function select(state) {
-    return {data: state};
-}
+//function select(state) {
+    //return {data: state};
+//}
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(RegisterPage);
+//export default connect(select)(RegisterPage);
+//function mapStateToProps(state) {
+    //return {
+        //studentObject: state.registerStudent.studentObject.response
+    //};
+//}
+
+//Form_Register_Student.propTypes = {
+    //onSubmit: React.PropTypes.func.isRequired,
+    //btnText: React.PropTypes.string.isRequired,
+    //data: React.PropTypes.object.isRequired
+//};
+
+//export default connect(mapStateToProps, actions)(RegisterPage);
+export default RegisterPage;

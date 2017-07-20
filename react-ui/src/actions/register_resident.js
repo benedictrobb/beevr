@@ -1,14 +1,14 @@
 import axios from 'axios';
 import {REGISTER_RESIDENT} from '../constants/action_types.js';
 
-export const registeResident = resident => dispatch => {
+export const registerResident = residentObject => dispatch => {
     dispatch({
         type: REGISTER_RESIDENT,
         status: 'pending'
     });
 
     axios
-        .post('api/register', resident)
+        .post('api/reg-resident', residentObject)
         .then(response => {
             dispatch({
                 type: REGISTER_RESIDENT,

@@ -8,7 +8,7 @@ export const registerStudent = studentObject => dispatch => {
     });
 
     axios
-        .post('api/register', studentObject)
+        .post('api/reg-student', studentObject)
         .then(response => {
             dispatch({
                 type: REGISTER_STUDENT,

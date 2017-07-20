@@ -75,16 +75,17 @@ data.postStudents = (studentObject, callback) => {
 
 data.postResidents = (residentObject, callback) => {
     dbConnection.query(
-        `INSERT INTO residents(first_name, last_name, email, address, DOB,
-                      picture, bio, phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        `INSERT INTO residents(first_name, last_name, email, password, DOB, address,
+                      bio, picture, phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
         [
             residentObject.first_name,
             residentObject.last_name,
             residentObject.email,
+            residentObject.password,
+            residentObject.DOB,
             residentObject.address,
-            residentObject.dob,
-            residentObject.picture,
             residentObject.bio,
+            residentObject.picture,
             residentObject.phone
         ],
         (err, res) => {
