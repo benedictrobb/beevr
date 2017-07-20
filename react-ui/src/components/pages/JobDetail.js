@@ -3,7 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
 var aws = require('aws-sdk');
 const env = require('env2');
-env('../../../../config.env');
+env('./config.env');
 
 console.log(process.env.SES_ACCESS_ID);
 
@@ -56,8 +56,8 @@ ses.sendEmail(
 //
 // var ses = require('node-ses'),
 //     client = ses.createClient({
-//         key: 'AKIAJ3QGMLKZUSI3HT6A',
-//         secret: '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',
+//         key: 'key',
+//         secret: 'secret',
 //         amazon: 'https://email.eu-west-1.amazonaws.com'
 //     });
 
