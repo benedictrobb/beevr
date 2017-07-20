@@ -2,9 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/job_apply.js';
 
-// load aws config
-// aws.config.loadFromPath('config.json');
-
 class JobDetail extends Component {
     constructor() {
         super();
@@ -23,23 +20,16 @@ class JobDetail extends Component {
     }
 
     sendEmail() {
-        this.props.applyJob();
+        this.props.applyJob(this.props.job_id);
     }
 
-    // Ideally we want to fetch jobs if there is no this.props.jobs
+    // Ideally we want to somehow fetch jobs if there is no this.props.jobs
     renderJob() {
         if (!this.props.jobs) {
-            // this.props.fetchJobs;
-            return (
-                <div>
-                    <div>Something went wrong</div>
-                    <div className="form__submit-btn-wrapper">
-                        {this.props.applied
-                            ? <div>APPLICATION SUCCESSFUL</div>
-                            : <div>NOT APPLIED YET</div>}
-                    </div>
-                </div>
-            );
+            return <h2>Something went wrong</h2>;
+        }
+        if (this.props.applied.includes(this.props.job_id)) {
+            return <h2>APPLICATION SUCCESSFUL</h2>;
         }
         var jobObj = {};
         var arr = this.props.jobs;
@@ -82,11 +72,6 @@ class JobDetail extends Component {
                 <button className="btn btn primary" onClick={this.sendEmail}>
                     APPLY
                 </button>
-                <div className="form__submit-btn-wrapper">
-                    {this.props.applied
-                        ? <div>APPLICATION SUCCESSFUL</div>
-                        : <div>NOT APPLIED YET</div>}
-                </div>
             </div>
         );
     }
@@ -94,10 +79,7 @@ class JobDetail extends Component {
     render() {
         return (
             <div>
-                <p>JobDetail</p>
-                <h2>
-                    {this.renderJob()}
-                </h2>
+                {this.renderJob()}
             </div>
         );
     }

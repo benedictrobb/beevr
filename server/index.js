@@ -93,7 +93,6 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/apply',
         handler: (request, reply) => {
-            console.log('inside server');
             aws.config = {
                 accessKeyId: process.env.SES_ACCESS_ID,
                 secretAccessKey: process.env.SES_ACCESS_KEY,

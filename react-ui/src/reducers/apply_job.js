@@ -1,16 +1,15 @@
 import {APPLY_JOB} from '../constants/action_types.js';
 
 const initialState = {
-    applied: false
+    applied: []
 };
 
 export default (state = initialState, action) => {
-    console.log('inside reducer');
     switch (action.type) {
     case APPLY_JOB:
         return {
             ...state,
-            applied: true
+            applied: [...state.applied, action.response]
         };
     default:
         return state;

@@ -1,15 +1,14 @@
 import {APPLY_JOB} from '../constants/action_types.js';
 import axios from 'axios';
 
-export const applyJob = () => dispatch => {
-    console.log('inside action');
+export const applyJob = job_id => dispatch => {
     axios
         .get('/api/apply')
         .then(response => {
             dispatch({
                 type: APPLY_JOB,
                 status: 'success',
-                response: 'email sent'
+                response: job_id
             });
         })
         .catch(error => {
