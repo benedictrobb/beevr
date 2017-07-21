@@ -124,8 +124,8 @@ server.register(plugins, err => {
                 }
                 else {
                     reply({
-                        name: 'studentObject',
-                        studentObject: res
+                        name: 'student',
+                        student: res
                     });
                 }
             });
@@ -145,8 +145,8 @@ server.register(plugins, err => {
                 }
                 else {
                     reply({
-                        name: 'residentObject',
-                        residentObject: res
+                        name: 'resident',
+                        resident: res
                     });
                 }
             });

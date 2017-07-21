@@ -13,7 +13,7 @@ class RegisterPage extends Component {
                     <h2>Register As Student</h2>
                     <Form_Register_Student
                         btnText={'Sign Up'}
-                        //student={this.props.studentObject}
+                        //student={this.props.student}
                     />
                 </div>
             </div>

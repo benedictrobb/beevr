@@ -11,20 +11,20 @@ class Form_Register_Resident extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            residentObject: {}
+            resident: {}
         };
     }
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.registerResident(this.state.residentObject);
+        this.props.registerResident(this.state.resident);
     }
 
     onChange(evt) {
-        var residentObject = this.state.residentObject;
+        var resident = this.state.resident;
         this.setState({
-            residentObject: {
-                ...residentObject,
+            resident: {
+                ...resident,
                 [evt.target.name]: evt.target.value
             }
         });
@@ -44,7 +44,7 @@ class Form_Register_Resident extends Component {
                         id="First Name"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.residentObject.first_name}
+                        value={this.state.resident.first_name}
                         onChange={this.onChange}
                     />
                 </div>
@@ -58,7 +58,7 @@ class Form_Register_Resident extends Component {
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.residentObject.last_name}
+                        value={this.state.resident.last_name}
                         onChange={this.onChange}
                     />
                 </div>
@@ -71,7 +71,7 @@ class Form_Register_Resident extends Component {
                         name="email"
                         type="text"
                         id="username"
-                        value={this.state.residentObject.email}
+                        value={this.state.resident.email}
                         placeholder="email"
                         onChange={this.onChange}
                         autoCorrect="off"
@@ -88,7 +88,7 @@ class Form_Register_Resident extends Component {
                         name="password"
                         id="password"
                         type="password"
-                        value={this.state.residentObject.password}
+                        value={this.state.resident.password}
                         placeholder="password"
                         onChange={this.onChange}
                     />
@@ -102,7 +102,7 @@ class Form_Register_Resident extends Component {
                         name="confirmPassword"
                         id="password"
                         type="password"
-                        value={this.state.residentObject.confirmPassword}
+                        value={this.state.resident.confirmPassword}
                         placeholder="Confirm password"
                         onChange={this.onChange}
                     />
@@ -120,7 +120,7 @@ class Form_Register_Resident extends Component {
                         id="Date Of Birth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.residentObject.DOB}
+                        value={this.state.resident.DOB}
                         onChange={this.onChange}
                     />
                 </div>
@@ -134,7 +134,7 @@ class Form_Register_Resident extends Component {
                         id="Address"
                         type="text"
                         placeholder="Address"
-                        value={this.state.residentObject.address}
+                        value={this.state.resident.address}
                         onChange={this.onChange}
                     />
                 </div>
@@ -148,7 +148,7 @@ class Form_Register_Resident extends Component {
                         id="Bio"
                         type="text"
                         placeholder="Bio"
-                        value={this.state.residentObject.bio}
+                        value={this.state.resident.bio}
                         onChange={this.onChange}
                     />
                 </div>
@@ -162,7 +162,7 @@ class Form_Register_Resident extends Component {
                         id="Picture"
                         type="file"
                         placeholder="Picture"
-                        value={this.state.residentObject.picture}
+                        value={this.state.resident.picture}
                         onChange={this.onChange}
                     />
                 </div>
@@ -176,7 +176,7 @@ class Form_Register_Resident extends Component {
                         id="Phone number"
                         type="text"
                         placeholder="Phone number"
-                        value={this.state.residentObject.phone}
+                        value={this.state.resident.phone}
                         onChange={this.onChange}
                     />
                 </div>
@@ -201,7 +201,7 @@ class Form_Register_Resident extends Component {
 //};
 function mapStateToProps(state) {
     return {
-        residentObject: state.registerResident.residentObject.response
+        resident: state.registerResident.resident.response
     };
 }
 

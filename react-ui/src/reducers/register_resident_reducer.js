@@ -3,7 +3,7 @@ import {REGISTER_RESIDENT} from '../constants/action_types.js';
 const initialState = {
     loggedIn: false,
     isAuthenticated: false,
-    residentObject: {}
+    resident: {}
 };
 
 export default (state = initialState, action = {}) => {
@@ -11,7 +11,7 @@ export default (state = initialState, action = {}) => {
     case REGISTER_RESIDENT:
         return {
             ...state,
-            residentObject: {
+            resident: {
                 status: action.status,
                 error: action.error,
                 response: action.response
