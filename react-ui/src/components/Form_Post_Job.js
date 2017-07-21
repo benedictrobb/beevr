@@ -9,37 +9,6 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
-// function validateInput(data) {
-//     let errors = {};
-//
-//     if (Validator.isEmpty(data.start_date)) {
-//         errors.username = 'This field is required';
-//     }
-//     // if (Validator.isNull(data.email)) {
-//     //     errors.email = 'This field is required';
-//     // }
-//     // if (!Validator.isEmail(data.email)) {
-//     //     errors.email = 'Email is invalid';
-//     // }
-//     // if (Validator.isNull(data.password)) {
-//     //     errors.password = 'This field is required';
-//     // }
-//     // if (Validator.isNull(data.passwordConfirmation)) {
-//     //     errors.passwordConfirmation = 'This field is required';
-//     // }
-//     // if (!Validator.equals(data.password, data.passwordConfirmation)) {
-//     //     errors.passwordConfirmation = 'Passwords must match';
-//     // }
-//     // if (Validator.isNull(data.timezone)) {
-//     //     errors.timezone = 'This field is required';
-//     // }
-//
-//     return {
-//         errors,
-//         isValid: isEmpty(errors)
-//     };
-// }
-
 class Form_Post_Job extends Component {
     constructor() {
         super();
@@ -52,7 +21,6 @@ class Form_Post_Job extends Component {
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
         this._onChangeCategory = this._onChangeCategory.bind(this);
-        // this.isValid = this.isValid.bind(this);
 
         //resident id hardcoded for now
         this.state = {
@@ -62,16 +30,6 @@ class Form_Post_Job extends Component {
             errorMessage: ''
         };
     }
-
-    // isValid() {
-    //     const {errors, isValid} = validateInput(this.state);
-    //
-    //     if (!isValid) {
-    //         this.setState({errors});
-    //     }
-    //
-    //     return isValid;
-    // }
 
     _onSubmit(evt) {
         evt.preventDefault();
@@ -92,15 +50,18 @@ class Form_Post_Job extends Component {
             error_message = 'Job Category cannot be empty';
         } else if (!jobData.rate) {
             error_message = 'Rate cannot be empty';
+        } else if (isNaN(jobData.rate) === true) {
+            error_message = 'Rate must be a number';
         } else if (!jobData.description) {
             error_message = 'Job Description cannot be empty';
         }
 
         this.setState({errorMessage: error_message}, () => {
-            console.log(this.state);
+            if (!this.state.errorMessage) {
+                this.props.postJob(this.state.jobData);
+                browserHistory.push('/jobposted');
+            }
         });
-
-        // this.props.postJob(this.state.jobData);
     }
 
     _onChangeStartDate(evt) {
@@ -184,14 +145,19 @@ class Form_Post_Job extends Component {
     }
 
     render() {
-        console.log('error message is ', this.state.errorMessage);
         if (!this.state) {
             return <div>Loading</div>;
         }
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
-                    Error message is {this.state.errorMessage}
+                    <div
+                        className={
+                            this.state.errorMessage ? 'alert alert-danger' : ''
+                        }
+                    >
+                        {this.state.errorMessage}
+                    </div>
                 </p>
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Start Date">
