@@ -9,14 +9,6 @@ class Form_Register_Resident extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        //this.onChangeResidentFirstName = this.onChangeResidentFirstName.bind(this);
-        //this.onChangeResidentLastName = this.onChangeResidentLastName.bind(this);
-        //this.onChangeResidentEmail = this.onChangeResidentEmail.bind(this);
-        //this.onChangePassword = this.onChangePassword.bind(this);
-        //this.onChangeDOB = this.onChangeDOB.bind(this);
-        //this.onChangeBio = this.onChangeBio.bind(this);
-        //this.onChangePhone = this.onChangePhone.bind(this);
-        //this.onChangePicture = this.onChangePicture.bind(this);
 
         this.state = {
             residentObject: {}
@@ -38,86 +30,6 @@ class Form_Register_Resident extends Component {
         });
     }
     
-    //onChangeResidentFirstName(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //firstName: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeResidentLastName(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //lastName: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeResidentEmail(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //residentObjectEmail: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePassword(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //password: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeDOB(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //DOB: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangeBio(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //bio: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePicture(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //picture: evt.target.value
-            //}
-        //});
-    //}
-
-    //onChangePhone(evt) {
-        //var residentObject = this.state.residentObject;
-        //this.setState({
-            //residentObject: {
-                //...residentObject,
-                //phone: evt.target.value
-            //}
-        //});
-    //}
-
     render() {
         return (
             <form className="form-group" onSubmit={this.onSubmit}>
@@ -178,6 +90,20 @@ class Form_Register_Resident extends Component {
                         type="password"
                         value={this.state.residentObject.password}
                         placeholder="password"
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Confirm password">
+                        Confirm password
+                    </label>
+                    <input
+                        className="form-control"
+                        name="confirmPassword"
+                        id="password"
+                        type="password"
+                        value={this.state.residentObject.confirmPassword}
+                        placeholder="Confirm password"
                         onChange={this.onChange}
                     />
                 </div>
@@ -267,6 +193,7 @@ class Form_Register_Resident extends Component {
 
 }
 
+//I leave it, could be useful later......
 //Form_Register_Resident.propTypes = {
 //onSubmit: React.PropTypes.func.isRequired,
 //btnText: React.PropTypes.string.isRequired,

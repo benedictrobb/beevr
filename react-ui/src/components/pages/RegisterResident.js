@@ -16,21 +16,6 @@ class RegisterResident extends Component {
                     />
                 </div>
             </div>
-            //<div className="form-page__form-header">
-                        //<h2 className="form-page__form-heading">Register as resident</h2>
-                    //</div>
-                    //{[> While the form is sending, show the loading indicator,
-                        //otherwise show "Register" on the submit button */}
-                    //<Form_Register_Resident
-                        ////data={formState}
-                        //dispatch={dispatch}
-                        //history={this.props.history}
-                        ////onSubmit={this._register.bind(this)}
-                        //btnText={'Register'}
-                        ////currentlySending={currentlySending}
-                    ///>
-                //</div>
-            //</div>
         );
     }
 }

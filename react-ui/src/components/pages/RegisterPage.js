@@ -5,7 +5,7 @@ import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 
 class RegisterPage extends Component {
     render() {
-        const dispatch = this.props.dispatch;
+        //const dispatch = this.props.dispatch;
         //const {formState, currentlySending} = this.props.data;
         return (
             <div className="row">
@@ -17,23 +17,6 @@ class RegisterPage extends Component {
                     />
                 </div>
             </div>
-            //<div className="form-page__wrapper">
-                //<div className="form-page__form-wrapper">
-                    //<div className="form-page__form-header">
-                        //<h2 className="form-page__form-heading">Register as student</h2>
-                    //</div>
-                    //{[> While the form is sending, show the loading indicator,
-                        //otherwise show "Register" on the submit button */}
-                    //<Form_Register_Student
-                        //data={formState}
-                        //dispatch={dispatch}
-                        //history={this.props.history}
-                        ////onSubmit={this._register.bind(this)}
-                        //btnText={'Register'}
-                        //currentlySending={currentlySending}
-                    ///>
-                //</div>
-            //</div>
         );
     }
 
@@ -47,15 +30,6 @@ class RegisterPage extends Component {
     //return {data: state};
 //}
 
-// Wrap the component to inject dispatch and state into it
-//export default connect(select)(RegisterPage);
-//function mapStateToProps(state) {
-    //return {
-        //studentObject: state.registerStudent.studentObject.response
-    //};
-//}
-
-//Form_Register_Student.propTypes = {
     //onSubmit: React.PropTypes.func.isRequired,
     //btnText: React.PropTypes.string.isRequired,
     //data: React.PropTypes.object.isRequired

@@ -95,6 +95,20 @@ class Form_Register_Student extends Component {
                     />
                 </div>
                 <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Confirm password">
+                        Confirm password
+                    </label>
+                    <input
+                        className="form-control"
+                        name="confirmPassword"
+                        id="password"
+                        type="password"
+                        value={this.state.studentObject.confirmPassword}
+                        placeholder="Confirm password"
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="form__field-wrapper">
                     <label
                         className="form__field-label"
                         htmlFor="Date Of Birth"
@@ -274,6 +288,7 @@ function mapStateToProps(state) {
     };
 }
 
+//I leave it, could be useful later......
 ////Form_Register_Student.propTypes = {
     ////onSubmit: React.PropTypes.func.isRequired,
     ////btnText: React.PropTypes.string.isRequired,
