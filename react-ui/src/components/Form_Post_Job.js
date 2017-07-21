@@ -6,6 +6,39 @@ import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import Validator from 'validator';
+import isEmpty from 'lodash/isEmpty';
+
+// function validateInput(data) {
+//     let errors = {};
+//
+//     if (Validator.isEmpty(data.start_date)) {
+//         errors.username = 'This field is required';
+//     }
+//     // if (Validator.isNull(data.email)) {
+//     //     errors.email = 'This field is required';
+//     // }
+//     // if (!Validator.isEmail(data.email)) {
+//     //     errors.email = 'Email is invalid';
+//     // }
+//     // if (Validator.isNull(data.password)) {
+//     //     errors.password = 'This field is required';
+//     // }
+//     // if (Validator.isNull(data.passwordConfirmation)) {
+//     //     errors.passwordConfirmation = 'This field is required';
+//     // }
+//     // if (!Validator.equals(data.password, data.passwordConfirmation)) {
+//     //     errors.passwordConfirmation = 'Passwords must match';
+//     // }
+//     // if (Validator.isNull(data.timezone)) {
+//     //     errors.timezone = 'This field is required';
+//     // }
+//
+//     return {
+//         errors,
+//         isValid: isEmpty(errors)
+//     };
+// }
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -19,18 +52,55 @@ class Form_Post_Job extends Component {
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
         this._onChangeCategory = this._onChangeCategory.bind(this);
+        // this.isValid = this.isValid.bind(this);
 
         //resident id hardcoded for now
         this.state = {
             jobData: {
                 resident_id: 1
-            }
+            },
+            errorMessage: ''
         };
     }
 
+    // isValid() {
+    //     const {errors, isValid} = validateInput(this.state);
+    //
+    //     if (!isValid) {
+    //         this.setState({errors});
+    //     }
+    //
+    //     return isValid;
+    // }
+
     _onSubmit(evt) {
         evt.preventDefault();
-        this.props.postJob(this.state.jobData);
+
+        var {jobData} = this.state;
+
+        if (!jobData.start_date) {
+            var error_message = 'Start Date cannot be empty';
+        } else if (!jobData.job_title) {
+            error_message = 'Job Title cannot be empty';
+        } else if (!jobData.start_time) {
+            error_message = 'Start Time cannot be empty';
+        } else if (!jobData.end_date) {
+            error_message = 'End Date cannot be empty';
+        } else if (!jobData.end_time) {
+            error_message = 'End Time cannot be empty';
+        } else if (!jobData.category) {
+            error_message = 'Job Category cannot be empty';
+        } else if (!jobData.rate) {
+            error_message = 'Rate cannot be empty';
+        } else if (!jobData.description) {
+            error_message = 'Job Description cannot be empty';
+        }
+
+        this.setState({errorMessage: error_message}, () => {
+            console.log(this.state);
+        });
+
+        // this.props.postJob(this.state.jobData);
     }
 
     _onChangeStartDate(evt) {
@@ -114,12 +184,15 @@ class Form_Post_Job extends Component {
     }
 
     render() {
+        console.log('error message is ', this.state.errorMessage);
         if (!this.state) {
             return <div>Loading</div>;
         }
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
-                <ErrorMessage />
+                <p>
+                    Error message is {this.state.errorMessage}
+                </p>
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Start Date">
                         Start Date
@@ -264,7 +337,8 @@ class Form_Post_Job extends Component {
 
 function mapStateToProps(state) {
     return {
-        newJob: state.postJob.newJob.response
+        newJob: state.postJob.newJob.response,
+        errorMessage: state.errorMessage
     };
 }
 
