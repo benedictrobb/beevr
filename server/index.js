@@ -110,6 +110,46 @@ server.register(plugins, err => {
             });
         }
     });
+    
+    server.route({
+        method: 'POST',
+        path: '/api/reg-student',
+        handler: (request, reply) => {
+            data.postStudents(request.payload, (err, res) => {
+                if (err) {
+                    reply(
+                        'Failed to connect load data from the database'
+                    ).code(500);
+                }
+                else {
+                    reply({
+                        name: 'student',
+                        student: res
+                    });
+                }
+            });
+        }
+    });
+
+    server.route({
+        method: 'POST',
+        path: '/api/reg-resident',
+        handler: (request, reply) => {
+            data.postResidents(request.payload, (err, res) => {
+                if (err) {
+                    reply(
+                        'Failed to connect load data from the database'
+                    ).code(500);
+                }
+                else {
+                    reply({
+                        name: 'resident',
+                        resident: res
+                    });
+                }
+            });
+        }
+    });
 
     server.route({
         method: 'GET',

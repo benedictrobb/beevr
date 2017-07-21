@@ -22,7 +22,7 @@ class App extends Component {
                     location={this.props.location}
                     dispatch={this.props.dispatch}
                     currentlySending={this.props.data.currentlySending}
-                />{' '}
+                />
                 {this.props.children}
             </div>
         );
@@ -32,9 +32,9 @@ class App extends Component {
 // REDUX STUFF
 
 // Which props do we want to inject, given the global state?
-function select(state) {
+function mapStateToProps(state) {
     return {data: state};
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(App);
+export default connect(mapStateToProps)(App);
