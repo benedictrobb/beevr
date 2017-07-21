@@ -3,7 +3,7 @@ import {REGISTER_STUDENT} from '../constants/action_types.js';
 const initialState = {
     loggedIn: false,
     isAuthenticated: false,
-    studentObject: {}
+    student: {}
 };
 
 export default (state = initialState, action = {}) => {
@@ -11,7 +11,7 @@ export default (state = initialState, action = {}) => {
     case REGISTER_STUDENT:
         return {
             ...state,
-            studentObject: {
+            student: {
                 status: action.status,
                 error: action.error,
                 response: action.response

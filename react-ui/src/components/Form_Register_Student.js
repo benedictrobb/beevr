@@ -11,20 +11,20 @@ class Form_Register_Student extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            studentObject: {}
+            student: {}
         };
     }
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.registerStudent(this.state.studentObject);
+        this.props.registerStudent(this.state.student);
     }
 
     onChange(evt) {
-        var studentObject = this.state.studentObject;
+        var student = this.state.student;
         this.setState({
-            studentObject: {
-                ...studentObject,
+            student: {
+                ...student,
                 [evt.target.name]: evt.target.value
             }
         });
@@ -44,7 +44,7 @@ class Form_Register_Student extends Component {
                         id="First Name"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.studentObject.firstName}
+                        value={this.state.student.firstName}
                         onChange={this.onChange}
                     />
                 </div>
@@ -58,7 +58,7 @@ class Form_Register_Student extends Component {
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.studentObject.lastName}
+                        value={this.state.student.lastName}
                         onChange={this.onChange}
                     />
                 </div>
@@ -72,7 +72,7 @@ class Form_Register_Student extends Component {
                         id="Last Name"
                         type="text"
                         id="username"
-                        value={this.state.studentObject.email}
+                        value={this.state.student.email}
                         placeholder="email"
                         onChange={this.onChange}
                         autoCorrect="off"
@@ -89,8 +89,22 @@ class Form_Register_Student extends Component {
                         name="password"
                         id="password"
                         type="password"
-                        value={this.state.studentObject.password}
+                        value={this.state.student.password}
                         placeholder="password"
+                        onChange={this.onChange}
+                    />
+                </div>
+                <div className="form__field-wrapper">
+                    <label className="form__field-label" htmlFor="Confirm password">
+                        Confirm password
+                    </label>
+                    <input
+                        className="form-control"
+                        name="confirmPassword"
+                        id="password"
+                        type="password"
+                        value={this.state.student.confirmPassword}
+                        placeholder="Confirm password"
                         onChange={this.onChange}
                     />
                 </div>
@@ -107,7 +121,7 @@ class Form_Register_Student extends Component {
                         id="Date Of Birth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.studentObject.DOB}
+                        value={this.state.student.DOB}
                         onChange={this.onChange}
                     />
                 </div>
@@ -125,7 +139,7 @@ class Form_Register_Student extends Component {
                         id="University/School"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.studentObject.univ_school}
+                        value={this.state.student.univ_school}
                         onChange={this.onChange}
                     />
                 </div>
@@ -140,7 +154,7 @@ class Form_Register_Student extends Component {
                         id="Bio"
                         type="text"
                         placeholder="Bio"
-                        value={this.state.studentObject.bio}
+                        value={this.state.student.bio}
                         onChange={this.onChange}
                     />
                 </div>
@@ -155,7 +169,7 @@ class Form_Register_Student extends Component {
                         id="Picture"
                         type="file"
                         placeholder="Picture"
-                        value={this.state.studentObject.picture}
+                        value={this.state.student.picture}
                         onChange={this.onChange}
                     />
                 </div>
@@ -170,7 +184,7 @@ class Form_Register_Student extends Component {
                         id="Phone number"
                         type="text"
                         placeholder="Phone number"
-                        value={this.state.studentObject.phone}
+                        value={this.state.student.phone}
                         onChange={this.onChange}
                     />
                 </div>
@@ -270,10 +284,11 @@ class Form_Register_Student extends Component {
 
 function mapStateToProps(state) {
     return {
-        studentObject: state.registerStudent.studentObject.response
+        student: state.registerStudent.student.response
     };
 }
 
+//I leave it, could be useful later......
 ////Form_Register_Student.propTypes = {
     ////onSubmit: React.PropTypes.func.isRequired,
     ////btnText: React.PropTypes.string.isRequired,
