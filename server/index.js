@@ -115,7 +115,6 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/reg-student',
         handler: (request, reply) => {
-            console.log(request.payload);
             data.postStudents(request.payload, (err, res) => {
                 if (err) {
                     reply(
@@ -136,7 +135,6 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/reg-resident',
         handler: (request, reply) => {
-            console.log(request.payload);
             data.postResidents(request.payload, (err, res) => {
                 if (err) {
                     reply(
