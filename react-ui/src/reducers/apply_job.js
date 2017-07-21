@@ -1,17 +1,19 @@
 import {APPLY_JOB} from '../constants/action_types.js';
 
 const initialState = {
-    applied: []
+  applied: []
 };
 
 export default (state = initialState, action) => {
-    switch (action.type) {
+  switch (action.type) {
     case APPLY_JOB:
-        return {
-            ...state,
-            applied: [...state.applied, action.response]
-        };
+      return {
+        ...state,
+        status: action.status,
+        error: action.error,
+        applied: [...state.applied, action.response]
+      };
     default:
-        return state;
-    }
+      return state;
+  }
 };
