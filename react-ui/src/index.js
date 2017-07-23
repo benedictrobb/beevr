@@ -13,7 +13,7 @@ import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import {composeWithDevTools} from 'redux-devtools-extension';
 import homeReducer from './reducers/index.js';
 import LoginPage from './components/pages/LoginPage.js';
-import RegisterPage from './components/pages/RegisterPage.js';
+import RegisterStudent from './components/pages/RegisterStudent.js';
 import Dashboard from './components/pages/Dashboard.js';
 import NotFound from './components/pages/NotFound.js';
 import App from './components/app.js';
@@ -67,7 +67,7 @@ ReactDOM.render(
         <Router history = { browserHistory }>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
-                <Route path="/register" component={RegisterPage} />
+                <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />

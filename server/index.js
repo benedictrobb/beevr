@@ -1,5 +1,6 @@
 'use strict';
 const Hapi = require('hapi');
+const Boom = require('boom');
 const _ = require('lodash');
 const pkg = require('../package.json');
 const inert = require('inert');
@@ -15,7 +16,7 @@ const server = new Hapi.Server();
 const PORT = process.env.PORT || 4000;
 
 server.connection({
-    port: PORT
+    port: PORT,
 });
 
 const plugins = [inert, blipp, cookieAuth];
@@ -24,14 +25,14 @@ server.register(plugins, err => {
     if (err) throw err;
 
     console.log('=> Registered plugins:', {
-        plugins: _.keysIn(server.registrations).join(', ')
+        plugins: _.keysIn(server.registrations).join(', '),
     });
 
     const cookieAuthOptions = {
         password: process.env.COOKIE_PASSWORD,
         cookie: 'logged-in',
         isSecure: false,
-        ttl: 24 * 60 * 60 * 1000
+        ttl: 24 * 60 * 60 * 1000,
     };
 
     server.auth.strategy('session', 'cookie', 'optional', cookieAuthOptions);
@@ -43,32 +44,46 @@ server.register(plugins, err => {
             directory: {
                 path: './react-ui/build',
                 listing: false,
-                index: true
-            }
-        }
+                index: true,
+            },
+        },
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/login',
+        handler: (request, reply) => {
+            data.login((err, res) => {
+                if (err)
+                    reply(Boom.unauthorized('Please log-in to see that'));
+                else {
+                    reply({
+                        name: 'login',
+                        login: res,
+                    });
+                }
+            });
+        },
     });
 
     server.route({
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs(
-                (err, res) => {
-                    if (err)
-                        reply.status(500)(
-                            'Failed to connect load data from the database'
-                        );
-                    else {
-                        reply({
-                            name: 'jobsList',
-                            message: 'Welcome to BEEVR!',
-                            jobsList: res
-                        });
-                    }
-                },
-                request.url.query.term
-            );
-        }
+            data.getJobs((err, res) => {
+                if (err)
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                else {
+                    reply({
+                        name: 'jobsList',
+                        message: 'Welcome to BEEVR!',
+                        jobsList: res,
+                    });
+                }
+            }, request.url.query.term);
+        },
     });
 
     server.route({
@@ -84,11 +99,11 @@ server.register(plugins, err => {
                     reply({
                         name: 'newJob',
                         message: 'Welcome to BEEVR!',
-                        newJob: res
+                        newJob: res,
                     });
                 }
             });
-        }
+        },
     });
 
     server.route({
@@ -104,13 +119,13 @@ server.register(plugins, err => {
                     reply({
                         name: 'jobsList',
                         message: 'Welcome to BEEVR!',
-                        jobsList: res
+                        jobsList: res,
                     });
                 }
             });
-        }
+        },
     });
-    
+
     server.route({
         method: 'POST',
         path: '/api/reg-student',
@@ -118,18 +133,15 @@ server.register(plugins, err => {
             console.log(request.payload);
             data.postStudents(request.payload, (err, res) => {
                 if (err) {
-                    reply(
-                        'Failed to connect load data from the database'
-                    ).code(500);
-                }
-                else {
+                    reply(Boom.serverUnavailable('unavailable'));
+                } else {
                     reply({
                         name: 'student',
-                        student: res
+                        student: res,
                     });
                 }
             });
-        }
+        },
     });
 
     server.route({
@@ -139,18 +151,15 @@ server.register(plugins, err => {
             console.log(request.payload);
             data.postResidents(request.payload, (err, res) => {
                 if (err) {
-                    reply(
-                        'Failed to connect load data from the database'
-                    ).code(500);
-                }
-                else {
+                    reply(Boom.serverUnavailable('unavailable',data.error));
+                } else {
                     reply({
                         name: 'resident',
-                        resident: res
+                        resident: res,
                     });
                 }
             });
-        }
+        },
     });
 
     server.route({
@@ -160,9 +169,9 @@ server.register(plugins, err => {
             reply({
                 name: pkg.name,
                 version: pkg.version,
-                message: 'Welcome to BEEVR!'
+                message: 'Welcome to BEEVR!',
             });
-        }
+        },
     });
 
     server.start(err => {

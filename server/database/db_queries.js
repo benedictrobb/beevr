@@ -47,11 +47,54 @@ data.getStudents = (term, callback) => {
     );
 };
 
+data.login = (identity, email, password, callback) => {
+    dbConnection.query(
+        `SELECT * from $1 WHERE students.email = $2;`,
+        [
+            identity,
+            email,
+        ],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+            console.log(res.rows);
+            callback(null, res.rows);
+        //const  = res.rows[0];
+        //bcrypt.compare(password, user.password, (err, isValid) => {
+          //if (err) throw err;
+          //if (isValid) {
+            //req.cookieAuth.set({ username });
+            //reply.redirect('/create-post');
+          //} else {
+            //reply.view('failed-login');
+          //}
+        //});
+      //});
+    //} else {
+      //reply.view('failed-login');
+    //}
+        });
+}
+
+data.studentExists = (student, callback) => {
+    dbConnection.query(
+        `SELECT * from students WHERE students.email = $1;`,
+        [student.email],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+            callback(null, res.rows[0]);
+        }       
+    );
+};
+    
 data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(first_name, last_name, email, password, DOB,
-                      univ_school, bio, picture, phone, job_cat)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
+            univ_school, bio, picture, phone, job_cat)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
         [
             student.first_name,
             student.last_name,
@@ -72,6 +115,7 @@ data.postStudents = (student, callback) => {
         }
     );
 };
+
 
 data.postResidents = (resident, callback) => {
     dbConnection.query(

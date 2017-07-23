@@ -1,8 +1,6 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import * as actions from '../actions/register_student.js';
-import {connect} from 'react-redux';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -11,13 +9,24 @@ class Form_Register_Student extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            student: {}
+            student: {},
+            errorMessage: '',
         };
     }
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.registerStudent(this.state.student);
+        var student = this.state.student;
+        if (!student.email) {
+            var error_message = 'Email cannot be empty';
+        }
+
+        this.setState({errorMessage: error_message}, () => {
+            if (!this.state.errorMessage) {
+                this.props.registerStudent(this.state.student);
+                //browserHistory.push('/dashboard');
+            }
+        });
     }
 
     onChange(evt) {
@@ -25,14 +34,22 @@ class Form_Register_Student extends Component {
         this.setState({
             student: {
                 ...student,
-                [evt.target.name]: evt.target.value
-            }
+                [evt.target.name]: evt.target.value,
+            },
         });
     }
 
     render() {
         return (
             <form onSubmit={this.onSubmit}>
+                <div
+                    className="form-group"
+                    className={
+                        this.state.errorMessage ? 'alert alert-danger' : ''
+                    }
+                >
+                    {this.state.errorMessage}
+                </div>
                 <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="First Name">
@@ -44,12 +61,12 @@ class Form_Register_Student extends Component {
                         id="First Name"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.student.firstName}
+                        value={this.state.student.first_name}
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Last Name">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Last Name">
                         Last Name
                     </label>
                     <input
@@ -58,20 +75,19 @@ class Form_Register_Student extends Component {
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.student.lastName}
+                        value={this.state.student.last_name}
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="username">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Email">
                         Email
                     </label>
                     <input
                         className="form-control"
                         name="email"
-                        id="Last Name"
-                        type="text"
-                        id="username"
+                        id="Email"
+                        type="email"
                         value={this.state.student.email}
                         placeholder="email"
                         onChange={this.onChange}
@@ -80,39 +96,36 @@ class Form_Register_Student extends Component {
                         spellCheck="false"
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="password">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="password">
                         Password
                     </label>
                     <input
                         className="form-control"
                         name="password"
-                        id="password"
+                        id="Password"
                         type="password"
                         value={this.state.student.password}
                         placeholder="password"
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Confirm password">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Confirm password">
                         Confirm password
                     </label>
                     <input
                         className="form-control"
                         name="confirmPassword"
-                        id="password"
+                        id="Password"
                         type="password"
                         value={this.state.student.confirmPassword}
                         placeholder="Confirm password"
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label
-                        className="form__field-label"
-                        htmlFor="Date Of Birth"
-                    >
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Date Of Birth">
                         Date of Birth
                     </label>
                     <input
@@ -126,9 +139,9 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
+                        className="control-label"
                         htmlFor="University/School"
                     >
                         University/School
@@ -144,8 +157,8 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Bio">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Bio">
                         Bio
                     </label>
                     <input
@@ -159,8 +172,8 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Picture">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Picture">
                         Profile picture
                     </label>
                     <input
@@ -174,8 +187,8 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Phone number">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Phone number">
                         Phone number
                     </label>
                     <input
@@ -189,9 +202,9 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
+                        className="control-label"
                         name="job-cat"
                         htmlFor="Job categories"
                     >
@@ -200,56 +213,63 @@ class Form_Register_Student extends Component {
                     <input
                         className="form-control"
                         name="index1"
-                        id="job category1"
+                        id="job_category_1"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category2"
+                        name="index2"
+                        id="job_category_2"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category3"
+                        name="index3"
+                        id="job_category_3"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category4"
+                        name="index4"
+                        id="job_category_4"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category5"
+                        name="index5"
+                        id="job_category_5"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category6"
+                        name="index6"
+                        id="job_category_6"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category7"
+                        name="index7"
+                        id="job_category_7"
                         type="text"
                         placeholder="Select"
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category8"
+                        name="index8"
+                        id="job_category_8"
                         type="text"
                         placeholder="Select"
                         list="jobs"
@@ -270,10 +290,10 @@ class Form_Register_Student extends Component {
                     </datalist>
                 </div>
 
-                <div className="form__submit-btn-wrapper">
+                <div>
                     {this.props.currentlySending
                         ? <LoadingButton />
-                        : <button className="btn btn-primary btn-lg" type="submit">
+                        : <button className="btn btn-primary" type="submit">
                             {this.props.btnText}
                         </button>}
                 </div>
@@ -282,18 +302,11 @@ class Form_Register_Student extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        student: state.registerStudent.student.response
-    };
-}
-
 //I leave it, could be useful later......
 ////Form_Register_Student.propTypes = {
-    ////onSubmit: React.PropTypes.func.isRequired,
-    ////btnText: React.PropTypes.string.isRequired,
-    ////data: React.PropTypes.object.isRequired
+////onSubmit: React.PropTypes.func.isRequired,
+////btnText: React.PropTypes.string.isRequired,
+////data: React.PropTypes.object.isRequired
 ////};
 
-export default connect(mapStateToProps, actions)(Form_Register_Student);
-//export default Form_Register_Student;
+export default Form_Register_Student;

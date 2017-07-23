@@ -20,7 +20,8 @@ export const registerResident = resident => dispatch => {
             dispatch({
                 type: REGISTER_RESIDENT,
                 status: 'error',
-                error: error
+                //error: error
+                error: 'I am an ERROR!'
             });
         });
 };
