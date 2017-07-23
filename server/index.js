@@ -8,8 +8,8 @@ const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
 const data = require('./database/database_queries.js');
+const sendEmail = require('../react-ui/src/utils/sendEmail.js');
 env('./config.env');
-var aws = require('aws-sdk');
 
 const server = new Hapi.Server();
 
@@ -93,44 +93,21 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/apply',
         handler: (request, reply) => {
-            aws.config = {
-                accessKeyId: process.env.SES_ACCESS_ID,
-                secretAccessKey: process.env.SES_ACCESS_KEY,
-                region: 'eu-west-1'
-            };
-
-            var ses = new aws.SES({apiVersion: '2010-12-01'});
             var to = ['rmrajaa@gmail.com'];
             var from = 'maja.kudlicka@gmail.com';
+            var subject = 'New job application';
+            var text =
+                'Someone has applied for the job you posted. Go to your profile to find out more.';
 
-            ses.sendEmail(
-                {
-                    Source: from,
-                    Destination: {ToAddresses: to},
-                    Message: {
-                        Subject: {
-                            Data: 'New job application'
-                        },
-                        Body: {
-                            Text: {
-                                Data:
-                                    'Someone has applied for the job you posted. Go to your profile to find out more.'
-                            }
-                        }
-                    }
-                },
-                (err, res) => {
-                    if (err)
-                        reply.status(500)(
-                            'Failed to connect load data from the database'
-                        );
-                    else {
-                        reply({
-                            message: 'Email sent!'
-                        });
-                    }
+            sendEmail(from, to, subject, text, (err, res) => {
+                console.log('inside callback');
+                if (err) reply.status(500)('Failed to send email');
+                else {
+                    reply({
+                        message: 'Email sent!'
+                    });
                 }
-            );
+            });
         }
     });
 
