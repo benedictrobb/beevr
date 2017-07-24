@@ -11,9 +11,9 @@ let ErrorMessage = props => {
         : <div />;
 };
 
-ErrorMessage.propTypes = {
-    errorMessage: PropTypes.string
-};
+//ErrorMessage.propTypes = {
+    //errorMessage: PropTypes.string
+//};
 
 const mapStateToProps = state => ({errorMessage: state.errorMessage});
 

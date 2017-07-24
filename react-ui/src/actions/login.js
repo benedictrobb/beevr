@@ -20,7 +20,8 @@ export const login = user => dispatch => {
             dispatch({
                 type: LOGIN_USER,
                 status: 'error',
-                error: error
+                //error: error
+                error: 'Login Invalid'
             });
         });
 };

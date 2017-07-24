@@ -47,13 +47,10 @@ data.getStudents = (term, callback) => {
     );
 };
 
-data.login = (identity, email, password, callback) => {
+data.login = (email, password, callback) => {
     dbConnection.query(
-        `SELECT * from $1 WHERE students.email = $2;`,
-        [
-            identity,
-            email,
-        ],
+        `SELECT * from student WHERE students.email = $2;`,
+        [email],
         (err, res) => {
             if (err) {
                 callback(err);
@@ -77,10 +74,14 @@ data.login = (identity, email, password, callback) => {
         });
 }
 
-data.studentExists = (student, callback) => {
+data.studentExists = (email, callback) => {
     dbConnection.query(
-        `SELECT * from students WHERE students.email = $1;`,
-        [student.email],
+        `SELECT exists(
+            SELECT 1 FROM students
+            WHERE email = $1
+        );`,
+        //`SELECT * from students WHERE students.email = $1;`,
+        [email],
         (err, res) => {
             if (err) {
                 callback(err);
@@ -109,7 +110,7 @@ data.postStudents = (student, callback) => {
         ],
         (err, res) => {
             if (err) {
-                callback(err);
+                callback(err,'general error');
             }
             callback(null, res.rows);
         }

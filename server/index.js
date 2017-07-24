@@ -51,23 +51,6 @@ server.register(plugins, err => {
 
     server.route({
         method: 'GET',
-        path: '/api/login',
-        handler: (request, reply) => {
-            data.login((err, res) => {
-                if (err)
-                    reply(Boom.unauthorized('Please log-in to see that'));
-                else {
-                    reply({
-                        name: 'login',
-                        login: res,
-                    });
-                }
-            });
-        },
-    });
-
-    server.route({
-        method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
             data.getJobs((err, res) => {
@@ -127,18 +110,35 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'GET',
+        path: '/api/student',
+        handler: (request, reply) => {
+            console.log('req',request.query);
+            data.studentExists(request.query.email, (err, res) => {
+                if (err) {
+                    reply(Boom.unauthorized('Please log-in to see that', data.error));
+                }
+                else {
+                    reply(res);
+                }
+            });
+        },
+    });
+
+    server.route({
         method: 'POST',
         path: '/api/reg-student',
         handler: (request, reply) => {
             console.log(request.payload);
             data.postStudents(request.payload, (err, res) => {
                 if (err) {
-                    reply(Boom.serverUnavailable('unavailable'));
+                    reply(Boom.serverUnavailable('unavailable', data.error));
                 } else {
                     reply({
                         name: 'student',
                         student: res,
                     });
+                    console.log(res);
                 }
             });
         },
@@ -151,11 +151,30 @@ server.register(plugins, err => {
             console.log(request.payload);
             data.postResidents(request.payload, (err, res) => {
                 if (err) {
-                    reply(Boom.serverUnavailable('unavailable',data.error));
+                    reply(Boom.serverUnavailable('unavailable', data.error));
                 } else {
                     reply({
                         name: 'resident',
                         resident: res,
+                    });
+                }
+            });
+        },
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/login',
+        handler: (request, reply) => {
+            data.login((err, res) => {
+                if (err) {
+                    reply(Boom.unauthorized('Please log-in to see that', data.error));
+                    console.log('ffff',err);
+                }
+                else {
+                    reply({
+                        name: 'loginRequest',
+                        loginRequest: res,
                     });
                 }
             });

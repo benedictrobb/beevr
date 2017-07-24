@@ -1,11 +1,3 @@
-/**
- *
- * Nav.js
- *
- * This component renders the navigation bar
- *
- */
-
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {logout} from '../actions/AppActions';
@@ -59,9 +51,9 @@ class Nav extends Component {
     }
 }
 
-Nav.propTypes = {
-    loggedIn: React.PropTypes.bool.isRequired,
-    currentlySending: React.PropTypes.bool.isRequired
-};
+//Nav.propTypes = {
+    //loggedIn: React.PropTypes.bool.isRequired,
+    //currentlySending: React.PropTypes.bool.isRequired
+//};
 
 export default Nav;

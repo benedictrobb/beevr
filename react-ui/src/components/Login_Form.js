@@ -8,7 +8,6 @@ class LoginForm extends Component {
         this.onChange = this.onChange.bind(this);
 
         this.state = {
-            identity: '',
             email: '',
             password: '',
             errorMessage: '',
@@ -17,8 +16,20 @@ class LoginForm extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.login(this.state.username, this.state.password);
-    }
+        var state = this.props.state;
+        this.setState({errorMessage: ''}, () => {
+            this.props.login(this.state.email, this.state.password);
+        });
+        (err) => this.setState({
+            errorMessage: err.data.error
+        });
+        console.log('hjhjh',this.state.errorMessage);
+    };
+
+    //onSubmit(evt) {
+    //evt.preventDefault();
+    //this.props.login(this.state.username, this.state.password);
+    //}
 
     onChange(evt) {
         var email = this.state.email;
@@ -29,6 +40,7 @@ class LoginForm extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <ErrorMessage />
@@ -78,7 +90,6 @@ class LoginForm extends Component {
 //btnText: React.PropTypes.string.isRequired,
 //data: React.PropTypes.object.isRequired
 //};
-
 
 //I leave it, could be useful later......
 ////Form_Register_Student.propTypes = {

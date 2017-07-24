@@ -7,11 +7,22 @@ class Form_Register_Student extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
             student: {},
             errorMessage: '',
         };
+    }
+    
+    checkEmail(value) {
+        console.log(this.props);
+        console.log(this.state);
+        value = this.state.student.email;
+        if (value !== '') {
+            this.props.checkIfStudentExist(value);
+            console.log(value);
+        }
     }
 
     onSubmit(evt) {
@@ -20,15 +31,19 @@ class Form_Register_Student extends Component {
         if (!student.email) {
             var error_message = 'Email cannot be empty';
         }
-
+        
         this.setState({errorMessage: error_message}, () => {
             if (!this.state.errorMessage) {
                 this.props.registerStudent(this.state.student);
                 //browserHistory.push('/dashboard');
             }
         });
+        (err) => {
+            this.setState({errorMessage: err.response.data.message});
+            console.log(err);
+        };
     }
-
+    
     onChange(evt) {
         var student = this.state.student;
         this.setState({
@@ -91,6 +106,7 @@ class Form_Register_Student extends Component {
                         value={this.state.student.email}
                         placeholder="email"
                         onChange={this.onChange}
+                        onBlur={this.checkEmail}
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
@@ -302,11 +318,9 @@ class Form_Register_Student extends Component {
     }
 }
 
-//I leave it, could be useful later......
-////Form_Register_Student.propTypes = {
-////onSubmit: React.PropTypes.func.isRequired,
-////btnText: React.PropTypes.string.isRequired,
-////data: React.PropTypes.object.isRequired
-////};
+//Form_Register_Student.propTypes = {
+    //onSubmit: React.PropTypes.func.isRequired,
+    //btnText: React.PropTypes.string.isRequired,
+//};
 
 export default Form_Register_Student;
