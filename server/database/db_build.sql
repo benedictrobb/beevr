@@ -14,7 +14,7 @@ CREATE TABLE students (
     bio             VARCHAR(1500)   NOT NULL,
     picture         VARCHAR(500)    ,
     phone           VARCHAR(15)     NOT NULL,
-    job_cat         VARCHAR[]   
+    job_cat         VARCHAR[]
 );
 
 CREATE TABLE residents (

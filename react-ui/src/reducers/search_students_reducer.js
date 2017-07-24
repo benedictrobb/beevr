@@ -1,17 +1,17 @@
-import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
+import {FETCH_STUDENTS} from '../constants/action_types.js';
 import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
-    jobsRequest: {},
-    term: ''
+    studentsRequest: {},
+    searchTerm: ''
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case FETCH_STUDENT_JOBS:
+    case FETCH_STUDENTS:
         return {
             ...state,
-            jobsRequest: {
+            studentsRequest: {
                 status: action.status,
                 error: action.error,
                 response: action.response

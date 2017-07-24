@@ -31,20 +31,28 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getRandomJobs = callback => {};
-
-data.getStudents = (term, callback) => {
-    dbConnection.query(
-        `SELECT * FROM students
-                      WHERE CATEGORY = $1`,
-        [term],
-        (err, res) => {
+data.getStudents = (callback, term) => {
+    if (!term) {
+        dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
             if (err) {
                 callback(err);
             }
+
             callback(null, res.rows);
-        }
-    );
+        });
+    } else {
+        dbConnection.query(
+            'SELECT * FROM students WHERE $1 = ANY (job_cat)',
+            [term],
+            (err, res) => {
+                if (err) {
+                    callback(err);
+                }
+
+                callback(null, res.rows);
+            }
+        );
+    }
 };
 
 data.postStudents = (student, callback) => {
