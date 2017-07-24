@@ -55,21 +55,22 @@ data.getStudents = (callback, term) => {
     }
 };
 
-data.postStudents = (StudentObject, callback) => {
+data.postStudents = (student, callback) => {
     dbConnection.query(
-        `INSERT INTO students(first_name, last_name, email, DOB,
-                      univ_school, job_cat, picture, bio, phone)
-                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
+        `INSERT INTO students(first_name, last_name, email, password, DOB,
+                      univ_school, bio, picture, phone, job_cat)
+                      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`,
         [
-            StudentObject.first_name,
-            StudentObject.last_name,
-            StudentObject.email,
-            StudentObject.dob,
-            StudentObject.uni,
-            StudentObject.job_cat,
-            StudentObject.picture,
-            StudentObject.bio,
-            StudentObject.phone
+            student.first_name,
+            student.last_name,
+            student.email,
+            student.password,
+            student.DOB,
+            student.univ_school,
+            student.bio,
+            student.picture,
+            student.phone,
+            student.job_cat
         ],
         (err, res) => {
             if (err) {
@@ -80,19 +81,20 @@ data.postStudents = (StudentObject, callback) => {
     );
 };
 
-data.postResidents = (residentObject, callback) => {
+data.postResidents = (resident, callback) => {
     dbConnection.query(
-        `INSERT INTO residents(first_name, last_name, email, address, DOB,
-                      picture, bio, phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8)`,
+        `INSERT INTO residents(first_name, last_name, email, password, DOB, address,
+                      bio, picture, phone) VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9)`,
         [
-            residentObject.first_name,
-            residentObject.last_name,
-            residentObject.email,
-            residentObject.address,
-            residentObject.dob,
-            residentObject.picture,
-            residentObject.bio,
-            residentObject.phone
+            resident.first_name,
+            resident.last_name,
+            resident.email,
+            resident.password,
+            resident.DOB,
+            resident.address,
+            resident.bio,
+            resident.picture,
+            resident.phone
         ],
         (err, res) => {
             if (err) {

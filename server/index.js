@@ -73,10 +73,11 @@ server.register(plugins, err => {
         path: '/api/students',
         handler: (request, reply) => {
             data.getStudents((err, res) => {
-                else {
+                if (err) {
                     reply.status(500)(
                         'Failed to connect load data from the database'
                     );
+                } else {
                     reply({
                         name: 'studentList',
                         message: 'Welcome to BEEVR!',
