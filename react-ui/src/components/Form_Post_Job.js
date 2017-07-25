@@ -6,7 +6,6 @@ import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import Validator from 'validator';
 import isEmpty from 'lodash/isEmpty';
 
 class Form_Post_Job extends Component {
