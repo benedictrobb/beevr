@@ -1,0 +1,5 @@
+
+INSERT INTO students(first_name, last_name, email, password, DOB, univ_school, bio, picture, phone, job_cat)
+            VALUES (Antonio, Trabalza, antoniotrabalza@gmail.com, pppppp, 10/08/1979, Sapienza, BioBioBio, #, 07577833827, #);`,
+
+`SELECT exists(SELECT users.username FROM users WHERE users.username = '${username}') FROM users;`
