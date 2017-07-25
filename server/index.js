@@ -7,12 +7,8 @@ const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
-<<<<<<< HEAD
-const data = require('./database/database_queries.js');
-const sendEmail = require('./lib/sendEmail.js');
-=======
 const data = require('./database/db_queries.js');
->>>>>>> master
+const sendEmail = require('./lib/sendEmail.js');
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -70,8 +66,6 @@ server.register(plugins, err => {
                     });
                 }
             }, request.url.query.term);
-<<<<<<< HEAD
-=======
         }
     });
 
@@ -92,7 +86,6 @@ server.register(plugins, err => {
                     });
                 }
             }, request.url.query.searchTerm);
->>>>>>> master
         }
     });
 

@@ -11,9 +11,6 @@ aws.config = {
 var ses = new aws.SES({apiVersion: '2010-12-01'});
 
 sendEmail = (from, to, subject, text, cb) => {
-    console.log('to is', to);
-    console.log('subject is', subject);
-    console.log('text is', text);
     ses.sendEmail(
         {
             Source: from,
