@@ -6,9 +6,10 @@ const pkg = require('../package.json');
 const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
+const {hashPassword, comparePassword} = require('./bcrypt.js');
 const fs = require('fs');
-const env = require('env2');
 const data = require('./database/db_queries.js');
+const env = require('env2');
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -58,13 +59,11 @@ server.register(plugins, err => {
                     reply.status(500)(
                         'Failed to connect load data from the database'
                     );
-                else {
-                    reply({
-                        name: 'jobsList',
-                        message: 'Welcome to BEEVR!',
-                        jobsList: res,
-                    });
-                }
+                reply({
+                    name: 'jobsList',
+                    message: 'Welcome to BEEVR!',
+                    jobsList: res,
+                });
             }, request.url.query.term);
         },
     });
@@ -75,16 +74,15 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.postJobs(request.payload, (err, res) => {
                 if (err) {
-                    reply.status(500)(
+                    return reply.status(500)(
                         'Failed to connect load data from the database'
                     );
-                } else {
-                    reply({
-                        name: 'newJob',
-                        message: 'Welcome to BEEVR!',
-                        newJob: res,
-                    });
                 }
+                reply({
+                    name: 'newJob',
+                    message: 'Welcome to BEEVR!',
+                    newJob: res,
+                });
             });
         },
     });
@@ -95,16 +93,14 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.getRandomJobs((err, res) => {
                 if (err)
-                    reply.status(500)(
+                    return reply.status(500)(
                         'Failed to connect load data from the database'
                     );
-                else {
-                    reply({
-                        name: 'jobsList',
-                        message: 'Welcome to BEEVR!',
-                        jobsList: res,
-                    });
-                }
+                reply({
+                    name: 'jobsList',
+                    message: 'Welcome to BEEVR!',
+                    jobsList: res,
+                });
             });
         },
     });
@@ -116,11 +112,9 @@ server.register(plugins, err => {
             console.log('req',request.query);
             data.studentExists(request.query.email, (err, res) => {
                 if (err) {
-                    reply(Boom.unauthorized('Please log-in to see that', data.error));
+                    return reply(Boom.unauthorized('Please log-in to see that', data.error));
                 }
-                else {
-                    reply(res);
-                }
+                reply(res);
             });
         },
     });
@@ -130,16 +124,35 @@ server.register(plugins, err => {
         path: '/api/reg-student',
         handler: (request, reply) => {
             console.log(request.payload);
-            data.postStudents(request.payload, (err, res) => {
+            hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
-                    reply(Boom.serverUnavailable('unavailable', data.error));
-                } else {
+                    return reply(Boom.badData('', 'bcrypt error'));
+                }
+                console.log(hash);
+                data.postStudents(Object.assign({}, request.payload, {password_hash:hash}), (err, res) => {
+                    console.log(request.payload);
+                    if (err) {
+                        return reply(Boom.serverUnavailable('unavailable', data.error));
+                    }
                     reply({
                         name: 'student',
                         student: res,
                     });
-                    console.log(res);
+                });
+            });
+        },
+    });        
+
+    server.route({
+        method: 'GET',
+        path: '/api/resident',
+        handler: (request, reply) => {
+            console.log('req',request.query);
+            data.residentExists(request.query.email, (err, res) => {
+                if (err) {
+                    return reply(Boom.unauthorized('Please log-in to see that', data.error));
                 }
+                reply(res);
             });
         },
     });
@@ -149,34 +162,40 @@ server.register(plugins, err => {
         path: '/api/reg-resident',
         handler: (request, reply) => {
             console.log(request.payload);
-            data.postResidents(request.payload, (err, res) => {
+            hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
-                    reply(Boom.serverUnavailable('unavailable', data.error));
-                } else {
+                    return reply(Boom.badData('', 'bcrypt error'));
+                }
+                console.log(hash);
+                data.postResidents(Object.assign({}, request.payload, {password_hash:hash}), (err, res) => {
+                    console.log(request.payload);
+                    if (err) {
+                        return reply(Boom.serverUnavailable('unavailable', data.error));
+                    }
                     reply({
                         name: 'resident',
                         resident: res,
                     });
-                }
+                });
             });
         },
     });
 
     server.route({
         method: 'GET',
-        path: '/api/login',
+        path: '/api/auth',
         handler: (request, reply) => {
-            data.login((err, res) => {
+            console.log(request);
+            data.loginRequest(request.query.email, (err, res) => {
                 if (err) {
-                    reply(Boom.unauthorized('Please log-in to see that', data.error));
+                    return reply(Boom.unauthorized('Please log-in to see that', data.error));
                     console.log('ffff',err);
                 }
-                else {
-                    reply({
-                        name: 'loginRequest',
-                        loginRequest: res,
-                    });
-                }
+                reply({
+                    name: 'loginRequest',
+                    status: 'success',
+                    //loginRequest: res,
+                });
             });
         },
     });

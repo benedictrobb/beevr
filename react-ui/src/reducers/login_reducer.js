@@ -1,7 +1,6 @@
-import {LOGIN_USER} from '../constants/action_types.js';
+import {SET_AUTH} from '../constants/action_types.js';
 
 const initialState = {
-    identity: '',
     email: '',
     password: '',
     errorMessage: '',
@@ -11,7 +10,7 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-    case LOGIN_USER:
+    case SET_AUTH:
         return {
             status: action.status,
             error: action.error,

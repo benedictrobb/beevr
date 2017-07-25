@@ -11,7 +11,7 @@ class LoginPage extends React.Component {
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
                     <LoginForm
-                        login={this.props.login}
+                        loginRequest={this.props.loginRequest}
                         btnText={'Login'}
                     />
                 </div>

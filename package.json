@@ -15,6 +15,7 @@
         "react-ui/node_modules"
     ],
     "dependencies": {
+        "bcrypt": "^1.0.2",
         "blipp": "^2.3.0",
         "boom": "^5.2.0",
         "env2": "^2.2.0",

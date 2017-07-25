@@ -18,7 +18,7 @@ class LoginForm extends Component {
         evt.preventDefault();
         var state = this.props.state;
         this.setState({errorMessage: ''}, () => {
-            this.props.login(this.state.email, this.state.password);
+            this.props.loginRequest(this.state.email, this.state.password);
         });
         (err) => this.setState({
             errorMessage: err.data.error
