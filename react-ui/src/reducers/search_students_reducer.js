@@ -1,19 +1,17 @@
-import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
-import {SET_SELECTED_JOB} from '../constants/action_types.js';
+import {FETCH_STUDENTS} from '../constants/action_types.js';
 import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
-    jobsRequest: {},
-    term: '',
-    selectedJob: ''
+    studentsRequest: {},
+    searchTerm: ''
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case FETCH_STUDENT_JOBS:
+    case FETCH_STUDENTS:
         return {
             ...state,
-            jobsRequest: {
+            studentsRequest: {
                 status: action.status,
                 error: action.error,
                 response: action.response
@@ -26,15 +24,7 @@ export default (state = initialState, action) => {
             term: action.response
         };
 
-    case SET_SELECTED_JOB:
-        return {
-            ...state,
-            selectedJob: action.response
-        };
-
     default:
         return state;
     }
-
-    console.log('state in reducer is ', state);
 };

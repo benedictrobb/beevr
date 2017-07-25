@@ -7,8 +7,12 @@ const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
+<<<<<<< HEAD
 const data = require('./database/database_queries.js');
 const sendEmail = require('./lib/sendEmail.js');
+=======
+const data = require('./database/db_queries.js');
+>>>>>>> master
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -66,6 +70,29 @@ server.register(plugins, err => {
                     });
                 }
             }, request.url.query.term);
+<<<<<<< HEAD
+=======
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/students',
+        handler: (request, reply) => {
+            data.getStudents((err, res) => {
+                if (err) {
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                } else {
+                    reply({
+                        name: 'studentList',
+                        message: 'Welcome to BEEVR!',
+                        studentList: res
+                    });
+                }
+            }, request.url.query.searchTerm);
+>>>>>>> master
         }
     });
 

@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Axios from 'axios';
 import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
 
