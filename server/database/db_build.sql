@@ -14,7 +14,7 @@ CREATE TABLE students (
     bio             VARCHAR(1500)   NOT NULL,
     picture         BYTEA           ,
     phone           VARCHAR(15)     NOT NULL,
-    job_cat         VARCHAR(1000)   
+    job_cat         VARCHAR[]
 );
 
 CREATE TABLE residents (
@@ -45,8 +45,8 @@ CREATE TABLE jobs (
 );
 
 INSERT INTO students(first_name, last_name, email, password, DOB, univ_school, bio, picture, phone, job_cat) VALUES
-('Antonio','Trabalza','antoniotrkdz@gmail.com','#','10/08/1979','Cambridge University','111-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','07577833827','[ coding, science, handyman ]'),
-('Maja', 'Kudlika','maja.kudlika@gmail.com','#','01/01/1970','Ruskin University','222-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','01234567891','[ coding, start-ups, tuition ]');
+('Antonio','Trabalza','antoniotrkdz@gmail.com','#','10/08/1979','Cambridge University','111-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','07577833827','{{coding},{science},{handyman}}'),
+('Maja', 'Kudlika','maja.kudlika@gmail.com','#','01/01/1970','Ruskin University','222-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','01234567891','{{coding},{start-ups},{tuition}}');
 
 INSERT INTO residents(first_name, last_name, email, password, DOB, address, bio, picture, phone) VALUES
 ('John','Smith','john.smith@gmail.com','#','01/03/1973','1 Cranston Court','333-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','012345678901'),

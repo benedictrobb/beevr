@@ -52,22 +52,39 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs(
-                (err, res) => {
-                    if (err)
-                        reply.status(500)(
-                            'Failed to connect load data from the database'
-                        );
-                    else {
-                        reply({
-                            name: 'jobsList',
-                            message: 'Welcome to BEEVR!',
-                            jobsList: res
-                        });
-                    }
-                },
-                request.url.query.term
-            );
+            data.getJobs((err, res) => {
+                if (err)
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                else {
+                    reply({
+                        name: 'jobsList',
+                        message: 'Welcome to BEEVR!',
+                        jobsList: res
+                    });
+                }
+            }, request.url.query.term);
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/students',
+        handler: (request, reply) => {
+            data.getStudents((err, res) => {
+                if (err) {
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                } else {
+                    reply({
+                        name: 'studentList',
+                        message: 'Welcome to BEEVR!',
+                        studentList: res
+                    });
+                }
+            }, request.url.query.searchTerm);
         }
     });
 
@@ -105,48 +122,6 @@ server.register(plugins, err => {
                         name: 'jobsList',
                         message: 'Welcome to BEEVR!',
                         jobsList: res
-                    });
-                }
-            });
-        }
-    });
-    
-    server.route({
-        method: 'POST',
-        path: '/api/reg-student',
-        handler: (request, reply) => {
-            console.log(request.payload);
-            data.postStudents(request.payload, (err, res) => {
-                if (err) {
-                    reply(
-                        'Failed to connect load data from the database'
-                    ).code(500);
-                }
-                else {
-                    reply({
-                        name: 'studentObject',
-                        studentObject: res
-                    });
-                }
-            });
-        }
-    });
-
-    server.route({
-        method: 'POST',
-        path: '/api/reg-resident',
-        handler: (request, reply) => {
-            console.log(request.payload);
-            data.postResidents(request.payload, (err, res) => {
-                if (err) {
-                    reply(
-                        'Failed to connect load data from the database'
-                    ).code(500);
-                }
-                else {
-                    reply({
-                        name: 'residentObject',
-                        residentObject: res
                     });
                 }
             });
