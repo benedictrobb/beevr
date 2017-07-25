@@ -31,14 +31,6 @@ sendEmail = (from, to, subject, text, cb) => {
         },
         cb
     );
-    // (err, res) => {
-    //     console.log('inside callback in sendEmail');
-    //     if (err) {
-    //         cb(err);
-    //     } else {
-    //         cb(null, res);
-    //     }
-    // };
 };
 
 module.exports = sendEmail;

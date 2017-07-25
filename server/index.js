@@ -100,11 +100,8 @@ server.register(plugins, err => {
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
 
             sendEmail(from, to, subject, text, (err, res) => {
-                console.log('inside callback');
                 if (err) {
-                    throw err;
-                    // reply.status(500)('Failed to send email');
-                    // reply(data).code(code)
+                    reply('Failed to send email').code(500);
                 } else {
                     reply({
                         message: 'Email sent!'
