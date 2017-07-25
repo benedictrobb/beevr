@@ -8,7 +8,7 @@ const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
 const data = require('./database/database_queries.js');
-const sendEmail = require('../react-ui/src/utils/sendEmail.js');
+const sendEmail = require('./lib/sendEmail.js');
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -101,8 +101,11 @@ server.register(plugins, err => {
 
             sendEmail(from, to, subject, text, (err, res) => {
                 console.log('inside callback');
-                if (err) reply.status(500)('Failed to send email');
-                else {
+                if (err) {
+                    throw err;
+                    // reply.status(500)('Failed to send email');
+                    // reply(data).code(code)
+                } else {
                     reply({
                         message: 'Email sent!'
                     });
