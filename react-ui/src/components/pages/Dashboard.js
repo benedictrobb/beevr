@@ -12,12 +12,10 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        Axios.get('/api/jobs')
-            .then((response) => {
-                console.log(response.data);
-                var data = response.data;
-                this.setState({data});
-            });
+        Axios.get('/api/jobs').then(response => {
+            var data = response.data;
+            this.setState({data});
+        });
     }
 
     render() {

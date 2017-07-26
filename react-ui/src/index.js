@@ -28,12 +28,10 @@ import JobDetail from './components/pages/JobDetail.js';
 // to do asynchronous things in the actions
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStore(homeReducer,
-    composeWithDevTools(
-        applyMiddleware(thunk)
-    ));
-
-console.log(store);
+const store = createStore(
+    homeReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
