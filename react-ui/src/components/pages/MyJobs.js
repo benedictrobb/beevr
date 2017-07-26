@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/fetch_my_jobs.js';
-import axios from 'axios';
 
 class MyJobs extends Component {
     constructor() {
@@ -12,15 +11,7 @@ class MyJobs extends Component {
     }
 
     componentWillMount() {
-        // this.props.fetchMyJobs();
-        axios
-            .get('/api/myjobs')
-            .then(response => {
-                console.log(response.data);
-            })
-            .catch(err => {
-                console.log(err);
-            });
+        this.props.fetchMyJobs();
     }
 
     formatDate(date) {
@@ -70,16 +61,16 @@ class MyJobs extends Component {
 
     render() {
         let {myJobs} = this.props;
-        let jobsList = myJobs && myJobs.jobsList;
+        let myJobsList = myJobs && myJobs.myJobsList;
 
-        if (!jobsList) {
+        if (!myJobsList) {
             return <div>Loading</div>;
         }
         return (
             <article>
                 <section className="text-section">
                     <ul>
-                        {jobsList.map(this.renderJobs)}
+                        {myJobsList.map(this.renderJobs)}
                     </ul>
                 </section>
             </article>
