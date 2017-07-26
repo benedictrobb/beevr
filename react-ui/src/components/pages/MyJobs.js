@@ -69,31 +69,27 @@ class MyJobs extends Component {
     }
 
     render() {
-        return <div />;
-    }
+        let {myJobs} = this.props;
+        let jobsList = myJobs && myJobs.jobsList;
 
-    // render() {
-    //     let {myJobs} = this.props;
-    //     let jobsList = jobs && jobs.jobsList;
-    //
-    //     if (!jobsList) {
-    //         return <div>Loading</div>;
-    //     }
-    //     return (
-    //         <article>
-    //             <section className="text-section">
-    //                 <ul>
-    //                     {jobsList.map(this.renderJobs)}
-    //                 </ul>
-    //             </section>
-    //         </article>
-    //     );
-    // }
+        if (!jobsList) {
+            return <div>Loading</div>;
+        }
+        return (
+            <article>
+                <section className="text-section">
+                    <ul>
+                        {jobsList.map(this.renderJobs)}
+                    </ul>
+                </section>
+            </article>
+        );
+    }
 }
 
 function mapStateToProps(state) {
     return {
-        myJobs: state.searchJobs.jobsRequest.response
+        myJobs: state.fetchMyJobs.jobsRequest.response
     };
 }
 
