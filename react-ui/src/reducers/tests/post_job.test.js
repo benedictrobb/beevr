@@ -65,23 +65,4 @@ describe('post job reducer', () => {
             }
         });
     });
-
-    it('should handle POST_JOB', () => {
-        expect(
-            reducer(
-                {},
-                {
-                    type: types.POST_JOB,
-                    status: 'error',
-                    response: error
-                }
-            )
-        ).toEqual({
-            newJob: {
-                status: 'error',
-                error: error,
-                response: undefined
-            }
-        });
-    });
 });
