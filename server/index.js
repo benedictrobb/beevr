@@ -7,7 +7,8 @@ const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
 const fs = require('fs');
 const env = require('env2');
-const data = require('./database/database_queries.js');
+const data = require('./database/db_queries.js');
+const sendEmail = require('./lib/sendEmail.js');
 env('./config.env');
 
 const server = new Hapi.Server();
@@ -52,22 +53,39 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            data.getJobs(
-                (err, res) => {
-                    if (err)
-                        reply.status(500)(
-                            'Failed to connect load data from the database'
-                        );
-                    else {
-                        reply({
-                            name: 'jobsList',
-                            message: 'Welcome to BEEVR!',
-                            jobsList: res
-                        });
-                    }
-                },
-                request.url.query.term
-            );
+            data.getJobs((err, res) => {
+                if (err)
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                else {
+                    reply({
+                        name: 'jobsList',
+                        message: 'Welcome to BEEVR!',
+                        jobsList: res
+                    });
+                }
+            }, request.url.query.term);
+        }
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/students',
+        handler: (request, reply) => {
+            data.getStudents((err, res) => {
+                if (err) {
+                    reply.status(500)(
+                        'Failed to connect load data from the database'
+                    );
+                } else {
+                    reply({
+                        name: 'studentList',
+                        message: 'Welcome to BEEVR!',
+                        studentList: res
+                    });
+                }
+            }, request.url.query.searchTerm);
         }
     });
 
@@ -93,18 +111,20 @@ server.register(plugins, err => {
 
     server.route({
         method: 'GET',
-        path: '/api/random_jobs',
+        path: '/api/apply',
         handler: (request, reply) => {
-            data.getRandomJobs((err, res) => {
-                if (err)
-                    reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
-                else {
+            var to = ['rmrajaa@gmail.com'];
+            var from = 'maja.kudlicka@gmail.com';
+            var subject = 'New job application';
+            var text =
+                'Someone has applied for the job you posted. Go to your profile to find out more.';
+
+            sendEmail(from, to, subject, text, (err, res) => {
+                if (err) {
+                    reply('Failed to send email').code(500);
+                } else {
                     reply({
-                        name: 'jobsList',
-                        message: 'Welcome to BEEVR!',
-                        jobsList: res
+                        message: 'Email sent!'
                     });
                 }
             });

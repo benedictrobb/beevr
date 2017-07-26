@@ -10,6 +10,7 @@ import thunk from 'redux-thunk';
 import ReactDOM from 'react-dom';
 import {Provider} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {composeWithDevTools} from 'redux-devtools-extension';
 import homeReducer from './reducers/index.js';
 import LoginPage from './components/pages/LoginPage.js';
 import RegisterPage from './components/pages/RegisterPage.js';
@@ -22,14 +23,16 @@ import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 import JobPostSuccess from './components/pages/JobPostSuccess.js';
+import JobDetail from './components/pages/JobDetail.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
 
-const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStoreWithMiddleware(homeReducer);
-
-console.log(store);
+//const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
+const store = createStore(
+    homeReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
@@ -68,6 +71,7 @@ ReactDOM.render(
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />
+                <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/jobposted" component={JobPostSuccess} />
                 <Route path="/" component={Dashboard} />
