@@ -51,11 +51,15 @@ data.getStudents = (term, callback) => {
 
 data.loginRequest = (email, callback) => {
     dbConnection.query(
-        `SELECT residents.email, residents.password, 'Resident' AS group
+        `SELECT residents.resident_id AS id, 
+        residents.email, residents.password_hash, 
+        'Resident' AS role
             FROM residents
             WHERE residents.email = $1
             UNION ALL
-            SELECT students.email, students.password, 'Student' AS group
+            SELECT students.student_id AS id, 
+            students.email, students.password_hash, 
+            'Student' AS role
                 FROM students
                 WHERE students.email = $1;`,
         [email],
@@ -88,7 +92,7 @@ data.postStudents = (student, callback) => {
         `INSERT INTO students(
             first_name, last_name, email, DOB, univ_school, 
             bio, picture, phone, job_cat, password_hash)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
         [
             student.first_name,
             student.last_name,
@@ -103,14 +107,28 @@ data.postStudents = (student, callback) => {
         ],
         (err, res) => {
             if (err) {
-                callback(err,'general error');
+                callback(err);
             }
             callback(null, res.rows);
         }
     );
 };
 
-
+data.residentExists = (email, callback) => {
+    dbConnection.query(
+        `SELECT exists(
+            SELECT 1 FROM residents
+                WHERE email = $1);`,
+        [email],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+            callback(null, res.rows[0]);
+        }       
+    );
+};
+    
 data.postResidents = (resident, callback) => {
     dbConnection.query(
         `INSERT INTO residents(

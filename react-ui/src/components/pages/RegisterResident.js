@@ -16,6 +16,7 @@ class RegisterResident extends Component {
                     <Form_Register_Resident
                         btnText={'Sign Up'}
                         registerResident={this.props.registerResident}
+                        checkIfResidentExists={this.props.checkIfResidentExists}
                     />
                 </div>
             </div>

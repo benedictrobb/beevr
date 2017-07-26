@@ -12,15 +12,16 @@ class Form_Register_Student extends Component {
         this.state = {
             student: {},
             errorMessage: '',
+            isAuthenticated: false,
         };
     }
-    
+
     checkEmail(value) {
         console.log(this.props);
         console.log(this.state);
         value = this.state.student.email;
         if (value !== '') {
-            this.props.checkIfStudentExist(value);
+            this.props.checkIfStudentExists(value);
             console.log(value);
         }
     }
@@ -31,10 +32,18 @@ class Form_Register_Student extends Component {
         if (!student.email) {
             var error_message = 'Email cannot be empty';
         }
-        
+        //var catArray = Object.keys(student).map((value) => {
+            //if (value.indexOf('index_') !== -1) {
+                //return student[value];
+            //}
+        //}).filter((v) => {
+            //return v !== undefined;
+        //});
+        //console.log('job-cat', catArray);
+        //Object.assign({}, student, {job_cat:catArray})
         this.setState({errorMessage: error_message}, () => {
             if (!this.state.errorMessage) {
-                this.props.registerStudent(this.state.student);
+                this.props.registerStudent(student);
                 //browserHistory.push('/dashboard');
             }
         });
@@ -55,8 +64,9 @@ class Form_Register_Student extends Component {
     }
 
     render() {
+        console.log(this.state);
         return (
-            <form onSubmit={this.onSubmit}>
+            <form className="form" onSubmit={this.onSubmit}>
                 <div
                     className="form-group"
                     className={
@@ -228,66 +238,82 @@ class Form_Register_Student extends Component {
                     </label>
                     <input
                         className="form-control"
-                        name="index1"
+                        name="index_1"
                         id="job_category_1"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_1}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index2"
+                        name="index_2"
                         id="job_category_2"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_2}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index3"
+                        name="index_3"
                         id="job_category_3"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_3}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index4"
+                        name="index_4"
                         id="job_category_4"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_4}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index5"
+                        name="index_5"
                         id="job_category_5"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_5}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index6"
+                        name="index_6"
                         id="job_category_6"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_6}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index7"
+                        name="index_7"
                         id="job_category_7"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_7}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index8"
+                        name="index_8"
                         id="job_category_8"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index_8}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <datalist id="jobs">

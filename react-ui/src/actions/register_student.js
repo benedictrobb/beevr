@@ -26,7 +26,7 @@ export const registerStudent = student => dispatch => {
         });
 };
 
-export const checkIfStudentExist = email => dispatch => {
+export const checkIfStudentExists = email => dispatch => {
     dispatch({
         type: CHECK_EMAIL,
         status: 'pending'

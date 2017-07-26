@@ -185,16 +185,29 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/auth',
         handler: (request, reply) => {
-            console.log(request);
-            data.loginRequest(request.query.email, (err, res) => {
+            console.log(request.query);
+            const email = request.query.email;
+            data.loginRequest(email, (err, res) => {
                 if (err) {
                     return reply(Boom.unauthorized('Please log-in to see that', data.error));
                     console.log('ffff',err);
                 }
-                reply({
-                    name: 'loginRequest',
-                    status: 'success',
-                    //loginRequest: res,
+                const user = res;
+                console.log('hey',user);
+                comparePassword(request.query.password, user.password_hash, (err, match) => {
+                    if (err) {
+                        return reply(Boom.unauthorized('Please log-in to see that', data.error));
+                    }
+                    console.log('passwords matched');
+                    request.cookieAuth.set({email});
+                    reply({
+                        name: 'loginRequest',
+                        message: 'Welcome to BEEVR!',
+                        status: 'success',
+                        isAuthenticated: true,
+                        id: res.id,
+                        role: res.group,
+                    });
                 });
             });
         },

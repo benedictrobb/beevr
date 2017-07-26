@@ -7,11 +7,22 @@ class Form_Register_Resident extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
             resident: {},
             errorMessage: '',
         };
+    }
+
+    checkEmail(value) {
+        console.log(this.props);
+        console.log(this.state);
+        value = this.state.resident.email;
+        if (value !== '') {
+            this.props.checkIfResidentExists(value);
+            console.log(value);
+        }
     }
 
     onSubmit(evt) {
@@ -39,7 +50,7 @@ class Form_Register_Resident extends Component {
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <form className="form" onSubmit={this.onSubmit}>
                 <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="First Name">
@@ -81,6 +92,7 @@ class Form_Register_Resident extends Component {
                         value={this.state.resident.email}
                         placeholder="email"
                         onChange={this.onChange}
+                        onBlur={this.checkEmail}
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
