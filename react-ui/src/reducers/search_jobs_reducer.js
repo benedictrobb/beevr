@@ -1,9 +1,11 @@
 import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
+import {SET_SELECTED_JOB} from '../constants/action_types.js';
 import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
     jobsRequest: {},
-    term: ''
+    term: '',
+    selectedJob: ''
 };
 
 export default (state = initialState, action) => {
@@ -24,7 +26,15 @@ export default (state = initialState, action) => {
             term: action.response
         };
 
+    case SET_SELECTED_JOB:
+        return {
+            ...state,
+            selectedJob: action.response
+        };
+
     default:
         return state;
     }
+
+    console.log('state in reducer is ', state);
 };
