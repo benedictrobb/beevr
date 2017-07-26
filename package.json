@@ -8,27 +8,37 @@
     },
     "scripts": {
         "start": "node server",
-        "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build"
+        "heroku-postbuild": "cd react-ui/ && npm install && npm install --only=dev --no-shrinkwrap && npm run build",
+        "test": "jest"
     },
     "cacheDirectories": [
         "node_modules",
         "react-ui/node_modules"
     ],
     "dependencies": {
+        "babel-cli": "^6.24.1",
+        "babel-jest": "^20.0.3",
+        "babel-preset-es2015": "^6.24.1",
         "blipp": "^2.3.0",
         "env2": "^2.2.0",
         "hapi": "^16.4.3",
         "hapi-auth-cookie": "^7.0.0",
         "inert": "^4.2.0",
+        "jest": "^20.0.4",
         "lodash": "^4.17.4",
         "pg": "^6.4.1"
     },
     "devDependencies": {
+        "babel-plugin-transform-object-rest-spread": "^6.23.0",
+        "babel-preset-stage-2": "^6.24.1",
         "eslint": "^4.2.0",
         "eslint-plugin-import": "^2.7.0",
         "eslint-plugin-jsx-a11y": "^6.0.2",
         "eslint-plugin-react": "^7.1.0"
     },
+    "plugins": [
+        "transform-object-rest-spread"
+    ],
     "devServer": {
         "disableHostCheck": true
     },
