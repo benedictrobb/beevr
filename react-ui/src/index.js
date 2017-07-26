@@ -27,12 +27,10 @@ import registerServiceWorker from './registerServiceWorker';
 // to do asynchronous things in the actions
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
-const store = createStore(homeReducer,
-    composeWithDevTools(
-        applyMiddleware(thunk)
-    ));
-
-console.log(store);
+const store = createStore(
+    homeReducer,
+    composeWithDevTools(applyMiddleware(thunk))
+);
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
@@ -64,7 +62,7 @@ function checkAuth(nextState, replaceState) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
-        <Router history = { browserHistory }>
+        <Router history={browserHistory}>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
