@@ -22,6 +22,7 @@ import BrowseStudents from './components/pages/SearchStudents.js';
 import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
+import JobDetail from './components/pages/JobDetail.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -64,13 +65,14 @@ function checkAuth(nextState, replaceState) {
 // which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
-        <Router history = { browserHistory }>
+        <Router history={browserHistory}>
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/register" component={RegisterPage} />
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />
+                <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
