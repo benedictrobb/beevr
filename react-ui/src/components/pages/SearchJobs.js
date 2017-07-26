@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
+import {Link} from 'react-router';
 
 class BrowseJobs extends Component {
     constructor() {
@@ -148,6 +149,9 @@ class BrowseJobs extends Component {
                             Submit
                         </button>
                     </form>
+                    <Link to="/jobsapplied" className="btn btn-primary">
+                        Jobs applied
+                    </Link>
                     <ul>
                         {jobsList.map(this.renderJobs)}
                     </ul>
