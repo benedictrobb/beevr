@@ -9,7 +9,7 @@ export const fetchStudents = searchTerm => dispatch => {
     });
 
     axios
-        .get('/api/students', {
+        .get('/api/get-students', {
             params: {searchTerm: searchTerm}
         })
         .then(response => {

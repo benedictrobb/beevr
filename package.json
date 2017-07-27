@@ -16,6 +16,7 @@
         "react-ui/node_modules"
     ],
     "dependencies": {
+        "aws-sdk": "^2.91.0",
         "bcrypt": "^1.0.2",
         "blipp": "^2.3.0",
         "boom": "^5.2.0",

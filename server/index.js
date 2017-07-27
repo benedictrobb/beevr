@@ -90,7 +90,7 @@ server.register(plugins, err => {
 
     server.route({
         method: 'GET',
-        path: '/api/students',
+        path: '/api/get-students',
         handler: (request, reply) => {
             data.getStudents((err, res) => {
                 if (err) {
