@@ -11,3 +11,4 @@ export const FETCH_STUDENTS = 'BROWSE_STUDENTS';
 export const SET_SELECTED_JOB = 'SET_SELECTED_JOB';
 export const APPLY_JOB = 'APPLY_JOB';
 export const FETCH_MY_POSTED_JOBS = 'FETCH_MY_POSTED_JOBS';
+export const FETCH_MY_JOBS = 'FETCH_MY_JOBS';
