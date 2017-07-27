@@ -80,6 +80,19 @@ data.loginRequest = (email, callback) => {
     );
 };
 
+data.getMyJobs = (callback, student_id) => {
+    dbConnection.query(
+        'SELECT * FROM jobs WHERE $1 = ANY (student_id)',
+        [student_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+            callback(null, res.rows[0]);
+        }
+    );
+};
+
 data.studentExists = (email, callback) => {
     dbConnection.query(
         `SELECT exists(
@@ -90,7 +103,7 @@ data.studentExists = (email, callback) => {
             if (err) {
                 callback(err);
             }
-            callback(null, res.rows[0]);
+            callback(null, res.rows);
         }
     );
 };
