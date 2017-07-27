@@ -8,11 +8,12 @@ class Form_Register_Student extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onChangeJobCat = this.onChangeJobCat.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
             student: {
-                job_cat:[],
+                job_cat: {},
             },
             errorMessage: '',
             isAuthenticated: false,
@@ -36,11 +37,11 @@ class Form_Register_Student extends Component {
             var error_message = 'Email cannot be empty';
         }
         //var catArray = Object.keys(student).map((value) => {
-            //if (value.indexOf('index_') !== -1) {
-                //return student[value];
-            //}
+        //if (value.indexOf('index_') !== -1) {
+        //return student[value];
+        //}
         //}).filter((v) => {
-            //return v !== undefined;
+        //return v !== undefined;
         //});
         //console.log('job-cat', catArray);
         //Object.assign({}, student, {job_cat:catArray})
@@ -50,12 +51,12 @@ class Form_Register_Student extends Component {
                 //browserHistory.push('/dashboard');
             }
         });
-        (err) => {
+        err => {
             this.setState({errorMessage: err.response.data.message});
             console.log(err);
         };
     }
-    
+
     onChange(evt) {
         var student = this.state.student;
         this.setState({
@@ -66,25 +67,27 @@ class Form_Register_Student extends Component {
         });
     }
 
-    onChange(evt) {
+    onChangeJobCat(evt) {
         var student = this.state.student;
+        var job_cat = student.job_cat;
         this.setState({
             student: {
                 ...student,
-                jobCheckboxes: {
-                    ...jobCheckboxes,
-                    [evt.target.name]: evt.target.value,
-                }
+                job_cat: [...job_cat, evt.target.value],
             },
         });
     }
 
     render() {
-        const options = Object.keys(Categories).map(function(value){
+        const options = Categories.map(function(elem) {
             return (
-                <option value={Categories[value]}></option>
+                <option value={Categories[elem]}>
+                    {elem}
+                </option>
             );
         });
+
+        console.log(options);
         console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
@@ -263,8 +266,8 @@ class Form_Register_Student extends Component {
                         id="job_category_1"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.job_cat[0]}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_1}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -273,8 +276,8 @@ class Form_Register_Student extends Component {
                         id="job_category_2"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.job_cat[1]}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_2}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -283,8 +286,8 @@ class Form_Register_Student extends Component {
                         id="job_category_3"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_3}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_3}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -293,8 +296,8 @@ class Form_Register_Student extends Component {
                         id="job_category_4"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_4}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_4}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -303,8 +306,8 @@ class Form_Register_Student extends Component {
                         id="job_category_5"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_5}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_5}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -313,8 +316,8 @@ class Form_Register_Student extends Component {
                         id="job_category_6"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_6}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_6}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -323,8 +326,8 @@ class Form_Register_Student extends Component {
                         id="job_category_7"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_7}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_7}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <input
@@ -333,13 +336,13 @@ class Form_Register_Student extends Component {
                         id="job_category_8"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_8}
-                        onChange={this.onChange}
+                        value={this.state.student.job_cat.index_8}
+                        onChange={this.onChangeJobCat}
                         list="jobs"
                     />
                     <datalist id="jobs">
-                        <option value="" disabled></option>
-                            {options} 
+                        <option value="" disabled />
+                        {options}
                     </datalist>
                 </div>
 
@@ -354,10 +357,5 @@ class Form_Register_Student extends Component {
         );
     }
 }
-
-//Form_Register_Student.propTypes = {
-    //onSubmit: React.PropTypes.func.isRequired,
-    //btnText: React.PropTypes.string.isRequired,
-//};
 
 export default Form_Register_Student;
