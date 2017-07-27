@@ -129,6 +129,9 @@ class BrowseStudents extends Component {
           <Link to="/postjob" className="btn btn-primary">
             Post A Job
           </Link>
+          <Link to="/mypostedjobs" className="btn btn-primary">
+            My jobs
+          </Link>
           <ul>
             {studentList.map(this.renderStudents)}
           </ul>

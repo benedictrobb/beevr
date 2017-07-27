@@ -105,6 +105,20 @@ data.postResidents = (resident, callback) => {
     );
 };
 
+data.getMyPostedJobs = (callback, resident_id) => {
+    dbConnection.query(
+        'SELECT * FROM jobs WHERE resident_id = $1',
+        [resident_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+
+            callback(null, res.rows);
+        }
+    );
+};
+
 data.postJobs = (jobsObject, callback) => {
     dbConnection.query(
         `INSERT INTO jobs(job_title, start_date, start_time, end_date, end_time, description,

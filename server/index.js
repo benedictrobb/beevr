@@ -143,6 +143,25 @@ server.register(plugins, err => {
         }
     });
 
+    //resident id hardcoded until we have cookie on the master branch
+    server.route({
+        method: 'GET',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.getMyPostedJobs((err, res) => {
+                if (err) {
+                    reply('Failed to retrieve data fro database').code(500);
+                } else {
+                    reply({
+                        name: 'myPostedJobsList',
+                        message: 'Welcome to BEEVR!',
+                        myPostedJobsList: res
+                    });
+                }
+            }, 2);
+        }
+    });
+
     server.start(err => {
         if (err) {
             throw err;

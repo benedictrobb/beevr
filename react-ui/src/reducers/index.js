@@ -7,6 +7,7 @@ import registerStudent from './register_student_reducer.js';
 import registerResident from './register_resident_reducer.js';
 import searchStudents from './search_students_reducer.js';
 import applyJob from './apply_job.js';
+import fetchMyPostedJobs from './my_posted_jobs.js';
 
 export default combineReducers({
     home,
@@ -15,5 +16,6 @@ export default combineReducers({
     applyJob,
     registerStudent,
     registerResident,
-    searchStudents
+    searchStudents,
+    fetchMyPostedJobs
 });

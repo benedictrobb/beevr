@@ -24,6 +24,7 @@ import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
+import MyPostedJobs from './components/pages/MyPostedJobs.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -74,6 +75,7 @@ ReactDOM.render(
                 <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/jobposted" component={JobPostSuccess} />
+                <Route path="/mypostedjobs" component={MyPostedJobs} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />
