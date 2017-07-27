@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
+import Categories from '../constants/job_categories.js';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -10,7 +11,9 @@ class Form_Register_Student extends Component {
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            student: {},
+            student: {
+                job_cat:[],
+            },
             errorMessage: '',
             isAuthenticated: false,
         };
@@ -63,7 +66,25 @@ class Form_Register_Student extends Component {
         });
     }
 
+    onChange(evt) {
+        var student = this.state.student;
+        this.setState({
+            student: {
+                ...student,
+                jobCheckboxes: {
+                    ...jobCheckboxes,
+                    [evt.target.name]: evt.target.value,
+                }
+            },
+        });
+    }
+
     render() {
+        const options = Object.keys(Categories).map(function(value){
+            return (
+                <option value={Categories[value]}></option>
+            );
+        });
         console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
@@ -242,7 +263,7 @@ class Form_Register_Student extends Component {
                         id="job_category_1"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_1}
+                        value={this.state.student.job_cat[0]}
                         onChange={this.onChange}
                         list="jobs"
                     />
@@ -252,7 +273,7 @@ class Form_Register_Student extends Component {
                         id="job_category_2"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_2}
+                        value={this.state.student.job_cat[1]}
                         onChange={this.onChange}
                         list="jobs"
                     />
@@ -317,18 +338,8 @@ class Form_Register_Student extends Component {
                         list="jobs"
                     />
                     <datalist id="jobs">
-                        <option value="Dog-walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="Photography" />
-                        <option value="Other" />
+                        <option value="" disabled></option>
+                            {options} 
                     </datalist>
                 </div>
 
