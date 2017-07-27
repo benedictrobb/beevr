@@ -47,8 +47,6 @@ class BrowseStudents extends Component {
         let {students} = this.props;
         let studentList = students && students.studentList;
 
-        console.log('student list is ', studentList);
-
         if (!studentList) {
             return (
                 <section>
