@@ -266,6 +266,25 @@ server.register(plugins, err => {
         },
     });
 
+    //student is hardcoded to 2 until we have session management capacity
+    server.route({
+        method: 'GET',
+        path: '/api/myjobs',
+        handler: (request, reply) => {
+            data.getMyJobs((err, res) => {
+                if (err) {
+                    reply('Failed to retrieve data fro database').code(500);
+                } else {
+                    reply({
+                        name: 'myJobsList',
+                        message: 'Welcome to BEEVR!',
+                        myJobsList: res
+                    });
+                }
+            }, 2);
+        }
+    });
+
     server.route({
         method: 'GET',
         path: '/api',

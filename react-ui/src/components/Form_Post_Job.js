@@ -6,6 +6,7 @@ import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import isEmpty from 'lodash/isEmpty';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -24,14 +25,42 @@ class Form_Post_Job extends Component {
         this.state = {
             jobData: {
                 resident_id: 1
-            }
+            },
+            errorMessage: ''
         };
     }
 
     _onSubmit(evt) {
         evt.preventDefault();
-        this.props.postJob(this.state.jobData);
-        browserHistory.push('/');
+
+        var {jobData} = this.state;
+
+        if (!jobData.start_date) {
+            var error_message = 'Start Date cannot be empty';
+        } else if (!jobData.job_title) {
+            error_message = 'Job Title cannot be empty';
+        } else if (!jobData.start_time) {
+            error_message = 'Start Time cannot be empty';
+        } else if (!jobData.end_date) {
+            error_message = 'End Date cannot be empty';
+        } else if (!jobData.end_time) {
+            error_message = 'End Time cannot be empty';
+        } else if (!jobData.category) {
+            error_message = 'Job Category cannot be empty';
+        } else if (!jobData.rate) {
+            error_message = 'Rate cannot be empty';
+        } else if (isNaN(jobData.rate) === true) {
+            error_message = 'Rate must be a number';
+        } else if (!jobData.description) {
+            error_message = 'Job Description cannot be empty';
+        }
+
+        this.setState({errorMessage: error_message}, () => {
+            if (!this.state.errorMessage) {
+                this.props.postJob(this.state.jobData);
+                browserHistory.push('/jobposted');
+            }
+        });
     }
 
     _onChangeStartDate(evt) {
@@ -120,7 +149,15 @@ class Form_Post_Job extends Component {
         }
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
-                <ErrorMessage />
+                <p>
+                    <div
+                        className={
+                            this.state.errorMessage ? 'alert alert-danger' : ''
+                        }
+                    >
+                        {this.state.errorMessage}
+                    </div>
+                </p>
                 <div className="form__field-wrapper">
                     <label className="form__field-label" htmlFor="Start Date">
                         Start Date
@@ -264,7 +301,8 @@ class Form_Post_Job extends Component {
 
 function mapStateToProps(state) {
     return {
-        newJob: state.postJob.newJob.response
+        newJob: state.postJob.newJob.response,
+        errorMessage: state.errorMessage
     };
 }
 
