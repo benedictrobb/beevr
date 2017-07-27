@@ -33,20 +33,28 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getRandomJobs = callback => {};
-
-data.getStudents = (term, callback) => {
-    dbConnection.query(
-        `SELECT * FROM students 
-            WHERE CATEGORY = $1`,
-        [term],
-        (err, res) => {
+data.getStudents = (callback, term) => {
+    if (!term) {
+        dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
             if (err) {
                 callback(err);
             }
+
             callback(null, res.rows);
-        }
-    );
+        });
+    } else {
+        dbConnection.query(
+            'SELECT * FROM students WHERE $1 = ANY (job_cat)',
+            [term],
+            (err, res) => {
+                if (err) {
+                    callback(err);
+                }
+
+                callback(null, res.rows);
+            }
+        );
+    }
 };
 
 data.loginRequest = (email, callback) => {
@@ -83,10 +91,10 @@ data.studentExists = (email, callback) => {
                 callback(err);
             }
             callback(null, res.rows[0]);
-        }       
+        }
     );
 };
-    
+
 data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(
@@ -125,10 +133,10 @@ data.residentExists = (email, callback) => {
                 callback(err);
             }
             callback(null, res.rows[0]);
-        }       
+        }
     );
 };
-    
+
 data.postResidents = (resident, callback) => {
     dbConnection.query(
         `INSERT INTO residents(
@@ -170,7 +178,7 @@ data.postJobs = (jobsObject, callback) => {
             jobsObject.description,
             jobsObject.rate,
             jobsObject.resident_id,
-            jobsObject.category
+            jobsObject.category,
         ],
         (err, res) => {
             if (err) {

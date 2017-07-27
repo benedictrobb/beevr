@@ -22,6 +22,7 @@ import BrowseStudents from './components/pages/SearchStudents.js';
 import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
+import JobDetail from './components/pages/JobDetail.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
@@ -31,8 +32,6 @@ const store = createStore(
     homeReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-
-console.log(store);
 
 function checkAuth(nextState, replaceState) {
     let {loggedIn} = store.getState();
@@ -71,6 +70,7 @@ ReactDOM.render(
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route path="/browsejobs" component={BrowseJobs} />
                 <Route path="/browsestudents" component={BrowseStudents} />
+                <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />

@@ -31,6 +31,7 @@ class Form_Post_Job extends Component {
     _onSubmit(evt) {
         evt.preventDefault();
         this.props.postJob(this.state.jobData);
+        browserHistory.push('/');
     }
 
     _onChangeStartDate(evt) {
