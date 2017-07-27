@@ -22,6 +22,7 @@ import BrowseStudents from './components/pages/SearchStudents.js';
 import RegisterResident from './components/pages/RegisterResident';
 import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
+import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
@@ -72,6 +73,7 @@ ReactDOM.render(
                 <Route path="/browsestudents" component={BrowseStudents} />
                 <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
+                <Route path="/jobposted" component={JobPostSuccess} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />
