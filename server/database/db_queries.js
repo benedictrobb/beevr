@@ -55,6 +55,20 @@ data.getStudents = (callback, term) => {
     }
 };
 
+data.getMyJobs = (callback, student_id) => {
+    dbConnection.query(
+        'SELECT * FROM jobs WHERE $1 = ANY (student_id)',
+        [student_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+
+            callback(null, res.rows);
+        }
+    );
+};
+
 data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(first_name, last_name, email, password, DOB,
