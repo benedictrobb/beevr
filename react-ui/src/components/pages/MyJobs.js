@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/fetch_my_jobs.js';
+import * as actions from '../../actions/my_jobs.js';
 
 class MyJobs extends Component {
     constructor() {
