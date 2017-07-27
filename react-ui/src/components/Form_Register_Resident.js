@@ -16,12 +16,9 @@ class Form_Register_Resident extends Component {
     }
 
     checkEmail(value) {
-        console.log(this.props);
-        console.log(this.state);
         value = this.state.resident.email;
         if (value !== '') {
             this.props.checkIfResidentExists(value);
-            console.log(value);
         }
     }
 
@@ -207,12 +204,5 @@ class Form_Register_Resident extends Component {
         );
     }
 }
-
-//I leave it, could be useful later......
-//Form_Register_Resident.propTypes = {
-//onSubmit: React.PropTypes.func.isRequired,
-//btnText: React.PropTypes.string.isRequired,
-//data: React.PropTypes.object.isRequired
-//};
 
 export default Form_Register_Resident;

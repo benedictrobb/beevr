@@ -250,8 +250,7 @@ class Form_Post_Job extends Component {
                         Job description
                     </textarea>
                 </div>
-
-                <div className="form__submit-btn-wrapper">
+                <div>
                     {this.props.currentlySending
                         ? <LoadingButton />
                         : <button className="btn btn-primary" type="submit">

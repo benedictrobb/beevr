@@ -26,11 +26,6 @@ class LoginForm extends Component {
         console.log('hjhjh',this.state.errorMessage);
     };
 
-    //onSubmit(evt) {
-    //evt.preventDefault();
-    //this.props.login(this.state.username, this.state.password);
-    //}
-
     onChange(evt) {
         var email = this.state.email;
         var password = this.state.password;
@@ -84,18 +79,5 @@ class LoginForm extends Component {
         );
     }
 }
-
-//LoginForm.propTypes = {
-//onSubmit: React.PropTypes.func.isRequired,
-//btnText: React.PropTypes.string.isRequired,
-//data: React.PropTypes.object.isRequired
-//};
-
-//I leave it, could be useful later......
-////Form_Register_Student.propTypes = {
-////onSubmit: React.PropTypes.func.isRequired,
-////btnText: React.PropTypes.string.isRequired,
-////data: React.PropTypes.object.isRequired
-////};
 
 export default LoginForm;

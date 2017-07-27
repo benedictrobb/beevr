@@ -57,7 +57,7 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.getJobs((err, res) => {
                 if (err)
-                    reply.status(500)(
+                    return reply.status(500)(
                         'Failed to connect load data from the database'
                     );
                 reply({
@@ -112,7 +112,6 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/student',
         handler: (request, reply) => {
-            console.log('req', request.query);
             data.studentExists(request.query.email, (err, res) => {
                 if (err) {
                     return reply(
@@ -131,16 +130,13 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/reg-student',
         handler: (request, reply) => {
-            console.log(request.payload);
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
                     return reply(Boom.badData('', 'bcrypt error'));
                 }
-                console.log(hash);
                 data.postStudents(
                     Object.assign({}, request.payload, {password_hash: hash}),
                     (err, res) => {
-                        console.log(request.payload);
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
@@ -163,7 +159,6 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/resident',
         handler: (request, reply) => {
-            console.log('req', request.query);
             data.residentExists(request.query.email, (err, res) => {
                 if (err) {
                     return reply(
@@ -182,16 +177,13 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/reg-resident',
         handler: (request, reply) => {
-            console.log(request.payload);
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
                     return reply(Boom.badData('', 'bcrypt error'));
                 }
-                console.log(hash);
                 data.postResidents(
                     Object.assign({}, request.payload, {password_hash: hash}),
                     (err, res) => {
-                        console.log(request.payload);
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
@@ -236,7 +228,6 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/auth',
         handler: (request, reply) => {
-            console.log(request.query);
             const email = request.query.email;
             data.loginRequest(email, (err, res) => {
                 if (err) {
@@ -246,10 +237,8 @@ server.register(plugins, err => {
                             data.error
                         )
                     );
-                    console.log('ffff', err);
                 }
                 const user = res;
-                console.log('hey', user);
                 comparePassword(
                     request.query.password,
                     user.password_hash,
@@ -262,7 +251,6 @@ server.register(plugins, err => {
                                 )
                             );
                         }
-                        console.log('passwords matched');
                         request.cookieAuth.set({email});
                         reply({
                             name: 'loginRequest',

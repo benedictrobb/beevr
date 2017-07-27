@@ -17,12 +17,9 @@ class Form_Register_Student extends Component {
     }
 
     checkEmail(value) {
-        console.log(this.props);
-        console.log(this.state);
         value = this.state.student.email;
         if (value !== '') {
             this.props.checkIfStudentExists(value);
-            console.log(value);
         }
     }
 
@@ -343,10 +340,5 @@ class Form_Register_Student extends Component {
         );
     }
 }
-
-//Form_Register_Student.propTypes = {
-    //onSubmit: React.PropTypes.func.isRequired,
-    //btnText: React.PropTypes.string.isRequired,
-//};
 
 export default Form_Register_Student;
