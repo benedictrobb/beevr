@@ -7,6 +7,7 @@ const initialState = {
 export default (state = initialState, action) => {
     switch (action.type) {
     case FETCH_MY_POSTED_JOBS:
+        console.log('inside reducer');
         return {
             ...state,
             jobsRequest: {

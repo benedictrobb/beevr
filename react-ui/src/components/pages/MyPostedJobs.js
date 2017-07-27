@@ -61,16 +61,16 @@ class MyPostedJobs extends Component {
 
     render() {
         let {myPostedJobs} = this.props;
-        let myJobsList = myPostedJobs && myPostedJobs.myJobsList;
+        let myPostedJobsList = myPostedJobs && myPostedJobs.myPostedJobsList;
 
-        if (!myJobsList) {
+        if (!myPostedJobsList) {
             return <div>Loading</div>;
         }
         return (
             <article>
                 <section className="text-section">
                     <ul>
-                        {myJobsList.map(this.renderJobs)}
+                        {myPostedJobsList.map(this.renderJobs)}
                     </ul>
                 </section>
             </article>
@@ -79,6 +79,10 @@ class MyPostedJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(
+        'inside mapStateToProps, state.fetchMyPostedJobs is ',
+        state.fetchMyPostedJobs.jobsRequest
+    );
     return {
         myPostedJobs: state.fetchMyPostedJobs.jobsRequest.response
     };

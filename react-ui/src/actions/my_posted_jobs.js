@@ -10,6 +10,7 @@ export const fetchMyPostedJobs = () => dispatch => {
     axios
         .get('/api/mypostedjobs')
         .then(response => {
+            console.log(response.data);
             dispatch({
                 type: FETCH_MY_POSTED_JOBS,
                 status: 'success',
