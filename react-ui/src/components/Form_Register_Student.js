@@ -29,15 +29,6 @@ class Form_Register_Student extends Component {
         if (!student.email) {
             var error_message = 'Email cannot be empty';
         }
-        //var catArray = Object.keys(student).map((value) => {
-            //if (value.indexOf('index_') !== -1) {
-                //return student[value];
-            //}
-        //}).filter((v) => {
-            //return v !== undefined;
-        //});
-        //console.log('job-cat', catArray);
-        //Object.assign({}, student, {job_cat:catArray})
         this.setState({errorMessage: error_message}, () => {
             if (!this.state.errorMessage) {
                 this.props.registerStudent(student);
@@ -46,7 +37,6 @@ class Form_Register_Student extends Component {
         });
         (err) => {
             this.setState({errorMessage: err.response.data.message});
-            console.log(err);
         };
     }
     
