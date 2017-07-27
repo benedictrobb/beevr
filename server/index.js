@@ -206,7 +206,7 @@ server.register(plugins, err => {
                         status: 'success',
                         isAuthenticated: true,
                         id: res.id,
-                        role: res.group,
+                        role: res.role,
                     });
                 });
             });
