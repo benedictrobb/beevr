@@ -151,6 +151,22 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'DELETE',
+        path: '/api/myjobs',
+        handler: (request, reply) => {
+            data.deleteApplication((err, res) => {
+                if (err) {
+                    reply('Failed to delete record').code(500);
+                } else {
+                    reply({
+                        message: 'Job deleted'
+                    });
+                }
+            }, request.url.query.job_id);
+        }
+    });
+
+    server.route({
         method: 'GET',
         path: '/api',
         handler: (request, reply) => {
