@@ -14,8 +14,8 @@ export default (state = initialState, action = {}) => {
         return {
             status: action.status,
             error: action.error,
-            response: action.response
-
+            response: action.response,
+            loggedIn: true,
         };
     default:
         return state;
