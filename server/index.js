@@ -109,10 +109,10 @@ server.register(plugins, err => {
     });
 
     server.route({
-        method: 'GET',
+        method: 'POST',
         path: '/api/student',
         handler: (request, reply) => {
-            data.studentExists(request.query.email, (err, res) => {
+            data.studentExists(request.payload.email, (err, res) => {
                 if (err) {
                     return reply(
                         Boom.unauthorized(
@@ -156,10 +156,10 @@ server.register(plugins, err => {
     });
 
     server.route({
-        method: 'GET',
+        method: 'POST',
         path: '/api/resident',
         handler: (request, reply) => {
-            data.residentExists(request.query.email, (err, res) => {
+            data.residentExists(request.payload.email, (err, res) => {
                 if (err) {
                     return reply(
                         Boom.unauthorized(

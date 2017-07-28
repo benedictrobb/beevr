@@ -103,7 +103,7 @@ data.studentExists = (email, callback) => {
             if (err) {
                 return callback(err);
             }
-            callback(null, res.rows);
+            callback(null, res.rows[0]);
         }
     );
 };
