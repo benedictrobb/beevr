@@ -11,7 +11,7 @@ data.getJobs = (callback, term) => {
                 LIMIT 10;`,
             (err, res) => {
                 if (err) {
-                    callback(err);
+                    return callback(err);
                 }
                 callback(null, res.rows);
             }
@@ -25,7 +25,7 @@ data.getJobs = (callback, term) => {
             [term],
             (err, res) => {
                 if (err) {
-                    callback(err);
+                    return callback(err);
                 }
                 callback(null, res.rows);
             }
@@ -37,7 +37,7 @@ data.getStudents = (callback, term) => {
     if (!term) {
         dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
 
             callback(null, res.rows);
@@ -48,7 +48,7 @@ data.getStudents = (callback, term) => {
             [term],
             (err, res) => {
                 if (err) {
-                    callback(err);
+                    return callback(err);
                 }
 
                 callback(null, res.rows);
@@ -73,7 +73,20 @@ data.loginRequest = (email, callback) => {
         [email],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
+            }
+            callback(null, res.rows[0]);
+        }
+    );
+};
+
+data.getMyJobs = (callback, student_id) => {
+    dbConnection.query(
+        'SELECT * FROM jobs WHERE $1 = ANY (student_id)',
+        [student_id],
+        (err, res) => {
+            if (err) {
+                return callback(err);
             }
             callback(null, res.rows[0]);
         }
@@ -88,9 +101,9 @@ data.studentExists = (email, callback) => {
         [email],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
-            callback(null, res.rows[0]);
+            callback(null, res.rows);
         }
     );
 };
@@ -115,7 +128,7 @@ data.postStudents = (student, callback) => {
         ],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
             callback(null, res.rows);
         }
@@ -130,7 +143,7 @@ data.residentExists = (email, callback) => {
         [email],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
             callback(null, res.rows[0]);
         }
@@ -156,7 +169,7 @@ data.postResidents = (resident, callback) => {
         ],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
             callback(null, res.rows);
         }
@@ -182,7 +195,7 @@ data.postJobs = (jobsObject, callback) => {
         ],
         (err, res) => {
             if (err) {
-                callback(err);
+                return callback(err);
             }
 
             callback(null, res.rows);
