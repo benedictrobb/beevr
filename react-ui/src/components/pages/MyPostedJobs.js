@@ -8,6 +8,7 @@ class MyPostedJobs extends Component {
         this.renderJobs = this.renderJobs.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
+        this.deleteJob = this.deleteJob.bind(this);
     }
 
     componentWillMount() {
@@ -20,6 +21,10 @@ class MyPostedJobs extends Component {
 
     formatTime(time) {
         return time.slice(0, 5);
+    }
+
+    deleteJob(job_id) {
+        this.props.deleteJob(job_id, this.props.fetchMyPostedJobs);
     }
 
     renderJobs(job) {
@@ -55,6 +60,12 @@ class MyPostedJobs extends Component {
                 <p>
                     {job.rate}
                 </p>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => this.deleteJob(job.job_id)}
+                >
+                    Delete the job
+                </button>
             </div>
         );
     }
@@ -79,12 +90,9 @@ class MyPostedJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(
-        'inside mapStateToProps, state.fetchMyPostedJobs is ',
-        state.fetchMyPostedJobs.jobsRequest
-    );
     return {
-        myPostedJobs: state.fetchMyPostedJobs.jobsRequest.response
+        myPostedJobs: state.fetchMyPostedJobs.jobsRequest.response,
+        isDeleted: state.fetchMyPostedJobs.isDeleted
     };
 }
 

@@ -1,13 +1,14 @@
 import {FETCH_MY_POSTED_JOBS} from '../constants/action_types.js';
+import {DELETE_JOB} from '../constants/action_types.js';
 
 const initialState = {
-    jobsRequest: {}
+    jobsRequest: {},
+    isDeleted: false
 };
 
 export default (state = initialState, action) => {
     switch (action.type) {
     case FETCH_MY_POSTED_JOBS:
-        console.log('inside reducer');
         return {
             ...state,
             jobsRequest: {
@@ -15,6 +16,12 @@ export default (state = initialState, action) => {
                 error: action.error,
                 response: action.response
             }
+        };
+
+    case DELETE_JOB:
+        return {
+            ...state,
+            isDeleted: true
         };
 
     default:

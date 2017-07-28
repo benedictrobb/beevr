@@ -133,6 +133,20 @@ data.getMyPostedJobs = (callback, resident_id) => {
     );
 };
 
+data.deleteJob = (callback, job_id) => {
+    dbConnection.query(
+        'DELETE FROM jobs WHERE job_id = $1',
+        [job_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            }
+
+            callback(null, res);
+        }
+    );
+};
+
 data.postJobs = (jobsObject, callback) => {
     dbConnection.query(
         `INSERT INTO jobs(job_title, start_date, start_time, end_date, end_time, description,

@@ -177,7 +177,24 @@ server.register(plugins, err => {
                         myPostedJobsList: res
                     });
                 }
-            }, 2);
+            }, 1);
+        }
+    });
+
+    //need to connect id to the front end
+    server.route({
+        method: 'DELETE',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.deleteJob((err, res) => {
+                if (err) {
+                    reply('Failed to delete record').code(500);
+                } else {
+                    reply({
+                        message: 'Job deleted'
+                    });
+                }
+            }, request.url.query.job_id);
         }
     });
 
