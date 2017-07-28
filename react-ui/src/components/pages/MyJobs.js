@@ -8,6 +8,7 @@ class MyJobs extends Component {
         this.renderJobs = this.renderJobs.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
+        this.deleteApplication = this.deleteApplication.bind(this);
     }
 
     componentWillMount() {
@@ -20,6 +21,10 @@ class MyJobs extends Component {
 
     formatTime(time) {
         return time.slice(0, 5);
+    }
+
+    deleteApplication(job_id) {
+        this.props.deleteApplication(job_id, this.props.fetchMyJobs);
     }
 
     renderJobs(job) {
@@ -55,6 +60,12 @@ class MyJobs extends Component {
                 <p>
                     {job.rate}
                 </p>
+                <button
+                    className="btn btn-danger"
+                    onClick={() => this.deleteApplication(job.job_id)}
+                >
+                    Delete application
+                </button>
             </div>
         );
     }

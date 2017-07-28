@@ -1,7 +1,8 @@
-import {FETCH_MY_JOBS} from '../constants/action_types.js';
+import {FETCH_MY_JOBS, DELETE_APPLICATION} from '../constants/action_types.js';
 
 const initialState = {
-    jobsRequest: {}
+    jobsRequest: {},
+    applicationDeleted: false
 };
 
 export default (state = initialState, action) => {
@@ -14,6 +15,12 @@ export default (state = initialState, action) => {
                 error: action.error,
                 response: action.response
             }
+        };
+
+    case DELETE_APPLICATION:
+        return {
+            ...state,
+            applicationDeleted: true
         };
 
     default:
