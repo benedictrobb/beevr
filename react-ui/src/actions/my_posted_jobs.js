@@ -43,7 +43,6 @@ export const deleteJob = (job_id, callback) => dispatch => {
             callback();
         })
         .catch(err => {
-            console.log(err);
             dispatch({
                 type: DELETE_JOB,
                 status: 'error',
