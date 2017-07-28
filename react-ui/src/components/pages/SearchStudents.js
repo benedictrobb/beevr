@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_students.js';
 import {Link} from 'react-router';
+import Categories from '../../constants/job_categories.js';
 
 class BrowseStudents extends Component {
     constructor() {
@@ -44,6 +45,14 @@ class BrowseStudents extends Component {
     }
 
     render() {
+        const options = Categories.map(function(elem) {
+            return (
+                <option value={Categories[elem]}>
+                    {elem}
+                </option>
+            );
+        });
+        
         let {students} = this.props;
         let studentList = students && students.studentList;
 
@@ -52,7 +61,7 @@ class BrowseStudents extends Component {
                 <section>
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Students"
                         >
                             Browse Students
@@ -67,18 +76,8 @@ class BrowseStudents extends Component {
                             value={this.props.searchTerm}
                         />
                         <datalist id="students">
-                            <option value="dog walking" />
-                            <option value="Tutoring- Spanish" />
-                            <option value="Home maintenance" />
-                            <option value="Tutoring- Mathematics" />
-                            <option value="Cat Sitting" />
-                            <option value="Plant watering" />
-                            <option value="Babysitting" />
-                            <option value="Cooking" />
-                            <option value="House Cleaning" />
-                            <option value="Band playing" />
-                            <option value="photography" />
-                            <option value="Other" />
+                            <option value="" disabled />
+                            {options}
                         </datalist>
                         <button type="submit" className="btn btn-primary">
                             Submit
@@ -96,7 +95,7 @@ class BrowseStudents extends Component {
                 <section className="text-section">
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Students"
                         >
                             Browse Students
@@ -112,18 +111,8 @@ class BrowseStudents extends Component {
                             value={this.props.searchTerm}
                         />
                         <datalist id="students">
-                            <option value="Dog walking" />
-                            <option value="Tutoring- Spanish" />
-                            <option value="Home maintenance" />
-                            <option value="Tutoring- Mathematics" />
-                            <option value="Cat Sitting" />
-                            <option value="Plant watering" />
-                            <option value="Babysitting" />
-                            <option value="Cooking" />
-                            <option value="House Cleaning" />
-                            <option value="Band playing" />
-                            <option value="Photography" />
-                            <option value="Other" />
+                            <option value="" disabled />
+                            {options}
                         </datalist>
 
                         <button type="submit" className="btn btn-primary">

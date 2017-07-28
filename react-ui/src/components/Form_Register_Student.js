@@ -87,6 +87,10 @@ class Form_Register_Student extends Component {
             );
         });
 
+        if (!this.state) {
+            return <div>Loading</div>;
+        }
+        
         console.log(options);
         console.log(this.state);
         return (
