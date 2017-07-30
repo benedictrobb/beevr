@@ -134,7 +134,7 @@ server.register(plugins, err => {
             console.log(request.payload);
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
-                    return reply(Boom.badData('', 'bcrypt error'));
+                    return reply(Boom.badData('bcrypt error'));
                 }
                 console.log(hash);
                 data.postStudents(
@@ -144,8 +144,7 @@ server.register(plugins, err => {
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
-                                    'unavailable',
-                                    data.error
+                                    'unavailable: ' + err
                                 )
                             );
                         }

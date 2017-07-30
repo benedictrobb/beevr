@@ -268,7 +268,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_1"
                         id="job_category_1"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_1}
                         onChange={this.onChangeJobCat}
@@ -278,7 +278,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_2"
                         id="job_category_2"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_2}
                         onChange={this.onChangeJobCat}
@@ -288,7 +288,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_3"
                         id="job_category_3"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_3}
                         onChange={this.onChangeJobCat}
@@ -298,7 +298,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_4"
                         id="job_category_4"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_4}
                         onChange={this.onChangeJobCat}
@@ -308,7 +308,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_5"
                         id="job_category_5"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_5}
                         onChange={this.onChangeJobCat}
@@ -318,7 +318,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_6"
                         id="job_category_6"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_6}
                         onChange={this.onChangeJobCat}
@@ -328,7 +328,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_7"
                         id="job_category_7"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_7}
                         onChange={this.onChangeJobCat}
@@ -338,7 +338,7 @@ class Form_Register_Student extends Component {
                         className="form-control"
                         name="index_8"
                         id="job_category_8"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
                         value={this.state.student.job_cat.index_8}
                         onChange={this.onChangeJobCat}
