@@ -5,7 +5,7 @@ import * as actions from '../../actions/my_posted_jobs.js';
 class MyPostedJobs extends Component {
     constructor() {
         super();
-        this.renderJobs = this.renderJobs.bind(this);
+        this.renderJob = this.renderJob.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
         this.deleteJob = this.deleteJob.bind(this);
@@ -27,7 +27,7 @@ class MyPostedJobs extends Component {
         this.props.deleteJob(job_id, this.props.fetchMyPostedJobs);
     }
 
-    renderJobs(job) {
+    renderJob(job) {
         return (
             <div key={job.job_id}>
                 <h2>
@@ -81,7 +81,7 @@ class MyPostedJobs extends Component {
             <article>
                 <section className="text-section">
                     <ul>
-                        {myPostedJobsList.map(this.renderJobs)}
+                        {myPostedJobsList.map(this.renderJob)}
                     </ul>
                 </section>
             </article>
@@ -91,8 +91,7 @@ class MyPostedJobs extends Component {
 
 function mapStateToProps(state) {
     return {
-        myPostedJobs: state.fetchMyPostedJobs.jobsRequest.response,
-        isDeleted: state.fetchMyPostedJobs.isDeleted
+        myPostedJobs: state.fetchMyPostedJobs.jobsRequest.response
     };
 }
 

@@ -19,10 +19,12 @@ export default (state = initialState, action) => {
         };
 
     case DELETE_JOB:
-        return {
-            ...state,
-            isDeleted: true
-        };
+        if (action.status === 'success') {
+            return {
+                ...state,
+                isDeleted: true
+            };
+        }
 
     default:
         return state;

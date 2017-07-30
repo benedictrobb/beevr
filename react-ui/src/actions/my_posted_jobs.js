@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {FETCH_MY_POSTED_JOBS} from '../constants/action_types.js';
-import {DELETE_JOB} from '../constants/action_types.js';
+import {FETCH_MY_POSTED_JOBS, DELETE_JOB} from '../constants/action_types.js';
 
 export const fetchMyPostedJobs = () => dispatch => {
     dispatch({

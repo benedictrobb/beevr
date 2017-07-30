@@ -10,8 +10,9 @@ data.getJobs = (callback, term) => {
             (err, res) => {
                 if (err) {
                     callback(err);
+                } else {
+                    callback(null, res.rows);
                 }
-                callback(null, res.rows);
             }
         );
     } else {
@@ -36,9 +37,9 @@ data.getStudents = (callback, term) => {
         dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-
-            callback(null, res.rows);
         });
     } else {
         dbConnection.query(
@@ -47,9 +48,9 @@ data.getStudents = (callback, term) => {
             (err, res) => {
                 if (err) {
                     callback(err);
+                } else {
+                    callback(null, res.rows);
                 }
-
-                callback(null, res.rows);
             }
         );
     }
@@ -62,9 +63,9 @@ data.getMyJobs = (callback, student_id) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-
-            callback(null, res.rows);
         }
     );
 };
@@ -89,8 +90,9 @@ data.postStudents = (student, callback) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-            callback(null, res.rows);
         }
     );
 };
@@ -113,8 +115,9 @@ data.postResidents = (resident, callback) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-            callback(null, res.rows);
         }
     );
 };
@@ -126,9 +129,9 @@ data.getMyPostedJobs = (callback, resident_id) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-
-            callback(null, res.rows);
         }
     );
 };
@@ -140,9 +143,9 @@ data.deleteJob = (callback, job_id) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res);
             }
-
-            callback(null, res);
         }
     );
 };
@@ -165,9 +168,9 @@ data.postJobs = (jobsObject, callback) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res.rows);
             }
-
-            callback(null, res.rows);
         }
     );
 };

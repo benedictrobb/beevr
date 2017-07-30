@@ -140,10 +140,26 @@ server.register(plugins, err => {
                 if (err) {
                     reply('Failed to retrieve data fro database').code(500);
                 } else {
+                    const filtered_joblist = [];
+
+                    res.map(job => {
+                        let filtered_job = {};
+                        filtered_job.job_id = job.job_id;
+                        filtered_job.job_title = job.job_title;
+                        filtered_job.description = job.description;
+                        filtered_job.start_date = job.start_date;
+                        filtered_job.start_time = job.start_time;
+                        filtered_job.end_date = job.end_date;
+                        filtered_job.end_time = job.end_time;
+                        filtered_job.category = job.category;
+                        filtered_job.rate = job.rate;
+                        filtered_joblist.push(filtered_job);
+                    });
+
                     reply({
                         name: 'myJobsList',
                         message: 'Welcome to BEEVR!',
-                        myJobsList: res
+                        myJobsList: filtered_joblist
                     });
                 }
             }, 2);
@@ -171,10 +187,26 @@ server.register(plugins, err => {
                 if (err) {
                     reply('Failed to retrieve data fro database').code(500);
                 } else {
+                    const filtered_joblist = [];
+
+                    res.map(job => {
+                        let filtered_job = {};
+                        filtered_job.job_id = job.job_id;
+                        filtered_job.job_title = job.job_title;
+                        filtered_job.description = job.description;
+                        filtered_job.start_date = job.start_date;
+                        filtered_job.start_time = job.start_time;
+                        filtered_job.end_date = job.end_date;
+                        filtered_job.end_time = job.end_time;
+                        filtered_job.category = job.category;
+                        filtered_job.rate = job.rate;
+                        filtered_joblist.push(filtered_job);
+                    });
+
                     reply({
                         name: 'myPostedJobsList',
                         message: 'Welcome to BEEVR!',
-                        myPostedJobsList: res
+                        myPostedJobsList: filtered_joblist
                     });
                 }
             }, 1);
