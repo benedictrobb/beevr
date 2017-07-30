@@ -127,9 +127,9 @@ data.deleteApplication = (callback, job_id) => {
         (err, res) => {
             if (err) {
                 callback(err);
+            } else {
+                callback(null, res);
             }
-
-            callback(null, res);
         }
     );
 };
