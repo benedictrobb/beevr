@@ -6,7 +6,7 @@ const pkg = require('../package.json');
 const inert = require('inert');
 const blipp = require('blipp');
 const cookieAuth = require('hapi-auth-cookie');
-const {hashPassword, comparePassword} = require('./bcrypt.js');
+const {hashPassword, comparePassword} = require('./lib/bcrypt.js');
 const fs = require('fs');
 const data = require('./database/db_queries.js');
 const sendEmail = require('./lib/sendEmail.js');
@@ -32,7 +32,7 @@ server.register(plugins, err => {
 
     const cookieAuthOptions = {
         password: process.env.COOKIE_PASSWORD,
-        cookie: 'logged-in',
+        cookie: 'loggedIn',
         isSecure: false,
         ttl: 24 * 60 * 60 * 1000,
     };
@@ -56,14 +56,26 @@ server.register(plugins, err => {
         path: '/api/jobs',
         handler: (request, reply) => {
             data.getJobs((err, res) => {
-                if (err)
-                    return reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
+                if (err) {
+                    return reply(Boom.serverUnavailable('unavailable: ' + err));
+                }
                 reply({
                     name: 'jobsList',
                     message: 'Welcome to BEEVR!',
-                    jobsList: res,
+                    jobsList: res.map(key => {
+                        return {
+                            jobId: key.job_id,
+                            startDate: key.start_date,
+                            startTime: key.start_time,
+                            endDate: key.end_date,
+                            endTime: key.end_time,
+                            description: key.description,
+                            jobCat: key.category,
+                            rate: key.rate,
+                            studentId: key.student_id,
+                            residentId: key.resident_id,
+                        };
+                    }),
                 });
             }, request.url.query.term);
         },
@@ -75,14 +87,11 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.postJobs(request.payload, (err, res) => {
                 if (err) {
-                    return reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
+                    return reply(Boom.badRequest('Bad request: ' + err));
                 }
                 reply({
                     name: 'newJob',
-                    message: 'Welcome to BEEVR!',
-                    newJob: res,
+                    message: 'Job posted succesfully!',
                 });
             });
         },
@@ -94,14 +103,23 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.getStudents((err, res) => {
                 if (err) {
-                    reply.status(500)(
-                        'Failed to connect load data from the database'
-                    );
+                    return reply(Boom.serverUnavailable('unavailable: ' + err));
                 } else {
                     reply({
                         name: 'studentList',
                         message: 'Welcome to BEEVR!',
-                        studentList: res,
+                        studentList: res.map(key => {
+                            return {
+                                studentId: key.student_id,
+                                firstName: key.first_name,
+                                lastName: key.last_name,
+                                dob: key.dob,
+                                univSchool: key.univ_school,
+                                bio: key.bio,
+                                picture: key.picture,
+                                jobCat: key.job_cat,
+                            };
+                        }),
                     });
                 }
             }, request.url.query.searchTerm);
@@ -114,14 +132,9 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.studentExists(request.payload.email, (err, res) => {
                 if (err) {
-                    return reply(
-                        Boom.unauthorized(
-                            'Please log-in to see that',
-                            data.error
-                        )
-                    );
+                    return reply(Boom.badRequest('Bad request: ' + err));
                 }
-                reply(res);
+                reply(res.exists);
             });
         },
     });
@@ -132,22 +145,21 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
-                    return reply(Boom.badData('', 'bcrypt error'));
+                    return reply(Boom.badData('bcrypt error'));
                 }
                 data.postStudents(
-                    Object.assign({}, request.payload, {password_hash: hash}),
+                    Object.assign({}, request.payload, {passwordHash: hash}),
                     (err, res) => {
                         if (err) {
                             return reply(
-                                Boom.serverUnavailable(
-                                    'unavailable',
-                                    data.error
-                                )
+                                Boom.badRequest('Bad request: ' + err)
                             );
                         }
                         reply({
                             name: 'student',
-                            student: res,
+                            status: 'success',
+                            message: `Registration successful!
+                            Welcome to BEEVR!`,
                         });
                     }
                 );
@@ -161,14 +173,9 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.residentExists(request.payload.email, (err, res) => {
                 if (err) {
-                    return reply(
-                        Boom.unauthorized(
-                            'Please log-in to see that',
-                            data.error
-                        )
-                    );
+                    return reply(Boom.badRequest('Bad request: ' + err));
                 }
-                reply(res);
+                reply(res.exists);
             });
         },
     });
@@ -179,22 +186,21 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
-                    return reply(Boom.badData('', 'bcrypt error'));
+                    return reply(Boom.badData('bcrypt error'));
                 }
                 data.postResidents(
-                    Object.assign({}, request.payload, {password_hash: hash}),
+                    Object.assign({}, request.payload, {passwordHash: hash}),
                     (err, res) => {
                         if (err) {
                             return reply(
-                                Boom.serverUnavailable(
-                                    'unavailable',
-                                    data.error
-                                )
+                                Boom.badRequest('Bad request: ' + err)
                             );
                         }
                         reply({
                             name: 'resident',
-                            resident: res,
+                            status: 'success',
+                            message: `Registration successful!
+                            Welcome to BEEVR!`,
                         });
                     }
                 );
@@ -214,7 +220,7 @@ server.register(plugins, err => {
 
             sendEmail(from, to, subject, text, (err, res) => {
                 if (err) {
-                    reply('Failed to send email').code(500);
+                    reply(Boom.internal('Failed to send email', 500));
                 } else {
                     reply({
                         message: 'Email sent!',
@@ -232,10 +238,7 @@ server.register(plugins, err => {
             data.loginRequest(email, (err, res) => {
                 if (err) {
                     return reply(
-                        Boom.unauthorized(
-                            'Please log-in to see that',
-                            data.error
-                        )
+                        Boom.unauthorized('Please log-in to see that')
                     );
                 }
                 const user = res;
@@ -245,10 +248,7 @@ server.register(plugins, err => {
                     (err, match) => {
                         if (err) {
                             return reply(
-                                Boom.unauthorized(
-                                    'Please log-in to see that',
-                                    data.error
-                                )
+                                Boom.unauthorized('Please log-in to see that')
                             );
                         }
                         request.cookieAuth.set({email});
@@ -273,16 +273,34 @@ server.register(plugins, err => {
         handler: (request, reply) => {
             data.getMyJobs((err, res) => {
                 if (err) {
-                    reply('Failed to retrieve data fro database').code(500);
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
                 } else {
                     reply({
                         name: 'myJobsList',
                         message: 'Welcome to BEEVR!',
-                        myJobsList: res
+                        myJobsList: res.map(key => {
+                            return {
+                                jobId: key.job_id,
+                                jobTitle: key.job_title,
+                                startDate: key.start_date,
+                                startTime: key.start_time,
+                                endDate: key.end_date,
+                                endTime: key.end_time,
+                                description: key.description,
+                                jobCat: key.category,
+                                rate: key.rate,
+                                studentId: key.student_id,
+                                residentId: key.resident_id,
+                            };
+                        }),
                     });
                 }
             }, 2);
-        }
+        },
     });
 
     server.route({

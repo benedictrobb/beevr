@@ -64,41 +64,41 @@ class Form_Register_Student extends Component {
                 </div>
                 <ErrorMessage />
                 <div className="form-group">
-                    <label className="control-label" htmlFor="First Name">
+                    <label className="control-label" htmlFor="firstName">
                         First Name
                     </label>
                     <input
                         className="form-control"
-                        name="first_name"
-                        id="First Name"
+                        name="firstName"
+                        id="firstName"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.student.first_name}
+                        value={this.state.student.firstName}
                         onChange={this.onChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Last Name">
+                    <label className="control-label" htmlFor="lastName">
                         Last Name
                     </label>
                     <input
                         className="form-control"
-                        name="last_name"
-                        id="Last Name"
+                        name="lastName"
+                        id="lastName"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.student.last_name}
+                        value={this.state.student.lastName}
                         onChange={this.onChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Email">
+                    <label className="control-label" htmlFor="email">
                         Email
                     </label>
                     <input
                         className="form-control"
                         name="email"
-                        id="Email"
+                        id="email"
                         type="email"
                         value={this.state.student.email}
                         placeholder="email"
@@ -116,7 +116,7 @@ class Form_Register_Student extends Component {
                     <input
                         className="form-control"
                         name="password"
-                        id="Password"
+                        id="password"
                         type="password"
                         value={this.state.student.password}
                         placeholder="password"
@@ -124,13 +124,13 @@ class Form_Register_Student extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Confirm password">
+                    <label className="control-label" htmlFor="confirmPassword">
                         Confirm password
                     </label>
                     <input
                         className="form-control"
                         name="confirmPassword"
-                        id="Password"
+                        id="password"
                         type="password"
                         value={this.state.student.confirmPassword}
                         placeholder="Confirm password"
@@ -138,13 +138,13 @@ class Form_Register_Student extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Date Of Birth">
+                    <label className="control-label" htmlFor="dateOfBirth">
                         Date of Birth
                     </label>
                     <input
                         className="form-control"
                         name="DOB"
-                        id="Date Of Birth"
+                        id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
                         value={this.state.student.DOB}
@@ -155,29 +155,29 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        htmlFor="University/School"
+                        htmlFor="universitySchool"
                     >
                         University/School
                     </label>
                     <input
                         className="form-control"
-                        name="univ_school"
-                        id="University/School"
+                        name="univSchool"
+                        id="universitySchool"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.student.univ_school}
+                        value={this.state.student.univSchool}
                         onChange={this.onChange}
                     />
                 </div>
 
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Bio">
+                    <label className="control-label" htmlFor="bio">
                         Bio
                     </label>
                     <input
                         className="form-control"
                         name="bio"
-                        id="Bio"
+                        id="bio"
                         type="text"
                         placeholder="Bio"
                         value={this.state.student.bio}
@@ -186,13 +186,13 @@ class Form_Register_Student extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Picture">
+                    <label className="control-label" htmlFor="picture">
                         Profile picture
                     </label>
                     <input
                         className="form-control"
                         name="picture"
-                        id="Picture"
+                        id="picture"
                         type="file"
                         placeholder="Picture"
                         value={this.state.student.picture}
@@ -201,13 +201,13 @@ class Form_Register_Student extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Phone number">
+                    <label className="control-label" htmlFor="phoneNumber">
                         Phone number
                     </label>
                     <input
                         className="form-control"
                         name="phone"
-                        id="Phone number"
+                        id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
                         value={this.state.student.phone}
@@ -218,88 +218,88 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        name="job-cat"
-                        htmlFor="Job categories"
+                        name="jobCat"
+                        htmlFor="jobCategories"
                     >
                         Pick up to 8 jobs categories
                     </label>
                     <input
                         className="form-control"
-                        name="index_1"
-                        id="job_category_1"
+                        name="index1"
+                        id="jobCategory1"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_1}
+                        value={this.state.student.index1}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_2"
-                        id="job_category_2"
+                        name="index2"
+                        id="jobCategory2"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_2}
+                        value={this.state.student.index2}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_3"
-                        id="job_category_3"
+                        name="index3"
+                        id="jobCategory3"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_3}
+                        value={this.state.student.index3}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_4"
-                        id="job_category_4"
+                        name="index4"
+                        id="jobCategory4"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_4}
+                        value={this.state.student.index4}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_5"
-                        id="job_category_5"
+                        name="index5"
+                        id="jobCategory5"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_5}
+                        value={this.state.student.index5}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_6"
-                        id="job_category_6"
+                        name="index6"
+                        id="jobCategory6"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_6}
+                        value={this.state.student.index6}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_7"
-                        id="job_category_7"
+                        name="index7"
+                        id="jobCategory7"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_7}
+                        value={this.state.student.index7}
                         onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index_8"
-                        id="job_category_8"
+                        name="index8"
+                        id="jobCategory8"
                         type="text"
                         placeholder="Select"
-                        value={this.state.student.index_8}
+                        value={this.state.student.index8}
                         onChange={this.onChange}
                         list="jobs"
                     />
