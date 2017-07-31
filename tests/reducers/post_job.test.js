@@ -1,5 +1,5 @@
-import reducer from '../post_job_reducer.js';
-import * as types from '../../constants/action_types.js';
+import reducer from '../../react-ui/src/reducers/post_job_reducer.js';
+import * as types from '../../react-ui/src/constants/action_types.js';
 
 describe('post job reducer', () => {
     it('should return the initial state', () => {

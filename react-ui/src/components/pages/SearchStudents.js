@@ -145,7 +145,7 @@ class BrowseStudents extends Component {
 function mapStateToProps(state) {
     return {
         students: state.searchStudents.studentsRequest.response,
-        searchTerm: state.searchStudents.term
+        searchTerm: state.searchStudents.searchTerm
     };
 }
 
