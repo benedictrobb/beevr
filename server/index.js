@@ -169,6 +169,52 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
+        path: '/api/avatar',
+        config: {
+            payload: {
+                output: 'stream',
+                parse: true,
+                allow: 'multipart/form-data',
+            },
+            handler: (request, reply) => {
+                var body = request.payload;
+                //console.log(body.avatar);
+                if (body.avatar) {
+                    var name = body.avatar.hapi.filename;
+                    var path = __dirname + '/avatar/' + name;
+                    var avatar = fs.createWriteStream(path);
+
+                    avatar.on('error', err => {
+                        return reply(
+                            Boom.badData('Error streaming file' + err)
+                        );
+                    });
+
+                    body.avatar.pipe(avatar);
+                    body.avatar.on('end', err => {
+                        data.postAvatar(avatar.path, (err, res) => {
+                            console.log('serv!!!', avatar);
+                            console.log('serv!!!', avatar.path);
+                            if (err) {
+                                return reply(
+                                    Boom.badRequest('Bad request: ' + err)
+                                );
+                            }
+                            var report = {
+                                filename: body.avatar.hapi.filename,
+                                headers: body.avatar.hapi.headers,
+                                writeResult: `${res.command}ed ${avatar.bytesWritten} bytes into ${res.rowCount} row(s)`,
+                            };
+                            reply(report);
+                        });
+                    });
+                }
+            },
+        },
+    });
+
+    server.route({
+        method: 'POST',
         path: '/api/resident',
         handler: (request, reply) => {
             data.residentExists(request.payload.email, (err, res) => {
