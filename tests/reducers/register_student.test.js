@@ -1,26 +1,26 @@
-import reducer from '../register_resident_reducer.js';
-import * as types from '../../constants/action_types.js';
+import reducer from '../../react-ui/src/reducers/register_student_reducer.js';
+import * as types from '../../react-ui/src/constants/action_types.js';
 
-describe('register resident reducer', () => {
+describe('register student reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
             loggedIn: false,
             isAuthenticated: false,
-            resident: {}
+            student: {}
         });
     });
 
-    it('should handle.REGISTER_RESIDENT', () => {
+    it('should handle.REGISTER_STUDENT', () => {
         expect(
             reducer(
                 {},
                 {
-                    type: types.REGISTER_RESIDENT,
+                    type: types.REGISTER_STUDENT,
                     status: 'pending'
                 }
             )
         ).toEqual({
-            resident: {
+            student: {
                 status: 'pending',
                 error: undefined,
                 response: undefined
@@ -28,26 +28,27 @@ describe('register resident reducer', () => {
         });
     });
 
-    it('should handle REGISTER_RESIDENT', () => {
+    it('should handle REGISTER_STUDENT', () => {
         expect(
             reducer(
                 {},
                 {
-                    type: types.REGISTER_RESIDENT,
+                    type: types.REGISTER_STUDENT,
                     status: 'success',
                     response: {
                         first_name: 'Adam',
                         last_name: 'Smith',
                         email: 'adam.smith@gmail.com',
                         dob: '01/01/2000',
-                        address: '123 Pretty Street',
+                        univ_school: 'Cambridge',
                         bio: 'Lorem Ipsum',
-                        phone: '777-77-777'
+                        phone: '777-77-777',
+                        job_cat: '{{coding},{science},{handyman}}'
                     }
                 }
             )
         ).toEqual({
-            resident: {
+            student: {
                 status: 'success',
                 error: undefined,
                 response: {
@@ -55,9 +56,10 @@ describe('register resident reducer', () => {
                     last_name: 'Smith',
                     email: 'adam.smith@gmail.com',
                     dob: '01/01/2000',
-                    address: '123 Pretty Street',
+                    univ_school: 'Cambridge',
                     bio: 'Lorem Ipsum',
-                    phone: '777-77-777'
+                    phone: '777-77-777',
+                    job_cat: '{{coding},{science},{handyman}}'
                 }
             }
         });

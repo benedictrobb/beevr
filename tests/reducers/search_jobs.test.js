@@ -1,5 +1,5 @@
-import reducer from '../search_jobs_reducer.js';
-import * as types from '../../constants/action_types.js';
+import reducer from '../../react-ui/src/reducers/search_jobs_reducer.js';
+import * as types from '../../react-ui/src/constants/action_types.js';
 
 describe('my_jobs reducer', () => {
     it('should return the initial state', () => {
@@ -86,6 +86,34 @@ describe('my_jobs reducer', () => {
                     }
                 ]
             }
+        });
+    });
+
+    it('should handle SET_TERM', () => {
+        expect(
+            reducer(
+                {},
+                {
+                    type: types.SET_TERM,
+                    response: 'coding'
+                }
+            )
+        ).toEqual({
+            searchTerm: 'coding'
+        });
+    });
+
+    it('should handle SET_SELECTED_JOB', () => {
+        expect(
+            reducer(
+                {},
+                {
+                    type: types.SET_SELECTED_JOB,
+                    response: 2
+                }
+            )
+        ).toEqual({
+            selectedJob: 2
         });
     });
 });
