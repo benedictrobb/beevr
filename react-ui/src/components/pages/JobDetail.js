@@ -11,6 +11,12 @@ class JobDetail extends Component {
         this.submitJobApplication = this.submitJobApplication.bind(this);
     }
 
+    componentDidMount() {
+        if (!this.props.jobs) {
+            this.props.fetchJobs();
+        }
+    }
+
     formatDate(date) {
         return date.slice(0, 10);
     }
@@ -96,7 +102,19 @@ function mapStateToProps(state, ownProps) {
     const searchJobs = state.searchJobs;
     const jobsRequestResponse =
         searchJobs.jobsRequest && searchJobs.jobsRequest.response;
-    const jobs = jobsRequestResponse && jobsRequestResponse.jobsList;
+    let jobs = jobsRequestResponse && jobsRequestResponse.jobsList;
+
+    if (!jobs) {
+      if( (state.applyJob.jobsRequest.response) {
+        console.log(
+          'inside mapStateToProps !jobs'
+          state.applyJob.jobsRequest.response.jobsList
+        );
+        let jobs = state.applyJob.jobsRequest.response.jobsList;
+
+      })
+    }
+
     return {
         applied: state.applyJob.applied,
         job_id: ownProps.params.id,

@@ -25,6 +25,7 @@ export const submitJobApplication = job_id => dispatch => {
 };
 
 export const fetchJobs = () => dispatch => {
+    console.log('inside actions');
     dispatch({
         type: FETCH_JOBS,
         status: 'pending'
@@ -32,16 +33,16 @@ export const fetchJobs = () => dispatch => {
 
     axios
         .get('/api/jobs')
-        .then(response => {
+        .then(response =>
             dispatch({
                 type: FETCH_JOBS,
                 status: 'success',
                 response: response.data
-            });
-        })
+            })
+        )
         .catch(err => {
             dispatch({
-                type: FETCH_STUDENT_JOBS,
+                type: FETCH_JOBS,
                 status: 'error',
                 error: err
             });

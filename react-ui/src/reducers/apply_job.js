@@ -1,4 +1,4 @@
-import {APPLY_JOB} from '../constants/action_types.js';
+import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 
 const initialState = {
     applied: [],
