@@ -6,7 +6,6 @@ import * as actions from '../../actions/login.js';
 class LoginPage extends React.Component {
     render() {
         this.props.loginRequest.error;
-        console.log(this.props.loginRequest);
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">

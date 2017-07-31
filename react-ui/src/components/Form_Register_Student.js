@@ -29,15 +29,11 @@ class Form_Register_Student extends Component {
         if (!student.email) {
             var error_message = 'Email cannot be empty';
         }
-        this.setState({errorMessage: error_message}, () => {
-            if (!this.state.errorMessage) {
-                this.props.registerStudent(student);
-                //browserHistory.push('/dashboard');
-            }
-        });
-        (err) => {
-            this.setState({errorMessage: err.response.data.message});
-        };
+        this.setState({errorMessage: error_message});
+        if (!this.state.errorMessage) {
+            this.props.registerStudent(student);
+            //browserHistory.push('/dashboard');
+        }
     }
     
     onChange(evt) {
@@ -51,7 +47,6 @@ class Form_Register_Student extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div

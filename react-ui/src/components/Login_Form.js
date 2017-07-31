@@ -17,13 +17,8 @@ class LoginForm extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var state = this.props.state;
-        this.setState({errorMessage: ''}, () => {
-            this.props.loginRequest(this.state.email, this.state.password);
-        });
-        (err) => this.setState({
-            errorMessage: err.data.error
-        });
-        console.log('hjhjh',this.state.errorMessage);
+        this.setState({errorMessage: ''});
+        this.props.loginRequest(this.state.email, this.state.password);
     };
 
     onChange(evt) {
@@ -35,10 +30,8 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="Email">
                         Email

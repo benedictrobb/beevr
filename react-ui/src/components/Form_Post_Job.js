@@ -33,35 +33,33 @@ class Form_Post_Job extends Component {
     _onSubmit(evt) {
         evt.preventDefault();
 
-        //var {jobData} = this.state;
+        var {jobData} = this.state;
 
-        //if (!jobData.start_date) {
-            //var error_message = 'Start Date cannot be empty';
-        //} else if (!jobData.job_title) {
-            //error_message = 'Job Title cannot be empty';
-        //} else if (!jobData.start_time) {
-            //error_message = 'Start Time cannot be empty';
-        //} else if (!jobData.end_date) {
-            //error_message = 'End Date cannot be empty';
-        //} else if (!jobData.end_time) {
-            //error_message = 'End Time cannot be empty';
-        //} else if (!jobData.category) {
-            //error_message = 'Job Category cannot be empty';
-        //} else if (!jobData.rate) {
-            //error_message = 'Rate cannot be empty';
-        //} else if (isNaN(jobData.rate) === true) {
-            //error_message = 'Rate must be a number';
-        //} else if (!jobData.description) {
-            //error_message = 'Job Description cannot be empty';
-        //}
+        if (!jobData.start_date) {
+            var error_message = 'Start Date cannot be empty';
+        } else if (!jobData.job_title) {
+            error_message = 'Job Title cannot be empty';
+        } else if (!jobData.start_time) {
+            error_message = 'Start Time cannot be empty';
+        } else if (!jobData.end_date) {
+            error_message = 'End Date cannot be empty';
+        } else if (!jobData.end_time) {
+            error_message = 'End Time cannot be empty';
+        } else if (!jobData.category) {
+            error_message = 'Job Category cannot be empty';
+        } else if (!jobData.rate) {
+            error_message = 'Rate cannot be empty';
+        } else if (isNaN(jobData.rate) === true) {
+            error_message = 'Rate must be a number';
+        } else if (!jobData.description) {
+            error_message = 'Job Description cannot be empty';
+        }
 
-        this.setState(//{errorMessage: error_message}, 
-            () => {
-            //if (!this.state.errorMessage) {
-                this.props.postJob(this.state.jobData);
-                browserHistory.push('/jobposted');
-            //}
-        });
+        this.setState({errorMessage: error_message});
+        if (!error_message) {
+            this.props.postJob(this.state.jobData);
+            browserHistory.push('/jobposted');
+        }
     }
 
     _onChangeStartDate(evt) {

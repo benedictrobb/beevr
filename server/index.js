@@ -62,18 +62,18 @@ server.register(plugins, err => {
                 reply({
                     name: 'jobsList',
                     message: 'Welcome to BEEVR!',
-                    jobsList: res.map(key => {
+                    jobsList: res.map(element => {
                         return {
-                            jobId: key.job_id,
-                            startDate: key.start_date,
-                            startTime: key.start_time,
-                            endDate: key.end_date,
-                            endTime: key.end_time,
-                            description: key.description,
-                            jobCat: key.category,
-                            rate: key.rate,
-                            studentId: key.student_id,
-                            residentId: key.resident_id,
+                            jobId: element.job_id,
+                            startDate: element.start_date,
+                            startTime: element.start_time,
+                            endDate: element.end_date,
+                            endTime: element.end_time,
+                            description: element.description,
+                            jobCat: element.category,
+                            rate: element.rate,
+                            studentId: element.student_id,
+                            residentId: element.resident_id,
                         };
                     }),
                 });
@@ -108,16 +108,16 @@ server.register(plugins, err => {
                     reply({
                         name: 'studentList',
                         message: 'Welcome to BEEVR!',
-                        studentList: res.map(key => {
+                        studentList: res.map(element => {
                             return {
-                                studentId: key.student_id,
-                                firstName: key.first_name,
-                                lastName: key.last_name,
-                                dob: key.dob,
-                                univSchool: key.univ_school,
-                                bio: key.bio,
-                                picture: key.picture,
-                                jobCat: key.job_cat,
+                                studentId: element.student_id,
+                                firstName: element.first_name,
+                                lastName: element.last_name,
+                                dob: element.dob,
+                                univSchool: element.univ_school,
+                                bio: element.bio,
+                                picture: element.picture,
+                                jobCat: element.job_cat,
                             };
                         }),
                     });
@@ -231,10 +231,11 @@ server.register(plugins, err => {
     });
 
     server.route({
-        method: 'GET',
+        method: 'POST',
         path: '/api/auth',
         handler: (request, reply) => {
-            const email = request.query.email;
+            console.log(request.payload);
+            const email = request.payload.email;
             data.loginRequest(email, (err, res) => {
                 if (err) {
                     return reply(
@@ -243,7 +244,7 @@ server.register(plugins, err => {
                 }
                 const user = res;
                 comparePassword(
-                    request.query.password,
+                    request.payload.password,
                     user.password_hash,
                     (err, match) => {
                         if (err) {
@@ -282,19 +283,19 @@ server.register(plugins, err => {
                     reply({
                         name: 'myJobsList',
                         message: 'Welcome to BEEVR!',
-                        myJobsList: res.map(key => {
+                        myJobsList: res.map(element => {
                             return {
-                                jobId: key.job_id,
-                                jobTitle: key.job_title,
-                                startDate: key.start_date,
-                                startTime: key.start_time,
-                                endDate: key.end_date,
-                                endTime: key.end_time,
-                                description: key.description,
-                                jobCat: key.category,
-                                rate: key.rate,
-                                studentId: key.student_id,
-                                residentId: key.resident_id,
+                                jobId: element.job_id,
+                                jobTitle: element.job_title,
+                                startDate: element.start_date,
+                                startTime: element.start_time,
+                                endDate: element.end_date,
+                                endTime: element.end_time,
+                                description: element.description,
+                                jobCat: element.category,
+                                rate: element.rate,
+                                studentId: element.student_id,
+                                residentId: element.resident_id,
                             };
                         }),
                     });

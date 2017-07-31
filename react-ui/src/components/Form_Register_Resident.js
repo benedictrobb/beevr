@@ -28,11 +28,10 @@ class Form_Register_Resident extends Component {
         if (!resident.email) {
             var error_message = 'Email cannot be empty';
         }
-        this.setState({errorMessage: error_message}, () => {
-            if (!this.state.errorMessage) {
-                this.props.registerResident(this.state.resident);
-            }
-        });
+        this.setState({errorMessage: error_message});
+        if (!error_message) {
+            this.props.registerResident(this.state.resident);
+        }
     }
 
     onChange(evt) {
