@@ -193,8 +193,6 @@ server.register(plugins, err => {
                     body.avatar.pipe(avatar);
                     body.avatar.on('end', err => {
                         data.postAvatar(avatar.path, (err, res) => {
-                            console.log('serv!!!', avatar);
-                            console.log('serv!!!', avatar.path);
                             if (err) {
                                 return reply(
                                     Boom.badRequest('Bad request: ' + err)

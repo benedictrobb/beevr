@@ -161,9 +161,7 @@ data.postStudents = (student, callback) => {
 };
 
 data.postAvatar = (file, callback) => {
-    console.log('!!!!',file);
     fs.readFile(file, 'hex', (err, imgData) => {
-        console.log('imgData',imgData);
         imgData = '\\x' + imgData;
         dbConnection.query(
             `INSERT INTO avatars(picture) 
