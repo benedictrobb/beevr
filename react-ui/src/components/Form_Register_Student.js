@@ -1,87 +1,111 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import * as actions from '../actions/register_student.js';
-import {connect} from 'react-redux';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            student: {}
+            student: {},
+            errorMessage: '',
+            isAuthenticated: false,
         };
+    }
+
+    checkEmail(value) {
+        value = this.state.student.email;
+        if (value !== '') {
+            this.props.checkIfStudentExists(value);
+        }
     }
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.registerStudent(this.state.student);
+        var student = this.state.student;
+        if (!student.email) {
+            var error_message = 'Email cannot be empty';
+        }
+        this.setState({errorMessage: error_message});
+        if (!this.state.errorMessage) {
+            this.props.registerStudent(student);
+            //browserHistory.push('/dashboard');
+        }
     }
-
+    
     onChange(evt) {
         var student = this.state.student;
         this.setState({
             student: {
                 ...student,
-                [evt.target.name]: evt.target.value
-            }
+                [evt.target.name]: evt.target.value,
+            },
         });
     }
 
     render() {
         return (
-            <form onSubmit={this.onSubmit}>
+            <form className="form" onSubmit={this.onSubmit}>
+                <div
+                    className="form-group"
+                    className={
+                        this.state.errorMessage ? 'alert alert-danger' : ''
+                    }
+                >
+                    {this.state.errorMessage}
+                </div>
                 <ErrorMessage />
                 <div className="form-group">
-                    <label className="control-label" htmlFor="First Name">
+                    <label className="control-label" htmlFor="firstName">
                         First Name
                     </label>
                     <input
                         className="form-control"
-                        name="first_name"
-                        id="First Name"
+                        name="firstName"
+                        id="firstName"
                         type="text"
                         placeholder="First Name"
                         value={this.state.student.firstName}
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Last Name">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="lastName">
                         Last Name
                     </label>
                     <input
                         className="form-control"
-                        name="last_name"
-                        id="Last Name"
+                        name="lastName"
+                        id="lastName"
                         type="text"
                         placeholder="Last Name"
                         value={this.state.student.lastName}
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="username">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="email">
                         Email
                     </label>
                     <input
                         className="form-control"
                         name="email"
-                        id="Last Name"
-                        type="text"
-                        id="username"
+                        id="email"
+                        type="email"
                         value={this.state.student.email}
                         placeholder="email"
                         onChange={this.onChange}
+                        onBlur={this.checkEmail}
                         autoCorrect="off"
                         autoCapitalize="off"
                         spellCheck="false"
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="password">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="password">
                         Password
                     </label>
                     <input
@@ -94,8 +118,8 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Confirm password">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="confirmPassword">
                         Confirm password
                     </label>
                     <input
@@ -108,17 +132,14 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label
-                        className="form__field-label"
-                        htmlFor="Date Of Birth"
-                    >
+                <div className="form-group">
+                    <label className="control-label" htmlFor="dateOfBirth">
                         Date of Birth
                     </label>
                     <input
                         className="form-control"
                         name="DOB"
-                        id="Date Of Birth"
+                        id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
                         value={this.state.student.DOB}
@@ -126,32 +147,32 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
-                        htmlFor="University/School"
+                        className="control-label"
+                        htmlFor="universitySchool"
                     >
                         University/School
                     </label>
                     <input
                         className="form-control"
-                        name="univ_school"
-                        id="University/School"
+                        name="univSchool"
+                        id="universitySchool"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.student.univ_school}
+                        value={this.state.student.univSchool}
                         onChange={this.onChange}
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Bio">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="bio">
                         Bio
                     </label>
                     <input
                         className="form-control"
                         name="bio"
-                        id="Bio"
+                        id="bio"
                         type="text"
                         placeholder="Bio"
                         value={this.state.student.bio}
@@ -159,14 +180,14 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Picture">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="picture">
                         Profile picture
                     </label>
                     <input
                         className="form-control"
                         name="picture"
-                        id="Picture"
+                        id="picture"
                         type="file"
                         placeholder="Picture"
                         value={this.state.student.picture}
@@ -174,14 +195,14 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Phone number">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="phoneNumber">
                         Phone number
                     </label>
                     <input
                         className="form-control"
                         name="phone"
-                        id="Phone number"
+                        id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
                         value={this.state.student.phone}
@@ -189,69 +210,92 @@ class Form_Register_Student extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
-                        name="job-cat"
-                        htmlFor="Job categories"
+                        className="control-label"
+                        name="jobCat"
+                        htmlFor="jobCategories"
                     >
                         Pick up to 8 jobs categories
                     </label>
                     <input
                         className="form-control"
                         name="index1"
-                        id="job category1"
+                        id="jobCategory1"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index1}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category2"
+                        name="index2"
+                        id="jobCategory2"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index2}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category3"
+                        name="index3"
+                        id="jobCategory3"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index3}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category4"
+                        name="index4"
+                        id="jobCategory4"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index4}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category5"
+                        name="index5"
+                        id="jobCategory5"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index5}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category6"
+                        name="index6"
+                        id="jobCategory6"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index6}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category7"
+                        name="index7"
+                        id="jobCategory7"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index7}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        id="job category8"
+                        name="index8"
+                        id="jobCategory8"
                         type="text"
                         placeholder="Select"
+                        value={this.state.student.index8}
+                        onChange={this.onChange}
                         list="jobs"
                     />
                     <datalist id="jobs">
@@ -270,10 +314,10 @@ class Form_Register_Student extends Component {
                     </datalist>
                 </div>
 
-                <div className="form__submit-btn-wrapper">
+                <div>
                     {this.props.currentlySending
                         ? <LoadingButton />
-                        : <button className="btn btn-primary btn-lg" type="submit">
+                        : <button className="btn btn-primary" type="submit">
                             {this.props.btnText}
                         </button>}
                 </div>
@@ -282,18 +326,4 @@ class Form_Register_Student extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {
-        student: state.registerStudent.student.response
-    };
-}
-
-//I leave it, could be useful later......
-////Form_Register_Student.propTypes = {
-    ////onSubmit: React.PropTypes.func.isRequired,
-    ////btnText: React.PropTypes.string.isRequired,
-    ////data: React.PropTypes.object.isRequired
-////};
-
-export default connect(mapStateToProps, actions)(Form_Register_Student);
-//export default Form_Register_Student;
+export default Form_Register_Student;
