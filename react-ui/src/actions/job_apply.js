@@ -25,7 +25,6 @@ export const submitJobApplication = job_id => dispatch => {
 };
 
 export const fetchJobs = () => dispatch => {
-    console.log('inside actions');
     dispatch({
         type: FETCH_JOBS,
         status: 'pending'

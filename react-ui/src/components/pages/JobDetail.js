@@ -33,10 +33,9 @@ class JobDetail extends Component {
         this.props.fetchJobs;
     }
 
-    // Ideally we want to somehow fetch jobs if there is no this.props.jobs
     renderJob() {
         if (!this.props.jobs) {
-            return <h2>Something went wrong</h2>;
+            return <h2>Loading</h2>;
         }
         if (this.props.applied.includes(this.props.job_id)) {
             return <h2>APPLICATION SUCCESSFUL</h2>;
@@ -102,17 +101,12 @@ function mapStateToProps(state, ownProps) {
     const searchJobs = state.searchJobs;
     const jobsRequestResponse =
         searchJobs.jobsRequest && searchJobs.jobsRequest.response;
-    let jobs = jobsRequestResponse && jobsRequestResponse.jobsList;
+    var jobs = jobsRequestResponse && jobsRequestResponse.jobsList;
 
     if (!jobs) {
-      if( (state.applyJob.jobsRequest.response) {
-        console.log(
-          'inside mapStateToProps !jobs'
-          state.applyJob.jobsRequest.response.jobsList
-        );
-        let jobs = state.applyJob.jobsRequest.response.jobsList;
-
-      })
+        if (state.applyJob.jobsRequest.response) {
+            jobs = state.applyJob.jobsRequest.response.jobsList;
+        }
     }
 
     return {
