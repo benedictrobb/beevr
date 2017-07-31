@@ -23,6 +23,10 @@ class JobDetail extends Component {
         this.props.submitJobApplication(this.props.job_id);
     }
 
+    fetchJobs() {
+        this.props.fetchJobs;
+    }
+
     // Ideally we want to somehow fetch jobs if there is no this.props.jobs
     renderJob() {
         if (!this.props.jobs) {
