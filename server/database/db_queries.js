@@ -5,9 +5,9 @@ data = {};
 data.getJobs = (callback, term) => {
     if (!term) {
         dbConnection.query(
-            `SELECT * FROM jobs
+            `SELECT * FROM jobs 
                 WHERE end_date < NOW()
-                ORDER BY start_date
+                ORDER BY start_date 
                 LIMIT 10;`,
             (err, res) => {
                 if (err) {
