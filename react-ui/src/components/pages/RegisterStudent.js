@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Form_Register_Student from '../Form_Register_Student.js';
-import LoadingIndicator from '../LoadingIndicator.js';
 import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 import * as actions from '../../actions/register_student.js';
 import {connect} from 'react-redux';

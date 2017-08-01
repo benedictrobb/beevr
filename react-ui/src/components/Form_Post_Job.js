@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
-import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
@@ -288,7 +287,7 @@ class Form_Post_Job extends Component {
                 </div>
                 <div>
                     {this.props.currentlySending
-                        ? <LoadingButton />
+                        ? <div />
                         : <button className="btn btn-primary" type="submit">
                               Submit
                         </button>}
