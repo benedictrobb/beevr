@@ -27,26 +27,26 @@ class JobDetail extends Component {
     }
 
     submitJobApplication() {
-        this.props.submitJobApplication(this.props.job_id);
+        this.props.submitJobApplication(this.props.jobId);
     }
 
     renderJob() {
         if (!this.props.jobs) {
             return <h2>Loading</h2>;
         }
-        if (this.props.applied.includes(this.props.job_id)) {
+        if (this.props.applied.includes(this.props.jobId)) {
             return <h2>APPLICATION SUCCESSFUL</h2>;
         }
         var jobObj = {};
         var arr = this.props.jobs;
-        for (var i = 0; i < arr.length; ++i) jobObj[arr[i].job_id] = arr[i];
+        for (var i = 0; i < arr.length; ++i) jobObj[arr[i].jobId] = arr[i];
 
-        var job = jobObj[this.props.job_id];
+        var job = jobObj[this.props.jobId];
 
         return (
-            <div key={job.job_id}>
+            <div key={job.jobId}>
                 <h2>
-                    {job.job_title}
+                    {job.jobTitle}
                 </h2>
                 <h4>
                     <label>Category: </label>
@@ -57,19 +57,19 @@ class JobDetail extends Component {
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {this.formatDate(job.start_date)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {this.formatTime(job.start_time)}
+                    {this.formatTime(job.startTime)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {this.formatDate(job.end_date)}
+                    {this.formatDate(job.endDate)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {this.formatTime(job.end_time)}
+                    {this.formatTime(job.endTime)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -113,7 +113,7 @@ function mapStateToProps(state, ownProps) {
 
     return {
         applied: state.applyJob.applied,
-        job_id: ownProps.params.id,
+        jobId: ownProps.params.id,
         status: state.applyJob.status,
         jobs
     };
