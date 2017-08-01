@@ -1,3 +1,4 @@
+const fs = require('fs');
 const dbConnection = require('./db_connection.js');
 
 data = {};
@@ -137,8 +138,8 @@ data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(
             first_name, last_name, email, DOB, univ_school, 
-            bio, picture, phone, job_cat, password_hash)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
+            bio, phone, job_cat, password_hash)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
         [
             student.firstName,
             student.lastName,
@@ -146,7 +147,6 @@ data.postStudents = (student, callback) => {
             student.DOB,
             student.univSchool,
             student.bio,
-            student.picture,
             student.phone,
             student.jobCat,
             student.passwordHash,
@@ -158,6 +158,23 @@ data.postStudents = (student, callback) => {
             callback(null, res.rows);
         }
     );
+};
+
+data.postAvatar = (file, callback) => {
+    fs.readFile(file, 'hex', (err, imgData) => {
+        imgData = '\\x' + imgData;
+        dbConnection.query(
+            `INSERT INTO avatars(picture) 
+                VALUES ($1);`,
+            [imgData],
+            (err, writeResult) => {
+                if (err) {
+                    return callback(err);
+                }
+                callback(null, writeResult);
+            }
+        );
+    });
 };
 
 data.residentExists = (email, callback) => {
@@ -179,8 +196,8 @@ data.postResidents = (resident, callback) => {
     dbConnection.query(
         `INSERT INTO residents(
             first_name, last_name, email, DOB, 
-            address, bio, picture, phone, password_hash) 
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
+            address, bio, phone, password_hash) 
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8);`,
         [
             resident.firstName,
             resident.lastName,
@@ -188,7 +205,6 @@ data.postResidents = (resident, callback) => {
             resident.DOB,
             resident.address,
             resident.bio,
-            resident.picture,
             resident.phone,
             resident.passwordHash,
         ],
