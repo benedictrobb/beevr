@@ -10,16 +10,16 @@ export const submitJobApplication = job_id => dispatch => {
     .get('/api/apply')
     .then(response => {
       dispatch({
-          type: APPLY_JOB,
-          status: 'success',
-          response: job_id
+        type: APPLY_JOB,
+        status: 'success',
+        response: job_id
       });
     })
     .catch(error => {
       dispatch({
-          type: APPLY_JOB,
-          status: 'error',
-          error: error
+        type: APPLY_JOB,
+        status: 'error',
+        error: error
       });
     });
 };
