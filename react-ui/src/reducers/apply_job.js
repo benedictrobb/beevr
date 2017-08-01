@@ -2,6 +2,7 @@ import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 
 const initialState = {
     applied: [],
+    isLoading= false,
     jobsRequest: {},
 };
 
