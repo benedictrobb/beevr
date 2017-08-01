@@ -5,7 +5,7 @@ import {CHECK_EMAIL} from '../constants/action_types.js';
 export const registerResident = resident => dispatch => {
     dispatch({
         type: REGISTER_RESIDENT,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -14,14 +14,14 @@ export const registerResident = resident => dispatch => {
             dispatch({
                 type: REGISTER_RESIDENT,
                 status: 'success',
-                response: response.confirm
+                response: response.confirm,
             });
         })
         .catch(error => {
             dispatch({
                 type: REGISTER_RESIDENT,
                 status: 'error',
-                error: 'I am an ERROR!'
+                error: 'I am an ERROR!',
             });
         });
 };
@@ -29,7 +29,7 @@ export const registerResident = resident => dispatch => {
 export const checkIfResidentExists = email => dispatch => {
     dispatch({
         type: CHECK_EMAIL,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -38,14 +38,14 @@ export const checkIfResidentExists = email => dispatch => {
             dispatch({
                 type: CHECK_EMAIL,
                 status: 'success',
-                response: response.data
+                response: response.data,
             });
         })
         .catch(error => {
             dispatch({
                 type: CHECK_EMAIL,
                 status: 'error',
-                error: error.message
+                error: error.message,
             });
         });
 };

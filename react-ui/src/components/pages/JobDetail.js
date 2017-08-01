@@ -103,7 +103,7 @@ function mapStateToProps(state, ownProps) {
         applied: state.applyJob.applied,
         job_id: ownProps.params.id,
         status: state.applyJob.status,
-        jobs
+        jobs,
     };
 }
 

@@ -7,7 +7,7 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            data: {}
+            data: {},
         };
     }
 

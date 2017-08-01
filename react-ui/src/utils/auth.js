@@ -12,14 +12,14 @@ var auth = {
    * @param  {Function} callback Called after a user was logged in on the remote server
    */
     login(username, password, callback) {
-    // If there is a token in the localStorage, the user already is
-    // authenticated
+        // If there is a token in the localStorage, the user already is
+        // authenticated
         if (this.loggedIn()) {
             callback(true);
             return;
         }
         // Post a fake request (see below)
-        request.post('/login', { username, password }, (response) => {
+        request.post('/login', {username, password}, response => {
             // If the user was authenticated successfully, save a random token to the
             // localStorage
             if (response.authenticated) {
@@ -54,8 +54,8 @@ var auth = {
    * @param  {Function} callback Called after a user was registered on the remote server
    */
     register(username, password, callback) {
-    // Post a fake request
-        request.post('/register', { username, password }, (response) => {
+        // Post a fake request
+        request.post('/register', {username, password}, response => {
             // If the user was successfully registered, log them in
             if (response.registered === true) {
                 this.login(username, password, callback);
@@ -65,7 +65,7 @@ var auth = {
             }
         });
     },
-    onChange() {}
+    onChange() {},
 };
 
 module.exports = auth;

@@ -21,7 +21,6 @@ class RegisterStudent extends Component {
             </div>
         );
     }
-
 }
 
 function mapStateToProps(state) {

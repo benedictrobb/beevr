@@ -5,7 +5,7 @@ import {CHECK_EMAIL} from '../constants/action_types.js';
 export const registerStudent = student => dispatch => {
     dispatch({
         type: REGISTER_STUDENT,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -14,14 +14,14 @@ export const registerStudent = student => dispatch => {
             dispatch({
                 type: REGISTER_STUDENT,
                 status: 'success',
-                response: response.data.confirm
+                response: response.data.confirm,
             });
         })
         .catch(error => {
             dispatch({
                 type: REGISTER_STUDENT,
                 status: 'error',
-                error: error.message
+                error: error.message,
             });
         });
 };
@@ -29,23 +29,23 @@ export const registerStudent = student => dispatch => {
 export const checkIfStudentExists = email => dispatch => {
     dispatch({
         type: CHECK_EMAIL,
-        status: 'pending'
+        status: 'pending',
     });
-    
+
     axios
         .post('api/student', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,
                 status: 'success',
-                response: response.data
+                response: response.data,
             });
         })
         .catch(error => {
             dispatch({
                 type: CHECK_EMAIL,
                 status: 'error',
-                error: error.message
+                error: error.message,
             });
         });
 };

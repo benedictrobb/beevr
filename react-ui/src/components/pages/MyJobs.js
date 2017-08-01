@@ -80,7 +80,7 @@ class MyJobs extends Component {
 
 function mapStateToProps(state) {
     return {
-        myJobs: state.fetchMyJobs.jobsRequest.response
+        myJobs: state.fetchMyJobs.jobsRequest.response,
     };
 }
 

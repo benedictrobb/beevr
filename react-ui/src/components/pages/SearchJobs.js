@@ -175,7 +175,7 @@ function mapStateToProps(state) {
     return {
         jobs: state.searchJobs.jobsRequest.response,
         SearchTerm: state.searchJobs.searchTerm,
-        selectedJob: state.searchJobs.selectedJob
+        selectedJob: state.searchJobs.selectedJob,
     };
 }
 

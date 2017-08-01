@@ -35,7 +35,7 @@ class Form_Register_Student extends Component {
             //browserHistory.push('/dashboard');
         }
     }
-    
+
     onChange(evt) {
         var student = this.state.student;
         this.setState({
@@ -148,10 +148,7 @@ class Form_Register_Student extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label
-                        className="control-label"
-                        htmlFor="universitySchool"
-                    >
+                    <label className="control-label" htmlFor="universitySchool">
                         University/School
                     </label>
                     <input
