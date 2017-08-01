@@ -13,36 +13,36 @@ class Nav extends Component {
                     ? <LoadingButton className="btn--nav" />
                     : <a
                         href="#"
-                        className="btn btn--login btn--nav"
+                        className="btn"
                         onClick={this._logout.bind(this)}
                     >
                             Logout
                     </a>}
             </div>
             : <div>
-                <Link to="/" className="btn btn--login btn--nav">
+                <Link to="/" className="btn">
                       Home
                 </Link>
-                <Link to="/registerstudent" className="btn btn--login btn--nav">
+                <Link to="/registerstudent" className="btn">
                       Register As Student
                 </Link>
                 <Link
                     to="/registerresident"
-                    className="btn btn--login btn--nav"
+                    className="btn"
                 >
                       Register As Resident
                 </Link>
-                <Link to="/login" className="btn btn--login btn--nav">
+                <Link to="/login" className="btn">
                       Login
                 </Link>
             </div>;
 
         return (
-            <div className="nav">
-                <div className="nav__wrapper">
+            <nav className="navbar navbar-defaults">
+                <div className="container-fluid">
                     {navButtons}
                 </div>
-            </div>
+            </nav>
         );
     }
 

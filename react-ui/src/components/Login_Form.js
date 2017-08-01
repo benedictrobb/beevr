@@ -33,13 +33,13 @@ class LoginForm extends Component {
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Email">
+                    <label className="control-label" htmlFor="email">
                         Email
                     </label>
                     <input
                         className="form-control"
                         name="email"
-                        id="Email"
+                        id="email"
                         type="email"
                         value={this.state.email}
                         placeholder="email"

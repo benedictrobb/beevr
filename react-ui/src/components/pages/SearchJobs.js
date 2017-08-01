@@ -88,7 +88,7 @@ class BrowseJobs extends Component {
         if (!jobsList) {
             return (
                 <form onSubmit={this.onSubmit}>
-                    <label className="form__field-label" htmlFor="Browse Jobs">
+                    <label className="control-label" htmlFor="Browse Jobs">
                         Browse Jobs
                     </label>
                     <input
@@ -125,7 +125,7 @@ class BrowseJobs extends Component {
                 <section className="text-section">
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Jobs"
                         >
                             Browse Jobs

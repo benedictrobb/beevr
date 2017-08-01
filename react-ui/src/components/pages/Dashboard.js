@@ -23,12 +23,12 @@ class Dashboard extends Component {
         return (
             <article>
                 <section className="text-section">
-                    <Link to="/browsejobs" className="btn btn--login btn--nav">
+                    <Link to="/browsejobs" className="btn">
                         <h2>Student</h2>
                     </Link>
                     <Link
                         to="/browsestudents"
-                        className="btn btn--login btn--nav"
+                        className="btn"
                     >
                         <h2>Resident</h2>
                     </Link>

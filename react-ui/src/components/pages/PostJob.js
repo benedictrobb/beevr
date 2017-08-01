@@ -19,13 +19,11 @@ import LoadingIndicator from '../LoadingIndicator.js';
 class PostJob extends Component {
     render() {
         return (
-            <div className="form-page__wrapper">
-                <div className="form-page__form-wrapper">
-                    <div className="form-page__form-header">
-                        <h2 className="form-page__form-heading">Post a Job</h2>
-                    </div>
+            <div className="row">
+                <div className="col-md-4 col-md-offset-4">
+                    <h2>Post a Job</h2>
                     {/* While the form is sending, show the loading indicator,
-                        otherwise show "Register" on the submit button */}
+                    otherwise show "Register" on the submit button */}
                     <Form_Post_Job btnText={'Submit'} />
                 </div>
             </div>

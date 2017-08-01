@@ -147,7 +147,7 @@ class Form_Post_Job extends Component {
             return <div>Loading</div>;
         }
         return (
-            <form className="form-group" onSubmit={this._onSubmit}>
+            <form className="form" onSubmit={this._onSubmit}>
                 <p>
                     <div
                         className={
@@ -157,8 +157,8 @@ class Form_Post_Job extends Component {
                         {this.state.errorMessage}
                     </div>
                 </p>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Start Date">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Start Date">
                         Start Date
                     </label>
                     <input
@@ -170,8 +170,8 @@ class Form_Post_Job extends Component {
                         onChange={this._onChangeStartDate}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Job Title">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Job Title">
                         Job Title
                     </label>
                     <input
@@ -183,8 +183,8 @@ class Form_Post_Job extends Component {
                         onChange={this._onChangeTitle}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Start Time">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Start Time">
                         Start Time
                     </label>
                     <input
@@ -197,8 +197,8 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="End Date">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="End Date">
                         End Date
                     </label>
                     <input
@@ -211,8 +211,8 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="End Time">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="End Time">
                         End Time
                     </label>
                     <input
@@ -225,7 +225,7 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <label className="form__field-label" htmlFor="Job categories">
+                <label className="control-label" htmlFor="Job categories">
                     Select a job category
                 </label>
                 <input
@@ -252,8 +252,8 @@ class Form_Post_Job extends Component {
                     <option value="Other" />
                 </datalist>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Rate">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Rate">
                         Rate
                     </label>
                     <input
@@ -267,9 +267,9 @@ class Form_Post_Job extends Component {
                     <label htmlFor="£">£</label>
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
+                        className="control-label"
                         htmlFor="Job description"
                     >
                         Job description

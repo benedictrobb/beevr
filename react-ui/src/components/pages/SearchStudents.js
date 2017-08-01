@@ -52,7 +52,7 @@ class BrowseStudents extends Component {
                 <section>
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Students"
                         >
                             Browse Students
@@ -96,7 +96,7 @@ class BrowseStudents extends Component {
                 <section className="text-section">
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Students"
                         >
                             Browse Students
