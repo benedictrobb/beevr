@@ -55,7 +55,6 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         handler: (request, reply) => {
-            console.log('inside server');
             data.getJobs((err, res) => {
                 if (err) {
                     return reply(Boom.serverUnavailable('unavailable: ' + err));
@@ -65,17 +64,17 @@ server.register(plugins, err => {
                     message: 'Welcome to BEEVR!',
                     jobsList: res.map(element => {
                         return {
-                            job_id: element.job_id,
-                            job_title: element.job_title,
-                            start_date: element.start_date,
-                            start_time: element.start_time,
-                            end_date: element.end_date,
-                            end_time: element.end_time,
+                            jobId: element.job_id,
+                            jobTitle: element.job_title,
+                            startDate: element.start_date,
+                            startTime: element.start_time,
+                            endDate: element.end_date,
+                            endTime: element.end_time,
                             description: element.description,
-                            category: element.category,
+                            jobCat: element.category,
                             rate: element.rate,
-                            student_id: element.student_id,
-                            resident_id: element.resident_id,
+                            studentId: element.student_id,
+                            residentId: element.resident_id,
                         };
                     }),
                 });
