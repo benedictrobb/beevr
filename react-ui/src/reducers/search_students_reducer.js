@@ -21,7 +21,7 @@ export default (state = initialState, action) => {
     case SET_TERM:
         return {
             ...state,
-            term: action.response
+            searchTerm: action.response
         };
 
     default:
