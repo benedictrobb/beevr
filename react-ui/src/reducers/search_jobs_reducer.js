@@ -23,7 +23,7 @@ export default (state = initialState, action) => {
     case SET_TERM:
         return {
             ...state,
-            term: action.response
+            searchTerm: action.response
         };
 
     case SET_SELECTED_JOB:
@@ -35,6 +35,4 @@ export default (state = initialState, action) => {
     default:
         return state;
     }
-
-    console.log('state in reducer is ', state);
 };

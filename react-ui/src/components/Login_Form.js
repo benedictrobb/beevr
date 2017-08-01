@@ -17,19 +17,9 @@ class LoginForm extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var state = this.props.state;
-        this.setState({errorMessage: ''}, () => {
-            this.props.loginRequest(this.state.email, this.state.password);
-        });
-        (err) => this.setState({
-            errorMessage: err.data.error
-        });
-        console.log('hjhjh',this.state.errorMessage);
+        this.setState({errorMessage: ''});
+        this.props.loginRequest(this.state.email, this.state.password);
     };
-
-    //onSubmit(evt) {
-    //evt.preventDefault();
-    //this.props.login(this.state.username, this.state.password);
-    //}
 
     onChange(evt) {
         var email = this.state.email;
@@ -40,10 +30,8 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="Email">
                         Email
@@ -84,18 +72,5 @@ class LoginForm extends Component {
         );
     }
 }
-
-//LoginForm.propTypes = {
-//onSubmit: React.PropTypes.func.isRequired,
-//btnText: React.PropTypes.string.isRequired,
-//data: React.PropTypes.object.isRequired
-//};
-
-//I leave it, could be useful later......
-////Form_Register_Student.propTypes = {
-////onSubmit: React.PropTypes.func.isRequired,
-////btnText: React.PropTypes.string.isRequired,
-////data: React.PropTypes.object.isRequired
-////};
 
 export default LoginForm;

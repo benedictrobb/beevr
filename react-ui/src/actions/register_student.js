@@ -31,9 +31,9 @@ export const checkIfStudentExists = email => dispatch => {
         type: CHECK_EMAIL,
         status: 'pending'
     });
-
+    
     axios
-        .get('api/student', {params: {email}})
+        .post('api/student', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,

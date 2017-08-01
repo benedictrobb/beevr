@@ -56,12 +56,11 @@ class Form_Post_Job extends Component {
             error_message = 'Job Description cannot be empty';
         }
 
-        this.setState({errorMessage: error_message}, () => {
-            if (!this.state.errorMessage) {
-                this.props.postJob(this.state.jobData);
-                browserHistory.push('/jobposted');
-            }
-        });
+        this.setState({errorMessage: error_message});
+        if (!error_message) {
+            this.props.postJob(this.state.jobData);
+            browserHistory.push('/jobposted');
+        }
     }
 
     _onChangeStartDate(evt) {
@@ -288,8 +287,7 @@ class Form_Post_Job extends Component {
                         Job description
                     </textarea>
                 </div>
-
-                <div className="form__submit-btn-wrapper">
+                <div>
                     {this.props.currentlySending
                         ? <LoadingButton />
                         : <button className="btn btn-primary" type="submit">

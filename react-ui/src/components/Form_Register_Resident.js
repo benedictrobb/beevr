@@ -16,12 +16,9 @@ class Form_Register_Resident extends Component {
     }
 
     checkEmail(value) {
-        console.log(this.props);
-        console.log(this.state);
         value = this.state.resident.email;
         if (value !== '') {
             this.props.checkIfResidentExists(value);
-            console.log(value);
         }
     }
 
@@ -31,11 +28,10 @@ class Form_Register_Resident extends Component {
         if (!resident.email) {
             var error_message = 'Email cannot be empty';
         }
-        this.setState({errorMessage: error_message}, () => {
-            if (!this.state.errorMessage) {
-                this.props.registerResident(this.state.resident);
-            }
-        });
+        this.setState({errorMessage: error_message});
+        if (!error_message) {
+            this.props.registerResident(this.state.resident);
+        }
     }
 
     onChange(evt) {
@@ -53,41 +49,41 @@ class Form_Register_Resident extends Component {
             <form className="form" onSubmit={this.onSubmit}>
                 <ErrorMessage />
                 <div className="form-group">
-                    <label className="control-label" htmlFor="First Name">
+                    <label className="control-label" htmlFor="firstName">
                         First Name
                     </label>
                     <input
                         className="form-control"
-                        name="first_name"
-                        id="First Name"
+                        name="firstName"
+                        id="firstName"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.resident.first_name}
+                        value={this.state.resident.firstName}
                         onChange={this.onChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Last Name">
+                    <label className="control-label" htmlFor="lastName">
                         Last Name
                     </label>
                     <input
                         className="form-control"
-                        name="last_name"
+                        name="lastName"
                         id="Last Name"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.resident.last_name}
+                        value={this.state.resident.lastName}
                         onChange={this.onChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Email">
+                    <label className="control-label" htmlFor="email">
                         Email
                     </label>
                     <input
                         className="form-control"
                         name="email"
-                        id="Email"
+                        id="email"
                         type="email"
                         value={this.state.resident.email}
                         placeholder="email"
@@ -113,7 +109,7 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Confirm password">
+                    <label className="control-label" htmlFor="confirmPassword">
                         Confirm password
                     </label>
                     <input
@@ -127,13 +123,13 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Date Of Birth">
+                    <label className="control-label" htmlFor="dateOfBirth">
                         Date of Birth
                     </label>
                     <input
                         className="form-control"
                         name="DOB"
-                        id="Date Of Birth"
+                        id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
                         value={this.state.resident.DOB}
@@ -155,27 +151,27 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Bio">
+                    <label className="control-label" htmlFor="bio">
                         Bio
                     </label>
                     <input
                         className="form-control"
                         name="bio"
-                        id="Bio"
+                        id="bio"
                         type="text"
-                        placeholder="Bio"
+                        placeholder="Tell us more about you..."
                         value={this.state.resident.bio}
                         onChange={this.onChange}
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Picture">
+                    <label className="control-label" htmlFor="picture">
                         Profile picture
                     </label>
                     <input
                         className="form-control"
                         name="picture"
-                        id="Picture"
+                        id="picture"
                         type="file"
                         placeholder="Picture"
                         value={this.state.resident.picture}
@@ -183,13 +179,13 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Phone number">
+                    <label className="control-label" htmlFor="phoneNumber">
                         Phone number
                     </label>
                     <input
                         className="form-control"
                         name="phone"
-                        id="Phone number"
+                        id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
                         value={this.state.resident.phone}
@@ -207,12 +203,5 @@ class Form_Register_Resident extends Component {
         );
     }
 }
-
-//I leave it, could be useful later......
-//Form_Register_Resident.propTypes = {
-//onSubmit: React.PropTypes.func.isRequired,
-//btnText: React.PropTypes.string.isRequired,
-//data: React.PropTypes.object.isRequired
-//};
 
 export default Form_Register_Resident;
