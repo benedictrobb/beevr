@@ -72,7 +72,7 @@ class JobDetail extends Component {
                 </p>
 
                 <div>
-                    {this.props.isLoading
+                    {this.props.status === 'pending'
                         ? <LoadingIndicator />
                         : <button
                             className="btn btn primary"
@@ -102,7 +102,7 @@ function mapStateToProps(state, ownProps) {
     return {
         applied: state.applyJob.applied,
         job_id: ownProps.params.id,
-        isLoading: state.applyJob.isLoading,
+        status: state.applyJob.status,
         jobs
     };
 }

@@ -18,7 +18,7 @@ const server = new Hapi.Server();
 const PORT = process.env.PORT || 4000;
 
 server.connection({
-    port: PORT,
+    port: PORT
 });
 
 const plugins = [inert, blipp, cookieAuth];
@@ -27,14 +27,14 @@ server.register(plugins, err => {
     if (err) throw err;
 
     console.log('=> Registered plugins:', {
-        plugins: _.keysIn(server.registrations).join(', '),
+        plugins: _.keysIn(server.registrations).join(', ')
     });
 
     const cookieAuthOptions = {
         password: process.env.COOKIE_PASSWORD,
         cookie: 'loggedIn',
         isSecure: false,
-        ttl: 24 * 60 * 60 * 1000,
+        ttl: 24 * 60 * 60 * 1000
     };
 
     server.auth.strategy('session', 'cookie', 'optional', cookieAuthOptions);
@@ -46,9 +46,9 @@ server.register(plugins, err => {
             directory: {
                 path: './react-ui/build',
                 listing: false,
-                index: true,
-            },
-        },
+                index: true
+            }
+        }
     });
 
     server.route({
@@ -64,21 +64,22 @@ server.register(plugins, err => {
                     message: 'Welcome to BEEVR!',
                     jobsList: res.map(element => {
                         return {
-                            jobId: element.job_id,
-                            startDate: element.start_date,
-                            startTime: element.start_time,
-                            endDate: element.end_date,
-                            endTime: element.end_time,
+                            job_id: element.job_id,
+                            job_title: element.job_title,
+                            start_date: element.start_date,
+                            start_time: element.start_time,
+                            end_date: element.end_date,
+                            end_time: element.end_time,
                             description: element.description,
-                            jobCat: element.category,
+                            category: element.category,
                             rate: element.rate,
-                            studentId: element.student_id,
-                            residentId: element.resident_id,
+                            student_id: element.student_id,
+                            resident_id: element.resident_id
                         };
-                    }),
+                    })
                 });
             }, request.url.query.term);
-        },
+        }
     });
 
     server.route({
@@ -91,10 +92,10 @@ server.register(plugins, err => {
                 }
                 reply({
                     name: 'newJob',
-                    message: 'Job posted succesfully!',
+                    message: 'Job posted succesfully!'
                 });
             });
-        },
+        }
     });
 
     server.route({
@@ -117,13 +118,13 @@ server.register(plugins, err => {
                                 univSchool: element.univ_school,
                                 bio: element.bio,
                                 picture: element.picture,
-                                jobCat: element.job_cat,
+                                jobCat: element.job_cat
                             };
-                        }),
+                        })
                     });
                 }
             }, request.url.query.searchTerm);
-        },
+        }
     });
 
     server.route({
@@ -136,7 +137,7 @@ server.register(plugins, err => {
                 }
                 reply(res.exists);
             });
-        },
+        }
     });
 
     server.route({
@@ -159,12 +160,12 @@ server.register(plugins, err => {
                             name: 'student',
                             status: 'success',
                             message: `Registration successful!
-                            Welcome to BEEVR!`,
+                            Welcome to BEEVR!`
                         });
                     }
                 );
             });
-        },
+        }
     });
 
     server.route({
@@ -177,7 +178,7 @@ server.register(plugins, err => {
                 }
                 reply(res.exists);
             });
-        },
+        }
     });
 
     server.route({
@@ -200,12 +201,12 @@ server.register(plugins, err => {
                             name: 'resident',
                             status: 'success',
                             message: `Registration successful!
-                            Welcome to BEEVR!`,
+                            Welcome to BEEVR!`
                         });
                     }
                 );
             });
-        },
+        }
     });
 
     server.route({
@@ -223,11 +224,11 @@ server.register(plugins, err => {
                     reply(Boom.internal('Failed to send email', 500));
                 } else {
                     reply({
-                        message: 'Email sent!',
+                        message: 'Email sent!'
                     });
                 }
             });
-        },
+        }
     });
 
     server.route({
@@ -259,12 +260,12 @@ server.register(plugins, err => {
                             status: 'success',
                             isAuthenticated: true,
                             id: res.id,
-                            role: res.role,
+                            role: res.role
                         });
                     }
                 );
             });
-        },
+        }
     });
 
     //student is hardcoded to 2 until we have session management capacity
@@ -295,13 +296,13 @@ server.register(plugins, err => {
                                 jobCat: element.category,
                                 rate: element.rate,
                                 studentId: element.student_id,
-                                residentId: element.resident_id,
+                                residentId: element.resident_id
                             };
-                        }),
+                        })
                     });
                 }
             }, 2);
-        },
+        }
     });
 
     server.route({
@@ -311,9 +312,9 @@ server.register(plugins, err => {
             reply({
                 name: pkg.name,
                 version: pkg.version,
-                message: 'Welcome to BEEVR!',
+                message: 'Welcome to BEEVR!'
             });
-        },
+        }
     });
 
     server.start(err => {
