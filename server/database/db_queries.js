@@ -112,7 +112,7 @@ data.getMyJobs = (callback, student_id) => {
             if (err) {
                 return callback(err);
             }
-            callback(null, res.rows[0]);
+            callback(null, res.rows);
         }
     );
 };
