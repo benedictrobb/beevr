@@ -200,20 +200,19 @@ data.postResidents = (resident, callback) => {
         }
     );
 };
-
-//student id hardcoded until we have cookie on master
+// student id hardcoded until we have cookie on master
 data.deleteApplication = (job_id, callback) => {
-    dbConnection.query(
-        'UPDATE jobs SET student_id = array_remove(student_id, \'2\') WHERE job_id = $1',
-        [job_id],
-        (err, res) => {
-            if (err) {
-                callback(err);
-            } else {
-                callback(null, res);
-            }
-        }
-    );
+  dbConnection.query(
+    'UPDATE jobs SET student_id = array_remove(student_id, \'2\') WHERE job_id = $1',
+    [job_id],
+    (err, res) => {
+      if (err) {
+        callback(err);
+      } else {
+        callback(null, res);
+      }
+    }
+  );
 };
 
 data.postJobs = (jobsObject, callback) => {
