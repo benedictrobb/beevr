@@ -2,7 +2,7 @@ import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 
 const initialState = {
     applied: [],
-    jobsRequest: {}
+    jobsRequest: {},
 };
 
 export default (state = initialState, action) => {
@@ -12,17 +12,24 @@ export default (state = initialState, action) => {
             ...state,
             status: action.status,
             error: action.error,
-            applied: [...state.applied, action.response]
+            applied: [...state.applied, action.response],
         };
     case FETCH_JOBS:
-        return {
-            ...state,
-            jobsRequest: {
+        if (action.status === 'pending') {
+            return {
+                ...state,
+                status: action.status,
+                isLoading: true,
+            };
+        } else {
+            return {
+                ...state,
                 status: action.status,
                 error: action.error,
-                response: action.response
-            }
-        };
+                applied: [...state.applied, action.response],
+                isLoading: false,
+            };
+        }
     default:
         return state;
     }
