@@ -174,7 +174,7 @@ class BrowseJobs extends Component {
 function mapStateToProps(state) {
     return {
         jobs: state.searchJobs.jobsRequest.response,
-        SearchTerm: state.searchJobs.term,
+        SearchTerm: state.searchJobs.searchTerm,
         selectedJob: state.searchJobs.selectedJob
     };
 }

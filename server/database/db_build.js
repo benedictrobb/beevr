@@ -3,7 +3,7 @@ const fs = require('fs');
 const buildDatabase = () => {
     const connection = require('./db_connection.js');
     const dbSchema = fs
-        .readFileSync('./server/database/db_build.sql', 'utf-8')
+        .readFileSync('./server/database/db_build.sql', 'utf8')
         .toString();
 
     connection.query(dbSchema, (err, res) => {

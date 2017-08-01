@@ -35,16 +35,40 @@ data.getJobs = (callback, term) => {
 
 data.getStudents = (callback, term) => {
     if (!term) {
-        dbConnection.query('SELECT * FROM students LIMIT 10', (err, res) => {
-            if (err) {
-                return callback(err);
+        dbConnection.query(
+            `SELECT 
+                students.student_id, 
+                students.first_name, 
+                students.last_name, 
+                students.email, 
+                students.dob, 
+                students.univ_school, 
+                students.bio, 
+                students.picture, 
+                students.phone, 
+                students.job_cat
+                    FROM students LIMIT 10;`,
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                }
+                callback(null, res.rows);
             }
-
-            callback(null, res.rows);
-        });
+        );
     } else {
         dbConnection.query(
-            'SELECT * FROM students WHERE $1 = ANY (job_cat)',
+            `SELECT 
+                students.student_id, 
+                students.first_name, 
+                students.last_name, 
+                students.email, 
+                students.dob, 
+                students.univ_school, 
+                students.bio, 
+                students.picture, 
+                students.phone, 
+                students.job_cat 
+                    FROM students WHERE $1 = ANY (job_cat);`,
             [term],
             (err, res) => {
                 if (err) {
@@ -88,7 +112,7 @@ data.getMyJobs = (callback, student_id) => {
             if (err) {
                 return callback(err);
             }
-            callback(null, res.rows[0]);
+            callback(null, res.rows);
         }
     );
 };
@@ -103,7 +127,7 @@ data.studentExists = (email, callback) => {
             if (err) {
                 return callback(err);
             }
-            callback(null, res.rows);
+            callback(null, res.rows[0]);
         }
     );
 };
@@ -115,16 +139,16 @@ data.postStudents = (student, callback) => {
             bio, picture, phone, job_cat, password_hash)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
         [
-            student.first_name,
-            student.last_name,
+            student.firstName,
+            student.lastName,
             student.email,
             student.DOB,
-            student.univ_school,
+            student.univSchool,
             student.bio,
             student.picture,
             student.phone,
-            student.job_cat,
-            student.password_hash,
+            student.jobCat,
+            student.passwordHash,
         ],
         (err, res) => {
             if (err) {
@@ -157,15 +181,15 @@ data.postResidents = (resident, callback) => {
             address, bio, picture, phone, password_hash) 
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
         [
-            resident.first_name,
-            resident.last_name,
+            resident.firstName,
+            resident.lastName,
             resident.email,
             resident.DOB,
             resident.address,
             resident.bio,
             resident.picture,
             resident.phone,
-            resident.password_hash,
+            resident.passwordHash,
         ],
         (err, res) => {
             if (err) {

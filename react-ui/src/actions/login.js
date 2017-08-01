@@ -8,15 +8,13 @@ export const loginRequest = (email, password) => dispatch => {
     });
 
     axios
-        .get('/api/auth', {params: {email, password}})
+        .post('/api/auth', {email, password})
         .then(response => {
             dispatch({
                 type: SET_AUTH,
-                status: 'succes',
+                status: 'success',
                 response: response.confirm
-            })
-                .then(console.log(response))
-                .then();
+            });
         })
         .catch(error => {
             dispatch({
@@ -26,18 +24,3 @@ export const loginRequest = (email, password) => dispatch => {
             });
         });
 };
-
-        //const  = res.rows[0];
-        //bcrypt.compare(password, user.password, (err, isValid) => {
-          //if (err) throw err;
-          //if (isValid) {
-            //req.cookieAuth.set({ username });
-            //reply.redirect('/create-post');
-          //} else {
-            //reply.view('failed-login');
-          //}
-        //});
-      //});
-    //} else {
-      //reply.view('failed-login');
-    //}

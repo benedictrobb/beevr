@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/job_apply.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class JobDetail extends Component {
     constructor() {
@@ -69,12 +70,17 @@ class JobDetail extends Component {
                 <p>
                     {job.rate}
                 </p>
-                <button
-                    className="btn btn primary"
-                    onClick={this.submitJobApplication}
-                >
-                    APPLY
-                </button>
+
+                <div>
+                    {this.props.status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn primary"
+                            onClick={this.submitJobApplication}
+                        >
+                              APPLY
+                        </button>}
+                </div>
             </div>
         );
     }
@@ -96,6 +102,7 @@ function mapStateToProps(state, ownProps) {
     return {
         applied: state.applyJob.applied,
         job_id: ownProps.params.id,
+        status: state.applyJob.status,
         jobs
     };
 }

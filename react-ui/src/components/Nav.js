@@ -32,6 +32,11 @@ class Nav extends Component {
                 <Link to="/login" className="btn">
                       Login
                 </Link>
+                <Link to="/logout" className="btn"
+                    onClick={this._logout.bind(this)}
+                >
+                      Logout
+                </Link>
             </div>;
 
         return (

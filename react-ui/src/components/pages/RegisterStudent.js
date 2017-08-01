@@ -7,8 +7,6 @@ import {connect} from 'react-redux';
 
 class RegisterStudent extends Component {
     render() {
-        //const dispatch = this.props.dispatch;
-        //const {formState, currentlySending} = this.props.data;
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
@@ -24,20 +22,7 @@ class RegisterStudent extends Component {
         );
     }
 
-    // Register a user
-    //_register(username, password) {
-    //this.props.dispatch(_register(username, password));
-    //}
 }
-
-//function select(state) {
-//return {data: state};
-//}
-
-//onSubmit: React.PropTypes.func.isRequired,
-//btnText: React.PropTypes.string.isRequired,
-//data: React.PropTypes.object.isRequired
-//};
 
 function mapStateToProps(state) {
     return {
