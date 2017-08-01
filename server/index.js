@@ -267,6 +267,20 @@ server.register(plugins, err => {
         },
     });
 
+    server.route({
+        method: 'GET',
+        path: '/api/logout',
+        handler: (request, reply) => {
+            console.log(request);
+            request.cookieAuth.clear();
+            reply({
+                name: 'logout',
+                message: 'You have been successifully logged out from BEEVR',
+                status: 'success',
+            });
+        },
+    });
+
     //student is hardcoded to 2 until we have session management capacity
     server.route({
         method: 'GET',

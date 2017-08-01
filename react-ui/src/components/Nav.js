@@ -1,12 +1,14 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import {logout} from '../actions/AppActions';
+import {connect} from 'react-redux';
+import {logout} from '../actions/logout.js';
 import LoadingButton from './LoadingButton.js';
 
 class Nav extends Component {
     render() {
         // Render either the Log In and register buttons, or the logout button
         // based on the current authentication state.
+        console.log(this.state)
         const navButtons = this.props.loggedIn
             ? <div>
                 {this.props.currentlySending
@@ -14,7 +16,7 @@ class Nav extends Component {
                     : <a
                         href="#"
                         className="btn"
-                        onClick={this._logout.bind(this)}
+                        onClick={this.props.logout.bind(this)}
                     >
                             Logout
                     </a>}
@@ -32,8 +34,8 @@ class Nav extends Component {
                 <Link to="/login" className="btn">
                       Login
                 </Link>
-                <Link to="/logout" className="btn"
-                    onClick={this._logout.bind(this)}
+                <Link to="/" className="btn"
+                    onClick={this.props.logout}
                 >
                       Logout
                 </Link>
@@ -48,9 +50,23 @@ class Nav extends Component {
         );
     }
 
-    _logout() {
+    logout() {
+        var state = this.state;
+        this.setState({
+            logout: {...logout,
+                isAuthenticated: false,
+                loggedIn: false,
+            },
+        });
         this.props.dispatch(logout());
     }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+    return {
+        logout: state.logout,
+    };
+}
+
+export default connect(mapStateToProps, {logout})(Nav);
+//export default Nav;
