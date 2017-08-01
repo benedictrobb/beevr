@@ -111,7 +111,7 @@ server.register(plugins, err => {
 
     //unhardcode the job id
     server.route({
-        method: 'GET',
+        method: 'PUT',
         path: '/api/apply',
         handler: (request, reply) => {
             var to = ['rmrajaa@gmail.com'];
@@ -119,7 +119,7 @@ server.register(plugins, err => {
             var subject = 'New job application';
             var text =
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
-            data.sendApplication(request.url.query.job_id, (err, res) => {
+            data.submitApplication(request.payload.job_id, (err, res) => {
                 if (err) {
                     reply('Failed to connect load data from the database').code(
                         500
@@ -130,7 +130,9 @@ server.register(plugins, err => {
                             reply('Failed to send email').code(500);
                         } else {
                             reply({
-                                message: 'Email sent!'
+                                name: 'applyJob',
+                                message: 'Email sent!',
+                                applyJob: res
                             });
                         }
                     });
