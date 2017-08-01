@@ -1,19 +1,19 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import Categories from '../constants/job_categories.js';
+import categories from '../constants/job_categories.js';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onChangeJobCat = this.onChangeJobCat.bind(this);
+        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
             student: {
-                jobCat: {},
+                jobCategories: {},
             },
             errorMessage: '',
             isAuthenticated: false,
@@ -50,21 +50,21 @@ class Form_Register_Student extends Component {
         });
     }
 
-    onChangeJobCat(evt) {
+    onChangeJobCategories(evt) {
         var student = this.state.student;
-        var jobCat = student.jobCat;
+        var jobCategories = student.jobCategories;
         this.setState({
             student: {
                 ...student,
-                jobCat: [...jobCat, evt.target.value],
+                jobCategories: [...jobCategories, evt.target.value],
             },
         });
     }
 
     render() {
-        const options = Categories.map(function(elem) {
+        const options = categories.map(function(elem) {
             return (
-                <option value={Categories[elem]}>
+                <option value={categories[elem]}>
                     {elem}
                 </option>
             );
@@ -74,8 +74,6 @@ class Form_Register_Student extends Component {
             return <div>Loading</div>;
         }
         
-        console.log(options);
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -242,89 +240,89 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        name="jobCat"
+                        name="jobCategories"
                         htmlFor="jobCategories"
                     >
                         Pick up to 8 jobs categories
                     </label>
                     <input
                         className="form-control"
-                        name="cat1"
+                        name="category1"
                         id="jobCategory1"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat1}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category1}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat2"
+                        name="category2"
                         id="jobCategory2"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat2}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category2}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat3"
+                        name="category3"
                         id="jobCategory3"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat3}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category3}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat4"
+                        name="category4"
                         id="jobCategory4"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat4}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category4}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat5"
+                        name="category5"
                         id="jobCategory5"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat5}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category5}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat6"
+                        name="category6"
                         id="jobCategory6"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat6}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category6}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat7"
+                        name="category7"
                         id="jobCategory7"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat7}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category7}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="cat8"
+                        name="category8"
                         id="jobCategory8"
                         type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.jobCat.cat8}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category8}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <datalist id="jobs">

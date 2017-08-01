@@ -7,7 +7,7 @@ import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import isEmpty from 'lodash/isEmpty';
-import Categories from '../constants/job_categories.js';
+import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -144,9 +144,9 @@ class Form_Post_Job extends Component {
     }
 
     render() {
-        const options = Categories.map(function(elem) {
+        const options = categories.map(function(elem) {
             return (
-                <option value={Categories[elem]}>
+                <option value={categories[elem]}>
                     {elem}
                 </option>
             );
@@ -156,7 +156,6 @@ class Form_Post_Job extends Component {
             return <div>Loading</div>;
         }
         
-        console.log(this.state);
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
