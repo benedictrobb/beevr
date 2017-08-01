@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/job_apply.js';
-import LoadingIndicator from '../../utils/loading_indicator.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class JobDetail extends Component {
     constructor() {
