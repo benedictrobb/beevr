@@ -7,7 +7,13 @@ export const submitJobApplication = job_id => dispatch => {
     status: 'pending'
   });
   axios
+<<<<<<< HEAD
     .put('/api/apply',{'job_id': job_id})
+=======
+    .get('/api/apply', {
+            params: {job_id}
+        })
+>>>>>>> ce72015bf62b41fe41e63c8a94e04452278c040e
     .then(response => {
       dispatch({
         type: APPLY_JOB,
