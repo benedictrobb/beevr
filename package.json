@@ -16,8 +16,12 @@
         "react-ui/node_modules"
     ],
     "dependencies": {
-        "aws-sdk": "^2.90.0",
+        "aphrodite": "^1.2.3",
         "blipp": "^2.3.0",
+        "classnames": "^2.2.5",
+        "aws-sdk": "^2.91.0",
+        "bcrypt": "^1.0.2",
+        "boom": "^5.2.0",
         "env2": "^2.2.0",
         "hapi": "^16.4.3",
         "hapi-auth-cookie": "^7.0.0",
