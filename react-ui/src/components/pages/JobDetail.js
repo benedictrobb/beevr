@@ -50,7 +50,7 @@ class JobDetail extends Component {
                 </h2>
                 <h4>
                     <label>Category: </label>
-                    {job.category}
+                    {job.jobCat}
                 </h4>
                 <p>
                     {job.description}

@@ -71,7 +71,7 @@ server.register(plugins, err => {
                             endDate: element.end_date,
                             endTime: element.end_time,
                             description: element.description,
-                            category: element.category,
+                            jobCat: element.category,
                             rate: element.rate,
                             studentId: element.student_id,
                             residentId: element.resident_id,
