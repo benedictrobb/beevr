@@ -7,6 +7,7 @@ import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import isEmpty from 'lodash/isEmpty';
+import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -143,9 +144,18 @@ class Form_Post_Job extends Component {
     }
 
     render() {
+        const options = categories.map(function(elem) {
+            return (
+                <option value={categories[elem]}>
+                    {elem}
+                </option>
+            );
+        });
+        
         if (!this.state) {
             return <div>Loading</div>;
         }
+        
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
@@ -157,8 +167,8 @@ class Form_Post_Job extends Component {
                         {this.state.errorMessage}
                     </div>
                 </p>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Start Date">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Start Date">
                         Start Date
                     </label>
                     <input
@@ -170,8 +180,8 @@ class Form_Post_Job extends Component {
                         onChange={this._onChangeStartDate}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Job Title">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Job Title">
                         Job Title
                     </label>
                     <input
@@ -183,8 +193,8 @@ class Form_Post_Job extends Component {
                         onChange={this._onChangeTitle}
                     />
                 </div>
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Start Time">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Start Time">
                         Start Time
                     </label>
                     <input
@@ -197,8 +207,8 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="End Date">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="End Date">
                         End Date
                     </label>
                     <input
@@ -211,8 +221,8 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="End Time">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="End Time">
                         End Time
                     </label>
                     <input
@@ -225,12 +235,12 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <label className="form__field-label" htmlFor="Job categories">
+                <label className="control-label" htmlFor="Job categories">
                     Select a job category
                 </label>
                 <input
                     className="form-control"
-                    id="job categories"
+                    id="job category_1"
                     type="text"
                     placeholder="Select a job category"
                     list="jobs"
@@ -238,22 +248,12 @@ class Form_Post_Job extends Component {
                     onChange={this._onChangeCategory}
                 />
                 <datalist id="jobs">
-                    <option value="Dog-walking" />
-                    <option value="Tutoring- Spanish" />
-                    <option value="Home maintenance" />
-                    <option value="Tutoring- Mathematics" />
-                    <option value="Cat Sitting" />
-                    <option value="Plant watering" />
-                    <option value="Babysitting" />
-                    <option value="Cooking" />
-                    <option value="House Cleaning" />
-                    <option value="Band playing" />
-                    <option value="Photography" />
-                    <option value="Other" />
+                    <option value="" disabled />
+                    {options}
                 </datalist>
 
-                <div className="form__field-wrapper">
-                    <label className="form__field-label" htmlFor="Rate">
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Rate">
                         Rate
                     </label>
                     <input
@@ -267,9 +267,9 @@ class Form_Post_Job extends Component {
                     <label htmlFor="£">£</label>
                 </div>
 
-                <div className="form__field-wrapper">
+                <div className="form-group">
                     <label
-                        className="form__field-label"
+                        className="control-label"
                         htmlFor="Job description"
                     >
                         Job description
