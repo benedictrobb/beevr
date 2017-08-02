@@ -7,7 +7,7 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            data: {}
+            data: {},
         };
     }
 
@@ -22,19 +22,18 @@ class Dashboard extends Component {
         let data = this.state.data;
         return (
             <article>
-                <section className="text-section">
-                    <Link to="/browsejobs" className="btn btn--login btn--nav">
-                        <h2>Student</h2>
-                    </Link>
-                    <Link
-                        to="/browsestudents"
-                        className="btn btn--login btn--nav"
-                    >
-                        <h2>Resident</h2>
-                    </Link>
-                    <h1>
-                        {data.message}
-                    </h1>
+                <section className="container-fluid text-center">
+                    <h1>WELCOME TO BEEVR</h1>
+                    <div className="col-sm-6 bgimg_student">
+                        <Link to="/browsejobs" className="">
+                            <h2>Student</h2>
+                        </Link>
+                    </div>
+                    <div className="col-sm-6 bgimg_resident">
+                        <Link to="/browsestudents" className="">
+                            <h2>Resident</h2>
+                        </Link>
+                    </div>
                 </section>
             </article>
         );

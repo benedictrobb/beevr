@@ -1,0 +1,29 @@
+html * {
+    font-family: 'Raleway', sans-serif; !important;
+}
+
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+}
+
+.navbar-nav li a:hover {
+    color: #1abc9c !important;
+}
+
+.bgimg_student {
+    height: 80vh;
+    background-size: cover;
+    background-image: url('./student_red.jpg');
+}
+
+.bgimg_resident {
+    height: 80vh;
+    background-size: cover;
+    background-image: url('./resident_emo.jpg');
+}
