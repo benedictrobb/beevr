@@ -201,6 +201,20 @@ data.postResidents = (resident, callback) => {
     );
 };
 
+data.submitApplication = (job_id, callback) => {
+    dbConnection.query(
+        'UPDATE jobs SET student_id = array_append(student_id, \'6\') WHERE job_id = $1',
+        [job_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, res);
+            }
+        }
+    );
+};
+
 data.postJobs = (jobsObject, callback) => {
     dbConnection.query(
         `INSERT INTO jobs(
