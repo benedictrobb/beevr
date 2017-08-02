@@ -1,4 +1,4 @@
-import {APPLY_JOB} from '../constants/action_types.js';
+import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 import axios from 'axios';
 
 export const submitJobApplication = job_id => dispatch => {
@@ -21,5 +21,29 @@ export const submitJobApplication = job_id => dispatch => {
         status: 'error',
         error: error
       });
+    });
+};
+
+export const fetchJobs = () => dispatch => {
+  dispatch({
+    type: FETCH_JOBS,
+    status: 'pending'
+});
+
+  axios
+    .get('/api/jobs')
+    .then(response =>
+        dispatch({
+            type: FETCH_JOBS,
+            status: 'success',
+            response: response.data
+        })
+    )
+    .catch(err => {
+        dispatch({
+            type: FETCH_JOBS,
+            status: 'error',
+            error: err
+        });
     });
 };

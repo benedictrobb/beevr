@@ -65,6 +65,7 @@ server.register(plugins, err => {
                     jobsList: res.map(element => {
                         return {
                             jobId: element.job_id,
+                            jobTitle: element.job_title,
                             startDate: element.start_date,
                             startTime: element.start_time,
                             endDate: element.end_date,
