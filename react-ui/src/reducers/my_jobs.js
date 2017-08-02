@@ -35,7 +35,6 @@ const getJobs = (jobsApplied, action) => {
 
 const deleteJob = (state, action) => {
     const {deleteJobRequests, jobsApplied} = state;
-    console.log('jobsApplied.jobs is ', jobsApplied.jobs);
     switch (action.status) {
     case 'pending':
         return {
@@ -59,7 +58,6 @@ const deleteJob = (state, action) => {
             },
         };
     case 'success':
-        console.log(action.jobId);
         return {
             ...state,
             deleteJobRequests: {
@@ -68,10 +66,9 @@ const deleteJob = (state, action) => {
             },
             jobsApplied: {
                 ...jobsApplied,
-                jobs: 'something',
-                    // jobs: jobsApplied.jobs.myJobsList.filter(
-                    //     // job => job.jobId !== action.jobId
-                    // ),
+                jobs: jobsApplied.jobs.filter(function(job) {
+                    return job.jobId !== action.jobId;
+                }),
             },
         };
     }
