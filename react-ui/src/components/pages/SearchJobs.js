@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
+import categories from '../../constants/job_categories.js';
 
 class BrowseJobs extends Component {
     constructor() {
@@ -82,13 +83,21 @@ class BrowseJobs extends Component {
     }
 
     render() {
+        const options = categories.map(function(elem) {
+            return (
+                <option value={categories[elem]}>
+                    {elem}
+                </option>
+            );
+        });
+
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
         if (!jobsList) {
             return (
                 <form onSubmit={this.onSubmit}>
-                    <label className="form__field-label" htmlFor="Browse Jobs">
+                    <label className="control-label" htmlFor="Browse Jobs">
                         Browse Jobs
                     </label>
                     <input
@@ -101,18 +110,8 @@ class BrowseJobs extends Component {
                         value={this.props.SearchTerm}
                     />
                     <datalist id="jobs">
-                        <option value="dog walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="photography" />
-                        <option value="Other" />
+                        <option value="" disabled />
+                        {options}
                     </datalist>
                     <button type="submit" className="btn btn-primary">
                         Submit
@@ -125,7 +124,7 @@ class BrowseJobs extends Component {
                 <section className="text-section">
                     <form onSubmit={this.onSubmit}>
                         <label
-                            className="form__field-label"
+                            className="control-label"
                             htmlFor="Browse Jobs"
                         >
                             Browse Jobs

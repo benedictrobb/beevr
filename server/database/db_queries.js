@@ -52,7 +52,6 @@ data.getStudents = (callback, term) => {
                 if (err) {
                     return callback(err);
                 }
-
                 callback(null, res.rows);
             }
         );
