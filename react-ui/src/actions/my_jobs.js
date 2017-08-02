@@ -4,7 +4,7 @@ import {FETCH_MY_JOBS, DELETE_APPLICATION} from '../constants/action_types.js';
 export const fetchMyJobs = () => dispatch => {
     dispatch({
         type: FETCH_MY_JOBS,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -13,14 +13,15 @@ export const fetchMyJobs = () => dispatch => {
             dispatch({
                 type: FETCH_MY_JOBS,
                 status: 'success',
-                response: response.data
+                response: response.data,
             });
+            console.log('response data in action is ', response.data);
         })
         .catch(err => {
             dispatch({
                 type: FETCH_MY_JOBS,
                 status: 'error',
-                error: err
+                error: err,
             });
         });
 };
@@ -28,17 +29,17 @@ export const fetchMyJobs = () => dispatch => {
 export const deleteApplication = (job_id, callback) => dispatch => {
     dispatch({
         type: DELETE_APPLICATION,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
         .delete('/api/myjobs', {
-            params: {job_id: job_id}
+            params: {job_id: job_id},
         })
         .then(response => {
             dispatch({
                 type: DELETE_APPLICATION,
-                status: 'success'
+                status: 'success',
             });
             callback();
         })
@@ -46,7 +47,7 @@ export const deleteApplication = (job_id, callback) => dispatch => {
             dispatch({
                 type: DELETE_APPLICATION,
                 status: 'error',
-                error: err
+                error: err,
             });
         });
 };

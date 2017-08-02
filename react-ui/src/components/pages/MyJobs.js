@@ -23,38 +23,38 @@ class MyJobs extends Component {
         return time.slice(0, 5);
     }
 
-    deleteApplication(job_id) {
-        this.props.deleteApplication(job_id, this.props.fetchMyJobs);
+    deleteApplication(jobId) {
+        this.props.deleteApplication(jobId, this.props.fetchMyJobs);
     }
 
     renderJobs(job) {
         return (
-            <div key={job.job_id}>
+            <div key={job.jobId}>
                 <h2>
-                    {job.job_title}
+                    {job.jobTitle}
                 </h2>
                 <h4>
                     <label>Category: </label>
-                    {job.category}
+                    {job.jobCat}
                 </h4>
                 <p>
                     {job.description}
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {this.formatDate(job.start_date)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {this.formatTime(job.start_time)}
+                    {this.formatTime(job.startTime)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {this.formatDate(job.end_date)}
+                    {this.formatDate(job.endDate)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {this.formatTime(job.end_time)}
+                    {this.formatTime(job.endTime)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -62,7 +62,7 @@ class MyJobs extends Component {
                 </p>
                 <button
                     className="btn btn-danger"
-                    onClick={() => this.deleteApplication(job.job_id)}
+                    onClick={() => this.deleteApplication(job.jobId)}
                 >
                     Delete application
                 </button>
@@ -72,7 +72,8 @@ class MyJobs extends Component {
 
     render() {
         let {myJobs} = this.props;
-        let myJobsList = myJobs && myJobs.myJobsList;
+
+        let myJobsList = myJobs && myJobs && myJobs.myJobsList;
 
         if (!myJobsList) {
             return <div>Loading</div>;
@@ -90,8 +91,9 @@ class MyJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.fetchMyJobs.jobsApplied.jobs);
     return {
-        myJobs: state.fetchMyJobs.jobsRequest.response
+        myJobs: state.fetchMyJobs.jobsApplied.jobs,
     };
 }
 
