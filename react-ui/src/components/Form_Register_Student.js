@@ -1,16 +1,20 @@
 import React, {Component} from 'react';
 import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
+import categories from '../constants/job_categories.js';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
+        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            student: {},
+            student: {
+                jobCategories: {},
+            },
             errorMessage: '',
             isAuthenticated: false,
         };
@@ -35,7 +39,7 @@ class Form_Register_Student extends Component {
             //browserHistory.push('/dashboard');
         }
     }
-    
+
     onChange(evt) {
         var student = this.state.student;
         this.setState({
@@ -46,7 +50,30 @@ class Form_Register_Student extends Component {
         });
     }
 
+    onChangeJobCategories(evt) {
+        var student = this.state.student;
+        var jobCategories = student.jobCategories;
+        this.setState({
+            student: {
+                ...student,
+                jobCategories: [...jobCategories, evt.target.value],
+            },
+        });
+    }
+
     render() {
+        const options = categories.map(function(elem) {
+            return (
+                <option value={categories[elem]}>
+                    {elem}
+                </option>
+            );
+        });
+
+        if (!this.state) {
+            return <div>Loading</div>;
+        }
+        
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -213,104 +240,94 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        name="jobCat"
+                        name="jobCategories"
                         htmlFor="jobCategories"
                     >
                         Pick up to 8 jobs categories
                     </label>
                     <input
                         className="form-control"
-                        name="index1"
+                        name="category1"
                         id="jobCategory1"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index1}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category1}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index2"
+                        name="category2"
                         id="jobCategory2"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index2}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category2}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index3"
+                        name="category3"
                         id="jobCategory3"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index3}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category3}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index4"
+                        name="category4"
                         id="jobCategory4"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index4}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category4}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index5"
+                        name="category5"
                         id="jobCategory5"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index5}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category5}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index6"
+                        name="category6"
                         id="jobCategory6"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index6}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category6}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index7"
+                        name="category7"
                         id="jobCategory7"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index7}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category7}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index8"
+                        name="category8"
                         id="jobCategory8"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.index8}
-                        onChange={this.onChange}
+                        value={this.state.student.jobCategories.category8}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <datalist id="jobs">
-                        <option value="Dog-walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="Photography" />
-                        <option value="Other" />
+                        <option value="" disabled />
+                        {options}
                     </datalist>
                 </div>
 

@@ -65,6 +65,7 @@ server.register(plugins, err => {
                     jobsList: res.map(element => {
                         return {
                             jobId: element.job_id,
+                            jobTitle: element.job_title,
                             startDate: element.start_date,
                             startTime: element.start_time,
                             endDate: element.end_date,
@@ -208,8 +209,9 @@ server.register(plugins, err => {
         },
     });
 
+    //unhardcode the job id
     server.route({
-        method: 'GET',
+        method: 'PUT',
         path: '/api/apply',
         handler: (request, reply) => {
             var to = ['rmrajaa@gmail.com'];
@@ -217,13 +219,24 @@ server.register(plugins, err => {
             var subject = 'New job application';
             var text =
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
-
-            sendEmail(from, to, subject, text, (err, res) => {
+            data.submitApplication(request.payload.job_id, (err, res) => {
                 if (err) {
-                    reply(Boom.internal('Failed to send email', 500));
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
                 } else {
-                    reply({
-                        message: 'Email sent!',
+                    sendEmail(from, to, subject, text, (err, res) => {
+                        if (err) {
+                            reply(Boom.internal('Failed to send email', 500));
+                        } else {
+                            reply({
+                                name: 'applyJob',
+                                message: 'Email sent!',
+                                applyJob: res,
+                            });
+                        }
                     });
                 }
             });
