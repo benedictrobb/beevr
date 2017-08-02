@@ -300,7 +300,7 @@ server.register(plugins, err => {
                         }),
                     });
                 }
-            }, 1);
+            }, 4);
         },
     });
 
