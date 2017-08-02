@@ -24,7 +24,7 @@ class MyJobs extends Component {
     }
 
     deleteApplication(jobId) {
-        this.props.deleteApplication(jobId, this.props.fetchMyJobs);
+        this.props.deleteApplication(jobId);
     }
 
     renderJobs(job) {
@@ -75,14 +75,14 @@ class MyJobs extends Component {
 
         let myJobsList = myJobs && myJobs && myJobs.myJobsList;
 
-        if (!myJobsList) {
+        if (!myJobs) {
             return <div>Loading</div>;
         }
         return (
             <article>
                 <section className="text-section">
                     <ul>
-                        {myJobsList.map(this.renderJobs)}
+                        {myJobs.map(this.renderJobs)}
                     </ul>
                 </section>
             </article>
@@ -91,7 +91,6 @@ class MyJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.fetchMyJobs.jobsApplied.jobs);
     return {
         myJobs: state.fetchMyJobs.jobsApplied.jobs,
     };

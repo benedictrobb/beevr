@@ -15,7 +15,6 @@ export const fetchMyJobs = () => dispatch => {
                 status: 'success',
                 response: response.data,
             });
-            console.log('response data in action is ', response.data);
         })
         .catch(err => {
             dispatch({
@@ -26,28 +25,30 @@ export const fetchMyJobs = () => dispatch => {
         });
 };
 
-export const deleteApplication = (job_id, callback) => dispatch => {
+export const deleteApplication = jobId => dispatch => {
     dispatch({
         type: DELETE_APPLICATION,
         status: 'pending',
+        jobId: jobId,
     });
 
     axios
         .delete('/api/myjobs', {
-            params: {job_id: job_id},
+            params: {jobId: jobId},
         })
         .then(response => {
             dispatch({
                 type: DELETE_APPLICATION,
                 status: 'success',
+                jobId: jobId,
             });
-            callback();
         })
         .catch(err => {
             dispatch({
                 type: DELETE_APPLICATION,
                 status: 'error',
                 error: err,
+                jobId: jobId,
             });
         });
 };

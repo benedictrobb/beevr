@@ -300,7 +300,7 @@ server.register(plugins, err => {
                         }),
                     });
                 }
-            }, 2);
+            }, 1);
         },
     });
 
@@ -308,16 +308,22 @@ server.register(plugins, err => {
         method: 'DELETE',
         path: '/api/myjobs',
         handler: (request, reply) => {
-            data.deleteApplication(request.url.query.job_id, (err, res) => {
+            data.deleteApplication(request.url.query.jobId, (err, res) => {
                 if (err) {
-                    reply('Failed to delete record').code(500);
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to delete record from database'
+                        )
+                    );
                 } else {
                     reply({
-                        message: 'Job deleted'
+                        name: 'jobDeleted',
+                        message: 'Job deleted',
+                        jobDeleted: res,
                     });
                 }
             });
-        }
+        },
     });
 
     server.route({

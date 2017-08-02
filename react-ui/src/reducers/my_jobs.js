@@ -26,7 +26,7 @@ const getJobs = (jobsApplied, action) => {
     case 'success':
         return {
             ...jobsApplied,
-            jobs: action.response,
+            jobs: action.response.myJobsList,
             requestStatus: 'success',
             requestError: undefined,
         };
@@ -35,6 +35,7 @@ const getJobs = (jobsApplied, action) => {
 
 const deleteJob = (state, action) => {
     const {deleteJobRequests, jobsApplied} = state;
+    console.log('jobsApplied.jobs is ', jobsApplied.jobs);
     switch (action.status) {
     case 'pending':
         return {
@@ -58,6 +59,7 @@ const deleteJob = (state, action) => {
             },
         };
     case 'success':
+        console.log(action.jobId);
         return {
             ...state,
             deleteJobRequests: {
@@ -66,9 +68,10 @@ const deleteJob = (state, action) => {
             },
             jobsApplied: {
                 ...jobsApplied,
-                jobs: jobsApplied.jobs.filter(
-                    job => job.jobId !== action.jobId
-                ),
+                jobs: 'something',
+                    // jobs: jobsApplied.jobs.myJobsList.filter(
+                    //     // job => job.jobId !== action.jobId
+                    // ),
             },
         };
     }
