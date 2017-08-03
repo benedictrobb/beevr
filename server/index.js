@@ -334,9 +334,13 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.getMyPostedJobs((err, res) => {
+            data.getMyPostedJobs(1, (err, res) => {
                 if (err) {
-                    reply('Failed to retrieve data fro database').code(500);
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
                 } else {
                     const filtered_joblist = [];
 
@@ -360,24 +364,27 @@ server.register(plugins, err => {
                         myPostedJobsList: filtered_joblist,
                     });
                 }
-            }, 1);
+            });
         },
     });
 
-    //need to connect id to the front end
     server.route({
         method: 'DELETE',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.deleteJob((err, res) => {
+            data.deleteJob(request.url.query.job_id, (err, res) => {
                 if (err) {
-                    reply('Failed to delete record').code(500);
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
                 } else {
                     reply({
                         message: 'Job deleted',
                     });
                 }
-            }, request.url.query.job_id);
+            });
         },
     });
 

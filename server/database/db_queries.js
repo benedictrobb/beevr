@@ -203,7 +203,7 @@ data.postResidents = (resident, callback) => {
     );
 };
 
-data.getMyPostedJobs = (callback, resident_id) => {
+data.getMyPostedJobs = (resident_id, callback) => {
     dbConnection.query(
         'SELECT * FROM jobs WHERE resident_id = $1',
         [resident_id],
@@ -217,7 +217,7 @@ data.getMyPostedJobs = (callback, resident_id) => {
     );
 };
 
-data.deleteJob = (callback, job_id) => {
+data.deleteJob = (job_id, callback) => {
     dbConnection.query(
         'DELETE FROM jobs WHERE job_id = $1',
         [job_id],
