@@ -52,81 +52,85 @@ class BrowseStudents extends Component {
                 </option>
             );
         });
-        
+
         let {students} = this.props;
         let studentList = students && students.studentList;
 
         if (!studentList) {
             return (
-                <section>
-                    <form onSubmit={this.onSubmit}>
-                        <label
-                            className="control-label"
-                            htmlFor="Browse Students"
-                        >
-                            Browse Students
-                        </label>
-                        <input
-                            className="form-control"
-                            id="Browse Students"
-                            type="text"
-                            placeholder="Browse Students"
-                            list="students"
-                            onChange={this.onStudentSearchChange}
-                            value={this.props.searchTerm}
-                        />
-                        <datalist id="students">
-                            <option value="" disabled />
-                            {options}
-                        </datalist>
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-
-                    <Link to="/postjob" className="btn btn-primary">
-                        Post A Job
-                    </Link>
-                </section>
+                <div className="container-fluid">
+                    <article className="row-fluid search_jobs">
+                        <section className="col-md-6 col-md-offset-3">
+                            <Link
+                                to="/postjob"
+                                className="btn btn-primary pull-right submit_button"
+                            >
+                                Post A Job
+                            </Link>
+                            <form onSubmit={this.onSubmit}>
+                                <input
+                                    className="form-control"
+                                    id="Browse Students"
+                                    type="text"
+                                    placeholder="Browse Students"
+                                    list="students"
+                                    onChange={this.onStudentSearchChange}
+                                    value={this.props.searchTerm}
+                                />
+                                <datalist id="students">
+                                    <option value="" disabled />
+                                    {options}
+                                </datalist>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary submit_button"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </section>
+                    </article>
+                </div>
             );
         }
         return (
-            <article>
-                <section className="text-section">
-                    <form onSubmit={this.onSubmit}>
-                        <label
-                            className="control-label"
-                            htmlFor="Browse Students"
+            <div className="container-fluid">
+                <article className="row-fluid search_jobs">
+                    <section className="col-md-6 col-md-offset-3">
+                        <Link
+                            to="/postjob"
+                            className="btn btn-primary pull-right submit_button"
                         >
-                            Browse Students
-                        </label>
+                            Post A Job
+                        </Link>
+                        <form onSubmit={this.onSubmit}>
+                            <input
+                                className="form-control"
+                                id="Browse Students"
+                                type="text"
+                                placeholder="Browse Students"
+                                list="students"
+                                onChange={this.onStudentSearchChange}
+                                value={this.props.searchTerm}
+                            />
+                            <datalist id="students">
+                                <option value="" disabled />
+                                {options}
+                            </datalist>
 
-                        <input
-                            className="form-control"
-                            id="Browse Students"
-                            type="text"
-                            placeholder="Browse Students"
-                            list="students"
-                            onChange={this.onStudentSearchChange}
-                            value={this.props.searchTerm}
-                        />
-                        <datalist id="students">
-                            <option value="" disabled />
-                            {options}
-                        </datalist>
-
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-                    <Link to="/postjob" className="btn btn-primary">
-                        Post A Job
-                    </Link>
-                    <ul>
-                        {studentList.map(this.renderStudents)}
-                    </ul>
-                </section>
-            </article>
+                            <button
+                                type="submit"
+                                className="btn btn-primary submit_button"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                        <ul className="search_results_ul">
+                            {studentList.map(this.renderStudents)}
+                        </ul>
+                    </section>
+                </article>
+            </div>
         );
     }
 }
@@ -134,7 +138,7 @@ class BrowseStudents extends Component {
 function mapStateToProps(state) {
     return {
         students: state.searchStudents.studentsRequest.response,
-        searchTerm: state.searchStudents.searchTerm
+        searchTerm: state.searchStudents.searchTerm,
     };
 }
 

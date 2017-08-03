@@ -1,0 +1,53 @@
+/*#A2A3BB
+#000807
+#9395D3
+#B3B7EE
+#FBF9FF*/
+
+body {
+    background-color: #fbf9ff;
+    color: #000807;
+}
+
+.btn-primary {
+    background-color: #9395d3;
+    border-color: #9395d3;
+}
+
+.btn-primary:hover {
+    background-color: #a2a3bb;
+    border-color: #a2a3bb;
+}
+
+a {
+    color: #b3b7ee;
+}
+
+a:hover {
+    color: #a2a3bb;
+}
+
+.search_jobs {
+    margin-top: 5%;
+}
+
+.pull-right {
+    float: right;
+}
+
+#my_applications_button {
+    margin-bottom: 5%;
+}
+
+.submit_button {
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.search_results_ul {
+    margin-left: -40px;
+}
+
+.register_container {
+    margin-top: 3%;
+}

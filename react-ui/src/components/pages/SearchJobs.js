@@ -31,7 +31,7 @@ class BrowseJobs extends Component {
         if (desc.length <= 100) {
             return desc;
         } else {
-            return desc.slice(0, 100) + '...';
+            return desc.slice(0, 220) + '...';
         }
     }
     onSubmit(evt) {
@@ -46,35 +46,47 @@ class BrowseJobs extends Component {
     renderJobs(job) {
         return (
             <div key={job.jobId}>
-                <h2>
+                <h3>
                     <Link to={`/jobdetail/${job.jobId}`}>
                         {job.jobTitle}
                     </Link>
-                </h2>
-                <h4>
-                    <label>Category: </label>
+                </h3>
+                <h5>
                     {job.jobCat}
-                </h4>
+                </h5>
+                <label>
+                    <u>Job description</u>
+                </label>
                 <p>
                     {this.formatDesc(job.description)}
                 </p>
-                <label>Start Date</label>
+                <label>
+                    <u>Start Date</u>
+                </label>
                 <p>
                     {this.formatDate(job.startDate)}
                 </p>
-                <label>Start Time</label>
+                <label>
+                    <u>Start Time</u>
+                </label>
                 <p>
                     {this.formatTime(job.startTime)}
                 </p>
-                <label>End Date</label>
+                <label>
+                    <u>End Date</u>
+                </label>
                 <p>
                     {this.formatDate(job.endDate)}
                 </p>
-                <label>End Time</label>
+                <label>
+                    <u>End Time</u>
+                </label>
                 <p>
                     {this.formatTime(job.endTime)}
                 </p>
-                <label>Rate</label>
+                <label>
+                    <u>Rate</u>
+                </label>
                 <p>
                     {job.rate}
                 </p>
@@ -96,76 +108,86 @@ class BrowseJobs extends Component {
 
         if (!jobsList) {
             return (
-                <form onSubmit={this.onSubmit}>
-                    <label className="control-label" htmlFor="Browse Jobs">
-                        Browse Jobs
-                    </label>
-                    <input
-                        className="form-control"
-                        id="Browse Jobs"
-                        type="text"
-                        placeholder="Browse Jobs"
-                        list="jobs"
-                        onChange={this.onJobSearchChange}
-                        value={this.props.SearchTerm}
-                    />
-                    <datalist id="jobs">
-                        <option value="" disabled />
-                        {options}
-                    </datalist>
-                    <button type="submit" className="btn btn-primary">
-                        Submit
-                    </button>
-                </form>
+                <div className="container-fluid">
+                    <article className="row-fluid search_jobs">
+                        <section className="col-md-6 col-md-offset-3">
+                            <form onSubmit={this.onSubmit}>
+                                <input
+                                    className="form-control"
+                                    id="Browse Jobs"
+                                    type="text"
+                                    placeholder="Browse Jobs"
+                                    list="jobs"
+                                    onChange={this.onJobSearchChange}
+                                    value={this.props.SearchTerm}
+                                />
+                                <datalist id="jobs">
+                                    <option value="" disabled />
+                                    {options}
+                                </datalist>
+                                <button
+                                    type="submit"
+                                    id="submit_button"
+                                    className="btn btn-primary"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </section>
+                    </article>
+                </div>
             );
         }
+
         return (
-            <article>
-                <section className="text-section">
-                    <form onSubmit={this.onSubmit}>
-                        <label
-                            className="control-label"
-                            htmlFor="Browse Jobs"
+            <div className="container-fluid">
+                <article className="row-fluid search_jobs">
+                    <section className="col-md-6 col-md-offset-3">
+                        <Link
+                            to="/jobsapplied"
+                            className="btn btn-primary pull-right submit_button"
                         >
-                            Browse Jobs
-                        </label>
+                            My applications
+                        </Link>
 
-                        <input
-                            className="form-control"
-                            id="Browse Jobs"
-                            type="text"
-                            placeholder="Browse Jobs"
-                            list="jobs"
-                            onChange={this.onJobSearchChange}
-                            value={this.props.SearchTerm}
-                        />
-                        <datalist id="jobs">
-                            <option value="dog walking" />
-                            <option value="Tutoring- Spanish" />
-                            <option value="Home maintenance" />
-                            <option value="Tutoring- Mathematics" />
-                            <option value="Cat Sitting" />
-                            <option value="Plant watering" />
-                            <option value="Babysitting" />
-                            <option value="Cooking" />
-                            <option value="House Cleaning" />
-                            <option value="Band playing" />
-                            <option value="photography" />
-                            <option value="Other" />
-                        </datalist>
+                        <form onSubmit={this.onSubmit}>
+                            <input
+                                className="form-control"
+                                id="Browse Jobs"
+                                type="text"
+                                placeholder="Browse Jobs"
+                                list="jobs"
+                                onChange={this.onJobSearchChange}
+                                value={this.props.SearchTerm}
+                            />
+                            <datalist id="jobs">
+                                <option value="dog walking" />
+                                <option value="Tutoring- Spanish" />
+                                <option value="Home maintenance" />
+                                <option value="Tutoring- Mathematics" />
+                                <option value="Cat Sitting" />
+                                <option value="Plant watering" />
+                                <option value="Babysitting" />
+                                <option value="Cooking" />
+                                <option value="House Cleaning" />
+                                <option value="Band playing" />
+                                <option value="photography" />
+                                <option value="Other" />
+                            </datalist>
 
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-                    <Link to="/jobsapplied" className="btn btn-primary">
-                        My jobs
-                    </Link>
-                    <ul>
-                        {jobsList.map(this.renderJobs)}
-                    </ul>
-                </section>
-            </article>
+                            <button
+                                type="submit"
+                                className="btn btn-primary submit_button"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                        <ul className="search_results_ul">
+                            {jobsList.map(this.renderJobs)}
+                        </ul>
+                    </section>
+                </article>
+            </div>
         );
     }
 }
@@ -174,7 +196,7 @@ function mapStateToProps(state) {
     return {
         jobs: state.searchJobs.jobsRequest.response,
         SearchTerm: state.searchJobs.searchTerm,
-        selectedJob: state.searchJobs.selectedJob
+        selectedJob: state.searchJobs.selectedJob,
     };
 }
 
