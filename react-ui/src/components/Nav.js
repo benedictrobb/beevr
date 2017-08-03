@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {logout} from '../actions/AppActions';
-import LoadingButton from './LoadingButton.js';
 
 class Nav extends Component {
     render() {
@@ -10,7 +9,7 @@ class Nav extends Component {
         const navButtons = this.props.loggedIn
             ? <div>
                 {this.props.currentlySending
-                    ? <LoadingButton className="btn--nav" />
+                    ? <div />
                     : <a
                         href="#"
                         className="btn btn--login btn--nav"
@@ -23,7 +22,10 @@ class Nav extends Component {
                 <Link to="/" className="btn btn--login btn--nav">
                       Home
                 </Link>
-                <Link to="/registerstudent" className="btn btn--login btn--nav">
+                <Link
+                    to="/registerstudent"
+                    className="btn btn--login btn--nav"
+                >
                       Register As Student
                 </Link>
                 <Link

@@ -19,7 +19,7 @@ class LoginForm extends Component {
         var state = this.props.state;
         this.setState({errorMessage: ''});
         this.props.loginRequest(this.state.email, this.state.password);
-    };
+    }
 
     onChange(evt) {
         var email = this.state.email;

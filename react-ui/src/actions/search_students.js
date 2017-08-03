@@ -5,25 +5,25 @@ import {FETCH_STUDENTS} from '../constants/action_types.js';
 export const fetchStudents = searchTerm => dispatch => {
     dispatch({
         type: FETCH_STUDENTS,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
         .get('/api/get-students', {
-            params: {searchTerm: searchTerm}
+            params: {searchTerm: searchTerm},
         })
         .then(response => {
             dispatch({
                 type: FETCH_STUDENTS,
                 status: 'success',
-                response: response.data
+                response: response.data,
             });
         })
         .catch(err => {
             dispatch({
                 type: FETCH_STUDENTS,
                 status: 'error',
-                error: err
+                error: err,
             });
         });
 };
@@ -31,6 +31,6 @@ export const fetchStudents = searchTerm => dispatch => {
 export const setTerm = Searchterm => dispatch => {
     dispatch({
         type: SET_TERM,
-        response: Searchterm
+        response: Searchterm,
     });
 };

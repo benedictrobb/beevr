@@ -16,8 +16,8 @@ export default (state = initialState, action = {}) => {
             student: {
                 status: action.status,
                 error: action.error,
-                response: action.response
-            }
+                response: action.response,
+            },
         };
     default:
         return state;

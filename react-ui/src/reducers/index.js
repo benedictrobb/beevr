@@ -18,5 +18,5 @@ export default combineReducers({
     login,
     searchStudents,
     searchStudents,
-    fetchMyJobs
+    fetchMyJobs,
 });

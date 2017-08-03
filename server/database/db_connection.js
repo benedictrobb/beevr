@@ -21,6 +21,6 @@ const options = {
     password: password,
 };
 
-options.ssl = (options.host !== 'localhost');
+options.ssl = options.host !== 'localhost';
 
 module.exports = new Pool(options);
