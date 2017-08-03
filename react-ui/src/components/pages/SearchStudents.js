@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_students.js';
 import {Link} from 'react-router';
-import Categories from '../../constants/job_categories.js';
+import categories from '../../constants/job_categories.js';
 
 class BrowseStudents extends Component {
     constructor() {
@@ -45,9 +45,9 @@ class BrowseStudents extends Component {
     }
 
     render() {
-        const options = Categories.map(function(elem) {
+        const options = categories.map(function(elem) {
             return (
-                <option value={Categories[elem]}>
+                <option value={categories[elem]}>
                     {elem}
                 </option>
             );
@@ -134,7 +134,7 @@ class BrowseStudents extends Component {
 function mapStateToProps(state) {
     return {
         students: state.searchStudents.studentsRequest.response,
-        searchTerm: state.searchStudents.searchTerm
+        searchTerm: state.searchStudents.searchTerm,
     };
 }
 

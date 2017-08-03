@@ -1,19 +1,18 @@
 import React, {Component} from 'react';
-import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
-import Categories from '../constants/job_categories.js';
+import categories from '../constants/job_categories.js';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onChangeJobCat = this.onChangeJobCat.bind(this);
+        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
             student: {
-                job_cat: {},
+                jobCategories: {},
             },
             errorMessage: '',
             isAuthenticated: false,
@@ -50,21 +49,21 @@ class Form_Register_Student extends Component {
         });
     }
 
-    onChangeJobCat(evt) {
+    onChangeJobCategories(evt) {
         var student = this.state.student;
-        var job_cat = student.job_cat;
+        var jobCategories = student.jobCategories;
         this.setState({
             student: {
                 ...student,
-                job_cat: [...job_cat, evt.target.value],
+                jobCategories: [...jobCategories, evt.target.value],
             },
         });
     }
 
     render() {
-        const options = Categories.map(function(elem) {
+        const options = categories.map(function(elem) {
             return (
-                <option value={Categories[elem]}>
+                <option value={categories[elem]}>
                     {elem}
                 </option>
             );
@@ -74,8 +73,6 @@ class Form_Register_Student extends Component {
             return <div>Loading</div>;
         }
         
-        console.log(options);
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -177,10 +174,7 @@ class Form_Register_Student extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label
-                        className="control-label"
-                        htmlFor="universitySchool"
-                    >
+                    <label className="control-label" htmlFor="universitySchool">
                         University/School
                     </label>
                     <input
@@ -242,89 +236,89 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        name="jobCat"
+                        name="jobCategories"
                         htmlFor="jobCategories"
                     >
                         Pick up to 8 jobs categories
                     </label>
                     <input
                         className="form-control"
-                        name="index1"
+                        name="category1"
                         id="jobCategory1"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_1}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category1}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index2"
+                        name="category2"
                         id="jobCategory2"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_2}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category2}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index3"
+                        name="category3"
                         id="jobCategory3"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_3}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category3}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index4"
+                        name="category4"
                         id="jobCategory4"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_4}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category4}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index5"
+                        name="category5"
                         id="jobCategory5"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_5}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category5}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index6"
+                        name="category6"
                         id="jobCategory6"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_6}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category6}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index7"
+                        name="category7"
                         id="jobCategory7"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_7}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category7}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <input
                         className="form-control"
-                        name="index8"
+                        name="category8"
                         id="jobCategory8"
-                        type="text"
+                        type="dropdown"
                         placeholder="Select"
-                        value={this.state.student.job_cat.index_8}
-                        onChange={this.onChangeJobCat}
+                        value={this.state.student.jobCategories.category8}
+                        onChange={this.onChangeJobCategories}
                         list="jobs"
                     />
                     <datalist id="jobs">
@@ -335,7 +329,7 @@ class Form_Register_Student extends Component {
 
                 <div>
                     {this.props.currentlySending
-                        ? <LoadingButton />
+                        ? <div />
                         : <button className="btn btn-primary" type="submit">
                             {this.props.btnText}
                         </button>}

@@ -5,7 +5,7 @@ env('./config.env');
 aws.config = {
     accessKeyId: process.env.SES_ACCESS_ID,
     secretAccessKey: process.env.SES_ACCESS_KEY,
-    region: 'eu-west-1'
+    region: 'eu-west-1',
 };
 
 var ses = new aws.SES({apiVersion: '2010-12-01'});
@@ -17,14 +17,14 @@ sendEmail = (from, to, subject, text, cb) => {
             Destination: {ToAddresses: to},
             Message: {
                 Subject: {
-                    Data: subject
+                    Data: subject,
                 },
                 Body: {
                     Text: {
-                        Data: text
-                    }
-                }
-            }
+                        Data: text,
+                    },
+                },
+            },
         },
         cb
     );

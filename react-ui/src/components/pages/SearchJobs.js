@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
+import categories from '../../constants/job_categories.js';
 
 class BrowseJobs extends Component {
     constructor() {
@@ -44,34 +45,34 @@ class BrowseJobs extends Component {
 
     renderJobs(job) {
         return (
-            <div key={job.job_id}>
+            <div key={job.jobId}>
                 <h2>
-                    <Link to={`/jobdetail/${job.job_id}`}>
-                        {job.job_title}
+                    <Link to={`/jobdetail/${job.jobId}`}>
+                        {job.jobTitle}
                     </Link>
                 </h2>
                 <h4>
                     <label>Category: </label>
-                    {job.category}
+                    {job.jobCat}
                 </h4>
                 <p>
                     {this.formatDesc(job.description)}
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {this.formatDate(job.start_date)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {this.formatTime(job.start_time)}
+                    {this.formatTime(job.startTime)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {this.formatDate(job.end_date)}
+                    {this.formatDate(job.endDate)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {this.formatTime(job.end_time)}
+                    {this.formatTime(job.endTime)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -82,6 +83,14 @@ class BrowseJobs extends Component {
     }
 
     render() {
+        const options = categories.map(function(elem) {
+            return (
+                <option value={categories[elem]}>
+                    {elem}
+                </option>
+            );
+        });
+
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
@@ -101,18 +110,8 @@ class BrowseJobs extends Component {
                         value={this.props.SearchTerm}
                     />
                     <datalist id="jobs">
-                        <option value="dog walking" />
-                        <option value="Tutoring- Spanish" />
-                        <option value="Home maintenance" />
-                        <option value="Tutoring- Mathematics" />
-                        <option value="Cat Sitting" />
-                        <option value="Plant watering" />
-                        <option value="Babysitting" />
-                        <option value="Cooking" />
-                        <option value="House Cleaning" />
-                        <option value="Band playing" />
-                        <option value="photography" />
-                        <option value="Other" />
+                        <option value="" disabled />
+                        {options}
                     </datalist>
                     <button type="submit" className="btn btn-primary">
                         Submit
@@ -175,7 +174,7 @@ function mapStateToProps(state) {
     return {
         jobs: state.searchJobs.jobsRequest.response,
         SearchTerm: state.searchJobs.searchTerm,
-        selectedJob: state.searchJobs.selectedJob
+        selectedJob: state.searchJobs.selectedJob,
     };
 }
 

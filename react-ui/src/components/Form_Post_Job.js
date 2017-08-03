@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
-import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import isEmpty from 'lodash/isEmpty';
-import Categories from '../constants/job_categories.js';
+import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -25,9 +24,9 @@ class Form_Post_Job extends Component {
         //resident id hardcoded for now
         this.state = {
             jobData: {
-                resident_id: 1
+                resident_id: 1,
             },
-            errorMessage: ''
+            errorMessage: '',
         };
     }
 
@@ -68,8 +67,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                start_date: evt.target.value
-            }
+                start_date: evt.target.value,
+            },
         });
     }
 
@@ -78,8 +77,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                start_time: evt.target.value
-            }
+                start_time: evt.target.value,
+            },
         });
     }
 
@@ -88,8 +87,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                end_date: evt.target.value
-            }
+                end_date: evt.target.value,
+            },
         });
     }
 
@@ -98,8 +97,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                end_time: evt.target.value
-            }
+                end_time: evt.target.value,
+            },
         });
     }
 
@@ -108,8 +107,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                job_title: evt.target.value
-            }
+                job_title: evt.target.value,
+            },
         });
     }
 
@@ -118,8 +117,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                description: evt.target.value
-            }
+                description: evt.target.value,
+            },
         });
     }
 
@@ -128,8 +127,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                rate: evt.target.value
-            }
+                rate: evt.target.value,
+            },
         });
     }
 
@@ -138,15 +137,15 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                category: evt.target.value
-            }
+                category: evt.target.value,
+            },
         });
     }
 
     render() {
-        const options = Categories.map(function(elem) {
+        const options = categories.map(function(elem) {
             return (
-                <option value={Categories[elem]}>
+                <option value={categories[elem]}>
                     {elem}
                 </option>
             );
@@ -156,7 +155,6 @@ class Form_Post_Job extends Component {
             return <div>Loading</div>;
         }
         
-        console.log(this.state);
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
@@ -289,7 +287,7 @@ class Form_Post_Job extends Component {
                 </div>
                 <div>
                     {this.props.currentlySending
-                        ? <LoadingButton />
+                        ? <div />
                         : <button className="btn btn-primary" type="submit">
                               Submit
                         </button>}
@@ -302,7 +300,7 @@ class Form_Post_Job extends Component {
 function mapStateToProps(state) {
     return {
         newJob: state.postJob.newJob.response,
-        errorMessage: state.errorMessage
+        errorMessage: state.errorMessage,
     };
 }
 

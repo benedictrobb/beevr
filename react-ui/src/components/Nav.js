@@ -2,17 +2,15 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {connect} from 'react-redux';
 import {logout} from '../actions/logout.js';
-import LoadingButton from './LoadingButton.js';
 
 class Nav extends Component {
     render() {
         // Render either the Log In and register buttons, or the logout button
         // based on the current authentication state.
-        console.log(this.state)
         const navButtons = this.props.loggedIn
             ? <div>
                 {this.props.currentlySending
-                    ? <LoadingButton className="btn--nav" />
+                    ? <div />
                     : <a
                         href="#"
                         className="btn"

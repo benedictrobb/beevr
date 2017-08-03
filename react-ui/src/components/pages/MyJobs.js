@@ -24,32 +24,32 @@ class MyJobs extends Component {
 
     renderJobs(job) {
         return (
-            <div key={job.job_id}>
+            <div key={job.jobId}>
                 <h2>
-                    {job.job_title}
+                    {job.jobTitle}
                 </h2>
                 <h4>
                     <label>Category: </label>
-                    {job.category}
+                    {job.jobCat}
                 </h4>
                 <p>
                     {job.description}
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {this.formatDate(job.start_date)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {this.formatTime(job.start_time)}
+                    {this.formatTime(job.startTime)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {this.formatDate(job.end_date)}
+                    {this.formatDate(job.endDate)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {this.formatTime(job.end_time)}
+                    {this.formatTime(job.endTime)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -80,7 +80,7 @@ class MyJobs extends Component {
 
 function mapStateToProps(state) {
     return {
-        myJobs: state.fetchMyJobs.jobsRequest.response
+        myJobs: state.fetchMyJobs.jobsRequest.response,
     };
 }
 

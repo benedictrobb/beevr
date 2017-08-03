@@ -4,7 +4,7 @@ import * as types from '../../react-ui/src/constants/action_types.js';
 describe('apply job reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
-            applied: []
+            applied: [],
         });
     });
 
@@ -13,12 +13,12 @@ describe('apply job reducer', () => {
             reducer(undefined, {
                 type: types.APPLY_JOB,
                 status: 'success',
-                response: 2
+                response: 2,
             })
         ).toEqual({
             applied: [2],
             status: 'success',
-            error: undefined
+            error: undefined,
         });
     });
 
@@ -26,18 +26,18 @@ describe('apply job reducer', () => {
         expect(
             reducer(
                 {
-                    applied: [2]
+                    applied: [2],
                 },
                 {
                     type: types.APPLY_JOB,
                     status: 'success',
-                    response: 4
+                    response: 4,
                 }
             )
         ).toEqual({
             applied: [2, 4],
             status: 'success',
-            error: undefined
+            error: undefined,
         });
     });
 });

@@ -3,26 +3,16 @@
  * @type {Object}
  */
 var beevrAPI = {
-
-
-    login(username, password, callback) {
-
-    },
+    login(username, password, callback) {},
     /**
    * Logs the current user out
    */
-    logout(callback) {
-        
-    },
+    logout(callback) {},
 
-    loggedIn() {
+    loggedIn() {},
 
-    },
-
-    register(username, password, callback) {
-
-    },
-    onChange() {}
+    register(username, password, callback) {},
+    onChange() {},
 };
 
 module.exports = beevrAPI;
