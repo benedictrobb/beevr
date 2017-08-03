@@ -23,38 +23,38 @@ class MyPostedJobs extends Component {
         return time.slice(0, 5);
     }
 
-    deleteJob(job_id) {
-        this.props.deleteJob(job_id);
+    deleteJob(jobId) {
+        this.props.deleteJob(jobId);
     }
 
     renderJob(job) {
         return (
-            <div key={job.job_id}>
+            <div key={job.jobId}>
                 <h2>
-                    {job.job_title}
+                    {job.jobTitle}
                 </h2>
                 <h4>
                     <label>Category: </label>
-                    {job.category}
+                    {job.jobCat}
                 </h4>
                 <p>
                     {job.description}
                 </p>
                 <label>Start Date</label>
                 <p>
-                    {this.formatDate(job.start_date)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>Start Time</label>
                 <p>
-                    {this.formatTime(job.start_time)}
+                    {this.formatTime(job.startTime)}
                 </p>
                 <label>End Date</label>
                 <p>
-                    {this.formatDate(job.end_date)}
+                    {this.formatDate(job.endDate)}
                 </p>
                 <label>End Time</label>
                 <p>
-                    {this.formatTime(job.end_time)}
+                    {this.formatTime(job.endTime)}
                 </p>
                 <label>Rate</label>
                 <p>
@@ -62,7 +62,7 @@ class MyPostedJobs extends Component {
                 </p>
                 <button
                     className="btn btn-danger"
-                    onClick={() => this.deleteJob(job.job_id)}
+                    onClick={() => this.deleteJob(job.jobId)}
                 >
                     Delete the job
                 </button>

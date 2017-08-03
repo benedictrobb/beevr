@@ -33,7 +33,7 @@ export const deleteJob = jobId => dispatch => {
     });
     axios
         .delete('/api/mypostedjobs', {
-            params: {job_id},
+            params: {jobId},
         })
         .then(response => {
             dispatch({

@@ -26,7 +26,7 @@ const getJobs = (jobsPosted, action) => {
     case 'success':
         return {
             ...jobsPosted,
-            jobs: action.response.myJobsList,
+            jobs: action.response.myPostedJobsList,
             requestStatus: 'success',
             requestError: undefined,
         };
@@ -76,12 +76,12 @@ const deleteJob = (state, action) => {
 
 export default (state = initialState, action) => {
     switch (action.type) {
-    case FETCH_MY_JOBS:
+    case FETCH_MY_POSTED_JOBS:
         return {
             ...state,
             jobsPosted: getJobs(state.jobsPosted, action),
         };
-    case DELETE_APPLICATION: {
+    case DELETE_JOB: {
         return deleteJob(state, action);
     }
 
