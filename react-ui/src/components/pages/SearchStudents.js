@@ -27,12 +27,12 @@ class BrowseStudents extends Component {
 
     renderStudents(student) {
         return (
-            <div key={student.student_id}>
+            <div key={student.studentId}>
                 <h2>
-                    {student.first_name}
+                    {student.firstName}
                 </h2>
                 <h4>
-                    {student.univ_school}
+                    {student.univSchool}
                 </h4>
                 <label>Bio</label>
                 <p>
@@ -52,7 +52,7 @@ class BrowseStudents extends Component {
                 </option>
             );
         });
-        
+
         let {students} = this.props;
         let studentList = students && students.studentList;
 
