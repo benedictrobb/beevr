@@ -27,7 +27,7 @@ import {
     SET_AUTH,
     CHANGE_FORM,
     SENDING_REQUEST,
-    SET_ERROR_MESSAGE
+    SET_ERROR_MESSAGE,
 } from '../constants/action_types.js';
 import * as errorMessages from '../constants/MessageConstants';
 import beevrAPI from '../utils/beevrAPI.js';
@@ -59,7 +59,7 @@ export function login(username, password) {
                 dispatch(
                     changeForm({
                         username: '',
-                        password: ''
+                        password: '',
                     })
                 );
             } else {
@@ -123,7 +123,7 @@ export function register(username, password) {
                 dispatch(
                     changeForm({
                         username: '',
-                        password: ''
+                        password: '',
                     })
                 );
             } else {

@@ -6,7 +6,7 @@ describe('my_jobs reducer', () => {
         expect(reducer(undefined, {})).toEqual({
             jobsRequest: {},
             term: '',
-            selectedJob: ''
+            selectedJob: '',
         });
     });
 
@@ -16,15 +16,15 @@ describe('my_jobs reducer', () => {
                 {},
                 {
                     type: types.FETCH_STUDENT_JOBS,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             jobsRequest: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -44,7 +44,7 @@ describe('my_jobs reducer', () => {
                             job_title: 'Hello Chello',
                             description: 'Lorem Ipsum',
                             rate: '100',
-                            category: 'photography'
+                            category: 'photography',
                         },
                         {
                             start_date: '01/12/90',
@@ -54,9 +54,9 @@ describe('my_jobs reducer', () => {
                             job_title: 'Dog walking',
                             description: 'Lorem Ipsum',
                             rate: '10',
-                            category: 'dog walking'
-                        }
-                    ]
+                            category: 'dog walking',
+                        },
+                    ],
                 }
             )
         ).toEqual({
@@ -72,7 +72,7 @@ describe('my_jobs reducer', () => {
                         job_title: 'Hello Chello',
                         description: 'Lorem Ipsum',
                         rate: '100',
-                        category: 'photography'
+                        category: 'photography',
                     },
                     {
                         start_date: '01/12/90',
@@ -82,10 +82,10 @@ describe('my_jobs reducer', () => {
                         job_title: 'Dog walking',
                         description: 'Lorem Ipsum',
                         rate: '10',
-                        category: 'dog walking'
-                    }
-                ]
-            }
+                        category: 'dog walking',
+                    },
+                ],
+            },
         });
     });
 
@@ -95,11 +95,11 @@ describe('my_jobs reducer', () => {
                 {},
                 {
                     type: types.SET_TERM,
-                    response: 'coding'
+                    response: 'coding',
                 }
             )
         ).toEqual({
-            searchTerm: 'coding'
+            searchTerm: 'coding',
         });
     });
 
@@ -109,11 +109,11 @@ describe('my_jobs reducer', () => {
                 {},
                 {
                     type: types.SET_SELECTED_JOB,
-                    response: 2
+                    response: 2,
                 }
             )
         ).toEqual({
-            selectedJob: 2
+            selectedJob: 2,
         });
     });
 });

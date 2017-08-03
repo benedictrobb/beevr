@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 import categories from '../constants/job_categories.js';
 
@@ -175,10 +174,7 @@ class Form_Register_Student extends Component {
                 </div>
 
                 <div className="form-group">
-                    <label
-                        className="control-label"
-                        htmlFor="universitySchool"
-                    >
+                    <label className="control-label" htmlFor="universitySchool">
                         University/School
                     </label>
                     <input
@@ -333,7 +329,7 @@ class Form_Register_Student extends Component {
 
                 <div>
                     {this.props.currentlySending
-                        ? <LoadingButton />
+                        ? <div />
                         : <button className="btn btn-primary" type="submit">
                             {this.props.btnText}
                         </button>}
