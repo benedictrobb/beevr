@@ -32,10 +32,18 @@ class JobDetail extends Component {
 
     renderJob() {
         if (!this.props.jobs) {
-            return <h2>Loading</h2>;
+            return (
+                <p className="text-center register_container">
+                    {' '}<h3>Loading</h3>
+                </p>
+            );
         }
         if (this.props.applied.includes(this.props.jobId)) {
-            return <h2>APPLICATION SUCCESSFUL</h2>;
+            return (
+                <div className="text-center register_container">
+                    <h3>APPLICATION SUCCESSFUL</h3>
+                </div>
+            );
         }
         var jobObj = {};
         var arr = this.props.jobs;
@@ -44,46 +52,67 @@ class JobDetail extends Component {
         var job = jobObj[this.props.jobId];
 
         return (
-            <div key={job.jobId}>
-                <h2>
-                    {job.jobTitle}
-                </h2>
-                <h4>
-                    <label>Category: </label>
-                    {job.jobCat}
-                </h4>
-                <p>
-                    {job.description}
-                </p>
-                <label>Start Date</label>
-                <p>
-                    {this.formatDate(job.startDate)}
-                </p>
-                <label>Start Time</label>
-                <p>
-                    {this.formatTime(job.startTime)}
-                </p>
-                <label>End Date</label>
-                <p>
-                    {this.formatDate(job.endDate)}
-                </p>
-                <label>End Time</label>
-                <p>
-                    {this.formatTime(job.endTime)}
-                </p>
-                <label>Rate</label>
-                <p>
-                    {job.rate}
-                </p>
-                <div>
-                    {this.props.status === 'pending'
-                        ? <LoadingIndicator />
-                        : <button
-                            className="btn btn primary"
-                            onClick={this.submitJobApplication}
-                        >
-                              APPLY
-                        </button>}
+            <div className="container-fluid register_container">
+                <div className="row-fluid">
+                    <div key={job.jobId} className="col-md-8 col-md-offset-2 ">
+                        <h3 className="job_title">
+                            {job.jobTitle}
+                        </h3>
+                        <h5 className="job_title">
+                            {job.jobCat}
+                        </h5>
+                        <p>
+                            {job.description}
+                        </p>
+
+                        <label>
+                            <u>Start Date</u>
+                        </label>
+
+                        <p>
+                            {this.formatDate(job.startDate)}
+                        </p>
+                        <label>
+                            <u>Start Time</u>
+                        </label>
+                        <p>
+                            {this.formatTime(job.startTime)}
+                        </p>
+                        <u>
+                            <label>
+                                <u>End Date</u>
+                            </label>
+                        </u>
+                        <p>
+                            {this.formatDate(job.endDate)}
+                        </p>
+                        <u>
+                            <label>
+                                <u>End Time</u>
+                            </label>
+                        </u>
+                        <p>
+                            {this.formatTime(job.endTime)}
+                        </p>
+                        <u>
+                            <label>
+                                <u>Rate</u>
+                            </label>
+                        </u>
+                        <p>
+                            {job.rate}
+                        </p>
+                        <div>
+                            {this.props.status === 'pending'
+                                ? <LoadingIndicator />
+                                : <button
+                                    className="btn btn-primary"
+                                    onClick={this.submitJobApplication}
+                                >
+                                      APPLY
+                                </button>}
+                        </div>
+                    </div>
                 </div>
             </div>
         );
@@ -115,7 +144,7 @@ function mapStateToProps(state, ownProps) {
         applied: state.applyJob.applied,
         jobId: ownProps.params.id,
         status: state.applyJob.status,
-        jobs
+        jobs,
     };
 }
 

@@ -51,3 +51,11 @@ a:hover {
 .register_container {
     margin-top: 3%;
 }
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.job_title {
+    color: #b3b7ee;
+}

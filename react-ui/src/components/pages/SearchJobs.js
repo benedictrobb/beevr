@@ -60,12 +60,7 @@ class BrowseJobs extends Component {
                 <p>
                     {this.formatDesc(job.description)}
                 </p>
-                <label>
-                    <u>Start Date</u>
-                </label>
-                <p>
-                    {this.formatDate(job.startDate)}
-                </p>
+
                 <label>
                     <u>Start Time</u>
                 </label>
@@ -78,12 +73,7 @@ class BrowseJobs extends Component {
                 <p>
                     {this.formatDate(job.endDate)}
                 </p>
-                <label>
-                    <u>End Time</u>
-                </label>
-                <p>
-                    {this.formatTime(job.endTime)}
-                </p>
+
                 <label>
                     <u>Rate</u>
                 </label>
