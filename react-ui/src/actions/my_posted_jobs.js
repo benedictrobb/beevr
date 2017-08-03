@@ -4,7 +4,7 @@ import {FETCH_MY_POSTED_JOBS, DELETE_JOB} from '../constants/action_types.js';
 export const fetchMyPostedJobs = () => dispatch => {
     dispatch({
         type: FETCH_MY_POSTED_JOBS,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -13,39 +13,41 @@ export const fetchMyPostedJobs = () => dispatch => {
             dispatch({
                 type: FETCH_MY_POSTED_JOBS,
                 status: 'success',
-                response: response.data
+                response: response.data,
             });
         })
         .catch(err => {
             dispatch({
                 type: FETCH_MY_POSTED_JOBS,
                 status: 'error',
-                error: err
+                error: err,
             });
         });
 };
 
-export const deleteJob = (job_id, callback) => dispatch => {
+export const deleteJob = jobId => dispatch => {
     dispatch({
         type: DELETE_JOB,
-        status: 'pending'
+        status: 'pending',
+        jobId: jobId,
     });
     axios
         .delete('/api/mypostedjobs', {
-            params: {job_id}
+            params: {job_id},
         })
         .then(response => {
             dispatch({
                 type: DELETE_JOB,
-                status: 'success'
+                status: 'success',
+                jobId: jobId,
             });
-            callback();
         })
         .catch(err => {
             dispatch({
                 type: DELETE_JOB,
                 status: 'error',
-                error: err
+                error: err,
+                jobId: jobId,
             });
         });
 };
