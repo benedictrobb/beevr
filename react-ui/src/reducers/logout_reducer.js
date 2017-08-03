@@ -10,10 +10,10 @@ export default (state = initialState, action = {}) => {
     switch (action.type) {
     case REMOVE_AUTH:
         return {
+            ...state,
             status: action.status,
             error: action.error,
             response: action.response,
-            state: initialState,
             loggedIn: false,
             isAuthenticated: false,
         };

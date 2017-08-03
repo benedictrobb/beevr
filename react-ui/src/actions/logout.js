@@ -13,7 +13,7 @@ export const logout = () => dispatch => {
             dispatch({
                 type: REMOVE_AUTH,
                 status: 'success',
-                response: response,
+                response: response.data,
             });
         })
         .catch(error => {
