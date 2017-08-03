@@ -1,19 +1,37 @@
-import {APPLY_JOB} from '../constants/action_types.js';
+import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 
 const initialState = {
-  applied: []
+    applied: [],
+    jobsRequest: {},
 };
 
 export default (state = initialState, action) => {
-  switch (action.type) {
+    switch (action.type) {
     case APPLY_JOB:
-      return {
+        if (action.status === 'pending') {
+            return {
+                ...state,
+                status: action.status
+            };
+        } else {
+            return {
+                ...state,
+                status: action.status,
+                error: action.error,
+                applied: [...state.applied, action.response]
+            };
+        }
+
+    case FETCH_JOBS:
+    return {
         ...state,
-        status: action.status,
-        error: action.error,
-        applied: [...state.applied, action.response]
-      };
+        jobsRequest: {
+            status: action.status,
+            error: action.error,
+            response: action.response
+        }
+    };
     default:
-      return state;
-  }
+        return state;
+    }
 };

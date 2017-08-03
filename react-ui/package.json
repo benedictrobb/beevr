@@ -6,6 +6,7 @@
     "axios": "^0.16.2",
     "react": "^15.6.1",
     "react-dom": "^15.6.1",
+    "react-loading-indicator": "^1.0.2",
     "react-redux": "^5.0.5",
     "react-router": "2.0.1",
     "react-scripts": "1.0.10",
