@@ -247,7 +247,7 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/auth',
         handler: (request, reply) => {
-            console.log(request.payload);
+            console.log('nvnvnv',request.payload);
             const email = request.payload.email;
             data.loginRequest(email, (err, res) => {
                 if (err) {
@@ -256,6 +256,7 @@ server.register(plugins, err => {
                     );
                 }
                 const user = res;
+                console.log('vvvv',request.payload);
                 comparePassword(
                     request.payload.password,
                     user.password_hash,

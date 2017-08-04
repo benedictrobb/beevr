@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import Axios from 'axios';
+import axios from 'axios';
 import {Link} from 'react-router';
 
 class Dashboard extends Component {
@@ -12,7 +12,7 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        Axios.get('/api/jobs').then(response => {
+        axios.get('/api/jobs').then(response => {
             var data = response.data;
             this.setState({data});
         });
