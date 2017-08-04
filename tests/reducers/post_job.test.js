@@ -5,7 +5,7 @@ describe('post job reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
             newJob: {},
-            jobData: {}
+            jobData: {},
         });
     });
 
@@ -15,15 +15,15 @@ describe('post job reducer', () => {
                 {},
                 {
                     type: types.POST_JOB,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             newJob: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -43,8 +43,8 @@ describe('post job reducer', () => {
                         description: 'Lorem Ipsum',
                         rate: '100',
                         resident_id: '1',
-                        category: 'photography'
-                    }
+                        category: 'photography',
+                    },
                 }
             )
         ).toEqual({
@@ -60,9 +60,9 @@ describe('post job reducer', () => {
                     description: 'Lorem Ipsum',
                     rate: '100',
                     resident_id: '1',
-                    category: 'photography'
-                }
-            }
+                    category: 'photography',
+                },
+            },
         });
     });
 });

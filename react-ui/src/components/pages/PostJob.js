@@ -2,7 +2,6 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import Form_Post_Job from '../Form_Post_Job';
 import {sendingRequest} from '../../actions/AppActions';
-import LoadingIndicator from '../LoadingIndicator.js';
 
 // const testObject = {
 //     start_date: '01/12/90',

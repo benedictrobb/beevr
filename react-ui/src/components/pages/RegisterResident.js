@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Form_Register_Resident from '../Form_Register_Resident.js';
-import LoadingIndicator from '../LoadingIndicator.js';
 import {Router, Route, IndexRoute, browseHistory} from 'react-router';
 import * as actions from '../../actions/register_resident.js';
 import {connect} from 'react-redux';

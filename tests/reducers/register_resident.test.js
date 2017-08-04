@@ -6,7 +6,7 @@ describe('register resident reducer', () => {
         expect(reducer(undefined, {})).toEqual({
             loggedIn: false,
             isAuthenticated: false,
-            resident: {}
+            resident: {},
         });
     });
 
@@ -16,15 +16,15 @@ describe('register resident reducer', () => {
                 {},
                 {
                     type: types.REGISTER_RESIDENT,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             resident: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -42,8 +42,8 @@ describe('register resident reducer', () => {
                         dob: '01/01/2000',
                         address: '123 Pretty Street',
                         bio: 'Lorem Ipsum',
-                        phone: '777-77-777'
-                    }
+                        phone: '777-77-777',
+                    },
                 }
             )
         ).toEqual({
@@ -57,9 +57,9 @@ describe('register resident reducer', () => {
                     dob: '01/01/2000',
                     address: '123 Pretty Street',
                     bio: 'Lorem Ipsum',
-                    phone: '777-77-777'
-                }
-            }
+                    phone: '777-77-777',
+                },
+            },
         });
     });
 });
