@@ -25,7 +25,7 @@ import registerServiceWorker from './registerServiceWorker';
 import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 import MyJobs from './components/pages/MyJobs.js';
-
+import reducer from './reducers/index.js';
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
 // to do asynchronous things in the actions
 
@@ -35,30 +35,36 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-function checkAuth(nextState, replaceState) {
-    let {loggedIn} = store.getState();
-
-    // check if the path isn't dashboard
+function checkAuth(auth) {
+    auth = store.getState().login.isAuthenticated;
+    console.log(auth);
+    if (auth) {
+        console.log('id: ',store.getState().login.response.id);
+        console.log('role: ',store.getState().login.response.role);
+    } else {
+        console.log('not authorised');  
+    }
+        // check if the path isn't dashboard
     // that way we can apply specific logic
     // to display/render the path we want to
-    if (nextState.location.pathname !== '/') {
-        if (loggedIn) {
-            if (nextState.location.state && nextState.location.pathname) {
-                replaceState(null, nextState.location.pathname);
-            } else {
-                replaceState(null, '/');
-            }
-        }
-    } else {
-        // If the user is already logged in, forward them to the homepage
-        if (!loggedIn) {
-            if (nextState.location.state && nextState.location.pathname) {
-                replaceState(null, nextState.location.pathname);
-            } else {
-                replaceState(null, '/');
-            }
-        }
-    }
+    //if (nextState.location.pathname !== '/') {
+        //if (loggedIn) {
+            //if (nextState.location.state && nextState.location.pathname) {
+                //replaceState(null, nextState.location.pathname);
+            //} else {
+                //replaceState(null, '/');
+            //}
+        //}
+    //} else {
+        //// If the user is already logged in, forward them to the homepage
+        //if (!loggedIn) {
+            //if (nextState.location.state && nextState.location.pathname) {
+                //replaceState(null, nextState.location.pathname);
+            //} else {
+                //replaceState(null, '/');
+            //}
+        //}
+    //}
 }
 
 // Mostly boilerplate, except for the Routes. These are the pages you can go to,
@@ -66,7 +72,7 @@ function checkAuth(nextState, replaceState) {
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App}>
+            <Route component={App} onEnter={checkAuth}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />
@@ -77,7 +83,6 @@ ReactDOM.render(
                 <Route path="/jobsapplied" component={MyJobs} />
                 <Route path="/jobposted" component={JobPostSuccess} />
                 <Route path="/" component={Dashboard} />
-                <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />
             </Route>
         </Router>

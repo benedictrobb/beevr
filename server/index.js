@@ -37,7 +37,7 @@ server.register(plugins, err => {
         ttl: 24 * 60 * 60 * 1000,
     };
 
-    server.auth.strategy('session', 'cookie', 'optional', cookieAuthOptions);
+    server.auth.strategy('session', 'cookie', 'required', cookieAuthOptions);
 
     server.route({
         method: 'GET',
@@ -54,158 +54,207 @@ server.register(plugins, err => {
     server.route({
         method: 'GET',
         path: '/api/jobs',
-        handler: (request, reply) => {
-            data.getJobs((err, res) => {
-                if (err) {
-                    return reply(Boom.serverUnavailable('unavailable: ' + err));
-                }
-                reply({
-                    name: 'jobsList',
-                    message: 'Welcome to BEEVR!',
-                    jobsList: res.map(element => {
-                        return {
-                            jobId: element.job_id,
-                            jobTitle: element.job_title,
-                            startDate: element.start_date,
-                            startTime: element.start_time,
-                            endDate: element.end_date,
-                            endTime: element.end_time,
-                            description: element.description,
-                            jobCat: element.category,
-                            rate: element.rate,
-                            studentId: element.student_id,
-                            residentId: element.resident_id,
-                        };
-                    }),
-                });
-            }, request.url.query.term);
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                data.getJobs((err, res) => {
+                    if (err) {
+                        return reply(
+                            Boom.serverUnavailable('unavailable: ' + err)
+                        );
+                    }
+                    reply({
+                        name: 'jobsList',
+                        message: 'Welcome to BEEVR!',
+                        jobsList: res.map(element => {
+                            return {
+                                jobId: element.job_id,
+                                jobTitle: element.job_title,
+                                startDate: element.start_date,
+                                startTime: element.start_time,
+                                endDate: element.end_date,
+                                endTime: element.end_time,
+                                description: element.description,
+                                jobCat: element.category,
+                                rate: element.rate,
+                                studentId: element.student_id,
+                                residentId: element.resident_id,
+                            };
+                        }),
+                    });
+                }, request.url.query.term);
+            },
         },
     });
 
     server.route({
         method: 'POST',
         path: '/api/jobs',
-        handler: (request, reply) => {
-            data.postJobs(request.payload, (err, res) => {
-                if (err) {
-                    return reply(Boom.badRequest('Bad request: ' + err));
-                }
-                reply({
-                    name: 'newJob',
-                    message: 'Job posted succesfully!',
+        config: {
+            auth: {
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                data.postJobs(request.payload, (err, res) => {
+                    if (err) {
+                        return reply(Boom.badRequest('Bad request: ' + err));
+                    }
+                    reply({
+                        name: 'newJob',
+                        message: 'Job posted succesfully!',
+                    });
                 });
-            });
+            },
         },
     });
 
     server.route({
         method: 'GET',
         path: '/api/get-students',
-        handler: (request, reply) => {
-            data.getStudents((err, res) => {
-                if (err) {
-                    return reply(Boom.serverUnavailable('unavailable: ' + err));
-                } else {
-                    reply({
-                        name: 'studentList',
-                        message: 'Welcome to BEEVR!',
-                        studentList: res.map(element => {
-                            return {
-                                studentId: element.student_id,
-                                firstName: element.first_name,
-                                lastName: element.last_name,
-                                dob: element.dob,
-                                univSchool: element.univ_school,
-                                bio: element.bio,
-                                picture: element.picture,
-                                jobCat: element.job_cat,
-                            };
-                        }),
-                    });
-                }
-            }, request.url.query.searchTerm);
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                data.getStudents((err, res) => {
+                    if (err) {
+                        return reply(
+                            Boom.serverUnavailable('unavailable: ' + err)
+                        );
+                    } else {
+                        reply({
+                            name: 'studentList',
+                            message: 'Welcome to BEEVR!',
+                            studentList: res.map(element => {
+                                return {
+                                    studentId: element.student_id,
+                                    firstName: element.first_name,
+                                    lastName: element.last_name,
+                                    dob: element.dob,
+                                    univSchool: element.univ_school,
+                                    bio: element.bio,
+                                    picture: element.picture,
+                                    jobCat: element.job_cat,
+                                };
+                            }),
+                        });
+                    }
+                }, request.url.query.searchTerm);
+            },
         },
     });
 
     server.route({
         method: 'POST',
         path: '/api/student',
-        handler: (request, reply) => {
-            data.studentExists(request.payload.email, (err, res) => {
-                if (err) {
-                    return reply(Boom.badRequest('Bad request: ' + err));
-                }
-                reply(res.exists);
-            });
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                data.studentExists(request.payload.email, (err, res) => {
+                    if (err) {
+                        return reply(Boom.badRequest('Bad request: ' + err));
+                    }
+                    reply(res.exists);
+                });
+            },
         },
     });
 
     server.route({
         method: 'POST',
         path: '/api/reg-student',
-        handler: (request, reply) => {
-            hashPassword(request.payload.password, (err, hash) => {
-                if (err) {
-                    return reply(Boom.badData('bcrypt error'));
-                }
-                data.postStudents(
-                    Object.assign({}, request.payload, {passwordHash: hash}),
-                    (err, res) => {
-                        if (err) {
-                            return reply(
-                                Boom.badRequest('Bad request: ' + err)
-                            );
-                        }
-                        reply({
-                            name: 'student',
-                            status: 'success',
-                            message: `Registration successful!
-                            Welcome to BEEVR!`,
-                        });
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                hashPassword(request.payload.password, (err, hash) => {
+                    if (err) {
+                        return reply(Boom.badData('bcrypt error'));
                     }
-                );
-            });
+                    data.postStudents(
+                        Object.assign({}, request.payload, {
+                            passwordHash: hash,
+                        }),
+                        (err, res) => {
+                            if (err) {
+                                return reply(
+                                    Boom.badRequest('Bad request: ' + err)
+                                );
+                            }
+                            reply({
+                                name: 'student',
+                                status: 'success',
+                                message: `Registration successful!
+                                Welcome to BEEVR!`,
+                            });
+                        }
+                    );
+                });
+            },
         },
     });
 
     server.route({
         method: 'POST',
         path: '/api/resident',
-        handler: (request, reply) => {
-            data.residentExists(request.payload.email, (err, res) => {
-                if (err) {
-                    return reply(Boom.badRequest('Bad request: ' + err));
-                }
-                reply(res.exists);
-            });
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                data.residentExists(request.payload.email, (err, res) => {
+                    if (err) {
+                        return reply(Boom.badRequest('Bad request: ' + err));
+                    }
+                    reply(res.exists);
+                });
+            },
         },
     });
 
     server.route({
         method: 'POST',
         path: '/api/reg-resident',
-        handler: (request, reply) => {
-            hashPassword(request.payload.password, (err, hash) => {
-                if (err) {
-                    return reply(Boom.badData('bcrypt error'));
-                }
-                data.postResidents(
-                    Object.assign({}, request.payload, {passwordHash: hash}),
-                    (err, res) => {
-                        if (err) {
-                            return reply(
-                                Boom.badRequest('Bad request: ' + err)
-                            );
-                        }
-                        reply({
-                            name: 'resident',
-                            status: 'success',
-                            message: `Registration successful!
-                            Welcome to BEEVR!`,
-                        });
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                hashPassword(request.payload.password, (err, hash) => {
+                    if (err) {
+                        return reply(Boom.badData('bcrypt error'));
                     }
-                );
-            });
+                    data.postResidents(
+                        Object.assign({}, request.payload, {
+                            passwordHash: hash,
+                        }),
+                        (err, res) => {
+                            if (err) {
+                                return reply(
+                                    Boom.badRequest('Bad request: ' + err)
+                                );
+                            }
+                            reply({
+                                name: 'resident',
+                                status: 'success',
+                                message: `Registration successful!
+                                Welcome to BEEVR!`,
+                            });
+                        }
+                    );
+                });
+            },
         },
     });
 
@@ -246,38 +295,45 @@ server.register(plugins, err => {
     server.route({
         method: 'POST',
         path: '/api/auth',
-        handler: (request, reply) => {
-            console.log('nvnvnv',request.payload);
-            const email = request.payload.email;
-            data.loginRequest(email, (err, res) => {
-                if (err) {
-                    return reply(
-                        Boom.unauthorized('Please log-in to see that')
-                    );
-                }
-                const user = res;
-                console.log('vvvv',request.payload);
-                comparePassword(
-                    request.payload.password,
-                    user.password_hash,
-                    (err, match) => {
-                        if (err) {
-                            return reply(
-                                Boom.unauthorized('Please log-in to see that')
-                            );
-                        }
-                        request.cookieAuth.set({email});
-                        reply({
-                            name: 'loginRequest',
-                            message: 'Welcome to BEEVR!',
-                            status: 'success',
-                            isAuthenticated: true,
-                            id: res.id,
-                            role: res.role,
-                        });
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                const email = request.payload.email;
+                data.loginRequest(email, (err, res) => {
+                    if (err) {
+                        return reply(
+                            Boom.unauthorized('Please log-in to see that')
+                        );
                     }
-                );
-            });
+                    const user = res;
+                    comparePassword(
+                        request.payload.password,
+                        user.password_hash,
+                        (err, match) => {
+                            if (err) {
+                                return reply(
+                                    Boom.unauthorized(
+                                        'Please log-in to see that'
+                                    )
+                                );
+                            }
+                            request.cookieAuth.set({email});
+                            reply({
+                                name: 'loginRequest',
+                                message: 'Welcome to BEEVR!',
+                                status: 'success',
+                                loggedIn: true,
+                                isAuthenticated: true,
+                                id: res.id,
+                                role: res.role,
+                            });
+                        }
+                    );
+                });
+            },
         },
     });
 
@@ -285,36 +341,50 @@ server.register(plugins, err => {
     server.route({
         method: 'GET',
         path: '/api/myjobs',
-        handler: (request, reply) => {
-            data.getMyJobs((err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to retrieve data from database'
-                        )
-                    );
+        config: {
+            auth: {
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                console.log(request.auth);
+                if (request.auth.isAuthenticated) {
+                    // session data available
+                    var session = request.auth.credentials;
+                    console.log(session);
+                    data.getMyJobs((err, res) => {
+                        if (err) {
+                            return reply(
+                                Boom.serverUnavailable(
+                                    'Failed to retrieve data from database'
+                                )
+                            );
+                        }
+                        return reply({
+                            name: 'myJobsList',
+                            message: 'Welcome to BEEVR!',
+                            myJobsList: res.map(element => {
+                                return {
+                                    jobId: element.job_id,
+                                    jobTitle: element.job_title,
+                                    startDate: element.start_date,
+                                    startTime: element.start_time,
+                                    endDate: element.end_date,
+                                    endTime: element.end_time,
+                                    description: element.description,
+                                    jobCat: element.category,
+                                    rate: element.rate,
+                                    studentId: element.student_id,
+                                    residentId: element.resident_id,
+                                };
+                            }),
+                        });
+                    }, 2);
                 } else {
-                    reply({
-                        name: 'myJobsList',
-                        message: 'Welcome to BEEVR!',
-                        myJobsList: res.map(element => {
-                            return {
-                                jobId: element.job_id,
-                                jobTitle: element.job_title,
-                                startDate: element.start_date,
-                                startTime: element.start_time,
-                                endDate: element.end_date,
-                                endTime: element.end_time,
-                                description: element.description,
-                                jobCat: element.category,
-                                rate: element.rate,
-                                studentId: element.student_id,
-                                residentId: element.resident_id,
-                            };
-                        }),
-                    });
+                    return reply(
+                        Boom.unauthorized('Please log-in to see that')
+                    );
                 }
-            }, 2);
+            },
         },
     });
 

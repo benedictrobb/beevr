@@ -42,9 +42,9 @@ class Dashboard extends Component {
 }
 
 // Which props do we want to inject, given the global state?
-function select(state) {
+function mapStateToProps(state) {
     return {data: state};
 }
 
 // Wrap the component to inject dispatch and state into it
-export default connect(select)(Dashboard);
+export default connect(mapStateToProps)(Dashboard);
