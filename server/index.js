@@ -269,6 +269,7 @@ server.register(plugins, err => {
                             name: 'loginRequest',
                             message: 'Welcome to BEEVR!',
                             status: 'success',
+                            loggedIn: true,
                             isAuthenticated: true,
                             id: res.id,
                             role: res.role,

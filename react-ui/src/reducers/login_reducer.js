@@ -1,4 +1,5 @@
 import {SET_AUTH} from '../constants/action_types.js';
+import {REMOVE_AUTH} from '../constants/action_types.js';
 
 const initialState = {
     email: '',
@@ -13,16 +14,23 @@ const initialState = {
 export default (state = initialState, action = {}) => {
     switch (action.type) {
     case SET_AUTH:
-        console.log('llll',action.response);
         return {
             ...state,
             status: action.status,
             error: action.error,
             response: action.response,
-            id: action, 
             loggedIn: true,
             isAuthenticated: true,
 
+        };
+    case REMOVE_AUTH:
+        return {
+            ...state,
+            status: action.status,
+            error: action.error,
+            response: action.response,
+            loggedIn: false,
+            isAuthenticated: false,
         };
     default:
         return state;

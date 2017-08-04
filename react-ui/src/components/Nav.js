@@ -5,21 +5,7 @@ import {logout} from '../actions/logout.js';
 
 class Nav extends Component {
     render() {
-        // Render either the Log In and register buttons, or the logout button
-        // based on the current authentication state.
-        const navButtons = this.props.loggedIn
-        console.log(this.props.loggedIn);
-            //? <div>
-                    //? <div />
-                    //: <a
-                        //href="#"
-                        //className="btn"
-                        //onClick={this.props.logout.bind(this)}
-                    //>
-                            //Logout
-                    //</a>}
-            //</div>
-            //: 
+        const navButtons =
             <div>
                 <Link to="/" className="btn">
                       Home
@@ -49,23 +35,12 @@ class Nav extends Component {
         );
     }
 
-    //logout() {
-        //var state = this.state;
-        //this.setState({
-            //logout: {...logout,
-                //isAuthenticated: false,
-                //loggedIn: false,
-            //},
-        //});
-        //this.props.dispatch(logout());
-    //}
 }
 
 function mapStateToProps(state) {
     return {
-        logout: state.logout,
+        isLogged: state.login,
     };
 }
 
 export default connect(mapStateToProps, {logout})(Nav);
-//export default Nav;
