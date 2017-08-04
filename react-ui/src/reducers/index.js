@@ -19,6 +19,10 @@ export default combineReducers({
     login,
     searchStudents,
     searchStudents,
+<<<<<<< HEAD
     fetchMyPostedJobs,
     fetchMyJobs
+=======
+    fetchMyJobs,
+>>>>>>> master
 });

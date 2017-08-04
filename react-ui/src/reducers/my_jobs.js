@@ -1,7 +1,7 @@
 import {FETCH_MY_JOBS} from '../constants/action_types.js';
 
 const initialState = {
-    jobsRequest: {}
+    jobsRequest: {},
 };
 
 export default (state = initialState, action) => {
@@ -12,8 +12,8 @@ export default (state = initialState, action) => {
             jobsRequest: {
                 status: action.status,
                 error: action.error,
-                response: action.response
-            }
+                response: action.response,
+            },
         };
 
     default:

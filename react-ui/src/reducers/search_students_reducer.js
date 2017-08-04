@@ -3,7 +3,7 @@ import {SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
     studentsRequest: {},
-    searchTerm: ''
+    searchTerm: '',
 };
 
 export default (state = initialState, action) => {
@@ -14,14 +14,14 @@ export default (state = initialState, action) => {
             studentsRequest: {
                 status: action.status,
                 error: action.error,
-                response: action.response
-            }
+                response: action.response,
+            },
         };
 
     case SET_TERM:
         return {
             ...state,
-            searchTerm: action.response
+            searchTerm: action.response,
         };
 
     default:

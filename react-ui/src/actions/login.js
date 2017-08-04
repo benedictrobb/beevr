@@ -4,7 +4,7 @@ import {SET_AUTH} from '../constants/action_types.js';
 export const loginRequest = (email, password) => dispatch => {
     dispatch({
         type: SET_AUTH,
-        status: 'pending'
+        status: 'pending',
     });
 
     axios
@@ -13,14 +13,14 @@ export const loginRequest = (email, password) => dispatch => {
             dispatch({
                 type: SET_AUTH,
                 status: 'success',
-                response: response.confirm
+                response: response.confirm,
             });
         })
         .catch(error => {
             dispatch({
                 type: SET_AUTH,
                 status: 'error',
-                error: 'Invalid credentials'
+                error: 'Invalid credentials',
             });
         });
 };

@@ -4,7 +4,7 @@ import * as types from '../../react-ui/src/constants/action_types.js';
 describe('my_jobs reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
-            jobsRequest: {}
+            jobsRequest: {},
         });
     });
 
@@ -14,15 +14,15 @@ describe('my_jobs reducer', () => {
                 {},
                 {
                     type: types.FETCH_MY_JOBS,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             jobsRequest: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -42,7 +42,7 @@ describe('my_jobs reducer', () => {
                             job_title: 'Hello Chello',
                             description: 'Lorem Ipsum',
                             rate: '100',
-                            category: 'photography'
+                            category: 'photography',
                         },
                         {
                             start_date: '01/12/90',
@@ -52,9 +52,9 @@ describe('my_jobs reducer', () => {
                             job_title: 'Dog walking',
                             description: 'Lorem Ipsum',
                             rate: '10',
-                            category: 'dog walking'
-                        }
-                    ]
+                            category: 'dog walking',
+                        },
+                    ],
                 }
             )
         ).toEqual({
@@ -70,7 +70,7 @@ describe('my_jobs reducer', () => {
                         job_title: 'Hello Chello',
                         description: 'Lorem Ipsum',
                         rate: '100',
-                        category: 'photography'
+                        category: 'photography',
                     },
                     {
                         start_date: '01/12/90',
@@ -80,10 +80,10 @@ describe('my_jobs reducer', () => {
                         job_title: 'Dog walking',
                         description: 'Lorem Ipsum',
                         rate: '10',
-                        category: 'dog walking'
-                    }
-                ]
-            }
+                        category: 'dog walking',
+                    },
+                ],
+            },
         });
     });
 });

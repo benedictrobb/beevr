@@ -11,26 +11,26 @@ export default (state = initialState, action) => {
         if (action.status === 'pending') {
             return {
                 ...state,
-                status: action.status
+                status: action.status,
             };
         } else {
             return {
                 ...state,
                 status: action.status,
                 error: action.error,
-                applied: [...state.applied, action.response]
+                applied: [...state.applied, action.response],
             };
         }
 
     case FETCH_JOBS:
-    return {
-        ...state,
-        jobsRequest: {
-            status: action.status,
-            error: action.error,
-            response: action.response
-        }
-    };
+        return {
+            ...state,
+            jobsRequest: {
+                status: action.status,
+                error: action.error,
+                response: action.response,
+            },
+        };
     default:
         return state;
     }
