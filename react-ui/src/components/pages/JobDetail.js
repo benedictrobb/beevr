@@ -68,7 +68,7 @@ class JobDetail extends Component {
         var job = jobObj[this.props.jobId];
 
         return (
-            <div>
+            <div key={job.jobId} className="col-md-6 col-md-offset-3">
                 <h3 className="job_title">
                     {job.jobTitle}
                 </h3>
@@ -132,9 +132,9 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div className="container-fluid">
-                <article className="row-fluid search_jobs">
-                    <section className="col-md-6 col-md-offset-3">
+            <div className="container-fluid register_container">
+                <article className="row-fluid">
+                    <section>
                         {this.renderJob()}
                     </section>
                 </article>
