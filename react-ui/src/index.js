@@ -1,9 +1,6 @@
-//import React from 'react';
-//import ReactDOM from 'react-dom';
 //import './index.css';
 //import App from './App';
 
-//ReactDOM.render(<App />, document.getElementById('root'));
 import React from 'react';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -26,8 +23,6 @@ import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 import MyJobs from './components/pages/MyJobs.js';
 import reducer from './reducers/index.js';
-// Creates the Redux reducer with the redux-thunk middleware, which allows us
-// to do asynchronous things in the actions
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStore(
@@ -67,8 +62,6 @@ function checkAuth(auth) {
     //}
 }
 
-// Mostly boilerplate, except for the Routes. These are the pages you can go to,
-// which are all wrapped in the App component, which contains the navigation etc
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>

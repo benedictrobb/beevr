@@ -12,7 +12,7 @@ class Dashboard extends Component {
     }
 
     componentWillMount() {
-        axios.get('/api/jobs').then(response => {
+        axios.post('/api/auth').then(response => {
             var data = response.data;
             this.setState({data});
         });
@@ -41,10 +41,8 @@ class Dashboard extends Component {
     }
 }
 
-// Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
     return {data: state};
 }
 
-// Wrap the component to inject dispatch and state into it
 export default connect(mapStateToProps)(Dashboard);

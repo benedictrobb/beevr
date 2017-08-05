@@ -8,7 +8,7 @@ export const loginRequest = (email, password) => dispatch => {
     });
 
     axios
-        .post('/api/auth', {email, password})
+        .post('/api/login', {email, password})
         .then(response => {
             dispatch({
                 type: SET_AUTH,

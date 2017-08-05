@@ -52,6 +52,48 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'POST',
+        path: '/api/auth',
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                if (request.auth.isAuthenticated) {
+                    var session = request.auth.credentials;
+                    data.authRequest(session, (err, res) => {
+                        if (err) {
+                            return reply(
+                                Boom.serverUnavailable('unavailable' + err)
+                            );
+                        }
+                        console.log(res);
+                        return reply({
+                            name: 'successfulAuth',
+                            message: `Hi ${res.user}!
+                            Welcome to BEEVR!`,
+                            status: 'success',
+                            loggedIn: true,
+                            isAuthenticated: true,
+                            id: res.id,
+                            role: res.role,
+                        });
+                    });
+                } else {
+                    reply({
+                        name: 'FailedAuth',
+                        message: 'Welcome to BEEVR!',
+                        status: 'success',
+                        loggedIn: false,
+                        isAuthenticated: false,
+                    });
+                }
+            },
+        },
+    });
+
+    server.route({
         method: 'GET',
         path: '/api/jobs',
         config: {
@@ -294,7 +336,7 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
-        path: '/api/auth',
+        path: '/api/login',
         config: {
             auth: {
                 mode: 'optional',
@@ -302,10 +344,13 @@ server.register(plugins, err => {
             },
             handler: (request, reply) => {
                 const email = request.payload.email;
+                console.log('e', email);
                 data.loginRequest(email, (err, res) => {
                     if (err) {
                         return reply(
-                            Boom.unauthorized('Please log-in to see that')
+                            Boom.serverUnavailable(
+                                'Failed to retrieve data from database'
+                            )
                         );
                     }
                     const user = res;
@@ -313,10 +358,11 @@ server.register(plugins, err => {
                         request.payload.password,
                         user.password_hash,
                         (err, match) => {
-                            if (err) {
+                            if (err || !match) {
                                 return reply(
                                     Boom.unauthorized(
-                                        'Please log-in to see that'
+                                        'Invalid credentials, please retry...' +
+                                            err
                                     )
                                 );
                             }
