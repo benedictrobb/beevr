@@ -22,6 +22,13 @@ class Nav extends Component {
                         <Link to="/login" className="navbar-brand">
                             Login
                         </Link>
+                        <Link
+                            to="/"
+                            className="navbar-brand"
+                            onClick={this.props.logout}
+                        >
+                            Logout
+                        </Link>
                     </div>
                     <div id="myNavbar">
                         <div className="collapse navbar-collapse" id="myNavbar">
@@ -33,7 +40,7 @@ class Nav extends Component {
                                 <li>
                                     <Link to="/registerstudent">
                                         Register As Student
-                                    </Link> 
+                                    </Link>
                                 </li>
 
                                 <li>

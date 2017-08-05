@@ -10,7 +10,6 @@ export const loginRequest = (email, password) => dispatch => {
     axios
         .post('/api/auth', {email, password})
         .then(response => {
-            console.log('rrrr',response);
             dispatch({
                 type: SET_AUTH,
                 status: 'success',
