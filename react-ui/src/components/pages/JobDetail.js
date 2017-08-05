@@ -40,16 +40,23 @@ class JobDetail extends Component {
         }
         if (this.props.applied.includes(this.props.jobId)) {
             return (
-                <div>
-                    <div className="register_container flex-container">
-                        <img
-                            className="success_image"
-                            src={require('../../utils/mono-button-ok.svg')}
-                        />
-                    </div>
+                <div className="parent-container">
+                    <div>
+                        <div className="flex-container">
+                            <img
+                                className="success_image"
+                                src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+                            />
+                        </div>
 
-                    <div className="register_container flex-container">
-                        <h4 id="success_message">Application successful!</h4>
+                        <div className="flex-container">
+                            <h3 id="success_message">SUCCESS!</h3>
+                        </div>
+                        <div className="flex-container">
+                            <h6 id="success_message">
+                                Your application has been sent
+                            </h6>
+                        </div>
                     </div>
                 </div>
             );
@@ -129,25 +136,13 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div className="parent-container">
-                <div>
-                    <div className="flex-container">
-                        <img
-                            className="success_image"
-                            src={require('../../utils/mono-button-ok.svg')}
-                        />
-                    </div>
-
-                    <div className="flex-container">
-                        <h4 id="success_message">APPLICATION SENT!</h4>
-                    </div>
-                </div>
+            <div>
+                {this.renderJob()}
             </div>
         );
     }
 }
 
-// {this.renderJob()}
 function mapStateToProps(state, ownProps) {
     var searchJobs =
         state.searchJobs.jobsRequest &&

@@ -74,9 +74,18 @@ input:-webkit-autofill {
 }
 
 #success_message {
-    color: #9395d3;
+    color: #000807;
+    margin-top: 7%;
 }
 
 .success_image {
     height: 30vh;
+}
+
+#job_categories {
+    margin-bottom: 7%;
+}
+
+.post_job_button {
+    margin-top: 5%;
 }

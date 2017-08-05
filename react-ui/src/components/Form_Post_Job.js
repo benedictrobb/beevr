@@ -25,9 +25,9 @@ class Form_Post_Job extends Component {
         //resident id hardcoded for now
         this.state = {
             jobData: {
-                resident_id: 1
+                resident_id: 1,
             },
-            errorMessage: ''
+            errorMessage: '',
         };
     }
 
@@ -68,8 +68,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                start_date: evt.target.value
-            }
+                start_date: evt.target.value,
+            },
         });
     }
 
@@ -78,8 +78,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                start_time: evt.target.value
-            }
+                start_time: evt.target.value,
+            },
         });
     }
 
@@ -88,8 +88,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                end_date: evt.target.value
-            }
+                end_date: evt.target.value,
+            },
         });
     }
 
@@ -98,8 +98,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                end_time: evt.target.value
-            }
+                end_time: evt.target.value,
+            },
         });
     }
 
@@ -108,8 +108,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                job_title: evt.target.value
-            }
+                job_title: evt.target.value,
+            },
         });
     }
 
@@ -118,8 +118,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                description: evt.target.value
-            }
+                description: evt.target.value,
+            },
         });
     }
 
@@ -128,8 +128,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                rate: evt.target.value
-            }
+                rate: evt.target.value,
+            },
         });
     }
 
@@ -138,8 +138,8 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                category: evt.target.value
-            }
+                category: evt.target.value,
+            },
         });
     }
 
@@ -151,11 +151,11 @@ class Form_Post_Job extends Component {
                 </option>
             );
         });
-        
+
         if (!this.state) {
             return <div>Loading</div>;
         }
-        
+
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
@@ -169,7 +169,7 @@ class Form_Post_Job extends Component {
                 </p>
                 <div className="form-group">
                     <label className="control-label" htmlFor="Start Date">
-                        Start Date
+                        Start Date*
                     </label>
                     <input
                         className="form-control"
@@ -182,7 +182,7 @@ class Form_Post_Job extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="Job Title">
-                        Job Title
+                        Job Title*
                     </label>
                     <input
                         className="form-control"
@@ -195,7 +195,7 @@ class Form_Post_Job extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="Start Time">
-                        Start Time
+                        Start Time*
                     </label>
                     <input
                         className="form-control"
@@ -209,7 +209,7 @@ class Form_Post_Job extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="End Date">
-                        End Date
+                        End Date*
                     </label>
                     <input
                         className="form-control"
@@ -223,7 +223,7 @@ class Form_Post_Job extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="End Time">
-                        End Time
+                        End Time*
                     </label>
                     <input
                         className="form-control"
@@ -236,11 +236,11 @@ class Form_Post_Job extends Component {
                 </div>
 
                 <label className="control-label" htmlFor="Job categories">
-                    Select a job category
+                    Job category*
                 </label>
                 <input
                     className="form-control"
-                    id="job category_1"
+                    id="job_categories"
                     type="text"
                     placeholder="Select a job category"
                     list="jobs"
@@ -254,7 +254,7 @@ class Form_Post_Job extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
-                        Rate
+                        Rate* (in £)
                     </label>
                     <input
                         className="form-control"
@@ -264,15 +264,11 @@ class Form_Post_Job extends Component {
                         value={this.state.jobData.rate}
                         onChange={this._onChangeRate}
                     />
-                    <label htmlFor="£">£</label>
                 </div>
 
                 <div className="form-group">
-                    <label
-                        className="control-label"
-                        htmlFor="Job description"
-                    >
-                        Job description
+                    <label className="control-label" htmlFor="Job description">
+                        Job description*
                     </label>
                     <textarea
                         className="form-control"
@@ -285,13 +281,13 @@ class Form_Post_Job extends Component {
                     >
                         Job description
                     </textarea>
-                </div>
-                <div>
-                    {this.props.currentlySending
-                        ? <LoadingButton />
-                        : <button className="btn btn-primary" type="submit">
-                              Submit
-                        </button>}
+
+                    <button
+                        className="btn btn-primary post_job_button"
+                        type="submit"
+                    >
+                        SUBMIT
+                    </button>
                 </div>
             </form>
         );
@@ -301,7 +297,7 @@ class Form_Post_Job extends Component {
 function mapStateToProps(state) {
     return {
         newJob: state.postJob.newJob.response,
-        errorMessage: state.errorMessage
+        errorMessage: state.errorMessage,
     };
 }
 
