@@ -334,7 +334,7 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.getMyPostedJobs(1, (err, res) => {
+            data.getMyPostedJobs(2, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(
@@ -342,26 +342,24 @@ server.register(plugins, err => {
                         )
                     );
                 } else {
-                    const filtered_joblist = [];
-
-                    res.map(job => {
-                        let filtered_job = {};
-                        filtered_job.jobId = job.job_id;
-                        filtered_job.jobTitle = job.job_title;
-                        filtered_job.description = job.description;
-                        filtered_job.startDate = job.start_date;
-                        filtered_job.startTime = job.start_time;
-                        filtered_job.endDate = job.end_date;
-                        filtered_job.endTime = job.end_time;
-                        filtered_job.Jobcat = job.category;
-                        filtered_job.rate = job.rate;
-                        filtered_joblist.push(filtered_job);
-                    });
-
                     reply({
                         name: 'myPostedJobsList',
                         message: 'Welcome to BEEVR!',
-                        myPostedJobsList: filtered_joblist,
+                        myPostedJobsList: res.map(element => {
+                            return {
+                                jobId: element.job_id,
+                                jobTitle: element.job_title,
+                                startDate: element.start_date,
+                                startTime: element.start_time,
+                                endDate: element.end_date,
+                                endTime: element.end_time,
+                                description: element.description,
+                                jobCat: element.category,
+                                rate: element.rate,
+                                studentId: element.student_id,
+                                residentId: element.resident_id,
+                            };
+                        }),
                     });
                 }
             });
@@ -372,7 +370,7 @@ server.register(plugins, err => {
         method: 'DELETE',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.deleteJob(request.url.query.job_id, (err, res) => {
+            data.deleteJob(request.url.query.jobId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(

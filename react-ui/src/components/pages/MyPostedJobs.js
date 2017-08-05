@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/my_posted_jobs.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class MyPostedJobs extends Component {
     constructor() {
@@ -60,16 +61,20 @@ class MyPostedJobs extends Component {
                 <p>
                     {job.rate}
                 </p>
-                <button
-                    className="btn btn-danger"
-                    onClick={() => this.deleteJob(job.jobId)}
-                >
-                    Delete the job
-                </button>
+                <div>
+                    {this.props.deleteJobRequests[job.jobId] &&
+                    this.props.deleteJobRequests[job.jobId].status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn-danger"
+                            onClick={() => this.deleteJob(job.jobId)}
+                        >
+                              Delete the job
+                        </button>}
+                </div>
             </div>
         );
     }
-    // let myPostedJobsList = myPostedJobs && myPostedJobs.myPostedJobsList;
 
     render() {
         let {myPostedJobs} = this.props;
@@ -92,6 +97,7 @@ class MyPostedJobs extends Component {
 function mapStateToProps(state) {
     return {
         myPostedJobs: state.fetchMyPostedJobs.jobsPosted.jobs,
+        deleteJobRequests: state.fetchMyPostedJobs.deleteJobRequests,
     };
 }
 
