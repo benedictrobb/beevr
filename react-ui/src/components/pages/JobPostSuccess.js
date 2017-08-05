@@ -13,7 +13,7 @@ class JobPostSuccess extends Component {
                     </div>
 
                     <div className="flex-container">
-                        <h3 id="success_message">SUCCESS!</h3>
+                        <h3 className="success_message">SUCCESS!</h3>
                     </div>
                     <div className="flex-container">
                         <h6>Your job has been posted</h6>

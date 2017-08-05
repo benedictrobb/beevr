@@ -239,7 +239,7 @@ class Form_Post_Job extends Component {
                     Job category*
                 </label>
                 <input
-                    className="form-control"
+                    className="form-control job_categories"
                     id="job_categories"
                     type="text"
                     placeholder="Select a job category"

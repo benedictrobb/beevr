@@ -73,7 +73,7 @@ input:-webkit-autofill {
     align-items: center;
 }
 
-#success_message {
+.success_message {
     color: #000807;
     margin-top: 7%;
 }
@@ -82,7 +82,7 @@ input:-webkit-autofill {
     height: 30vh;
 }
 
-#job_categories {
+.job_categories {
     margin-bottom: 7%;
 }
 

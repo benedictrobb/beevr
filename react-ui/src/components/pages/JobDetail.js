@@ -50,10 +50,10 @@ class JobDetail extends Component {
                         </div>
 
                         <div className="flex-container">
-                            <h3 id="success_message">SUCCESS!</h3>
+                            <h3 className="success_message">SUCCESS!</h3>
                         </div>
                         <div className="flex-container">
-                            <h6 id="success_message">
+                            <h6 className="success_message">
                                 Your application has been sent
                             </h6>
                         </div>
