@@ -22,7 +22,7 @@ class LoginPage extends React.Component {
 
 function mapStateToProps(state) {
     return {
-        loginRequest: state.login,
+        loginRequest: state.auth,
     };
 }
 

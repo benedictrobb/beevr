@@ -28,8 +28,8 @@ const store = createStore(
     composeWithDevTools(applyMiddleware(thunk))
 );
 
-function checkAuth(auth) {
-    console.log('checking auth....');
+//function checkAuth(auth) {
+    //console.log('checking auth....');
     //auth = store.getState().login.isAuthenticated;
     //console.log(auth);
     //if (auth) {
@@ -38,7 +38,7 @@ function checkAuth(auth) {
     //} else {
         //console.log('not authorised');  
     //}
-}
+//}
     
         // check if the path isn't dashboard
     // that way we can apply specific logic
@@ -65,7 +65,7 @@ function checkAuth(auth) {
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App} onEnter={checkAuth}> 
+            <Route component={App}> 
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />

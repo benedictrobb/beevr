@@ -7,19 +7,12 @@ class Dashboard extends Component {
     constructor() {
         super();
         this.state = {
-            data: {},
         };
-    }
-
-    componentWillMount() {
-        axios.post('/api/auth').then(response => {
-            var data = response.data;
-            this.setState({data});
-        });
     }
 
     render() {
         console.log(this.props);
+        console.log(this.state);
         return (
             <article>
                 <section className="container text-center">
@@ -48,8 +41,9 @@ class Dashboard extends Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {data: state};
-}
+//function mapStateToProps(state) {
+    //return {data: state};
+//}
 
-export default connect(mapStateToProps)(Dashboard);
+//export default connect(mapStateToProps)(Dashboard);
+export default Dashboard;

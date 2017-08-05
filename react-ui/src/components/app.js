@@ -10,16 +10,24 @@ import React, {Component} from 'react';
 import Nav from './Nav.js';
 import {connect} from 'react-redux';
 import {logout} from '../actions/logout.js';
+import {checkAuth} from '../actions/checkAuth.js';
 
 class App extends Component {
+
+    componentWillMount() {
+        this.props.checkAuth();
+    };
+
     render() {
         console.log('hhhh',this.props);
+        console.log('sss',this.state);
         return (
             <div className="wrapper">
                 <Nav 
                     logout={this.props.logout}
                 />
                 {this.props.children}
+                {this.props.checkAuth}
             </div>
         );
     }
@@ -31,8 +39,8 @@ class App extends Component {
 
 function mapStateToProps(state) {
     return {
-        isLogged: state.login,
+        isLogged: state.auth,
     };
 }
 
-export default connect(mapStateToProps, {logout})(App);
+export default connect(mapStateToProps, {logout, checkAuth})(App);
