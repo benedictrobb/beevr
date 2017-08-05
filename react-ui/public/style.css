@@ -1,79 +1,30 @@
 
-/*#A2A3BB
-#000807
-#9395D3
-#B3B7EE
-#FBF9FF*/
-
 html * {
-  font-family: 'Raleway', sans-serif; !important;
+    font-family: 'Raleway', sans-serif; !important;
 }
 
 body {
-    background-color: #fbf9ff;
-    color: #000807;
-}
-
-.btn-primary {
-    background-color: #9395d3;
-    border-color: #9395d3;
-}
-
-.btn-primary:hover {
-    background-color: #a2a3bb;
-    border-color: #a2a3bb;
+  background-color: #DBEBC0;
+  color: #000807;
 }
 
 a {
-    color: #b3b7ee;
+  color: #815355;
 }
 
 a:hover {
-    color: #a2a3bb;
+  color: #815355;
 }
 
-.search_jobs {
-    margin-top: 5%;
-}
+@media (min-width: 576px) {
 
-.pull-right {
-    float: right;
-}
-
-#my_applications_button {
-    margin-bottom: 5%;
-}
-
-.submit_button {
-    margin-top: 1%;
-    margin-bottom: 5%;
-}
-
-.search_results_ul {
-    margin-left: -40px;
-}
-
-.register_container {
-    margin-top: 3%;
-}
-
-input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px white inset;
-}
-
-.job_title {
-    color: #b3b7ee;
-}
-
-.flex-container {
+  .container-flex-dashboard{
     display: flex;
     justify-content: center;
     align-items: center;
+  }
+
 }
-
-.parent-container {
-    height: 80vh;
-
 .navbar {
     padding-top: 15px;
     padding-bottom: 15px;
@@ -85,7 +36,7 @@ input:-webkit-autofill {
 }
 
 .navbar-nav li a:hover {
-    color: #1abc9c !important;
+    color: #523249 !important;
 }
 
 .bgimg_student {
@@ -125,18 +76,63 @@ input:-webkit-autofill {
 
 .welcome {
   margin-bottom:5%;
-  background-color: #F8F8F8;
+  background-color: #dbebc0;
 }
 
-@media (min-width: 576px) {
 
-.container-flex{
 
+.btn-primary {
+    background-color: #523249;
+    border-color: #523249;
+}
+
+.btn-primary:hover {
+    background-color: #815355;
+    border-color: #815355;
+}
+
+
+.search_jobs {
+    margin-top: 5%;
+}
+
+.pull-right {
+    float: right;
+}
+
+.submit_button {
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.search_results_ul {
+    margin-left: -40px;
+}
+
+.register_container {
+    margin-top: 3%;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.job_title {
+    color: #815355;
+}
+
+.flex-container {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
+.parent-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 
 .success_message {
     color: #000807;
@@ -153,4 +149,12 @@ input:-webkit-autofill {
 
 .post_job_button {
     margin-top: 5%;
+}
+
+.light_brown_title {
+  color: #815355;
+}
+
+.margin_left {
+  margin-left: 3%;
 }

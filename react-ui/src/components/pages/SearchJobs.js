@@ -51,7 +51,7 @@ class BrowseJobs extends Component {
                         {job.jobTitle}
                     </Link>
                 </h3>
-                <h5>
+                <h5 className="light_brown_title">
                     {job.jobCat}
                 </h5>
                 <label>
