@@ -33,15 +33,24 @@ class JobDetail extends Component {
     renderJob() {
         if (!this.props.jobs) {
             return (
-                <p className="text-center register_container">
-                    {' '}<h3>Loading</h3>
-                </p>
+                <div className="register_container flex-container">
+                    <LoadingIndicator />
+                </div>
             );
         }
         if (this.props.applied.includes(this.props.jobId)) {
             return (
-                <div className="text-center register_container">
-                    <h3>APPLICATION SUCCESSFUL</h3>
+                <div>
+                    <div className="register_container flex-container">
+                        <img
+                            className="success_image"
+                            src={require('../../utils/mono-button-ok.svg')}
+                        />
+                    </div>
+
+                    <div className="register_container flex-container">
+                        <h4 id="success_message">Application successful!</h4>
+                    </div>
                 </div>
             );
         }
@@ -120,13 +129,25 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderJob()}
+            <div className="parent-container">
+                <div>
+                    <div className="flex-container">
+                        <img
+                            className="success_image"
+                            src={require('../../utils/mono-button-ok.svg')}
+                        />
+                    </div>
+
+                    <div className="flex-container">
+                        <h4 id="success_message">APPLICATION SENT!</h4>
+                    </div>
+                </div>
             </div>
         );
     }
 }
 
+// {this.renderJob()}
 function mapStateToProps(state, ownProps) {
     var searchJobs =
         state.searchJobs.jobsRequest &&

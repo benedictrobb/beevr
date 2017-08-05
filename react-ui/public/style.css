@@ -59,3 +59,24 @@ input:-webkit-autofill {
 .job_title {
     color: #b3b7ee;
 }
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#success_message {
+    color: #9395d3;
+}
+
+.success_image {
+    height: 30vh;
+}
