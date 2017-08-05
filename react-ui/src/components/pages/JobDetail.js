@@ -68,67 +68,63 @@ class JobDetail extends Component {
         var job = jobObj[this.props.jobId];
 
         return (
-            <div className="container-fluid register_container">
-                <div className="row-fluid">
-                    <div key={job.jobId} className="col-md-8 col-md-offset-2 ">
-                        <h3 className="job_title">
-                            {job.jobTitle}
-                        </h3>
-                        <h5 className="job_title">
-                            {job.jobCat}
-                        </h5>
-                        <p>
-                            {job.description}
-                        </p>
+            <div>
+                <h3 className="job_title">
+                    {job.jobTitle}
+                </h3>
+                <h5 className="job_title">
+                    {job.jobCat}
+                </h5>
+                <p>
+                    {job.description}
+                </p>
 
-                        <label>
-                            <u>Start Date</u>
-                        </label>
+                <label>
+                    <u>Start Date</u>
+                </label>
 
-                        <p>
-                            {this.formatDate(job.startDate)}
-                        </p>
-                        <label>
-                            <u>Start Time</u>
-                        </label>
-                        <p>
-                            {this.formatTime(job.startTime)}
-                        </p>
-                        <u>
-                            <label>
-                                <u>End Date</u>
-                            </label>
-                        </u>
-                        <p>
-                            {this.formatDate(job.endDate)}
-                        </p>
-                        <u>
-                            <label>
-                                <u>End Time</u>
-                            </label>
-                        </u>
-                        <p>
-                            {this.formatTime(job.endTime)}
-                        </p>
-                        <u>
-                            <label>
-                                <u>Rate</u>
-                            </label>
-                        </u>
-                        <p>
-                            {job.rate}
-                        </p>
-                        <div>
-                            {this.props.status === 'pending'
-                                ? <LoadingIndicator />
-                                : <button
-                                    className="btn btn-primary"
-                                    onClick={this.submitJobApplication}
-                                >
-                                      APPLY
-                                </button>}
-                        </div>
-                    </div>
+                <p>
+                    {this.formatDate(job.startDate)}
+                </p>
+                <label>
+                    <u>Start Time</u>
+                </label>
+                <p>
+                    {this.formatTime(job.startTime)}
+                </p>
+                <u>
+                    <label>
+                        <u>End Date</u>
+                    </label>
+                </u>
+                <p>
+                    {this.formatDate(job.endDate)}
+                </p>
+                <u>
+                    <label>
+                        <u>End Time</u>
+                    </label>
+                </u>
+                <p>
+                    {this.formatTime(job.endTime)}
+                </p>
+                <u>
+                    <label>
+                        <u>Rate</u>
+                    </label>
+                </u>
+                <p>
+                    {job.rate}
+                </p>
+                <div>
+                    {this.props.status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn-primary"
+                            onClick={this.submitJobApplication}
+                        >
+                              APPLY
+                        </button>}
                 </div>
             </div>
         );
@@ -136,8 +132,12 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderJob()}
+            <div className="container-fluid">
+                <article className="row-fluid search_jobs">
+                    <section className="col-md-6 col-md-offset-3">
+                        {this.renderJob()}
+                    </section>
+                </article>
             </div>
         );
     }
