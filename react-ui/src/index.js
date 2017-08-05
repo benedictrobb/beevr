@@ -1,6 +1,3 @@
-//import './index.css';
-//import App from './App';
-
 import React from 'react';
 import {createStore, combineReducers, applyMiddleware} from 'redux';
 import thunk from 'redux-thunk';
@@ -21,6 +18,7 @@ import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
+import MyPostedJobs from './components/pages/MyPostedJobs.js';
 import MyJobs from './components/pages/MyJobs.js';
 import reducer from './reducers/index.js';
 
@@ -31,14 +29,17 @@ const store = createStore(
 );
 
 function checkAuth(auth) {
-    auth = store.getState().login.isAuthenticated;
-    console.log(auth);
-    if (auth) {
-        console.log('id: ',store.getState().login.response.id);
-        console.log('role: ',store.getState().login.response.role);
-    } else {
-        console.log('not authorised');  
-    }
+    console.log('checking auth....');
+    //auth = store.getState().login.isAuthenticated;
+    //console.log(auth);
+    //if (auth) {
+        //console.log('id: ',store.getState().login.response.id);
+        //console.log('role: ',store.getState().login.response.role);
+    //} else {
+        //console.log('not authorised');  
+    //}
+}
+    
         // check if the path isn't dashboard
     // that way we can apply specific logic
     // to display/render the path we want to
@@ -60,12 +61,11 @@ function checkAuth(auth) {
             //}
         //}
     //}
-}
 
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App} onEnter={checkAuth}>
+            <Route component={App} onEnter={checkAuth}> 
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />
@@ -75,6 +75,7 @@ ReactDOM.render(
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/jobsapplied" component={MyJobs} />
                 <Route path="/jobposted" component={JobPostSuccess} />
+                <Route path="/mypostedjobs" component={MyPostedJobs} />
                 <Route path="/" component={Dashboard} />
                 <Route path="*" component={NotFound} />
             </Route>

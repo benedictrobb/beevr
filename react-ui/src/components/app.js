@@ -6,29 +6,33 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-// Import stuff
 import React, {Component} from 'react';
 import Nav from './Nav.js';
 import {connect} from 'react-redux';
-import beevrAPI from '../utils/beevrAPI.js';
+import {logout} from '../actions/logout.js';
 
 class App extends Component {
     render() {
+        console.log('hhhh',this.props);
         return (
             <div className="wrapper">
-                <Nav />
+                <Nav 
+                    logout={this.props.logout}
+                />
                 {this.props.children}
             </div>
         );
     }
 }
 
-// REDUX STUFF
+//function mapStateToProps(state) {
+    //return {data: state};
+//}
 
-// Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
-    return {data: state};
+    return {
+        isLogged: state.login,
+    };
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {logout})(App);

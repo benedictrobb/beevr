@@ -71,8 +71,7 @@ server.register(plugins, err => {
                         console.log(res);
                         return reply({
                             name: 'successfulAuth',
-                            message: `Hi ${res.user}!
-                            Welcome to BEEVR!`,
+                            message: `HI ${res.user.toUpperCase()}`,
                             status: 'success',
                             loggedIn: true,
                             isAuthenticated: true,
@@ -83,7 +82,7 @@ server.register(plugins, err => {
                 } else {
                     reply({
                         name: 'FailedAuth',
-                        message: 'Welcome to BEEVR!',
+                        message: 'WELCOME TO BEEVR',
                         status: 'success',
                         loggedIn: false,
                         isAuthenticated: false,
@@ -344,7 +343,6 @@ server.register(plugins, err => {
             },
             handler: (request, reply) => {
                 const email = request.payload.email;
-                console.log('e', email);
                 data.loginRequest(email, (err, res) => {
                     if (err) {
                         return reply(
@@ -378,6 +376,25 @@ server.register(plugins, err => {
                             });
                         }
                     );
+                });
+            },
+        },
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/logout',
+        config: {
+            auth: {
+                mode: 'optional',
+                strategy: 'session',
+            },
+            handler: (request, reply) => {
+                request.cookieAuth.clear();
+                reply({
+                    name: 'logout',
+                    message: 'You have been successifully logged out from BEEVR',
+                    status: 'success',
                 });
             },
         },
@@ -442,6 +459,63 @@ server.register(plugins, err => {
                 name: pkg.name,
                 version: pkg.version,
                 message: 'Welcome to BEEVR!',
+            });
+        },
+    });
+
+    //resident id hardcoded until we have cookie on the master branch
+    server.route({
+        method: 'GET',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.getMyPostedJobs(2, (err, res) => {
+                if (err) {
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
+                } else {
+                    reply({
+                        name: 'myPostedJobsList',
+                        message: 'Welcome to BEEVR!',
+                        myPostedJobsList: res.map(element => {
+                            return {
+                                jobId: element.job_id,
+                                jobTitle: element.job_title,
+                                startDate: element.start_date,
+                                startTime: element.start_time,
+                                endDate: element.end_date,
+                                endTime: element.end_time,
+                                description: element.description,
+                                jobCat: element.category,
+                                rate: element.rate,
+                                studentId: element.student_id,
+                                residentId: element.resident_id,
+                            };
+                        }),
+                    });
+                }
+            });
+        },
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.deleteJob(request.url.query.jobId, (err, res) => {
+                if (err) {
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
+                } else {
+                    reply({
+                        message: 'Job deleted',
+                    });
+                }
             });
         },
     });

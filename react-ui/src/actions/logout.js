@@ -1,26 +1,26 @@
 import axios from 'axios';
-import {SET_AUTH} from '../constants/action_types.js';
+import {REMOVE_AUTH} from '../constants/action_types.js';
 
-export const loginRequest = (email, password) => dispatch => {
+export const logout = () => dispatch => {
     dispatch({
-        type: SET_AUTH,
+        type: REMOVE_AUTH,
         status: 'pending',
     });
 
     axios
-        .post('/api/login', {email, password})
+        .get('/api/logout')
         .then(response => {
             dispatch({
-                type: SET_AUTH,
+                type: REMOVE_AUTH,
                 status: 'success',
                 response: response.data,
             });
         })
         .catch(error => {
             dispatch({
-                type: SET_AUTH,
+                type: REMOVE_AUTH,
                 status: 'error',
-                error: 'Invalid credentials',
+                error: 'You are still logged on BEEVR!',
             });
         });
 };

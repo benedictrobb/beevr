@@ -19,22 +19,29 @@ class Dashboard extends Component {
     }
 
     render() {
-        let data = this.state.data;
+        console.log(this.props);
         return (
             <article>
-                <section className="text-section">
-                    <Link to="/browsejobs" className="btn btn--login btn--nav">
-                        <h2>Student</h2>
-                    </Link>
-                    <Link
-                        to="/browsestudents"
-                        className="btn btn--login btn--nav"
-                    >
-                        <h2>Resident</h2>
-                    </Link>
-                    <h1>
-                        {data.message}
-                    </h1>
+                <section className="container text-center">
+                    <div className="welcome">
+                        <h1>WELCOME</h1>
+                    </div>
+                    <div className="container-flex">
+                        <div className="col-sm-5 bgimg_student">
+                            <Link to="/browsejobs" className="front_student">
+                                <h1>Student</h1>
+                            </Link>
+                        </div>
+                        <div className="col-sm-1" />
+                        <div className="col-sm-5 bgimg_resident">
+                            <Link
+                                to="/browsestudents"
+                                className="front_resident"
+                            >
+                                <h1>Resident</h1>
+                            </Link>
+                        </div>
+                    </div>
                 </section>
             </article>
         );

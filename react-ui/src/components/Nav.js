@@ -1,55 +1,57 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-import {logout} from '../actions/AppActions';
 
 class Nav extends Component {
     render() {
-        // Render either the Log In and register buttons, or the logout button
-        // based on the current authentication state.
-        const navButtons = this.props.loggedIn
-            ? <div>
-                {this.props.currentlySending
-                    ? <div />
-                    : <a
-                        href="#"
-                        className="btn btn--login btn--nav"
-                        onClick={this._logout.bind(this)}
-                    >
-                            Logout
-                    </a>}
-            </div>
-            : <div>
-                <Link to="/" className="btn btn--login btn--nav">
-                      Home
-                </Link>
-                <Link
-                    to="/registerstudent"
-                    className="btn btn--login btn--nav"
-                >
-                      Register As Student
-                </Link>
-                <Link
-                    to="/registerresident"
-                    className="btn btn--login btn--nav"
-                >
-                      Register As Resident
-                </Link>
-                <Link to="/login" className="btn btn--login btn--nav">
-                      Login
-                </Link>
-            </div>;
-
         return (
-            <div className="nav">
-                <div className="nav__wrapper">
-                    {navButtons}
-                </div>
-            </div>
-        );
-    }
+            <nav className="navbar navbar-default">
+                <div className="container">
+                    <div className="navbar-header">
+                        <button
+                            type="button"
+                            className="navbar-toggle"
+                            data-toggle="collapse"
+                            data-target="#myNavbar"
+                        >
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                            <span className="icon-bar" />
+                        </button>
+                        <Link to="/login" className="navbar-brand">
+                            Login
+                        </Link>
+                        <Link
+                            to="/"
+                            className="navbar-brand"
+                            onClick={this.props.logout}
+                        >
+                            Logout
+                        </Link>
+                    </div>
+                    <div id="myNavbar">
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <ul className="nav navbar-nav navbar-right">
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
 
-    _logout() {
-        this.props.dispatch(logout());
+                                <li>
+                                    <Link to="/registerstudent">
+                                        Register As Student
+                                    </Link>
+                                </li>
+
+                                <li>
+                                    <Link to="/registerresident">
+                                        Register As Resident
+                                    </Link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </nav>
+        );
     }
 }
 
