@@ -5,7 +5,7 @@ describe('search students reducer', () => {
     it('should return the initial state', () => {
         expect(reducer(undefined, {})).toEqual({
             studentsRequest: {},
-            searchTerm: ''
+            searchTerm: '',
         });
     });
 
@@ -15,15 +15,15 @@ describe('search students reducer', () => {
                 {},
                 {
                     type: types.FETCH_STUDENTS,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             studentsRequest: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -40,16 +40,16 @@ describe('search students reducer', () => {
                             last_name: 'Smith',
                             univ_school: 'Cambridge',
                             bio: 'Lorem Ipsum',
-                            job_cat: '{{coding},{science},{handyman}}'
+                            job_cat: '{{coding},{science},{handyman}}',
                         },
                         {
                             first_name: 'Jane',
                             last_name: 'Smith',
                             univ_school: 'Cambridge',
                             bio: 'Lorem Ipsum',
-                            job_cat: '{{coding},{dog walking},{handyman}}'
-                        }
-                    ]
+                            job_cat: '{{coding},{dog walking},{handyman}}',
+                        },
+                    ],
                 }
             )
         ).toEqual({
@@ -62,17 +62,17 @@ describe('search students reducer', () => {
                         last_name: 'Smith',
                         univ_school: 'Cambridge',
                         bio: 'Lorem Ipsum',
-                        job_cat: '{{coding},{science},{handyman}}'
+                        job_cat: '{{coding},{science},{handyman}}',
                     },
                     {
                         first_name: 'Jane',
                         last_name: 'Smith',
                         univ_school: 'Cambridge',
                         bio: 'Lorem Ipsum',
-                        job_cat: '{{coding},{dog walking},{handyman}}'
-                    }
-                ]
-            }
+                        job_cat: '{{coding},{dog walking},{handyman}}',
+                    },
+                ],
+            },
         });
     });
 
@@ -82,11 +82,11 @@ describe('search students reducer', () => {
                 {},
                 {
                     type: types.SET_TERM,
-                    response: 'coding'
+                    response: 'coding',
                 }
             )
         ).toEqual({
-            searchTerm: 'coding'
+            searchTerm: 'coding',
         });
     });
 });

@@ -1,17 +1,19 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import * as actions from '../../actions/my_jobs.js';
+import * as actions from '../../actions/my_posted_jobs.js';
+import LoadingIndicator from 'react-loading-indicator';
 
-class MyJobs extends Component {
+class MyPostedJobs extends Component {
     constructor() {
         super();
-        this.renderJobs = this.renderJobs.bind(this);
+        this.renderJob = this.renderJob.bind(this);
         this.formatDate = this.formatDate.bind(this);
         this.formatTime = this.formatTime.bind(this);
+        this.deleteJob = this.deleteJob.bind(this);
     }
 
     componentWillMount() {
-        this.props.fetchMyJobs();
+        this.props.fetchMyPostedJobs();
     }
 
     formatDate(date) {
@@ -22,7 +24,11 @@ class MyJobs extends Component {
         return time.slice(0, 5);
     }
 
-    renderJobs(job) {
+    deleteJob(jobId) {
+        this.props.deleteJob(jobId);
+    }
+
+    renderJob(job) {
         return (
             <div key={job.jobId}>
                 <h2>
@@ -55,22 +61,32 @@ class MyJobs extends Component {
                 <p>
                     {job.rate}
                 </p>
+                <div>
+                    {this.props.deleteJobRequests[job.jobId] &&
+                    this.props.deleteJobRequests[job.jobId].status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn-danger"
+                            onClick={() => this.deleteJob(job.jobId)}
+                        >
+                              Delete the job
+                        </button>}
+                </div>
             </div>
         );
     }
 
     render() {
-        let {myJobs} = this.props;
-        let myJobsList = myJobs && myJobs.myJobsList;
+        let {myPostedJobs} = this.props;
 
-        if (!myJobsList) {
+        if (!myPostedJobs) {
             return <div>Loading</div>;
         }
         return (
             <article>
                 <section className="text-section">
                     <ul>
-                        {myJobsList.map(this.renderJobs)}
+                        {myPostedJobs.map(this.renderJob)}
                     </ul>
                 </section>
             </article>
@@ -80,8 +96,9 @@ class MyJobs extends Component {
 
 function mapStateToProps(state) {
     return {
-        myJobs: state.fetchMyJobs.jobsRequest.response,
+        myPostedJobs: state.fetchMyPostedJobs.jobsPosted.jobs,
+        deleteJobRequests: state.fetchMyPostedJobs.deleteJobRequests,
     };
 }
 
-export default connect(mapStateToProps, actions)(MyJobs);
+export default connect(mapStateToProps, actions)(MyPostedJobs);

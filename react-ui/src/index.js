@@ -24,6 +24,7 @@ import PostJob from './components/pages/PostJob';
 import registerServiceWorker from './registerServiceWorker';
 import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
+import MyPostedJobs from './components/pages/MyPostedJobs.js';
 import MyJobs from './components/pages/MyJobs.js';
 
 // Creates the Redux reducer with the redux-thunk middleware, which allows us
@@ -76,6 +77,7 @@ ReactDOM.render(
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/jobsapplied" component={MyJobs} />
                 <Route path="/jobposted" component={JobPostSuccess} />
+                <Route path="/mypostedjobs" component={MyPostedJobs} />
                 <Route path="/" component={Dashboard} />
                 <Route onEnter={checkAuth} />
                 <Route path="*" component={NotFound} />

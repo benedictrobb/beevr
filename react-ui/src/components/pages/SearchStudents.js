@@ -27,12 +27,12 @@ class BrowseStudents extends Component {
 
     renderStudents(student) {
         return (
-            <div key={student.student_id}>
+            <div key={student.studentId}>
                 <h2>
-                    {student.first_name}
+                    {student.firstName}
                 </h2>
                 <h4>
-                    {student.univ_school}
+                    {student.univSchool}
                 </h4>
                 <label>Bio</label>
                 <p>
@@ -102,6 +102,13 @@ class BrowseStudents extends Component {
                             className="btn btn-primary pull-right submit_button"
                         >
                             Post A Job
+                        </Link>
+
+                        <Link
+                            to="/mypostedjobs"
+                            className="btn btn-primary pull-right submit_button"
+                        >
+                            My jobs
                         </Link>
                         <form onSubmit={this.onSubmit}>
                             <input

@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import LoadingButton from './LoadingButton.js';
 import ErrorMessage from './ErrorMessage.js';
 
 class Form_Register_Resident extends Component {
@@ -194,7 +193,7 @@ class Form_Register_Resident extends Component {
                 </div>
                 <div>
                     {this.props.currentlySending
-                        ? <LoadingButton />
+                        ? <div />
                         : <button className="btn btn-primary" type="submit">
                             {this.props.btnText}
                         </button>}

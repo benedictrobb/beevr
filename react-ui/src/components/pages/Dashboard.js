@@ -1,50 +1,34 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
-import Axios from 'axios';
 import {Link} from 'react-router';
 
 class Dashboard extends Component {
-    constructor() {
-        super();
-        this.state = {
-            data: {}
-        };
-    }
-
-    componentWillMount() {
-        Axios.get('/api/jobs').then(response => {
-            var data = response.data;
-            this.setState({data});
-        });
-    }
-
     render() {
-        let data = this.state.data;
         return (
             <article>
-                <section className="text-section">
-                    <Link to="/browsejobs" className="btn btn--login btn--nav">
-                        <h2>Student</h2>
-                    </Link>
-                    <Link
-                        to="/browsestudents"
-                        className="btn btn--login btn--nav"
-                    >
-                        <h2>Resident</h2>
-                    </Link>
-                    <h1>
-                        {data.message}
-                    </h1>
+                <section className="container text-center">
+                    <div className="welcome">
+                        <h1>WELCOME TO BEEVR</h1>
+                    </div>
+                    <div className="container-flex">
+                        <div className="col-sm-5 bgimg_student">
+                            <Link to="/browsejobs" className="front_student">
+                                <h1>Student</h1>
+                            </Link>
+                        </div>
+                        <div className="col-sm-1" />
+                        <div className="col-sm-5 bgimg_resident">
+                            <Link
+                                to="/browsestudents"
+                                className="front_resident"
+                            >
+                                <h1>Resident</h1>
+                            </Link>
+                        </div>
+                    </div>
                 </section>
             </article>
         );
     }
 }
 
-// Which props do we want to inject, given the global state?
-function select(state) {
-    return {data: state};
-}
-
-// Wrap the component to inject dispatch and state into it
-export default connect(select)(Dashboard);
+export default Dashboard;

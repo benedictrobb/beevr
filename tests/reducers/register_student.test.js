@@ -6,7 +6,7 @@ describe('register student reducer', () => {
         expect(reducer(undefined, {})).toEqual({
             loggedIn: false,
             isAuthenticated: false,
-            student: {}
+            student: {},
         });
     });
 
@@ -16,15 +16,15 @@ describe('register student reducer', () => {
                 {},
                 {
                     type: types.REGISTER_STUDENT,
-                    status: 'pending'
+                    status: 'pending',
                 }
             )
         ).toEqual({
             student: {
                 status: 'pending',
                 error: undefined,
-                response: undefined
-            }
+                response: undefined,
+            },
         });
     });
 
@@ -43,8 +43,8 @@ describe('register student reducer', () => {
                         univ_school: 'Cambridge',
                         bio: 'Lorem Ipsum',
                         phone: '777-77-777',
-                        job_cat: '{{coding},{science},{handyman}}'
-                    }
+                        job_cat: '{{coding},{science},{handyman}}',
+                    },
                 }
             )
         ).toEqual({
@@ -59,9 +59,9 @@ describe('register student reducer', () => {
                     univ_school: 'Cambridge',
                     bio: 'Lorem Ipsum',
                     phone: '777-77-777',
-                    job_cat: '{{coding},{science},{handyman}}'
-                }
-            }
+                    job_cat: '{{coding},{science},{handyman}}',
+                },
+            },
         });
     });
 });
