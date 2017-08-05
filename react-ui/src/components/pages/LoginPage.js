@@ -1,6 +1,7 @@
 import React from 'react';
 import LoginForm from '../Login_Form.js';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 import * as actions from '../../actions/login.js';
 
 class LoginPage extends React.Component {
