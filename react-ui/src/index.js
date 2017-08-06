@@ -84,3 +84,5 @@ ReactDOM.render(
     document.getElementById('app')
 );
 registerServiceWorker();
+
+export {store};

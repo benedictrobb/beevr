@@ -11,11 +11,25 @@ import Nav from './Nav.js';
 import {connect} from 'react-redux';
 import {logout} from '../actions/logout.js';
 import {checkAuth} from '../actions/checkAuth.js';
+import {store} from '../index.js';
 
 class App extends Component {
+    constructor() {
+        super();
 
+        this.state = {
+        };
+
+        //this.setState({
+            //isLogged: this.props.auth 
+        //});
+    }
+    
     componentWillMount() {
         this.props.checkAuth();
+        this.setState({
+            isLogged: store.getState().auth
+        });
     };
 
     render() {
@@ -27,15 +41,10 @@ class App extends Component {
                     logout={this.props.logout}
                 />
                 {this.props.children}
-                {this.props.checkAuth}
             </div>
         );
     }
 }
-
-//function mapStateToProps(state) {
-    //return {data: state};
-//}
 
 function mapStateToProps(state) {
     return {

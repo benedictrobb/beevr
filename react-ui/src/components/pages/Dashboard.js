@@ -2,17 +2,16 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import axios from 'axios';
 import {Link} from 'react-router';
+import {store} from '../../index.js';
 
 class Dashboard extends Component {
     constructor() {
         super();
-        this.state = {
-        };
+        this.state = store.getState();
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
+        console.log('dash',this.state);
         return (
             <article>
                 <section className="container text-center">
