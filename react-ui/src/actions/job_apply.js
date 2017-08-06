@@ -9,7 +9,7 @@ export const submitJobApplication = jobId => dispatch => {
 
     axios
         .put('/api/apply', {jobId: jobId})
-        console.log('inside actions ', jobId)
+      
         .then(response => {
           console.log('inside actions ', jobId)
             dispatch({

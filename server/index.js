@@ -222,13 +222,14 @@ server.register(plugins, err => {
             data.submitApplication(request.payload.jobId, (err, res) => {
                 console.log('inside put route', request.payload.jobId);
                 if (err) {
-                    console.log(err);
+
                     reply(
                         Boom.serverUnavailable(
                             'Failed to retrieve data from database'
                         )
                     );
                 } else {
+                    console.log(inside email route);
                     sendEmail(from, to, subject, text, (err, res) => {
                         if (err) {
                             reply(Boom.internal('Failed to send email', 500));
