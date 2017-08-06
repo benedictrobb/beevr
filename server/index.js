@@ -219,7 +219,7 @@ server.register(plugins, err => {
             var subject = 'New job application';
             var text =
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
-            data.submitApplication(request.payload.job_id, (err, res) => {
+            data.submitApplication(request.payload.jobId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(
