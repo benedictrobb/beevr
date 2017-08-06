@@ -351,6 +351,63 @@ server.register(plugins, err => {
         },
     });
 
+    //resident id hardcoded until we have cookie on the master branch
+    server.route({
+        method: 'GET',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.getMyPostedJobs(2, (err, res) => {
+                if (err) {
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
+                } else {
+                    reply({
+                        name: 'myPostedJobsList',
+                        message: 'Welcome to BEEVR!',
+                        myPostedJobsList: res.map(element => {
+                            return {
+                                jobId: element.job_id,
+                                jobTitle: element.job_title,
+                                startDate: element.start_date,
+                                startTime: element.start_time,
+                                endDate: element.end_date,
+                                endTime: element.end_time,
+                                description: element.description,
+                                jobCat: element.category,
+                                rate: element.rate,
+                                studentId: element.student_id,
+                                residentId: element.resident_id,
+                            };
+                        }),
+                    });
+                }
+            });
+        },
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/api/mypostedjobs',
+        handler: (request, reply) => {
+            data.deleteJob(request.url.query.jobId, (err, res) => {
+                if (err) {
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to retrieve data from database'
+                        )
+                    );
+                } else {
+                    reply({
+                        message: 'Job deleted',
+                    });
+                }
+            });
+        },
+    });
+
     server.start(err => {
         if (err) {
             throw err;
