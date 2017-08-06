@@ -220,7 +220,9 @@ server.register(plugins, err => {
             var text =
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
             data.submitApplication(request.payload.jobId, (err, res) => {
+                console.log('inside put route', request.payload.jobId);
                 if (err) {
+                    console.log(err);
                     reply(
                         Boom.serverUnavailable(
                             'Failed to retrieve data from database'
