@@ -133,6 +133,20 @@ data.studentExists = (email, callback) => {
     );
 };
 
+data.findStudent = (student_id, callback) => {
+    dbConnection.query(
+        `SELECT * FROM students
+                WHERE student_id = $1;`,
+        [student_id],
+        (err, res) => {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, res.rows[0]);
+        }
+    );
+};
+
 data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(
