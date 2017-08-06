@@ -62,17 +62,26 @@ class Form_Register_Student extends Component {
 
     render() {
         const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
+            if (elem.indexOf('Beavers') != -1) {
+                var option = (
+                    <option className="dropdwn-header" value={categories[elem]}>
+                        {elem}
+                    </option>
+                );
+            } else {
+                option = (
+                    <option value={categories[elem]}>
+                        {elem}
+                    </option>
+                );
+            }
+            return option;
         });
 
         if (!this.state) {
             return <div>Loading</div>;
         }
-        
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
