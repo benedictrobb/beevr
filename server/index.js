@@ -229,9 +229,10 @@ server.register(plugins, err => {
                         )
                     );
                 } else {
-                    console.log(inside email route);
+                    console.log('inside email route');
                     sendEmail(from, to, subject, text, (err, res) => {
                         if (err) {
+                          console.log()
                             reply(Boom.internal('Failed to send email', 500));
                         } else {
                             reply({
