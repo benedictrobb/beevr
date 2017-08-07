@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
-import categories from '../constants/job_categories.js';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import MultiSelectField from './Multiselect.js';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -63,22 +63,22 @@ class Form_Register_Student extends Component {
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            if (elem.indexOf('Beavers') != -1) {
-                var option = (
-                    <option className="dropdwn-header" value={categories[elem]}>
-                        {elem}
-                    </option>
-                );
-            } else {
-                option = (
-                    <option value={categories[elem]}>
-                        {elem}
-                    </option>
-                );
-            }
-            return option;
-        });
+        //const options = categories.map(function(elem) {
+            //if (elem.indexOf('Beavers') != -1) {
+                //var option = (
+                    //<option className="dropdwn-header" value={categories[elem]}>
+                        //{elem}
+                    //</option>
+                //);
+            //} else {
+                //option = (
+                    //<option value={categories[elem]}>
+                        //{elem}
+                    //</option>
+                //);
+            //}
+            //return option;
+        //});
 
         if (!this.state) {
             return <div>Loading</div>;
@@ -208,7 +208,7 @@ class Form_Register_Student extends Component {
                         name="bio"
                         id="bio"
                         type="text"
-                        placeholder="Bio"
+                        placeholder="Tell us more about you..."
                         value={this.state.student.bio}
                         onChange={this.onChange}
                     />
@@ -250,94 +250,10 @@ class Form_Register_Student extends Component {
                         name="jobCategories"
                         htmlFor="jobCategories"
                     >
-                        Pick up to 8 jobs categories
+                        Your job categories
                     </label>
-                    <input
-                        className="form-control"
-                        name="category1"
-                        id="jobCategory1"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category1}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category2"
-                        id="jobCategory2"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category2}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category3"
-                        id="jobCategory3"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category3}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category4"
-                        id="jobCategory4"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category4}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category5"
-                        id="jobCategory5"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category5}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category6"
-                        id="jobCategory6"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category6}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category7"
-                        id="jobCategory7"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category7}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category8"
-                        id="jobCategory8"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category8}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <datalist id="jobs">
-                        <option value="" disabled />
-                        {options}
-                    </datalist>
+                    <MultiSelectField />
                 </div>
-
                 <div>
                     {this.props.currentlySending
                         ? <div />
