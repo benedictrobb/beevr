@@ -26,16 +26,39 @@ class JobDetail extends Component {
         return time.slice(0, 5);
     }
 
-    submitJobApplication() {
-        this.props.submitJobApplication(this.props.jobId);
+    submitJobApplication(jobId, residentId) {
+        this.props.submitJobApplication(jobId, residentId);
     }
 
+    // src={require('../../utils/lemmling-Cartoon-beaver.svg')}
     renderJob() {
         if (!this.props.jobs) {
-            return <h2>Loading</h2>;
+            return (
+                <div className="register_container flex-container">
+                    <LoadingIndicator />
+                </div>
+            );
         }
-        if (this.props.applied.includes(this.props.jobId)) {
-            return <h2>APPLICATION SUCCESSFUL</h2>;
+
+        if (this.props.applied.includes(Number(this.props.jobId))) {
+            return (
+                <div className="parent-container">
+                    <div>
+                        <div className="flex-container">
+                            <img className="success_image" />
+                        </div>
+
+                        <div className="flex-container">
+                            <h3 className="success_message">SUCCESS!</h3>
+                        </div>
+                        <div className="flex-container">
+                            <h6 className="success_message">
+                                Your application has been sent
+                            </h6>
+                        </div>
+                    </div>
+                </div>
+            );
         }
         var jobObj = {};
         var arr = this.props.jobs;
@@ -44,34 +67,51 @@ class JobDetail extends Component {
         var job = jobObj[this.props.jobId];
 
         return (
-            <div key={job.jobId}>
-                <h2>
+            <div key={job.jobId} className="col-md-6 col-md-offset-3">
+                <h3 className="job_title">
                     {job.jobTitle}
-                </h2>
-                <h4>
-                    <label>Category: </label>
+                </h3>
+                <h5 className="job_title">
                     {job.jobCat}
-                </h4>
+                </h5>
                 <p>
                     {job.description}
                 </p>
-                <label>Start Date</label>
+
+                <label>
+                    <u>Start Date</u>
+                </label>
+
                 <p>
                     {this.formatDate(job.startDate)}
                 </p>
-                <label>Start Time</label>
+                <label>
+                    <u>Start Time</u>
+                </label>
                 <p>
                     {this.formatTime(job.startTime)}
                 </p>
-                <label>End Date</label>
+                <u>
+                    <label>
+                        <u>End Date</u>
+                    </label>
+                </u>
                 <p>
                     {this.formatDate(job.endDate)}
                 </p>
-                <label>End Time</label>
+                <u>
+                    <label>
+                        <u>End Time</u>
+                    </label>
+                </u>
                 <p>
                     {this.formatTime(job.endTime)}
                 </p>
-                <label>Rate</label>
+                <u>
+                    <label>
+                        <u>Rate</u>
+                    </label>
+                </u>
                 <p>
                     {job.rate}
                 </p>
@@ -79,8 +119,12 @@ class JobDetail extends Component {
                     {this.props.status === 'pending'
                         ? <LoadingIndicator />
                         : <button
-                            className="btn btn primary"
-                            onClick={this.submitJobApplication}
+                            className="btn btn-primary"
+                            onClick={() =>
+                                this.submitJobApplication(
+                                    job.jobId,
+                                    job.residentId
+                                )}
                         >
                               APPLY
                         </button>}
@@ -91,14 +135,19 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div>
-                {this.renderJob()}
+            <div className="container-fluid register_container">
+                <article className="row-fluid">
+                    <section>
+                        {this.renderJob()}
+                    </section>
+                </article>
             </div>
         );
     }
 }
 
 function mapStateToProps(state, ownProps) {
+    console.log(state);
     var searchJobs =
         state.searchJobs.jobsRequest &&
         state.searchJobs.jobsRequest.response &&

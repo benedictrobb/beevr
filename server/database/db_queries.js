@@ -245,7 +245,7 @@ data.deleteJob = (job_id, callback) => {
     );
 };
 
-data.submitApplication = (job_id, callback) => {
+data.submitApplication = (job_id, resident_id, callback) => {
     dbConnection.query(
         'UPDATE jobs SET student_id = array_append(student_id, \'6\') WHERE job_id = $1',
         [job_id],
@@ -253,7 +253,17 @@ data.submitApplication = (job_id, callback) => {
             if (err) {
                 return callback(err);
             } else {
-                callback(null, res);
+                dbConnection.query(
+                    'SELECT email FROM residents WHERE resident_id = $1',
+                    [resident_id],
+                    (err, res) => {
+                        if (err) {
+                            return callback(err);
+                        } else {
+                            callback(null, res.rows[0]);
+                        }
+                    }
+                );
             }
         }
     );

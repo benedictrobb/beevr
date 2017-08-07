@@ -238,14 +238,20 @@ server.register(plugins, err => {
 
                     data.submitApplication(
                         request.payload.jobId,
+                        request.payload.residentId,
                         (err, res) => {
                             if (err) {
+                                console.log('error is ', err);
                                 reply(
                                     Boom.serverUnavailable(
                                         'Failed to retrieve data from database'
                                     )
                                 );
                             } else {
+                                var updatedTo = res.email;
+                                //this needs to replace 'to' property once proper SES account has been
+                                //established by the product owner
+
                                 sendEmail(
                                     from,
                                     to,
