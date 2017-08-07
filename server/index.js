@@ -247,7 +247,6 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/auth',
         handler: (request, reply) => {
-            console.log(request.payload);
             const email = request.payload.email;
             data.loginRequest(email, (err, res) => {
                 if (err) {
@@ -270,12 +269,26 @@ server.register(plugins, err => {
                             name: 'loginRequest',
                             message: 'Welcome to BEEVR!',
                             status: 'success',
+                            loggedIn: true,
                             isAuthenticated: true,
                             id: res.id,
                             role: res.role,
                         });
                     }
                 );
+            });
+        },
+    });
+
+    server.route({
+        method: 'GET',
+        path: '/api/logout',
+        handler: (request, reply) => {
+            request.cookieAuth.clear();
+            reply({
+                name: 'logout',
+                message: 'You have been successifully logged out from BEEVR',
+                status: 'success',
             });
         },
     });
