@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {logout} from '../actions/logout.js';
 
 class Nav extends Component {
     render() {
@@ -20,22 +22,29 @@ class Nav extends Component {
                         <Link to="/login" className="navbar-brand">
                             Login
                         </Link>
+                        <Link
+                            to="/"
+                            className="navbar-brand"
+                            onClick={this.props.logout}
+                        >
+                            Logout
+                        </Link>
                     </div>
                     <div id="myNavbar">
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
-                                    {' '}<Link to="/">Home</Link>{' '}
+                                    <Link to="/">Home</Link>
                                 </li>
 
                                 <li>
-                                    {' '}<Link to="/registerstudent">
+                                    <Link to="/registerstudent">
                                         Register As Student
-                                    </Link>{' '}
+                                    </Link>
                                 </li>
 
                                 <li>
-                                    {' '}<Link to="/registerresident">
+                                    <Link to="/registerresident">
                                         Register As Resident
                                     </Link>
                                 </li>
@@ -48,4 +57,10 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+    return {
+        isLogged: state.login,
+    };
+}
+
+export default connect(mapStateToProps, {logout})(Nav);

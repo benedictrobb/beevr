@@ -18,6 +18,7 @@ class App extends Component {
             <div className="wrapper">
                 <Nav />
                 {this.props.children}
+                {this.props.logout}
             </div>
         );
     }
