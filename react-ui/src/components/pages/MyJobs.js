@@ -70,10 +70,11 @@ class MyJobs extends Component {
         );
     }
 
+    // let myJobsList = myJobs && myJobs.myJobsList;
     render() {
         let {myJobs} = this.props;
 
-        if (!myJobsList) {
+        if (!myJobs) {
             return (
                 <div className="register_container flex-container">
                     <LoadingIndicator />
@@ -85,7 +86,7 @@ class MyJobs extends Component {
                 <article className="row-fluid search_jobs">
                     <section className="col-md-6 col-md-offset-3">
                         <ul>
-                            {myJobsList.map(this.renderJobs)}
+                            {myJobs.map(this.renderJobs)}
                         </ul>
                     </section>
                 </article>
