@@ -37,7 +37,7 @@ class Form_Register_Student extends Component {
         this.setState({errorMessage: error_message});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
-            browserHistory.push('/dashboard');
+            // browserHistory.push('/browsejobs');
         }
     }
 
@@ -74,7 +74,7 @@ class Form_Register_Student extends Component {
         if (!this.state) {
             return <div>Loading</div>;
         }
-        
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
