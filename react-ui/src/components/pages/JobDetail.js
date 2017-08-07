@@ -26,11 +26,10 @@ class JobDetail extends Component {
         return time.slice(0, 5);
     }
 
-    submitJobApplication(jobId, residentId) {
-        this.props.submitJobApplication(jobId, residentId);
+    submitJobApplication(jobId, residentId, studentId) {
+        this.props.submitJobApplication(jobId, residentId, studentId);
     }
 
-    // src={require('../../utils/lemmling-Cartoon-beaver.svg')}
     renderJob() {
         if (!this.props.jobs) {
             return (
@@ -123,7 +122,8 @@ class JobDetail extends Component {
                             onClick={() =>
                                 this.submitJobApplication(
                                     job.jobId,
-                                    job.residentId
+                                    job.residentId,
+                                    this.props.studentId
                                 )}
                         >
                               APPLY
@@ -146,8 +146,11 @@ class JobDetail extends Component {
     }
 }
 
+//studentId disappears on page reload
 function mapStateToProps(state, ownProps) {
-    console.log(state);
+    var studentId =
+        state.login && state.login.response && state.login.response.id;
+
     var searchJobs =
         state.searchJobs.jobsRequest &&
         state.searchJobs.jobsRequest.response &&
@@ -164,6 +167,7 @@ function mapStateToProps(state, ownProps) {
         applied: state.applyJob.applied,
         jobId: ownProps.params.id,
         status: state.applyJob.status,
+        studentId,
         jobs,
     };
 }

@@ -1,14 +1,22 @@
 import {APPLY_JOB, FETCH_JOBS} from '../constants/action_types.js';
 import axios from 'axios';
 
-export const submitJobApplication = (jobId, residentId) => dispatch => {
+export const submitJobApplication = (
+    jobId,
+    residentId,
+    studentId
+) => dispatch => {
     dispatch({
         type: APPLY_JOB,
         status: 'pending',
     });
 
     axios
-        .put('/api/apply', {jobId: jobId, residentId: residentId})
+        .put('/api/apply', {
+            jobId: jobId,
+            residentId: residentId,
+            studentId: studentId,
+        })
         .then(response => {
             dispatch({
                 type: APPLY_JOB,

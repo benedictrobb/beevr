@@ -220,7 +220,7 @@ server.register(plugins, err => {
             var text =
                 'Someone has just applied for the job you posted - get in touch!';
 
-            data.findStudent(1, (err, res) => {
+            data.findStudent(request.payload.studentId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(
@@ -241,7 +241,6 @@ server.register(plugins, err => {
                         request.payload.residentId,
                         (err, res) => {
                             if (err) {
-                                console.log('error is ', err);
                                 reply(
                                     Boom.serverUnavailable(
                                         'Failed to retrieve data from database'
