@@ -58,28 +58,34 @@ a:hover {
 }
 
 .front_resident {
-  color:white;
+    color:white;
 
 }
 
 .front_resident:hover {
-  color: #d3d3d3;
+    color: #d3d3d3;
 }
 
 .front_student {
-  color:black;
+    color:black;
 }
 
 .front_student:hover {
-  color:#3b3b3b;
+    color:#3b3b3b;
 }
 
 .welcome {
+<<<<<<< HEAD
   margin-bottom:5%;
   background-color: #dbebc0;
+=======
+    margin-bottom:5%;
+    background-color: #F8F8F8;
+>>>>>>> master
 }
 
 
+<<<<<<< HEAD
 
 .btn-primary {
     background-color: #523249;
@@ -133,6 +139,13 @@ input:-webkit-autofill {
     justify-content: center;
     align-items: center;
 }
+=======
+    .container-flex{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+>>>>>>> master
 
 .success_message {
     color: #000807;
