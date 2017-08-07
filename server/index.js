@@ -209,7 +209,6 @@ server.register(plugins, err => {
         },
     });
 
-    //hardcoded student id needs to be updated to be the id of the logged-in user
     server.route({
         method: 'PUT',
         path: '/api/apply',
