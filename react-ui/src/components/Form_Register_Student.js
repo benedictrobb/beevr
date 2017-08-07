@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
 import categories from '../constants/job_categories.js';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -15,6 +16,7 @@ class Form_Register_Student extends Component {
                 jobCategories: {},
             },
             errorMessage: '',
+            loggedIn: false,
             isAuthenticated: false,
         };
     }
@@ -35,7 +37,7 @@ class Form_Register_Student extends Component {
         this.setState({errorMessage: error_message});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
-            //browserHistory.push('/dashboard');
+            browserHistory.push('/dashboard');
         }
     }
 

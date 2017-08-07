@@ -272,4 +272,18 @@ data.postJobs = (jobsObject, callback) => {
     );
 };
 
+data.deleteApplication = (job_id, callback) => {
+    dbConnection.query(
+        'UPDATE jobs SET student_id = array_remove(student_id, \'7\') WHERE job_id = $1',
+        [job_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, res);
+            }
+        }
+    );
+};
+
 module.exports = data;
