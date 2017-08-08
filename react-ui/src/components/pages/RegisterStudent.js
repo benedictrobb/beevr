@@ -18,7 +18,6 @@ class RegisterStudent extends Component {
 
                         <Form_Register_Student
                             btnText={'Sign Up'}
-                            //student={this.props.student}
                             registerStudent={this.props.registerStudent}
                             checkIfStudentExists={
                                 this.props.checkIfStudentExists

@@ -220,19 +220,15 @@ server.register(plugins, err => {
             var text =
                 'Someone has applied for the job you posted. Go to your profile to find out more.';
             data.submitApplication(request.payload.jobId, (err, res) => {
-                console.log('inside put route', request.payload.jobId);
                 if (err) {
-
                     reply(
                         Boom.serverUnavailable(
                             'Failed to retrieve data from database'
                         )
                     );
                 } else {
-                    console.log('inside email route');
                     sendEmail(from, to, subject, text, (err, res) => {
                         if (err) {
-                          console.log()
                             reply(Boom.internal('Failed to send email', 500));
                         } else {
                             reply({

@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
 import categories from '../../constants/job_categories.js';
+const numberOfCharacters = 220;
 
 class BrowseJobs extends Component {
     constructor() {
@@ -28,10 +29,10 @@ class BrowseJobs extends Component {
     }
 
     formatDesc(desc) {
-        if (desc.length <= 100) {
+        if (desc.length <= numberOfCharacters) {
             return desc;
         } else {
-            return desc.slice(0, 220) + '...';
+            return desc.slice(0, numberOfCharacters) + '...';
         }
     }
     onSubmit(evt) {

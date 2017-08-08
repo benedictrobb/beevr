@@ -70,7 +70,6 @@ class MyJobs extends Component {
         );
     }
 
-    // let myJobsList = myJobs && myJobs.myJobsList;
     render() {
         let {myJobs} = this.props;
 

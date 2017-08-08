@@ -75,17 +75,11 @@ a:hover {
 }
 
 .welcome {
-<<<<<<< HEAD
   margin-bottom:5%;
   background-color: #dbebc0;
-=======
-    margin-bottom:5%;
-    background-color: #F8F8F8;
->>>>>>> master
 }
 
 
-<<<<<<< HEAD
 
 .btn-primary {
     background-color: #523249;
@@ -139,13 +133,13 @@ input:-webkit-autofill {
     justify-content: center;
     align-items: center;
 }
-=======
-    .container-flex{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
->>>>>>> master
+
+.container-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
 
 .success_message {
     color: #000807;
