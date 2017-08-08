@@ -7,15 +7,23 @@ import {connect} from 'react-redux';
 class RegisterStudent extends Component {
     render() {
         return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <h2>Register As Student</h2>
-                    <Form_Register_Student
-                        btnText={'Sign Up'}
-                        //student={this.props.student}
-                        registerStudent={this.props.registerStudent}
-                        checkIfStudentExists={this.props.checkIfStudentExists}
-                    />
+            <div className="container-fluid register_container">
+                <div className="row-fluid">
+                    <div className="col-md-4 col-md-offset-4 ">
+                        <h3>Student Registration</h3>
+
+                        <p>
+                            <i>Fields marked with * are mandatory</i>
+                        </p>
+
+                        <Form_Register_Student
+                            btnText={'Sign Up'}
+                            registerStudent={this.props.registerStudent}
+                            checkIfStudentExists={
+                                this.props.checkIfStudentExists
+                            }
+                        />
+                    </div>
                 </div>
             </div>
         );
