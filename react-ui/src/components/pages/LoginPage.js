@@ -15,9 +15,11 @@ class LoginPage extends React.Component {
         }
         this.props.loginRequest.error;
         return (
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <LoginForm />
+            <div className="container-fluid register_container">
+                <div className="row-fluid">
+                    <div className="col-sm-4 col-sm-offset-4 ">
+                        <LoginForm />
+                    </div>
                 </div>
             </div>
         );

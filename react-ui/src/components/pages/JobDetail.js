@@ -44,7 +44,10 @@ class JobDetail extends Component {
                 <div className="parent-container">
                     <div>
                         <div className="flex-container">
-                            <img className="success_image" />
+                            <img
+                                className="success_image"
+                                src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+                            />
                         </div>
 
                         <div className="flex-container">
