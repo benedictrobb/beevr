@@ -1,11 +1,14 @@
 import React from 'react';
 import LoginForm from '../Login_Form.js';
 import {connect} from 'react-redux';
-import {Link} from 'react-router';
+import {Link, browserHistory} from 'react-router';
 import * as actions from '../../actions/login.js';
 
 class LoginPage extends React.Component {
     render() {
+        if (this.props.isAuthenticated === true) {
+            browserHistory.push('/');
+        }
         this.props.loginRequest.error;
         return (
             <div className="row">
@@ -21,8 +24,14 @@ class LoginPage extends React.Component {
 }
 
 function mapStateToProps(state) {
+    const isAuthenticated =
+        state.login &&
+        state.login.response &&
+        state.login.response.isAuthenticated;
+
     return {
         loginRequest: state.login,
+        isAuthenticated,
     };
 }
 
