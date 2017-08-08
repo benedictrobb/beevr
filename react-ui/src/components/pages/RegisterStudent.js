@@ -33,7 +33,6 @@ class RegisterStudent extends Component {
 }
 
 function mapStateToProps(state) {
-    console.log(state.registerStudent);
     return {
         student: state.registerStudent.student.response,
         registered: state.registerStudent.student.status,
