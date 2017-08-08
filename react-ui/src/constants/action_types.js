@@ -15,5 +15,6 @@ export const SET_SELECTED_JOB = 'SET_SELECTED_JOB';
 export const APPLY_JOB = 'APPLY_JOB';
 export const FETCH_MY_POSTED_JOBS = 'FETCH_MY_POSTED_JOBS';
 export const FETCH_MY_JOBS = 'FETCH_MY_JOBS';
-export const DELETE_JOB = 'DELETE_JOB';
+export const DELETE_APPLICATION = 'DELETE_APPLICATION';
 export const FETCH_JOBS = 'FETCH_JOBS';
+export const DELETE_JOB = 'DELETE_JOB';

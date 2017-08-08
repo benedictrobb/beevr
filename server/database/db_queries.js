@@ -156,6 +156,20 @@ data.studentExists = (email, callback) => {
     );
 };
 
+data.findStudent = (student_id, callback) => {
+    dbConnection.query(
+        `SELECT * FROM students
+                WHERE student_id = $1;`,
+        [student_id],
+        (err, res) => {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, res.rows[0]);
+        }
+    );
+};
+
 data.postStudents = (student, callback) => {
     dbConnection.query(
         `INSERT INTO students(
@@ -254,7 +268,7 @@ data.deleteJob = (job_id, callback) => {
     );
 };
 
-data.submitApplication = (job_id, callback) => {
+data.submitApplication = (job_id, resident_id, callback) => {
     dbConnection.query(
         'UPDATE jobs SET student_id = array_append(student_id, \'6\') WHERE job_id = $1',
         [job_id],
@@ -262,7 +276,17 @@ data.submitApplication = (job_id, callback) => {
             if (err) {
                 return callback(err);
             } else {
-                callback(null, res);
+                dbConnection.query(
+                    'SELECT email FROM residents WHERE resident_id = $1',
+                    [resident_id],
+                    (err, res) => {
+                        if (err) {
+                            return callback(err);
+                        } else {
+                            callback(null, res.rows[0]);
+                        }
+                    }
+                );
             }
         }
     );
@@ -290,6 +314,20 @@ data.postJobs = (jobsObject, callback) => {
                 return callback(err);
             } else {
                 callback(null, res.rows);
+            }
+        }
+    );
+};
+
+data.deleteApplication = (job_id, callback) => {
+    dbConnection.query(
+        'UPDATE jobs SET student_id = array_remove(student_id, \'7\') WHERE job_id = $1',
+        [job_id],
+        (err, res) => {
+            if (err) {
+                callback(err);
+            } else {
+                callback(null, res);
             }
         }
     );

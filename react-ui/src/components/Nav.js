@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
+import {connect} from 'react-redux';
+import {logout} from '../actions/logout.js';
 
 class Nav extends Component {
     render() {
@@ -17,34 +19,44 @@ class Nav extends Component {
                             <span className="icon-bar" />
                             <span className="icon-bar" />
                         </button>
-                        <Link to="/login" className="navbar-brand">
-                            Login
-                        </Link>
-                        <Link
-                            to="/"
-                            className="navbar-brand"
-                            onClick={this.props.logout}
-                        >
-                            Logout
-                        </Link>
                     </div>
                     <div id="myNavbar">
                         <div className="collapse navbar-collapse" id="myNavbar">
                             <ul className="nav navbar-nav navbar-right">
                                 <li>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/login">Login</Link>}
+                                </li>
+
+                                <li>
+                                    {!this.props.loggedIn
+                                        ? <div />
+                                        : <Link
+                                            to="/"
+                                            onClick={this.props.logout}
+                                        >
+                                              Logout
+                                        </Link>}
+                                </li>
+                                <li>
                                     <Link to="/">Home</Link>
                                 </li>
 
                                 <li>
-                                    <Link to="/registerstudent">
-                                        Register As Student
-                                    </Link>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/registerstudent">
+                                              Register As Student
+                                        </Link>}
                                 </li>
 
                                 <li>
-                                    <Link to="/registerresident">
-                                        Register As Resident
-                                    </Link>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/registerresident">
+                                              Register As Resident
+                                        </Link>}
                                 </li>
                             </ul>
                         </div>
@@ -55,4 +67,13 @@ class Nav extends Component {
     }
 }
 
-export default Nav;
+function mapStateToProps(state) {
+    const loggedIn =
+        state.login && state.login.response && state.login.response.loggedIn;
+
+    return {
+        loggedIn,
+    };
+}
+
+export default connect(mapStateToProps, {logout})(Nav);

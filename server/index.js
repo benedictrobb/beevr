@@ -299,7 +299,6 @@ server.register(plugins, err => {
         },
     });
 
-    //unhardcode the job id
     server.route({
         method: 'PUT',
         path: '/api/apply',
@@ -308,8 +307,9 @@ server.register(plugins, err => {
             var from = 'maja.kudlicka@gmail.com';
             var subject = 'New job application';
             var text =
-                'Someone has applied for the job you posted. Go to your profile to find out more.';
-            data.submitApplication(request.payload.job_id, (err, res) => {
+                'Someone has just applied for the job you posted - get in touch!';
+
+            data.findStudent(request.payload.studentId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(
@@ -317,17 +317,54 @@ server.register(plugins, err => {
                         )
                     );
                 } else {
-                    sendEmail(from, to, subject, text, (err, res) => {
-                        if (err) {
-                            reply(Boom.internal('Failed to send email', 500));
-                        } else {
-                            reply({
-                                name: 'applyJob',
-                                message: 'Email sent!',
-                                applyJob: res,
-                            });
+                    var message = `${text}
+
+                     Name: ${res.first_name} ${res.last_name}
+                     University/School:${res.univ_school}
+                     Phone: ${res.phone}
+                     Email: ${res.email}
+                     Bio: ${res.bio}`;
+
+                    data.submitApplication(
+                        request.payload.jobId,
+                        request.payload.residentId,
+                        (err, res) => {
+                            if (err) {
+                                reply(
+                                    Boom.serverUnavailable(
+                                        'Failed to retrieve data from database'
+                                    )
+                                );
+                            } else {
+                                var updatedTo = res.email;
+                                //this needs to replace 'to' property once proper SES account has been
+                                //established by the product owner
+
+                                sendEmail(
+                                    from,
+                                    to,
+                                    subject,
+                                    message,
+                                    (err, res) => {
+                                        if (err) {
+                                            reply(
+                                                Boom.internal(
+                                                    'Failed to send email',
+                                                    500
+                                                )
+                                            );
+                                        } else {
+                                            reply({
+                                                name: 'applyJob',
+                                                message: 'Email sent!',
+                                                applyJob: res,
+                                            });
+                                        }
+                                    }
+                                );
+                            }
                         }
-                    });
+                    );
                 }
             });
         },
@@ -448,6 +485,28 @@ server.register(plugins, err => {
                     );
                 }
             },
+        },
+    });
+
+    server.route({
+        method: 'DELETE',
+        path: '/api/myjobs',
+        handler: (request, reply) => {
+            data.deleteApplication(request.url.query.jobId, (err, res) => {
+                if (err) {
+                    reply(
+                        Boom.serverUnavailable(
+                            'Failed to delete record from database'
+                        )
+                    );
+                } else {
+                    reply({
+                        name: 'jobDeleted',
+                        message: 'Job deleted',
+                        jobDeleted: res,
+                    });
+                }
+            });
         },
     });
 
