@@ -6,6 +6,16 @@ import {connect} from 'react-redux';
 
 class RegisterResident extends Component {
     render() {
+        if (this.props.registered) {
+            return (
+                <div className="row">
+                    <div className="col-md-4 col-md-offset-4">
+                        <div>Registration successful!</div>
+                        <Link to="/login">Login to continue</Link>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
@@ -24,6 +34,7 @@ class RegisterResident extends Component {
 function mapStateToProps(state) {
     return {
         resident: state.registerResident.resident.response,
+        registered: state.registerResident.resident.status,
     };
 }
 export default connect(mapStateToProps, actions)(RegisterResident);

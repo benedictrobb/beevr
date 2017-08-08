@@ -10,7 +10,8 @@ class RegisterStudent extends Component {
             return (
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4">
-                        <div>Registration successful! Log in to continue</div>
+                        <div>Registration successful!</div>
+                        <Link to="/login">Login to continue</Link>
                     </div>
                 </div>
             );
@@ -22,7 +23,6 @@ class RegisterStudent extends Component {
                     <h2>Register As Student</h2>
                     <Form_Register_Student
                         btnText={'Sign Up'}
-                        //student={this.props.student}
                         registerStudent={this.props.registerStudent}
                         checkIfStudentExists={this.props.checkIfStudentExists}
                     />
