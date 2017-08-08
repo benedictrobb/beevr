@@ -18,16 +18,6 @@ class RegisterStudent extends Component {
         }
 
         return (
-<<<<<<< HEAD
-            <div className="row">
-                <div className="col-md-4 col-md-offset-4">
-                    <h2>Register As Student</h2>
-                    <Form_Register_Student
-                        btnText={'Sign Up'}
-                        registerStudent={this.props.registerStudent}
-                        checkIfStudentExists={this.props.checkIfStudentExists}
-                    />
-=======
             <div className="container-fluid register_container">
                 <div className="row-fluid">
                     <div className="col-md-4 col-md-offset-4 ">
@@ -45,7 +35,6 @@ class RegisterStudent extends Component {
                             }
                         />
                     </div>
->>>>>>> master
                 </div>
             </div>
         );
