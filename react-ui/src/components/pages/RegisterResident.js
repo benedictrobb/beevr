@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 class RegisterResident extends Component {
     render() {
-        if (this.props.registered) {
+        if (this.props.registered === 'succsess') {
             return (
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4">

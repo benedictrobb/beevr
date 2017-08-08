@@ -6,7 +6,7 @@ import {connect} from 'react-redux';
 
 class RegisterStudent extends Component {
     render() {
-        if (this.props.registered) {
+        if (this.props.registered === 'success') {
             return (
                 <div className="row">
                     <div className="col-md-4 col-md-offset-4">
@@ -33,6 +33,7 @@ class RegisterStudent extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.registerStudent);
     return {
         student: state.registerStudent.student.response,
         registered: state.registerStudent.student.status,

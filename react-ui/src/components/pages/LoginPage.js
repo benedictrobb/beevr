@@ -7,16 +7,17 @@ import * as actions from '../../actions/login.js';
 class LoginPage extends React.Component {
     render() {
         if (this.props.isAuthenticated === true) {
-            browserHistory.push('/');
+            if (this.props.role === 'Student') {
+                browserHistory.push('/browsejobs');
+            } else {
+                browserHistory.push('/browsestudents');
+            }
         }
         this.props.loginRequest.error;
         return (
             <div className="row">
                 <div className="col-md-4 col-md-offset-4">
-                    <LoginForm
-                        loginRequest={this.props.loginRequest}
-                        btnText={'Login'}
-                    />
+                    <LoginForm />
                 </div>
             </div>
         );
@@ -29,9 +30,13 @@ function mapStateToProps(state) {
         state.login.response &&
         state.login.response.isAuthenticated;
 
+    const role =
+        state.login && state.login.response && state.login.response.role;
+
     return {
         loginRequest: state.login,
         isAuthenticated,
+        role,
     };
 }
 
