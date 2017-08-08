@@ -33,6 +33,8 @@ a:hover {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
+    background-color: white;
+    color: #815355;
 }
 
 .navbar-nav li a:hover {
