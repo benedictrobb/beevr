@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import MultiSelectField from './Multiselect.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -13,7 +14,6 @@ class Form_Register_Student extends Component {
 
         this.state = {
             student: {
-                jobCategories: {},
             },
             errorMessage: '',
             loggedIn: false,
@@ -79,7 +79,8 @@ class Form_Register_Student extends Component {
             //}
             //return option;
         //});
-
+        console.log(this.props);
+        console.log(this.state);
         if (!this.state) {
             return <div>Loading</div>;
         }
@@ -252,14 +253,21 @@ class Form_Register_Student extends Component {
                     >
                         Your job categories
                     </label>
-                    <MultiSelectField />
+                    <MultiSelectField
+                        handleSelectChange={this.props.handleSelectChange}
+                        value = {this.props}
+                    />
                 </div>
                 <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
+                    {this.props.status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn-primary"
+                            type="submit"
+                            onClick={this.onSubmit}
+                    > 
+                        {this.props.btnText}
+                    </button>}
                 </div>
             </form>
         );

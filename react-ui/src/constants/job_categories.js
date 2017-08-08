@@ -15,10 +15,7 @@
 
 export default [
     {label: 'Academic Beavers', value: 'Academic Beavers', disabled: true},
-    {
-        label: 'English Literature tutoring',
-        value: 'English Literature tutoring',
-    },
+    {label: 'English Literature tutoring', value: 'English Literature tutoring'},
     {label: 'English Language tutoring', value: 'English Language tutoring'},
     {label: 'English conversation', value: 'English conversation'},
     {label: 'French', value: 'French'},
@@ -42,10 +39,7 @@ export default [
     {label: 'History tutoring', value: 'History tutoring'},
     {label: 'Philosophy tutoring', value: 'Philosophy tutoring'},
     {label: 'Religious Studies tutoring', value: 'Religious Studies tutoring'},
-    {
-        label: 'Business/Management  tutoring',
-        value: 'Business/Management  tutoring',
-    },
+    {label: 'Business/Management  tutoring', value: 'Business/Management  tutoring'},
     {label: 'Art tutoring', value: 'Art tutoring'},
     {label: 'Oxbridge Entrance tutoring', value: 'Oxbridge Entrance tutoring'},
     {label: 'TSA tutoring', value: 'TSA tutoring'},

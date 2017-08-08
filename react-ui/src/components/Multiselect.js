@@ -1,39 +1,43 @@
-import React from 'react';
-import createClass from 'create-react-class';
+import React, {Component} from 'react';
 import Select from 'react-select';
 import categories from '../constants/job_categories.js';
 
-var MultiSelectField = createClass({
-    displayName: 'MultiSelectField',
-    getInitialState() {
-        return {
+class MultiSelectField extends Component {
+    constructor() {
+        super();
+        this.handleSelectChange = this.handleSelectChange.bind(this);
+
+        this.state = {
             options: categories,
-            value: [],
+            jobCategories: [],
         };
-    },
-    handleSelectChange(value) {
-        console.log('You\'ve selected:', value);
-        this.setState({value});
-    },
-    toggleDisabled(e) {
-        this.setState({disabled: e.target.checked});
-    },
+    }
+
+    handleSelectChange(jobCategories) {
+        console.log(this.state.jobCategories.length);
+        if (this.state.jobCategories.length < 8) {
+            console.log('You\'ve selected:', jobCategories);
+            this.setState({jobCategories});
+        }
+    }
 
     render() {
+        console.log('props', this.props);
+        console.log(this.state);
         return (
             <div className="section form-group">
                 <Select
                     multi
-                    simpleValue
+                    joinValue
                     disabled={this.state.disabled}
-                    value={this.state.value}
+                    value={this.state.jobCategories}
                     placeholder="Select up to 8 categories"
                     options={this.state.options}
                     onChange={this.handleSelectChange}
                 />
             </div>
         );
-    },
-});
+    }
+}
 
 export default MultiSelectField;
