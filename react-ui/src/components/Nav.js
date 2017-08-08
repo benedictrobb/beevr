@@ -20,37 +20,47 @@ class Nav extends Component {
                             <span className="icon-bar" />
                             <span className="icon-bar" />
                         </button>
-                        <Link to="/login" className="navbar-brand">
-                            Login
-                        </Link>
-                        <Link
-                            to="/"
-                            className="navbar-brand"
-                            onClick={this.props.logout}
-                        >
-                            Logout
-                        </Link>
                     </div>
+                    <div id="myNavbar">
+                        <div className="collapse navbar-collapse" id="myNavbar">
+                            <ul className="nav navbar-nav navbar-right">
+                                <li>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/login">Login</Link>}
+                                </li>
 
-                    <div
-                        className="collapse navbar-collapse"
-                        id="bs-example-navbar-collapse-1"
-                    >
-                        <ul className="nav navbar-nav navbar-right">
-                            <li>
-                                <Link to="/">Home</Link>
-                            </li>
-                            <li>
-                                <Link to="/registerstudent">
-                                    Register As Student
-                                </Link>
-                            </li>
-                            <li>
-                                <Link to="/registerresident">
-                                    Register As Resident
-                                </Link>
-                            </li>
-                        </ul>
+                                <li>
+                                    {!this.props.loggedIn
+                                        ? <div />
+                                        : <Link
+                                            to="/"
+                                            onClick={this.props.logout}
+                                        >
+                                              Logout
+                                        </Link>}
+                                </li>
+                                <li>
+                                    <Link to="/">Home</Link>
+                                </li>
+
+                                <li>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/registerstudent">
+                                              Register As Student
+                                        </Link>}
+                                </li>
+
+                                <li>
+                                    {this.props.loggedIn
+                                        ? <div />
+                                        : <Link to="/registerresident">
+                                              Register As Resident
+                                        </Link>}
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </nav>
@@ -59,8 +69,11 @@ class Nav extends Component {
 }
 
 function mapStateToProps(state) {
+    const loggedIn =
+        state.login && state.login.response && state.login.response.loggedIn;
+
     return {
-        isLogged: state.login,
+        loggedIn,
     };
 }
 

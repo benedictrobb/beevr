@@ -31,13 +31,12 @@ class MyPostedJobs extends Component {
     renderJob(job) {
         return (
             <div key={job.jobId}>
-                <h2>
+                <h3 className="light_brown_title">
                     {job.jobTitle}
-                </h2>
-                <h4>
-                    <label>Category: </label>
+                </h3>
+                <p className="light_brown_title">
                     {job.jobCat}
-                </h4>
+                </p>
                 <p>
                     {job.description}
                 </p>
@@ -66,7 +65,7 @@ class MyPostedJobs extends Component {
                     this.props.deleteJobRequests[job.jobId].status === 'pending'
                         ? <LoadingIndicator />
                         : <button
-                            className="btn btn-danger"
+                            className="btn btn-primary"
                             onClick={() => this.deleteJob(job.jobId)}
                         >
                               Delete the job
@@ -83,13 +82,15 @@ class MyPostedJobs extends Component {
             return <div>Loading</div>;
         }
         return (
-            <article>
-                <section className="text-section">
-                    <ul>
-                        {myPostedJobs.map(this.renderJob)}
-                    </ul>
-                </section>
-            </article>
+            <div className="container-fluid">
+                <article className="row-fluid search_jobs">
+                    <section className="col-md-6 col-md-offset-3">
+                        <ul>
+                            {myPostedJobs.map(this.renderJob)}
+                        </ul>
+                    </section>
+                </article>
+            </div>
         );
     }
 }

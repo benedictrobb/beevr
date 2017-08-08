@@ -28,12 +28,12 @@ class BrowseStudents extends Component {
     renderStudents(student) {
         return (
             <div key={student.studentId}>
-                <h2>
+                <h3 className="light_brown_title">
                     {student.firstName}
-                </h2>
-                <h4>
+                </h3>
+                <h5 className="light_brown_title">
                     {student.univSchool}
-                </h4>
+                </h5>
                 <label>Bio</label>
                 <p>
                     {student.bio}
@@ -58,78 +58,86 @@ class BrowseStudents extends Component {
 
         if (!studentList) {
             return (
-                <section>
-                    <form onSubmit={this.onSubmit}>
-                        <label
-                            className="control-label"
-                            htmlFor="Browse Students"
-                        >
-                            Browse Students
-                        </label>
-                        <input
-                            className="form-control"
-                            id="Browse Students"
-                            type="text"
-                            placeholder="Browse Students"
-                            list="students"
-                            onChange={this.onStudentSearchChange}
-                            value={this.props.searchTerm}
-                        />
-                        <datalist id="students">
-                            <option value="" disabled />
-                            {options}
-                        </datalist>
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-
-                    <Link to="/postjob" className="btn btn-primary">
-                        Post A Job
-                    </Link>
-                </section>
+                <div className="container-fluid">
+                    <article className="row-fluid search_jobs">
+                        <section className="col-md-6 col-md-offset-3">
+                            <Link
+                                to="/postjob"
+                                className="btn btn-primary pull-right submit_button"
+                            >
+                                Post A Job
+                            </Link>
+                            <form onSubmit={this.onSubmit}>
+                                <input
+                                    className="form-control"
+                                    id="Browse Students"
+                                    type="text"
+                                    placeholder="Browse Students"
+                                    list="students"
+                                    onChange={this.onStudentSearchChange}
+                                    value={this.props.searchTerm}
+                                />
+                                <datalist id="students">
+                                    <option value="" disabled />
+                                    {options}
+                                </datalist>
+                                <button
+                                    type="submit"
+                                    className="btn btn-primary submit_button"
+                                >
+                                    Submit
+                                </button>
+                            </form>
+                        </section>
+                    </article>
+                </div>
             );
         }
         return (
-            <article>
-                <section className="text-section">
-                    <form onSubmit={this.onSubmit}>
-                        <label
-                            className="control-label"
-                            htmlFor="Browse Students"
+            <div className="container-fluid">
+                <article className="row-fluid search_jobs">
+                    <section className="col-md-6 col-md-offset-3">
+                        <Link
+                            to="/postjob"
+                            className="btn btn-primary pull-right submit_button margin_left"
                         >
-                            Browse Students
-                        </label>
+                            Post A Job
+                        </Link>
 
-                        <input
-                            className="form-control"
-                            id="Browse Students"
-                            type="text"
-                            placeholder="Browse Students"
-                            list="students"
-                            onChange={this.onStudentSearchChange}
-                            value={this.props.searchTerm}
-                        />
-                        <datalist id="students">
-                            <option value="" disabled />
-                            {options}
-                        </datalist>
+                        <Link
+                            to="/mypostedjobs"
+                            className="btn btn-primary pull-right submit_button"
+                        >
+                            My posted jobs
+                        </Link>
+                        <form onSubmit={this.onSubmit}>
+                            <input
+                                className="form-control"
+                                id="Browse Students"
+                                type="text"
+                                placeholder="Browse Students"
+                                list="students"
+                                onChange={this.onStudentSearchChange}
+                                value={this.props.searchTerm}
+                            />
+                            <datalist id="students">
+                                <option value="" disabled />
+                                {options}
+                            </datalist>
 
-                        <button type="submit" className="btn btn-primary">
-                            Submit
-                        </button>
-                    </form>
-                    <Link to="/postjob" className="btn btn-primary">
-                        Post A Job
-                    </Link>
-                    <Link to="/mypostedjobs" className="btn btn-primary">
-                        My jobs
-                    </Link>
-                    <ul>
-                        {studentList.map(this.renderStudents)}
-                    </ul>
-                </section>
-            </article>
+                            <button
+                                type="submit"
+                                className="btn btn-primary submit_button"
+                            >
+                                Submit
+                            </button>
+                        </form>
+                        <ul className="search_results_ul">
+                            {studentList.map(this.renderStudents)}
+                        </ul>
+                    </section>
+                </article>
+            </div>
         );
     }
 }

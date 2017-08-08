@@ -74,7 +74,7 @@ class Form_Register_Student extends Component {
         if (!this.state) {
             return <div>Loading</div>;
         }
-        
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -88,7 +88,7 @@ class Form_Register_Student extends Component {
                 <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
-                        First Name
+                        First Name*
                     </label>
                     <input
                         className="form-control"
@@ -102,7 +102,7 @@ class Form_Register_Student extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="lastName">
-                        Last Name
+                        Last Name*
                     </label>
                     <input
                         className="form-control"
@@ -116,7 +116,7 @@ class Form_Register_Student extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="email">
-                        Email
+                        Email*
                     </label>
                     <input
                         className="form-control"
@@ -134,7 +134,7 @@ class Form_Register_Student extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="password">
-                        Password
+                        Password*
                     </label>
                     <input
                         className="form-control"
@@ -148,7 +148,7 @@ class Form_Register_Student extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="confirmPassword">
-                        Confirm password
+                        Confirm password*
                     </label>
                     <input
                         className="form-control"
@@ -177,7 +177,7 @@ class Form_Register_Student extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="universitySchool">
-                        University/School
+                        University/School*
                     </label>
                     <input
                         className="form-control"
@@ -222,7 +222,7 @@ class Form_Register_Student extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="phoneNumber">
-                        Phone number
+                        Phone number*
                     </label>
                     <input
                         className="form-control"
