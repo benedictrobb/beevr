@@ -26,8 +26,8 @@ class JobDetail extends Component {
         return time.slice(0, 5);
     }
 
-    submitJobApplication() {
-        this.props.submitJobApplication(this.props.jobId);
+    submitJobApplication(jobId, residentId, studentId) {
+        this.props.submitJobApplication(jobId, residentId, studentId);
     }
 
     renderJob() {
@@ -38,7 +38,8 @@ class JobDetail extends Component {
                 </div>
             );
         }
-        if (this.props.applied.includes(this.props.jobId)) {
+
+        if (this.props.applied.includes(Number(this.props.jobId))) {
             return (
                 <div className="parent-container">
                     <div>
@@ -121,7 +122,12 @@ class JobDetail extends Component {
                         ? <LoadingIndicator />
                         : <button
                             className="btn btn-primary"
-                            onClick={this.submitJobApplication}
+                            onClick={() =>
+                                this.submitJobApplication(
+                                    job.jobId,
+                                    job.residentId,
+                                    this.props.studentId
+                                )}
                         >
                               APPLY
                         </button>}
@@ -143,7 +149,11 @@ class JobDetail extends Component {
     }
 }
 
+//studentId disappears on page reload
 function mapStateToProps(state, ownProps) {
+    var studentId =
+        state.login && state.login.response && state.login.response.id;
+
     var searchJobs =
         state.searchJobs.jobsRequest &&
         state.searchJobs.jobsRequest.response &&
@@ -160,6 +170,7 @@ function mapStateToProps(state, ownProps) {
         applied: state.applyJob.applied,
         jobId: ownProps.params.id,
         status: state.applyJob.status,
+        studentId,
         jobs,
     };
 }
