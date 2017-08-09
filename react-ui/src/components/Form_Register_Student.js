@@ -124,7 +124,7 @@ class Form_Register_Student extends Component {
                         id="email"
                         type="email"
                         value={this.state.student.email}
-                        placeholder="email"
+                        placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
                         autoCorrect="off"
@@ -142,7 +142,7 @@ class Form_Register_Student extends Component {
                         id="password"
                         type="password"
                         value={this.state.student.password}
-                        placeholder="password"
+                        placeholder="Password"
                         onChange={this.onChange}
                     />
                 </div>
@@ -207,14 +207,14 @@ class Form_Register_Student extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
-                        Profile picture
+                        Profile picture url
                     </label>
                     <input
                         className="form-control"
                         name="picture"
                         id="picture"
-                        type="file"
-                        placeholder="Picture"
+                        type="text"
+                        placeholder="Paste url of your picture"
                         value={this.state.student.picture}
                         onChange={this.onChange}
                     />

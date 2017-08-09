@@ -11,7 +11,7 @@ CREATE TABLE students (
     DOB             DATE            ,
     univ_school     VARCHAR(250)    NOT NULL,
     bio             VARCHAR(1500)   ,
-    picture         BYTEA           ,
+    picture         VARCHAR(1500)           ,
     phone           VARCHAR(15)     NOT NULL,
     job_cat         VARCHAR[]       ,
     password_hash   VARCHAR(100)    NOT NULL
@@ -25,7 +25,7 @@ CREATE TABLE residents (
     DOB             DATE            ,
     address         VARCHAR(200)    NOT NULL,
     bio             VARCHAR(1500)   ,
-    picture         BYTEA           ,
+    picture         VARCHAR(1500)           ,
     phone           VARCHAR(15)     NOT NULL,
     password_hash   VARCHAR(100)    NOT NULL
 );

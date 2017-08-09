@@ -26,6 +26,7 @@ class BrowseStudents extends Component {
     }
 
     renderStudents(student) {
+        var picture = student.picture.toString('utf8');
         return (
             <div key={student.studentId}>
                 <h3 className="light_brown_title">
@@ -39,7 +40,7 @@ class BrowseStudents extends Component {
                     {student.bio}
                 </p>
                 <label>Picture</label>
-                <p>Example picture</p>
+                <img className="success_image" src={student.picture} />
             </div>
         );
     }

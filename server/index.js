@@ -106,6 +106,7 @@ server.register(plugins, err => {
                 if (err) {
                     return reply(Boom.serverUnavailable('unavailable: ' + err));
                 } else {
+                    console.log('res is ', res);
                     reply({
                         name: 'studentList',
                         message: 'Welcome to BEEVR!',
