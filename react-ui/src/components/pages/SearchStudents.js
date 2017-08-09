@@ -26,7 +26,6 @@ class BrowseStudents extends Component {
     }
 
     renderStudents(student) {
-        var picture = student.picture.toString('utf8');
         return (
             <div key={student.studentId}>
                 <h3 className="light_brown_title">
@@ -35,12 +34,12 @@ class BrowseStudents extends Component {
                 <h5 className="light_brown_title">
                     {student.univSchool}
                 </h5>
-                <label>Bio</label>
+                <p>
+                    <img className="profile_image" src={student.picture} />
+                </p>
                 <p>
                     {student.bio}
                 </p>
-                <label>Picture</label>
-                <img className="success_image" src={student.picture} />
             </div>
         );
     }
@@ -97,7 +96,7 @@ class BrowseStudents extends Component {
         return (
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
-                    <section className="col-md-6 col-md-offset-3">
+                    <section className="form col-md-6 col-md-offset-3">
                         <Link
                             to="/postjob"
                             className="btn btn-primary pull-right submit_button margin_left"
