@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Form_Post_Job from '../Form_Post_Job';
-import {sendingRequest} from '../../actions/AppActions';
 import LoadingIndicator from 'react-loading-indicator';
 
 class PostJob extends Component {

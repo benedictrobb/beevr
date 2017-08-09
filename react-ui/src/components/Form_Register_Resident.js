@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
 
 class Form_Register_Resident extends Component {
     constructor() {
@@ -46,7 +45,6 @@ class Form_Register_Resident extends Component {
     render() {
         return (
             <form className="form" onSubmit={this.onSubmit}>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*

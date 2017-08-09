@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
 import categories from '../constants/job_categories.js';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 
@@ -85,7 +84,6 @@ class Form_Register_Student extends Component {
                 >
                     {this.state.errorMessage}
                 </div>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*

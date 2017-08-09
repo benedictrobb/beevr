@@ -1,11 +1,8 @@
 import React, {Component} from 'react';
-import {changeForm} from '../actions/AppActions';
-import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import isEmpty from 'lodash/isEmpty';
 import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
