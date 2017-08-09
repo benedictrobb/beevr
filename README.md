@@ -24,6 +24,7 @@ npm test
 
 * [Create React App](https://github.com/facebookincubator/create-react-app)
 * [Redux](http://redux.js.org/)
+* [http-proxy-middleware](https://github.com/chimurai/http-proxy-middleware)
 * Node.js
 * Hapi.js
 * Postgres-SQL
