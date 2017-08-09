@@ -48,7 +48,7 @@ data.getStudents = (callback, term) => {
                 students.picture,
                 students.phone,
                 students.job_cat
-                    FROM students;`,
+                    FROM students LIMIT 10;`,
             (err, res) => {
                 if (err) {
                     return callback(err);

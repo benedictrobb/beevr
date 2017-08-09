@@ -96,7 +96,7 @@ class BrowseStudents extends Component {
         return (
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
-                    <section className="form col-md-6 col-md-offset-3">
+                    <section className="col-md-6 col-md-offset-3">
                         <Link
                             to="/postjob"
                             className="btn btn-primary pull-right submit_button margin_left"
