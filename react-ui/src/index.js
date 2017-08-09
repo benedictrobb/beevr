@@ -27,41 +27,7 @@ const store = createStore(
     homeReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-
-//function checkAuth(auth) {
-    //console.log('checking auth....');
-    //auth = store.getState().login.isAuthenticated;
-    //console.log(auth);
-    //if (auth) {
-        //console.log('id: ',store.getState().login.response.id);
-        //console.log('role: ',store.getState().login.response.role);
-    //} else {
-        //console.log('not authorised');  
-    //}
-//}
     
-        // check if the path isn't dashboard
-    // that way we can apply specific logic
-    // to display/render the path we want to
-    //if (nextState.location.pathname !== '/') {
-        //if (loggedIn) {
-            //if (nextState.location.state && nextState.location.pathname) {
-                //replaceState(null, nextState.location.pathname);
-            //} else {
-                //replaceState(null, '/');
-            //}
-        //}
-    //} else {
-        //// If the user is already logged in, forward them to the homepage
-        //if (!loggedIn) {
-            //if (nextState.location.state && nextState.location.pathname) {
-                //replaceState(null, nextState.location.pathname);
-            //} else {
-                //replaceState(null, '/');
-            //}
-        //}
-    //}
-
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
@@ -85,4 +51,4 @@ ReactDOM.render(
 );
 registerServiceWorker();
 
-export {store};
+//export {store};

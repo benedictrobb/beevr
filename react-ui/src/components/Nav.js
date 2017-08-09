@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
-//import {connect} from 'react-redux';
 import {logout} from '../actions/logout.js';
 
 class Nav extends Component {
@@ -74,14 +73,4 @@ class Nav extends Component {
     }
 }
 
-//function mapStateToProps(state) {
-    //const loggedIn =
-        //state.auth && state.auth.response && state.auth.response.loggedIn;
-
-    //return {
-        //loggedIn,
-    //};
-//}
-
-//export default connect(mapStateToProps, {logout})(Nav);
 export default Nav;

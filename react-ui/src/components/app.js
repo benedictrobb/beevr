@@ -11,7 +11,7 @@ import Nav from './Nav.js';
 import {connect} from 'react-redux';
 import {logout} from '../actions/logout.js';
 import {checkAuth} from '../actions/checkAuth.js';
-import {store} from '../index.js';
+//import {store} from '../index.js';
 
 class App extends Component {
     constructor() {
