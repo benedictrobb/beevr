@@ -8,21 +8,30 @@ body {
   color: #000807;
 }
 
+
+
+@media (max-width: 768px) {
+
 a {
-  color: #815355;
+  cursor: pointer;
+  color: white;
 }
 
-a:hover {
-  color: #815355;
 }
 
-@media (min-width: 576px) {
+@media (min-width: 768px) {
 
   .container-flex-dashboard{
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  a {
+    color: #523249;
+    cursor: pointer;
+  }
+
 
 }
 .navbar {
@@ -38,7 +47,8 @@ a:hover {
 }
 
 .navbar-nav li a:hover {
-    color: #523249 !important;
+    color: #C3B299 !important;
+    text-decoration: none;
 }
 
 .bgimg_student {
@@ -166,4 +176,8 @@ input:-webkit-autofill {
 
 .margin_left {
   margin-left: 3%;
+}
+
+.bm-menu-wrap {
+  width:65% !important;
 }

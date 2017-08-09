@@ -11,8 +11,6 @@ class LoginPage extends React.Component {
             <div className="container-fluid register_container">
                 <div className="row-fluid">
                     <div className="col-sm-4 col-sm-offset-4 ">
-                        <h4>Login</h4>
-                        <br />
                         <LoginForm
                             loginRequest={this.props.loginRequest}
                             btnText={'Login'}
