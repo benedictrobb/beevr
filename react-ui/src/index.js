@@ -20,7 +20,6 @@ import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 import MyPostedJobs from './components/pages/MyPostedJobs.js';
 import MyJobs from './components/pages/MyJobs.js';
-import reducer from './reducers/index.js';
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStore(
@@ -50,5 +49,3 @@ ReactDOM.render(
     document.getElementById('app')
 );
 registerServiceWorker();
-
-//export {store};
