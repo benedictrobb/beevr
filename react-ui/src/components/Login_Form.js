@@ -33,8 +33,6 @@ class LoginForm extends Component {
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
         return (
             <div>
                 {this.props.loginRequestStatus === 'error'

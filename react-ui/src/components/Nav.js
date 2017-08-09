@@ -4,7 +4,6 @@ import {logout} from '../actions/logout.js';
 
 class Nav extends Component {
     render() {
-        console.log('nav props',this.props);
         return (
             <nav className="navbar navbar-default">
                 <div className="container">

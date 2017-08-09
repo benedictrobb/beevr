@@ -45,7 +45,6 @@ class BrowseJobs extends Component {
     }
 
     renderJobs(job) {
-        console.log(this.props);
         return (
             <div key={job.jobId}>
                 <h3>

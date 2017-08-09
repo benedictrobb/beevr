@@ -45,7 +45,6 @@ class BrowseStudents extends Component {
     }
 
     render() {
-        console.log('brjob', this.props);
         const options = categories.map(function(elem) {
             return (
                 <option value={categories[elem]}>
