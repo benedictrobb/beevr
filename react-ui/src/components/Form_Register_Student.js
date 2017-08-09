@@ -254,8 +254,8 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <MultiSelectField
-                        handleSelectChange={this.props.handleSelectChange}
-                        value = {this.props}
+                        student={this.state.student}
+
                     />
                 </div>
                 <div>
@@ -265,9 +265,9 @@ class Form_Register_Student extends Component {
                             className="btn btn-primary"
                             type="submit"
                             onClick={this.onSubmit}
-                    > 
-                        {this.props.btnText}
-                    </button>}
+                        > 
+                            {this.props.btnText}
+                        </button>}
                 </div>
             </form>
         );

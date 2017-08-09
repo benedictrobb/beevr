@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Form_Register_Student from '../Form_Register_Student.js';
+import MultiSelectField from '../Multiselect.js';
 import {Router, Route, IndexRoute, browseHistory, Link} from 'react-router';
 import * as actions from '../../actions/register_student.js';
 import {connect} from 'react-redux';
@@ -27,4 +28,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, actions)(RegisterStudent);
+export default connect(mapStateToProps, actions)(RegisterStudent, MultiSelectField);
