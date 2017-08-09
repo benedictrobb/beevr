@@ -19,25 +19,19 @@ class App extends Component {
 
         this.state = {
         };
-
-        //this.setState({
-            //isLogged: this.props.auth 
-        //});
     }
     
     componentWillMount() {
         this.props.checkAuth();
-        this.setState({
-            isLogged: store.getState().auth
-        });
     };
 
     render() {
-        console.log('hhhh',this.props);
-        console.log('sss',this.state);
+        console.log('app.props',this.props);
         return (
             <div className="wrapper">
                 <Nav 
+                    loggedIn={this.props.isAuthenticated}
+                    role={this.props.role}
                     logout={this.props.logout}
                 />
                 {this.props.children}
@@ -47,8 +41,17 @@ class App extends Component {
 }
 
 function mapStateToProps(state) {
+    const isAuthenticated =
+        state.auth &&
+        state.auth.response &&
+        state.auth.response.isAuthenticated;
+    
+    const role =
+        state.auth && state.auth.response && state.auth.response.role;
     return {
         isLogged: state.auth,
+        isAuthenticated,
+        role,
     };
 }
 

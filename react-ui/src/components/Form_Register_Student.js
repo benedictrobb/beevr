@@ -30,19 +30,36 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        var student = this.state.student;
-        if (!student.email) {
-            var error_message = 'Email cannot be empty';
+
+        var {student} = this.state;
+
+        if (!student.firstName) {
+            var errorMessage = 'First Name cannot be empty';
+        } else if (!student.lastName) {
+            errorMessage = 'Last Name cannot be empty';
+        } else if (!student.email) {
+            errorMessage = 'Email cannot be empty';
+        } else if (!student.password) {
+            errorMessage = 'Password cannot be empty';
+        } else if (!student.confirmPassword) {
+            errorMessage = 'Please confirm the password';
+        } else if (student.password !== student.confirmPassword) {
+            errorMessage = 'Passwords do not match';
+        } else if (!student.univSchool) {
+            errorMessage = 'University/ School field cannot be empty';
+        } else if (!student.phone) {
+            errorMessage = 'Phone cannot be empty';
         }
-        this.setState({errorMessage: error_message});
+
+        this.setState({errorMessage: errorMessage});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
-            browserHistory.push('/dashboard');
         }
     }
 
     onChange(evt) {
-        var student = this.state.student;
+        var {student} = this.state;
+
         this.setState({
             student: {
                 ...student,
