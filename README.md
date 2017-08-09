@@ -1,4 +1,4 @@
-## About project
+## About The Project
 
 BEEVR helps connect students, who are looking for ad hoc work that fits their schedule, with residents who need help with everyday tasks.
 
@@ -15,7 +15,7 @@ cd react-ui
 npm start
 
 
-## Running the tests
+## Running The Tests
 
 npm test
 
