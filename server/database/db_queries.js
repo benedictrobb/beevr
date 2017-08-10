@@ -105,7 +105,7 @@ data.loginRequest = (email, callback) => {
     );
 };
 
-data.getMyJobs = (callback, student_id) => {
+data.getMyJobs = (student_id, callback) => {
     dbConnection.query(
         'SELECT * FROM jobs WHERE $1 = ANY (student_id)',
         [student_id],

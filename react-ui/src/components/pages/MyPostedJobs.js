@@ -13,7 +13,7 @@ class MyPostedJobs extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchMyPostedJobs();
+        this.props.fetchMyPostedJobs(this.props.residentId);
     }
 
     formatDate(date) {
@@ -96,9 +96,12 @@ class MyPostedJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    var residentId =
+        state.login && state.login.response && state.login.response.id;
     return {
         myPostedJobs: state.fetchMyPostedJobs.jobsPosted.jobs,
         deleteJobRequests: state.fetchMyPostedJobs.deleteJobRequests,
+        residentId,
     };
 }
 

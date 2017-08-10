@@ -13,7 +13,7 @@ class MyJobs extends Component {
     }
 
     componentWillMount() {
-        this.props.fetchMyJobs();
+        this.props.fetchMyJobs(this.props.studentId);
     }
 
     formatDate(date) {

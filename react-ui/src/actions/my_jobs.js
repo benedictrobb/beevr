@@ -1,14 +1,16 @@
 import axios from 'axios';
 import {FETCH_MY_JOBS, DELETE_APPLICATION} from '../constants/action_types.js';
 
-export const fetchMyJobs = () => dispatch => {
+export const fetchMyJobs = studentId => dispatch => {
     dispatch({
         type: FETCH_MY_JOBS,
         status: 'pending',
     });
 
     axios
-        .get('/api/myjobs')
+        .get('/api/myjobs', {
+            params: {studentId: studentId},
+        })
         .then(response => {
             dispatch({
                 type: FETCH_MY_JOBS,
