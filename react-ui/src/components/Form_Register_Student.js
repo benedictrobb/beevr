@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
 import categories from '../constants/job_categories.js';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -174,7 +174,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="universitySchool">
                         University/School*
@@ -189,7 +188,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="bio">
                         Bio
@@ -204,7 +202,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
                         Profile picture
@@ -219,7 +216,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="phoneNumber">
                         Phone number*
@@ -234,7 +230,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label
                         className="control-label"
@@ -328,14 +323,9 @@ class Form_Register_Student extends Component {
                         {options}
                     </datalist>
                 </div>
-
-                <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
-                </div>
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }

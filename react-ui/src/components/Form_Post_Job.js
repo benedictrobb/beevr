@@ -4,7 +4,7 @@ import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 import isEmpty from 'lodash/isEmpty';
 import categories from '../constants/job_categories.js';
 
