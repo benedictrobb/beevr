@@ -371,21 +371,25 @@ server.register(plugins, err => {
         method: 'DELETE',
         path: '/api/myjobs',
         handler: (request, reply) => {
-            data.deleteApplication(request.url.query.jobId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to delete record from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        name: 'jobDeleted',
-                        message: 'Job deleted',
-                        jobDeleted: res,
-                    });
+            data.deleteApplication(
+                request.url.query.studentId,
+                request.url.query.jobId,
+                (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to delete record from database'
+                            )
+                        );
+                    } else {
+                        reply({
+                            name: 'jobDeleted',
+                            message: 'Job deleted',
+                            jobDeleted: res,
+                        });
+                    }
                 }
-            });
+            );
         },
     });
 

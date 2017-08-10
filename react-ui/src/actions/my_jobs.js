@@ -25,7 +25,7 @@ export const fetchMyJobs = () => dispatch => {
         });
 };
 
-export const deleteApplication = jobId => dispatch => {
+export const deleteApplication = (jobId, studentId) => dispatch => {
     dispatch({
         type: DELETE_APPLICATION,
         status: 'pending',
@@ -34,7 +34,7 @@ export const deleteApplication = jobId => dispatch => {
 
     axios
         .delete('/api/myjobs', {
-            params: {jobId: jobId},
+            params: {jobId: jobId, studentId: studentId},
         })
         .then(response => {
             dispatch({

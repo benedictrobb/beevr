@@ -24,8 +24,8 @@ class MyJobs extends Component {
         return time.slice(0, 5);
     }
 
-    deleteApplication(jobId) {
-        this.props.deleteApplication(jobId);
+    deleteApplication(jobId, studentId) {
+        this.props.deleteApplication(jobId, studentId);
     }
 
     renderJobs(job) {
@@ -62,7 +62,8 @@ class MyJobs extends Component {
                 </p>
                 <button
                     className="btn btn-danger"
-                    onClick={() => this.deleteApplication(job.jobId)}
+                    onClick={() =>
+                        this.deleteApplication(job.jobId, this.props.studentId)}
                 >
                     Delete application
                 </button>
@@ -95,8 +96,11 @@ class MyJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    var studentId =
+        state.login && state.login.response && state.login.response.id;
     return {
         myJobs: state.fetchMyJobs.jobsApplied.jobs,
+        studentId,
     };
 }
 
