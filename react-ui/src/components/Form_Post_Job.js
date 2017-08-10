@@ -5,7 +5,7 @@ import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import isEmpty from 'lodash/isEmpty';
+import Select from 'react-select';
 import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
@@ -20,6 +20,7 @@ class Form_Post_Job extends Component {
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
         this._onChangeCategory = this._onChangeCategory.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
 
         //resident id hardcoded for now
         this.state = {
@@ -132,15 +133,15 @@ class Form_Post_Job extends Component {
         });
     }
 
-    _onChangeCategory(evt) {
-        var jobData = this.state.jobData;
-        this.setState({
-            jobData: {
-                ...jobData,
-                category: evt.target.value,
-            },
-        });
-    }
+    //_onChangeCategory(evt) {
+        //var jobData = this.state.jobData;
+        //this.setState({
+            //jobData: {
+                //...jobData,
+                //category: evt.target.value,
+            //},
+        //});
+    //}
 
     render() {
         const options = categories.map(function(elem) {
