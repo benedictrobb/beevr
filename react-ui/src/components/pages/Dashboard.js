@@ -9,7 +9,7 @@ class Dashboard extends Component {
                     <div className="welcome">
                         <h1>WELCOME TO BEEVR</h1>
                     </div>
-                    <div className="container-flex">
+                    <div className="container-flex-dashboard">
                         <div className="col-sm-5 bgimg_student">
                             <Link to="/browsejobs" className="front_student">
                                 <h1>Student</h1>
