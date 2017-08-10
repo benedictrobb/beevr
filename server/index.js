@@ -144,7 +144,6 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/reg-student',
         handler: (request, reply) => {
-            console.log(request.payload);
             hashPassword(request.payload.password, (err, hash) => {
                 if (err) {
                     return reply(Boom.badData('bcrypt error'));

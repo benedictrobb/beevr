@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import MultiSelectField from './Multiselect.js';
+import {browserHistory} from 'react-router';
+import Select from 'react-select';
+import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
@@ -9,15 +10,19 @@ class Form_Register_Student extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            student: {
-            },
             errorMessage: '',
             loggedIn: false,
             isAuthenticated: false,
+            student: {
+                jobCategories: {
+                    options: categories,
+                    value: [],
+                },
+            },
         };
     }
 
@@ -31,6 +36,8 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
+        delete student.jobCategories.options;
+        student.jobCategories = student.jobCategories.value.map((e) => e.value);
         if (!student.email) {
             var error_message = 'Email cannot be empty';
         }
@@ -51,36 +58,23 @@ class Form_Register_Student extends Component {
         });
     }
 
-    onChangeJobCategories(evt) {
+    handleSelectChange(value) {
         var student = this.state.student;
         var jobCategories = student.jobCategories;
-        this.setState({
-            student: {
-                ...student,
-                jobCategories: [...jobCategories, evt.target.value],
-            },
-        });
+        if (jobCategories.value.length < 8) {
+            this.setState({
+                student: {
+                    ...student,
+                    jobCategories:{
+                        ...jobCategories,
+                        value,
+                    },
+                },
+            });
+        }
     }
 
     render() {
-        //const options = categories.map(function(elem) {
-            //if (elem.indexOf('Beavers') != -1) {
-                //var option = (
-                    //<option className="dropdwn-header" value={categories[elem]}>
-                        //{elem}
-                    //</option>
-                //);
-            //} else {
-                //option = (
-                    //<option value={categories[elem]}>
-                        //{elem}
-                    //</option>
-                //);
-            //}
-            //return option;
-        //});
-        console.log(this.props);
-        console.log(this.state);
         if (!this.state) {
             return <div>Loading</div>;
         }
@@ -244,7 +238,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label
                         className="control-label"
@@ -253,9 +246,14 @@ class Form_Register_Student extends Component {
                     >
                         Your job categories
                     </label>
-                    <MultiSelectField
-                        student={this.state.student}
-
+                    <Select
+                        multi
+                        joinValue
+                        disabled={this.state.student.jobCategories.disabled}
+                        value={this.state.student.jobCategories.value}
+                        placeholder="Select up to 8 categories"
+                        options={this.state.student.jobCategories.options}
+                        onChange={this.handleSelectChange}
                     />
                 </div>
                 <div>
@@ -265,7 +263,7 @@ class Form_Register_Student extends Component {
                             className="btn btn-primary"
                             type="submit"
                             onClick={this.onSubmit}
-                        > 
+                        >
                             {this.props.btnText}
                         </button>}
                 </div>

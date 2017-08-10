@@ -1,12 +1,13 @@
 import React, {Component} from 'react';
 import Form_Register_Student from '../Form_Register_Student.js';
-import MultiSelectField from '../Multiselect.js';
 import {Router, Route, IndexRoute, browseHistory, Link} from 'react-router';
 import * as actions from '../../actions/register_student.js';
 import {connect} from 'react-redux';
 
 class RegisterStudent extends Component {
     render() {
+        console.log('page-state', this.state);
+        console.log('page-props', this.props);
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
@@ -37,7 +38,4 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, actions)(
-    RegisterStudent,
-    MultiSelectField
-);
+export default connect(mapStateToProps, actions)(RegisterStudent);

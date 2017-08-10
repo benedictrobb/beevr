@@ -6,6 +6,7 @@ class MultiSelectField extends Component {
     constructor() {
         super();
         this.handleSelectChange = this.handleSelectChange.bind(this);
+        //this.mergeStudentCategories = this.mergeStudentCategories.bind(this);
 
         this.state = {
             options: categories,
@@ -14,18 +15,31 @@ class MultiSelectField extends Component {
     }
 
     handleSelectChange(jobCategories) {
-        console.log(this.state.jobCategories.length);
-        if (this.state.jobCategories.length < 8) {
+        //if (this.state.jobCategories.length < 8) {
             console.log('You\'ve selected:', jobCategories);
             this.setState({jobCategories});
-        }
+        //}
     }
+    
+    //mergeStudentCategories(props, jobCategories) {
+        //props = this.props.student;
+        //jobCategories = this.state.jobCategories;
+        //var student = {...props, jobCategories};
+        //console.log(student);
+    //}
 
     render() {
-        console.log('props', this.props);
-        console.log(this.state);
+        console.log('multi-props', this.props);
+        console.log('multi-state',this.state);
         return (
-            <div className="section form-group">
+            <div className="form-group">
+                <label
+                    className="control-label"
+                    name="jobCategories"
+                    htmlFor="jobCategories"
+                >
+                    Your job categories
+                </label>
                 <Select
                     multi
                     joinValue
