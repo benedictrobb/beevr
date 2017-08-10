@@ -34,12 +34,12 @@ class BrowseStudents extends Component {
                 <h5 className="light_brown_title">
                     {student.univSchool}
                 </h5>
-                <label>Bio</label>
+                <p>
+                    <img className="profile_image" src={student.picture} />
+                </p>
                 <p>
                     {student.bio}
                 </p>
-                <label>Picture</label>
-                <p>Example picture</p>
             </div>
         );
     }

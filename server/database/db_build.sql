@@ -11,7 +11,7 @@ CREATE TABLE students (
     DOB             DATE            ,
     univ_school     VARCHAR(250)    NOT NULL,
     bio             VARCHAR(1500)   ,
-    picture         BYTEA           ,
+    picture         VARCHAR(1500)           ,
     phone           VARCHAR(15)     NOT NULL,
     job_cat         VARCHAR[]       ,
     password_hash   VARCHAR(100)    NOT NULL
@@ -25,7 +25,7 @@ CREATE TABLE residents (
     DOB             DATE            ,
     address         VARCHAR(200)    NOT NULL,
     bio             VARCHAR(1500)   ,
-    picture         BYTEA           ,
+    picture         VARCHAR(1500)           ,
     phone           VARCHAR(15)     NOT NULL,
     password_hash   VARCHAR(100)    NOT NULL
 );
@@ -45,10 +45,10 @@ CREATE TABLE jobs (
 );
 
 INSERT INTO students(first_name, last_name, email, DOB, univ_school, bio, picture, phone, job_cat, password_hash) VALUES
-('Maja', 'Kudlicka','maja.kudlicka@gmail.com','01/01/1970','Ruskin University','111-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','01234567891','{{coding},{start-ups},{tuition}}','$2a$10$uCXeITshhIPg5ZK81.KQTuDIF782fmH/cKZFh/TSCEIgxpO.jf5eq'),
-('Antonio','Trabalza','antoniotrkdz@gmail.com','10/08/1979','Cambridge University','222-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','07577833827','{{coding},{science},{handyman}}','$2a$10$67daGjo4zz.UX9zH9x/rLuYVcp5H5edK4uhsc2KYQ4rJBPB38KBM6'),
-('Ben','Robb','ben.robb@gmail.com','10/04/1987','Cambridge University','333-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','07578890890','{{funding},{money},{invoice}}','$2a$10$N3kz2lFulFAVSDmOcQnL3OMXgrDxBqjLCBgBFyvKcUD67qJT7iVJW'),
-('Jessica', 'Salomom','j.salm@gmail.com','01/01/1980','Ruskin University','444-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','01234567891','{{Photography},{Cat sitting},{Other}}','#');
+('Maja', 'Kudlicka','maja.kudlicka@gmail.com','01/01/1970','Ruskin University','111-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','https://images.pexels.com/photos/20787/pexels-photo.jpg?w=940&h=650&auto=compress&cs=tinysrgb','01234567891','{{coding},{start-ups},{tuition}}','$2a$10$uCXeITshhIPg5ZK81.KQTuDIF782fmH/cKZFh/TSCEIgxpO.jf5eq'),
+('Antonio','Trabalza','antoniotrkdz@gmail.com','10/08/1979','Cambridge University','222-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','https://images.pexels.com/photos/247502/pexels-photo-247502.jpeg?w=940&h=650&auto=compress&cs=tinysrgb','07577833827','{{coding},{science},{handyman}}','$2a$10$67daGjo4zz.UX9zH9x/rLuYVcp5H5edK4uhsc2KYQ4rJBPB38KBM6'),
+('Ben','Robb','ben.robb@gmail.com','10/04/1987','Cambridge University','333-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','https://images.pexels.com/photos/14644/pexels-photo-14644.jpeg?w=940&h=650&auto=compress&cs=tinysrgb','07578890890','{{funding},{SES},{invoice}}','$2a$10$N3kz2lFulFAVSDmOcQnL3OMXgrDxBqjLCBgBFyvKcUD67qJT7iVJW'),
+('Jessica', 'Salomom','j.salm@gmail.com','01/01/1980','Ruskin University','444-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','https://images.pexels.com/photos/59523/pexels-photo-59523.jpeg?w=940&h=650&auto=compress&cs=tinysrgb','01234567891','{{Photography},{Cat sitting},{Other}}','#');
 
 INSERT INTO residents(first_name, last_name, email, DOB, address, bio, picture, phone, password_hash) VALUES
 ('John','Smith','john.smith@gmail.com','01/03/1973','1 Cranston Court','333-Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam magni maxime dicta ullam aut, sunt. Quidem veniam unde, minima, velit tempore odit voluptas alias, harum tenetur placeat animi, quaerat perspiciatis?','#','012345678901','$2a$10$s9uPMNiX91YNjIKtJV9f1uJegbZpArU/k5Pv38gTx6ImKbVWzTjJ.'),
