@@ -238,6 +238,7 @@ server.register(plugins, err => {
                     data.submitApplication(
                         request.payload.jobId,
                         request.payload.residentId,
+                        request.payload.studentId,
                         (err, res) => {
                             if (err) {
                                 reply(
