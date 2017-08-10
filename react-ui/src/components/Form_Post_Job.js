@@ -4,7 +4,7 @@ import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
-import {browserHistory} from 'react-router';
+import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import isEmpty from 'lodash/isEmpty';
 import categories from '../constants/job_categories.js';
 
@@ -21,11 +21,8 @@ class Form_Post_Job extends Component {
         this._onChangeDescription = this._onChangeDescription.bind(this);
         this._onChangeCategory = this._onChangeCategory.bind(this);
 
-        //resident id hardcoded for now
         this.state = {
-            jobData: {
-                resident_id: 1,
-            },
+            jobData: {},
             errorMessage: '',
         };
     }
@@ -68,6 +65,7 @@ class Form_Post_Job extends Component {
             jobData: {
                 ...jobData,
                 start_date: evt.target.value,
+                resident_id: this.props.residentId,
             },
         });
     }
@@ -294,9 +292,12 @@ class Form_Post_Job extends Component {
 }
 
 function mapStateToProps(state) {
+    var residentId =
+        state.login && state.login.response && state.login.response.id;
     return {
         newJob: state.postJob.newJob.response,
         errorMessage: state.errorMessage,
+        residentId,
     };
 }
 
