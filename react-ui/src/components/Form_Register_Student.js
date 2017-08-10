@@ -38,7 +38,6 @@ class Form_Register_Student extends Component {
         var student = this.state.student;
         delete student.jobCategories.options;
         student.jobCategories = student.jobCategories.value.map((e) => e.value);
-        //var {student} = this.state;
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
