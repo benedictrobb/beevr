@@ -167,3 +167,7 @@ input:-webkit-autofill {
 .margin_left {
   margin-left: 3%;
 }
+
+.profile_image {
+  height: 20vh;
+}

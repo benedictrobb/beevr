@@ -38,18 +38,35 @@ class Form_Register_Student extends Component {
         var student = this.state.student;
         delete student.jobCategories.options;
         student.jobCategories = student.jobCategories.value.map((e) => e.value);
-        if (!student.email) {
-            var error_message = 'Email cannot be empty';
+        //var {student} = this.state;
+
+        if (!student.firstName) {
+            var errorMessage = 'First Name cannot be empty';
+        } else if (!student.lastName) {
+            errorMessage = 'Last Name cannot be empty';
+        } else if (!student.email) {
+            errorMessage = 'Email cannot be empty';
+        } else if (!student.password) {
+            errorMessage = 'Password cannot be empty';
+        } else if (!student.confirmPassword) {
+            errorMessage = 'Please confirm the password';
+        } else if (student.password !== student.confirmPassword) {
+            errorMessage = 'Passwords do not match';
+        } else if (!student.univSchool) {
+            errorMessage = 'University/ School field cannot be empty';
+        } else if (!student.phone) {
+            errorMessage = 'Phone cannot be empty';
         }
-        this.setState({errorMessage: error_message});
+
+        this.setState({errorMessage: errorMessage});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
-            browserHistory.push('/dashboard');
         }
     }
 
     onChange(evt) {
-        var student = this.state.student;
+        var {student} = this.state;
+
         this.setState({
             student: {
                 ...student,
@@ -128,7 +145,7 @@ class Form_Register_Student extends Component {
                         id="email"
                         type="email"
                         value={this.state.student.email}
-                        placeholder="email"
+                        placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
                         autoCorrect="off"
@@ -146,7 +163,7 @@ class Form_Register_Student extends Component {
                         id="password"
                         type="password"
                         value={this.state.student.password}
-                        placeholder="password"
+                        placeholder="Password"
                         onChange={this.onChange}
                     />
                 </div>
@@ -211,14 +228,14 @@ class Form_Register_Student extends Component {
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
-                        Profile picture
+                        Profile picture url
                     </label>
                     <input
                         className="form-control"
                         name="picture"
                         id="picture"
-                        type="file"
-                        placeholder="Picture"
+                        type="text"
+                        placeholder="Paste url of your picture"
                         value={this.state.student.picture}
                         onChange={this.onChange}
                     />

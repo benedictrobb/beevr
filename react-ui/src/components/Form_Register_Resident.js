@@ -23,12 +23,28 @@ class Form_Register_Resident extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        var resident = this.state.resident;
-        if (!resident.email) {
-            var error_message = 'Email cannot be empty';
+        var {resident} = this.state;
+
+        if (!resident.firstName) {
+            var errorMessage = 'First Name cannot be empty';
+        } else if (!resident.lastName) {
+            errorMessage = 'Last Name cannot be empty';
+        } else if (!resident.email) {
+            errorMessage = 'Email cannot be empty';
+        } else if (!resident.password) {
+            errorMessage = 'Password cannot be empty';
+        } else if (!resident.confirmPassword) {
+            errorMessage = 'Please confirm the password';
+        } else if (resident.password !== resident.confirmPassword) {
+            errorMessage = 'Passwords do not match';
+        } else if (!resident.address) {
+            errorMessage = 'Address cannot be empty';
+        } else if (!resident.phone) {
+            errorMessage = 'Phone cannot be empty';
         }
-        this.setState({errorMessage: error_message});
-        if (!error_message) {
+
+        this.setState({errorMessage: errorMessage});
+        if (!errorMessage) {
             this.props.registerResident(this.state.resident);
         }
     }
@@ -46,7 +62,15 @@ class Form_Register_Resident extends Component {
     render() {
         return (
             <form className="form" onSubmit={this.onSubmit}>
-                <ErrorMessage />
+                <p>
+                    <div
+                        className={
+                            this.state.errorMessage ? 'alert alert-danger' : ''
+                        }
+                    >
+                        {this.state.errorMessage}
+                    </div>
+                </p>
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -85,7 +109,7 @@ class Form_Register_Resident extends Component {
                         id="email"
                         type="email"
                         value={this.state.resident.email}
-                        placeholder="email"
+                        placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
                         autoCorrect="off"
@@ -101,7 +125,7 @@ class Form_Register_Resident extends Component {
                         className="form-control"
                         name="password"
                         id="Password"
-                        type="password"
+                        type="Password"
                         value={this.state.resident.password}
                         placeholder="password"
                         onChange={this.onChange}
@@ -165,14 +189,14 @@ class Form_Register_Resident extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
-                        Profile picture
+                        Profile picture url
                     </label>
                     <input
                         className="form-control"
                         name="picture"
                         id="picture"
-                        type="file"
-                        placeholder="Picture"
+                        type="text"
+                        placeholder="Paste url of your picture"
                         value={this.state.resident.picture}
                         onChange={this.onChange}
                     />
