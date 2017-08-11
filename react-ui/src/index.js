@@ -26,16 +26,24 @@ const store = createStore(
     homeReducer,
     composeWithDevTools(applyMiddleware(thunk))
 );
-    
+
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App}> 
+            <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />
-                <Route path="/browsejobs" component={BrowseJobs} />
-                <Route path="/browsestudents" component={BrowseStudents} />
+                <Route
+                    path="/browsejobs"
+                    component={BrowseJobs}
+                    name={'student'}
+                />
+                <Route
+                    path="/browsestudents"
+                    component={BrowseStudents}
+                    name={'residents'}
+                />
                 <Route path="/jobdetail/:id" component={JobDetail} />
                 <Route path="/postjob" component={PostJob} />
                 <Route path="/jobsapplied" component={MyJobs} />

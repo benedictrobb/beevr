@@ -1,20 +1,7 @@
-//export default [
-//'Dog-walking',
-//'Tutoring- Spanish',
-//'Home maintenance',
-//'Tutoring- Mathematics',
-//'Cat Sitting',
-//'Plant watering',
-//'Babysitting',
-//'Cooking',
-//'House Cleaning',
-//'Band playing',
-//'Photography',
-//'Other',
-//];
-import createFragment from 'react-addons-create-fragment';
+//import createFragment from 'react-addons-create-fragment';
 
-const categories = createFragment([
+//const categories = createFragment([
+const categories = [
     {label: 'Academic Beavers', value: 'Academic Beavers', disabled: true},
     {
         label: 'English Literature tutoring',
@@ -112,6 +99,7 @@ const categories = createFragment([
     {label: 'Personal photography', value: 'Personal photography'},
     {label: 'Video making', value: 'Video making'},
     {label: 'Other media', value: 'Other media'},
-]);
+];
+//);
 
 export default categories;
