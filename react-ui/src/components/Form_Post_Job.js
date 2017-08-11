@@ -134,23 +134,24 @@ class Form_Post_Job extends Component {
     }
 
     //_onChangeCategory(evt) {
-        //var jobData = this.state.jobData;
-        //this.setState({
-            //jobData: {
-                //...jobData,
-                //category: evt.target.value,
-            //},
-        //});
+    //var jobData = this.state.jobData;
+    //this.setState({
+    //jobData: {
+    //...jobData,
+    //category: evt.target.value,
+    //},
+    //});
     //}
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
+        const options = categories;
+        //const options = categories.map(function(elem) {
+        //return (
+        //<option value={categories[elem]}>
+        //{elem}
+        //</option>
+        //);
+        //});
 
         if (!this.state) {
             return <div>Loading</div>;
@@ -235,22 +236,26 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <label className="control-label" htmlFor="Job categories">
-                    Job category*
-                </label>
-                <input
-                    className="form-control job_categories"
-                    id="job_categories"
-                    type="text"
-                    placeholder="Select a job category"
-                    list="jobs"
-                    value={this.state.jobData.category}
-                    onChange={this._onChangeCategory}
-                />
-                <datalist id="jobs">
-                    <option value="" disabled />
-                    {options}
-                </datalist>
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Job categories">
+                        Job category*
+                    </label>
+                    <Select
+                        ref="stateSelect"
+                        className="job_categories"
+                        id="job_categories"
+                        autofocus
+                        options={options}
+                        simpleValue
+                        clearable={true}
+                        name="category"
+                        placeholder="Select a job category"
+                        disabled={this.state.disabled}
+                        value={this.state.selectValue}
+                        onChange={this.updateValue}
+                        searchable={true}
+                    />
+                </div>
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
@@ -302,3 +307,16 @@ function mapStateToProps(state) {
 }
 
 export default connect(mapStateToProps, actions)(Form_Post_Job);
+//<input
+//className="form-control job_categories"
+//id="job_categories"
+//type="text"
+//placeholder="Select a job category"
+//list="jobs"
+//value={this.state.jobData.category}
+//onChange={this._onChangeCategory}
+///>
+//<datalist id="jobs">
+//<option value="" disabled />
+//{options}
+//</datalist>

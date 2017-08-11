@@ -263,6 +263,7 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Select
+                        className="job_categories"
                         multi
                         joinValue
                         disabled={this.state.student.jobCategories.disabled}
