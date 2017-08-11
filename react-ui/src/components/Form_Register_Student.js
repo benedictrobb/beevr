@@ -91,7 +91,6 @@ class Form_Register_Student extends Component {
     }
 
     render() {
-        console.log(this.state);
         if (!this.state) {
             return <div>Loading</div>;
         }
