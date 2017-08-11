@@ -28,15 +28,15 @@ class LoginPage extends React.Component {
 
 function mapStateToProps(state) {
     const isAuthenticated =
-        state.login &&
-        state.login.response &&
-        state.login.response.isAuthenticated;
+        state.auth &&
+        state.auth.response &&
+        state.auth.response.isAuthenticated;
 
     const role =
-        state.login && state.login.response && state.login.response.role;
+        state.auth && state.auth.response && state.auth.response.role;
 
     return {
-        loginRequest: state.login,
+        loginRequest: state.auth,
         isAuthenticated,
         role,
     };
