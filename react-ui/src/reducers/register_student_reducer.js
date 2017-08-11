@@ -2,9 +2,11 @@ import {REGISTER_STUDENT} from '../constants/action_types.js';
 
 const initialState = {
     errorMessage: '',
-    loggedIn: false,
-    isAuthenticated: false,
     student: {},
+    response: {
+        isLogged: false,
+        isAuthenticated: false,
+    },
 };
 
 export default (state = initialState, action = {}) => {

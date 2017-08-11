@@ -1,24 +1,24 @@
 import axios from 'axios';
-import {SET_AUTH} from '../constants/action_types.js';
+import {CHECK_AUTH} from '../constants/action_types.js';
 
-export const loginRequest = (email, password) => dispatch => {
+export const checkAuth = () => dispatch => {
     dispatch({
-        type: SET_AUTH,
+        type: CHECK_AUTH,
         status: 'pending',
     });
 
     axios
-        .post('/api/login', {email, password})
+        .post('/api/auth')
         .then(response => {
             dispatch({
-                type: SET_AUTH,
+                type: CHECK_AUTH,
                 status: 'success',
                 response: response.data,
             });
         })
         .catch(error => {
             dispatch({
-                type: SET_AUTH,
+                type: CHECK_AUTH,
                 status: 'error',
                 error: 'Invalid credentials',
             });
