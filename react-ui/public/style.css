@@ -171,3 +171,8 @@ input:-webkit-autofill {
 .profile_image {
   height: 20vh;
 }
+
+.Select-option.is-disabled {
+    color: #815355 !important;
+    font-weight: bold;
+}

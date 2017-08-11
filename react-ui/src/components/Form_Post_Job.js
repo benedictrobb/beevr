@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
+import Select from 'react-select';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
@@ -19,7 +20,8 @@ class Form_Post_Job extends Component {
         this._onChangeTitle = this._onChangeTitle.bind(this);
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
-        this._onChangeCategory = this._onChangeCategory.bind(this);
+        this.updateValue = this.updateValue.bind(this);
+        
 
         //resident id hardcoded for now
         this.state = {
@@ -132,24 +134,21 @@ class Form_Post_Job extends Component {
         });
     }
 
-    _onChangeCategory(evt) {
+    updateValue(newValue) {
         var jobData = this.state.jobData;
+        console.log('Category changed to ' + newValue);
         this.setState({
             jobData: {
                 ...jobData,
-                category: evt.target.value,
+                //selectValue: newValue,
+                category: newValue,
             },
         });
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
+        console.log(this.state);
+        const options = categories;
 
         if (!this.state) {
             return <div>Loading</div>;
@@ -234,22 +233,24 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <label className="control-label" htmlFor="Job categories">
-                    Job category*
-                </label>
-                <input
-                    className="form-control job_categories"
-                    id="job_categories"
-                    type="text"
-                    placeholder="Select a job category"
-                    list="jobs"
-                    value={this.state.jobData.category}
-                    onChange={this._onChangeCategory}
-                />
-                <datalist id="jobs">
-                    <option value="" disabled />
-                    {options}
-                </datalist>
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Job categories">
+                        Job category*
+                    </label>
+                    <Select
+                        ref="stateSelect"
+                        className="job_categories"
+                        autofocus
+                        simpleValue
+                        options={options}
+                        clearable={true}
+                        searchable={true}
+                        name="category"
+                        disabled={this.state.jobData.disabled}
+                        value={this.state.jobData.category}
+                        onChange={this.updateValue}
+                    />
+                </div>
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
