@@ -1,4 +1,6 @@
-export default [
+import createFragment from 'react-addons-create-fragment';
+
+const categories = createFragment([
     {label: 'Academic Beavers', value: 'Academic Beavers', disabled: true},
     {
         label: 'English Literature tutoring',
@@ -96,4 +98,6 @@ export default [
     {label: 'Personal photography', value: 'Personal photography'},
     {label: 'Video making', value: 'Video making'},
     {label: 'Other media', value: 'Other media'},
-];
+]);
+
+export default categories;

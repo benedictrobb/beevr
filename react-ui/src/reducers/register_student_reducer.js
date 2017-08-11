@@ -1,11 +1,10 @@
 import {REGISTER_STUDENT} from '../constants/action_types.js';
 
 const initialState = {
-    student: {
-        jobCheckboxes: {},
-    },
     errorMessage: '',
+    loggedIn: false,
     isAuthenticated: false,
+    student: {},
 };
 
 export default (state = initialState, action = {}) => {

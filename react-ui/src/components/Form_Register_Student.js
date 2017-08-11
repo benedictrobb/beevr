@@ -1,23 +1,28 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
+import {browserHistory} from 'react-router';
+import Select from 'react-select';
 import categories from '../constants/job_categories.js';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
     constructor() {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
+        this.handleSelectChange = this.handleSelectChange.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            student: {
-                jobCategories: {},
-            },
             errorMessage: '',
             loggedIn: false,
             isAuthenticated: false,
+            student: {
+                jobCategories: {
+                    options: categories,
+                    value: [],
+                },
+            },
         };
     }
 
@@ -30,8 +35,9 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-
-        var {student} = this.state;
+        var student = this.state.student;
+        delete student.jobCategories.options;
+        student.jobCategories = student.jobCategories.value.map(e => e.value);
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
@@ -68,26 +74,23 @@ class Form_Register_Student extends Component {
         });
     }
 
-    onChangeJobCategories(evt) {
+    handleSelectChange(value) {
         var student = this.state.student;
         var jobCategories = student.jobCategories;
-        this.setState({
-            student: {
-                ...student,
-                jobCategories: [...jobCategories, evt.target.value],
-            },
-        });
+        if (jobCategories.value.length < 8) {
+            this.setState({
+                student: {
+                    ...student,
+                    jobCategories: {
+                        ...jobCategories,
+                        value,
+                    },
+                },
+            });
+        }
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
-
         if (!this.state) {
             return <div>Loading</div>;
         }
@@ -216,7 +219,7 @@ class Form_Register_Student extends Component {
                         name="bio"
                         id="bio"
                         type="text"
-                        placeholder="Bio"
+                        placeholder="Tell us more about you..."
                         value={this.state.student.bio}
                         onChange={this.onChange}
                     />
@@ -251,105 +254,32 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label
                         className="control-label"
                         name="jobCategories"
                         htmlFor="jobCategories"
                     >
-                        Pick up to 8 jobs categories
+                        Your job categories
                     </label>
-                    <input
-                        className="form-control"
-                        name="category1"
-                        id="jobCategory1"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category1}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
+                    <Select
+                        multi
+                        joinValue
+                        disabled={this.state.student.jobCategories.disabled}
+                        value={this.state.student.jobCategories.value}
+                        placeholder="Select up to 8 categories"
+                        options={this.state.student.jobCategories.options}
+                        onChange={this.handleSelectChange}
                     />
-                    <input
-                        className="form-control"
-                        name="category2"
-                        id="jobCategory2"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category2}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category3"
-                        id="jobCategory3"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category3}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category4"
-                        id="jobCategory4"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category4}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category5"
-                        id="jobCategory5"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category5}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category6"
-                        id="jobCategory6"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category6}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category7"
-                        id="jobCategory7"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category7}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <input
-                        className="form-control"
-                        name="category8"
-                        id="jobCategory8"
-                        type="dropdown"
-                        placeholder="Select"
-                        value={this.state.student.jobCategories.category8}
-                        onChange={this.onChangeJobCategories}
-                        list="jobs"
-                    />
-                    <datalist id="jobs">
-                        <option value="" disabled />
-                        {options}
-                    </datalist>
                 </div>
-
                 <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
+                    {this.props.status === 'pending'
+                        ? <LoadingIndicator />
+                        : <button
+                            className="btn btn-primary"
+                            type="submit"
+                            onClick={this.onSubmit}
+                        >
                             {this.props.btnText}
                         </button>}
                 </div>
