@@ -12,10 +12,14 @@
 //'Photography',
 //'Other',
 //];
+import createFragment from 'react-addons-create-fragment';
 
-export default [
+const categories = createFragment([
     {label: 'Academic Beavers', value: 'Academic Beavers', disabled: true},
-    {label: 'English Literature tutoring', value: 'English Literature tutoring'},
+    {
+        label: 'English Literature tutoring',
+        value: 'English Literature tutoring',
+    },
     {label: 'English Language tutoring', value: 'English Language tutoring'},
     {label: 'English conversation', value: 'English conversation'},
     {label: 'French', value: 'French'},
@@ -39,7 +43,10 @@ export default [
     {label: 'History tutoring', value: 'History tutoring'},
     {label: 'Philosophy tutoring', value: 'Philosophy tutoring'},
     {label: 'Religious Studies tutoring', value: 'Religious Studies tutoring'},
-    {label: 'Business/Management  tutoring', value: 'Business/Management  tutoring'},
+    {
+        label: 'Business/Management  tutoring',
+        value: 'Business/Management  tutoring',
+    },
     {label: 'Art tutoring', value: 'Art tutoring'},
     {label: 'Oxbridge Entrance tutoring', value: 'Oxbridge Entrance tutoring'},
     {label: 'TSA tutoring', value: 'TSA tutoring'},
@@ -105,4 +112,6 @@ export default [
     {label: 'Personal photography', value: 'Personal photography'},
     {label: 'Video making', value: 'Video making'},
     {label: 'Other media', value: 'Other media'},
-];
+]);
+
+export default categories;
