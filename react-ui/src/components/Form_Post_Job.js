@@ -5,8 +5,6 @@ import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import Select from 'react-select';
-import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -144,7 +142,7 @@ class Form_Post_Job extends Component {
     //}
 
     render() {
-        const options = categories;
+        //const options = categories;
         //const options = categories.map(function(elem) {
         //return (
         //<option value={categories[elem]}>
@@ -240,21 +238,6 @@ class Form_Post_Job extends Component {
                     <label className="control-label" htmlFor="Job categories">
                         Job category*
                     </label>
-                    <Select
-                        ref="stateSelect"
-                        className="job_categories"
-                        id="job_categories"
-                        autofocus
-                        options={options}
-                        simpleValue
-                        clearable={true}
-                        name="category"
-                        placeholder="Select a job category"
-                        disabled={this.state.disabled}
-                        value={this.state.selectValue}
-                        onChange={this.updateValue}
-                        searchable={true}
-                    />
                 </div>
 
                 <div className="form-group">

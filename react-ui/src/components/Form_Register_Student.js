@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
 import {browserHistory} from 'react-router';
-import Select from 'react-select';
-import categories from '../constants/job_categories.js';
+import MultiSelectField from './Multiselect.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
@@ -18,10 +17,7 @@ class Form_Register_Student extends Component {
             loggedIn: false,
             isAuthenticated: false,
             student: {
-                jobCategories: {
-                    options: categories,
-                    value: [],
-                },
+                jobCategories: {},
             },
         };
     }
@@ -152,6 +148,8 @@ class Form_Register_Student extends Component {
                         spellCheck="false"
                     />
                 </div>
+                
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="password">
                         Password*
@@ -254,25 +252,9 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div className="form-group">
-                    <label
-                        className="control-label"
-                        name="jobCategories"
-                        htmlFor="jobCategories"
-                    >
-                        Your job categories
-                    </label>
-                    <Select
-                        className="job_categories"
-                        multi
-                        joinValue
-                        disabled={this.state.student.jobCategories.disabled}
-                        value={this.state.student.jobCategories.value}
-                        placeholder="Select up to 8 categories"
-                        options={this.state.student.jobCategories.options}
-                        onChange={this.handleSelectChange}
-                    />
-                </div>
+
+                <MultiSelectField onChange={this.handleSelectChange} />
+            
                 <div>
                     {this.props.status === 'pending'
                         ? <LoadingIndicator />

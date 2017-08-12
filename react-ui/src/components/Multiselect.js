@@ -5,7 +5,7 @@ import categories from '../constants/job_categories.js';
 class MultiSelectField extends Component {
     constructor() {
         super();
-        this.handleSelectChange = this.handleSelectChange.bind(this);
+        //this.handleSelectChange = this.handleSelectChange.bind(this);
         //this.mergeStudentCategories = this.mergeStudentCategories.bind(this);
 
         this.state = {
@@ -14,12 +14,12 @@ class MultiSelectField extends Component {
         };
     }
 
-    handleSelectChange(jobCategories) {
-        //if (this.state.jobCategories.length < 8) {
-            console.log('You\'ve selected:', jobCategories);
-            this.setState({jobCategories});
-        //}
-    }
+    //handleSelectChange(jobCategories) {
+        ////if (this.state.jobCategories.length < 8) {
+            //console.log('You\'ve selected:', jobCategories);
+            //this.setState({jobCategories});
+        ////}
+    //}
     
     //mergeStudentCategories(props, jobCategories) {
         //props = this.props.student;
