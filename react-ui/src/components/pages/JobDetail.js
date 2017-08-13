@@ -152,7 +152,7 @@ class JobDetail extends Component {
 //studentId disappears on page reload
 function mapStateToProps(state, ownProps) {
     var studentId =
-        state.login && state.login.response && state.login.response.id;
+        state.auth && state.auth.response && state.auth.response.id;
 
     var searchJobs =
         state.searchJobs.jobsRequest &&

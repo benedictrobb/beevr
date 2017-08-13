@@ -86,14 +86,6 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
-
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
@@ -113,8 +105,6 @@ class BrowseJobs extends Component {
                                     value={this.props.SearchTerm}
                                 />
                                 <datalist id="jobs">
-                                    <option value="" disabled />
-                                    {options}
                                 </datalist>
                                 <button
                                     type="submit"
@@ -134,13 +124,22 @@ class BrowseJobs extends Component {
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
                     <section className="col-md-6 col-md-offset-3">
-                        <Link
-                            to="/jobsapplied"
-                            className="btn btn-primary pull-right submit_button"
-                        >
-                            My applications
-                        </Link>
-
+                        {this.props.isAuthenticated === true
+                            ? <Link
+                                to="/jobsapplied"
+                                className="btn btn-primary pull-right submit_button"
+                            >
+                                  My applications
+                            </Link>
+                            : <div className="optional-login pull-right">
+                                  Login to see:
+                                <Link
+                                    to="/login"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      My applications
+                                </Link>
+                            </div>}
                         <form onSubmit={this.onSubmit}>
                             <input
                                 className="form-control"
@@ -184,10 +183,16 @@ class BrowseJobs extends Component {
 }
 
 function mapStateToProps(state) {
+    const isAuthenticated =
+        state.auth &&
+        state.auth.response &&
+        state.auth.response.isAuthenticated;
+
     return {
         jobs: state.searchJobs.jobsRequest.response,
         SearchTerm: state.searchJobs.searchTerm,
         selectedJob: state.searchJobs.selectedJob,
+        isAuthenticated,
     };
 }
 

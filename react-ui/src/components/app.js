@@ -6,30 +6,51 @@
  * contain code that should be seen on all pages. (e.g. navigation bar)
  */
 
-// Import stuff
 import React, {Component} from 'react';
 import Nav from './Nav.js';
 import {connect} from 'react-redux';
-import beevrAPI from '../utils/beevrAPI.js';
+import {logout} from '../actions/logout.js';
+import {checkAuth} from '../actions/checkAuth.js';
 
 class App extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+        };
+    }
+    
+    componentWillMount() {
+        this.props.checkAuth();
+    };
+
     render() {
         return (
             <div className="wrapper">
-                <Nav />
+                <Nav 
+                    loggedIn={this.props.isAuthenticated}
+                    role={this.props.role}
+                    logout={this.props.logout}
+                />
                 {this.props.children}
-                {this.props.logout}
             </div>
         );
     }
 }
 
-// REDUX STUFF
-
-// Which props do we want to inject, given the global state?
 function mapStateToProps(state) {
-    return {data: state};
+    const isAuthenticated =
+        state.auth &&
+        state.auth.response &&
+        state.auth.response.isAuthenticated;
+    
+    const role =
+        state.auth && state.auth.response && state.auth.response.role;
+    return {
+        isLogged: state.auth,
+        isAuthenticated,
+        role,
+    };
 }
 
-// Wrap the component to inject dispatch and state into it
-export default connect(mapStateToProps)(App);
+export default connect(mapStateToProps, {logout, checkAuth})(App);

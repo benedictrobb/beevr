@@ -145,9 +145,12 @@ class Form_Post_Job extends Component {
     }
 
     render() {
+<<<<<<< HEAD
         console.log(this.state);
         const options = categories;
 
+=======
+>>>>>>> new-categories-menu
         if (!this.state) {
             return <div>Loading</div>;
         }
@@ -231,6 +234,7 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
+<<<<<<< HEAD
                 <div className="form-group">
                     <label className="control-label" htmlFor="Job categories">
                         Job category*
@@ -249,6 +253,22 @@ class Form_Post_Job extends Component {
                         onChange={this.updateValue}
                     />
                 </div>
+=======
+                <label className="control-label" htmlFor="Job categories">
+                    Job category*
+                </label>
+                <input
+                    className="form-control job_categories"
+                    id="job_categories"
+                    type="text"
+                    placeholder="Select a job category"
+                    list="jobs"
+                    value={this.state.jobData.category}
+                    onChange={this._onChangeCategory}
+                />
+                <datalist id="jobs">
+                </datalist>
+>>>>>>> new-categories-menu
 
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
