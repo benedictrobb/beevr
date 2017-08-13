@@ -10,7 +10,7 @@ class Form_Register_Student extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-        this.handleSelectChange = this.handleSelectChange.bind(this);
+        this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
@@ -18,10 +18,7 @@ class Form_Register_Student extends Component {
             loggedIn: false,
             isAuthenticated: false,
             student: {
-                jobCategories: {
-                    options: categories,
-                    value: [],
-                },
+                jobCategories: {},
             },
         };
     }
@@ -36,8 +33,7 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        delete student.jobCategories.options;
-        student.jobCategories = student.jobCategories.value.map(e => e.value);
+        student.jobCategories = student.jobCategories[0].map(e => e.value);
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
@@ -74,24 +70,18 @@ class Form_Register_Student extends Component {
         });
     }
 
-    handleSelectChange(value) {
+    onChangeJobCategories(evt) {
         var student = this.state.student;
         var jobCategories = student.jobCategories;
-        if (jobCategories.value.length < 8) {
-            this.setState({
-                student: {
-                    ...student,
-                    jobCategories: {
-                        ...jobCategories,
-                        value,
-                    },
-                },
-            });
-        }
+        this.setState({
+            student: {
+                ...student,
+                jobCategories: [evt],
+            },
+        });
     }
 
     render() {
-        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -262,7 +252,6 @@ class Form_Register_Student extends Component {
                     <Multiselect 
                         data={categories}
                         textField='value'
-                        value={this.state.student.jobCategories.value}
                         onChange={this.onChangeJobCategories}
                         placeholder="Pick up to 8 jobs categories"
                         groupBy='group'
