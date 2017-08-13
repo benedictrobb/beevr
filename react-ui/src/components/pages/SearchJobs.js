@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
+import DropdownList from 'react-widgets/lib/DropdownList';
 import categories from '../../constants/job_categories.js';
 const numberOfCharacters = 220;
 
@@ -41,7 +42,8 @@ class BrowseJobs extends Component {
     }
 
     onJobSearchChange(evt) {
-        this.props.setTerm(evt.target.value);
+        console.log(evt.value);
+        this.props.setTerm(evt.value);
     }
 
     renderJobs(job) {
@@ -86,6 +88,7 @@ class BrowseJobs extends Component {
     }
 
     render() {
+        console.log(this.props);
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
@@ -94,18 +97,15 @@ class BrowseJobs extends Component {
                 <div className="container-fluid">
                     <article className="row-fluid search_jobs">
                         <section className="col-md-6 col-md-offset-3">
-                            <form onSubmit={this.onSubmit}>
-                                <input
-                                    className="form-control"
-                                    id="Browse Jobs"
-                                    type="text"
+                            <form className="form-group" onSubmit={this.onSubmit}>
+                                <DropdownList
                                     placeholder="Browse Jobs"
-                                    list="jobs"
+                                    data={categories}
+                                    textField='value'
                                     onChange={this.onJobSearchChange}
                                     value={this.props.SearchTerm}
+                                    groupBy='group'
                                 />
-                                <datalist id="jobs">
-                                </datalist>
                                 <button
                                     type="submit"
                                     id="submit_button"
@@ -141,30 +141,14 @@ class BrowseJobs extends Component {
                                 </Link>
                             </div>}
                         <form onSubmit={this.onSubmit}>
-                            <input
-                                className="form-control"
-                                id="Browse Jobs"
-                                type="text"
+                            <DropdownList
                                 placeholder="Browse Jobs"
-                                list="jobs"
+                                data={categories}
+                                textField='value'
                                 onChange={this.onJobSearchChange}
                                 value={this.props.SearchTerm}
+                                groupBy='group'
                             />
-                            <datalist id="jobs">
-                                <option value="dog walking" />
-                                <option value="Tutoring- Spanish" />
-                                <option value="Home maintenance" />
-                                <option value="Tutoring- Mathematics" />
-                                <option value="Cat Sitting" />
-                                <option value="Plant watering" />
-                                <option value="Babysitting" />
-                                <option value="Cooking" />
-                                <option value="House Cleaning" />
-                                <option value="Band playing" />
-                                <option value="photography" />
-                                <option value="Other" />
-                            </datalist>
-
                             <button
                                 type="submit"
                                 className="btn btn-primary submit_button"
