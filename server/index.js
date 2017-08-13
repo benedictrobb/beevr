@@ -331,12 +331,11 @@ server.register(plugins, err => {
         },
     });
 
-    //student is hardcoded to 2 until we have session management capacity
     server.route({
         method: 'GET',
         path: '/api/myjobs',
         handler: (request, reply) => {
-            data.getMyJobs((err, res) => {
+            data.getMyJobs(request.url.query.studentId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(
@@ -364,7 +363,7 @@ server.register(plugins, err => {
                         }),
                     });
                 }
-            }, 4);
+            });
         },
     });
 
@@ -372,21 +371,25 @@ server.register(plugins, err => {
         method: 'DELETE',
         path: '/api/myjobs',
         handler: (request, reply) => {
-            data.deleteApplication(request.url.query.jobId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to delete record from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        name: 'jobDeleted',
-                        message: 'Job deleted',
-                        jobDeleted: res,
-                    });
+            data.deleteApplication(
+                request.url.query.studentId,
+                request.url.query.jobId,
+                (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to delete record from database'
+                            )
+                        );
+                    } else {
+                        reply({
+                            name: 'jobDeleted',
+                            message: 'Job deleted',
+                            jobDeleted: res,
+                        });
+                    }
                 }
-            });
+            );
         },
     });
 
@@ -402,12 +405,11 @@ server.register(plugins, err => {
         },
     });
 
-    //resident id hardcoded until we have cookie on the master branch
     server.route({
         method: 'GET',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.getMyPostedJobs(2, (err, res) => {
+            data.getMyPostedJobs(request.url.query.residentId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(

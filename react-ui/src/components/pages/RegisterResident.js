@@ -1,6 +1,5 @@
 import React, {Component} from 'react';
 import Form_Register_Resident from '../Form_Register_Resident.js';
-import {Router, Route, IndexRoute, browseHistory, Link} from 'react-router';
 import * as actions from '../../actions/register_resident.js';
 import {connect} from 'react-redux';
 
@@ -26,7 +25,6 @@ class RegisterResident extends Component {
                             <i>Fields marked with * are mandatory</i>
                         </p>
                         <Form_Register_Resident
-                            btnText={'Sign Up'}
                             registerResident={this.props.registerResident}
                             checkIfResidentExists={
                                 this.props.checkIfResidentExists
