@@ -1,5 +1,4 @@
-import {FETCH_STUDENTS} from '../constants/action_types.js';
-import {SET_TERM} from '../constants/action_types.js';
+import {FETCH_STUDENTS, SET_TERM} from '../constants/action_types.js';
 
 const initialState = {
     studentsRequest: {},

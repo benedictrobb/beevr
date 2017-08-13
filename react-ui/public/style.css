@@ -8,21 +8,47 @@ body {
   color: #000807;
 }
 
+
+
+@media (max-width: 768px) {
+
 a {
-  color: #815355;
+  cursor: pointer;
+  color: white;
 }
 
-a:hover {
-  color: #815355;
+.navbar-nav li a:hover {
+  color: #523249;
+  text-decoration: none;
 }
 
-@media (min-width: 576px) {
+#desktop-menu {
+  display: none;
+}
+
+}
+
+@media (min-width: 769px) {
 
   .container-flex-dashboard{
     display: flex;
     justify-content: center;
     align-items: center;
   }
+
+  a {
+    color: #523249;
+    cursor: pointer;
+  }
+
+  .navbar-nav li a:hover {
+      color: #C3B299 !important;
+      text-decoration: none;
+  }
+
+ #burger-menu {
+   display: none;
+ }
 
 }
 .navbar {
@@ -37,9 +63,7 @@ a:hover {
     color: #815355;
 }
 
-.navbar-nav li a:hover {
-    color: #523249 !important;
-}
+
 
 .bgimg_student {
     height: 80vh;
@@ -166,6 +190,52 @@ input:-webkit-autofill {
 
 .margin_left {
   margin-left: 3%;
+}
+
+.bm-menu-wrap {
+  width:fit-content !important;
+}
+
+.bm-burger-button {
+  position: relative;
+  float:right;
+  width: 36px;
+  height: 30px;
+  right: 5%;
+  top: 5%;
+}
+
+.bm-burger-bars {
+  background: #CBD4C2;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: white;
+}
+
+.bm-menu {
+  background: #C3B299;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.container-desktop {
+  padding-right: 2%;
 }
 
 .profile_image {

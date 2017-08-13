@@ -215,13 +215,10 @@ class Form_Register_Resident extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
-                </div>
+
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }

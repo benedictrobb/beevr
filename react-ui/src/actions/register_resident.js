@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {REGISTER_RESIDENT} from '../constants/action_types.js';
-import {CHECK_EMAIL} from '../constants/action_types.js';
+import {REGISTER_RESIDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
 export const registerResident = resident => dispatch => {
     dispatch({

@@ -23,11 +23,8 @@ class Form_Post_Job extends Component {
         this.updateValue = this.updateValue.bind(this);
         
 
-        //resident id hardcoded for now
         this.state = {
-            jobData: {
-                resident_id: 1,
-            },
+            jobData: {},
             errorMessage: '',
         };
     }
@@ -70,6 +67,7 @@ class Form_Post_Job extends Component {
             jobData: {
                 ...jobData,
                 start_date: evt.target.value,
+                resident_id: this.props.residentId,
             },
         });
     }
@@ -295,9 +293,12 @@ class Form_Post_Job extends Component {
 }
 
 function mapStateToProps(state) {
+    var residentId =
+        state.login && state.login.response && state.login.response.id;
     return {
         newJob: state.postJob.newJob.response,
         errorMessage: state.errorMessage,
+        residentId,
     };
 }
 

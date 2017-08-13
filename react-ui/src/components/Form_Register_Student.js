@@ -4,6 +4,7 @@ import {browserHistory} from 'react-router';
 import Select from 'react-select';
 import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
+import {browserHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -194,7 +195,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="universitySchool">
                         University/School*
@@ -209,7 +209,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="bio">
                         Bio
@@ -224,7 +223,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
                         Profile picture url
@@ -239,7 +237,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="phoneNumber">
                         Phone number*
@@ -272,17 +269,9 @@ class Form_Register_Student extends Component {
                         onChange={this.handleSelectChange}
                     />
                 </div>
-                <div>
-                    {this.props.status === 'pending'
-                        ? <LoadingIndicator />
-                        : <button
-                            className="btn btn-primary"
-                            type="submit"
-                            onClick={this.onSubmit}
-                        >
-                            {this.props.btnText}
-                        </button>}
-                </div>
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }
