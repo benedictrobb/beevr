@@ -4,7 +4,6 @@ import {browserHistory} from 'react-router';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
-import {browserHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -34,7 +33,7 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        student.jobCategories = student.jobCategories[0].map(e => e.value);
+        student.jobCategories = student.jobCategories[0].map(item => item.value);
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';

@@ -2,11 +2,10 @@ import React, {Component} from 'react';
 import {changeForm} from '../actions/AppActions';
 import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
-import Select from 'react-select';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
-import isEmpty from 'lodash/isEmpty';
+import DropdownList from 'react-widgets/lib/DropdownList';
 import categories from '../constants/job_categories.js';
 
 class Form_Post_Job extends Component {
@@ -20,7 +19,7 @@ class Form_Post_Job extends Component {
         this._onChangeTitle = this._onChangeTitle.bind(this);
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
-        this.updateValue = this.updateValue.bind(this);
+        this._onChangeCategory= this._onChangeCategory.bind(this);
         
 
         this.state = {
@@ -33,6 +32,7 @@ class Form_Post_Job extends Component {
         evt.preventDefault();
 
         var {jobData} = this.state;
+        jobData.category = jobData.category.value;
 
         if (!jobData.start_date) {
             var error_message = 'Start Date cannot be empty';
@@ -132,29 +132,17 @@ class Form_Post_Job extends Component {
         });
     }
 
-    updateValue(newValue) {
+    _onChangeCategory(evt) {
         var jobData = this.state.jobData;
-        console.log('Category changed to ' + newValue);
         this.setState({
             jobData: {
                 ...jobData,
-                //selectValue: newValue,
-                category: newValue,
+                category: evt,
             },
         });
     }
 
     render() {
-<<<<<<< HEAD
-        console.log(this.state);
-        const options = categories;
-
-=======
->>>>>>> new-categories-menu
-        if (!this.state) {
-            return <div>Loading</div>;
-        }
-
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
@@ -234,42 +222,19 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-<<<<<<< HEAD
                 <div className="form-group">
                     <label className="control-label" htmlFor="Job categories">
                         Job category*
                     </label>
-                    <Select
-                        ref="stateSelect"
-                        className="job_categories"
-                        autofocus
-                        simpleValue
-                        options={options}
-                        clearable={true}
-                        searchable={true}
-                        name="category"
-                        disabled={this.state.jobData.disabled}
-                        value={this.state.jobData.category}
-                        onChange={this.updateValue}
+                    <DropdownList
+                        data={categories}
+                        textField='value'
+                        placeholder="Select a job category"
+                        onChange={this._onChangeCategory}
+                        groupBy='group'
                     />
                 </div>
-=======
-                <label className="control-label" htmlFor="Job categories">
-                    Job category*
-                </label>
-                <input
-                    className="form-control job_categories"
-                    id="job_categories"
-                    type="text"
-                    placeholder="Select a job category"
-                    list="jobs"
-                    value={this.state.jobData.category}
-                    onChange={this._onChangeCategory}
-                />
-                <datalist id="jobs">
-                </datalist>
->>>>>>> new-categories-menu
-
+                
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
                         Rate* (in £)
