@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import ErrorMessage from './ErrorMessage.js';
 import {browserHistory} from 'react-router';
-import Select from 'react-select';
+import Multiselect from 'react-widgets/lib/Multiselect';
 import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
 
@@ -91,10 +91,7 @@ class Form_Register_Student extends Component {
     }
 
     render() {
-        if (!this.state) {
-            return <div>Loading</div>;
-        }
-
+        console.log(this.state);
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -257,19 +254,18 @@ class Form_Register_Student extends Component {
                 <div className="form-group">
                     <label
                         className="control-label"
-                        name="jobCategories"
+                        name="category"
                         htmlFor="jobCategories"
                     >
                         Your job categories
                     </label>
-                    <Select
-                        multi
-                        joinValue
-                        disabled={this.state.student.jobCategories.disabled}
+                    <Multiselect 
+                        data={categories}
+                        textField='value'
                         value={this.state.student.jobCategories.value}
-                        placeholder="Select up to 8 categories"
-                        options={this.state.student.jobCategories.options}
-                        onChange={this.handleSelectChange}
+                        onChange={this.onChangeJobCategories}
+                        placeholder="Pick up to 8 jobs categories"
+                        groupBy='group'
                     />
                 </div>
                 <div>
