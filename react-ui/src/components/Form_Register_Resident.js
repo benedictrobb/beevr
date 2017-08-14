@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
 
 class Form_Register_Resident extends Component {
     constructor() {
@@ -71,6 +70,7 @@ class Form_Register_Resident extends Component {
                         {this.state.errorMessage}
                     </div>
                 </p>
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -109,7 +109,7 @@ class Form_Register_Resident extends Component {
                         id="email"
                         type="email"
                         value={this.state.resident.email}
-                        placeholder="email"
+                        placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
                         autoCorrect="off"
@@ -125,7 +125,7 @@ class Form_Register_Resident extends Component {
                         className="form-control"
                         name="password"
                         id="Password"
-                        type="password"
+                        type="Password"
                         value={this.state.resident.password}
                         placeholder="password"
                         onChange={this.onChange}
@@ -189,14 +189,14 @@ class Form_Register_Resident extends Component {
                 </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
-                        Profile picture
+                        Profile picture url
                     </label>
                     <input
                         className="form-control"
                         name="picture"
                         id="picture"
-                        type="file"
-                        placeholder="Picture"
+                        type="text"
+                        placeholder="Paste url of your picture"
                         value={this.state.resident.picture}
                         onChange={this.onChange}
                     />
@@ -215,13 +215,10 @@ class Form_Register_Resident extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
-                </div>
+
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }

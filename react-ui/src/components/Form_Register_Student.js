@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
 import categories from '../constants/job_categories.js';
-import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import {browserHistory} from 'react-router';
 
 class Form_Register_Student extends Component {
     constructor() {
@@ -102,7 +101,6 @@ class Form_Register_Student extends Component {
                 >
                     {this.state.errorMessage}
                 </div>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -141,7 +139,7 @@ class Form_Register_Student extends Component {
                         id="email"
                         type="email"
                         value={this.state.student.email}
-                        placeholder="email"
+                        placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
                         autoCorrect="off"
@@ -159,7 +157,7 @@ class Form_Register_Student extends Component {
                         id="password"
                         type="password"
                         value={this.state.student.password}
-                        placeholder="password"
+                        placeholder="Password"
                         onChange={this.onChange}
                     />
                 </div>
@@ -191,7 +189,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="universitySchool">
                         University/School*
@@ -206,7 +203,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="bio">
                         Bio
@@ -221,22 +217,20 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
-                        Profile picture
+                        Profile picture url
                     </label>
                     <input
                         className="form-control"
                         name="picture"
                         id="picture"
-                        type="file"
-                        placeholder="Picture"
+                        type="text"
+                        placeholder="Paste url of your picture"
                         value={this.state.student.picture}
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="phoneNumber">
                         Phone number*
@@ -251,7 +245,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label
                         className="control-label"
@@ -345,14 +338,9 @@ class Form_Register_Student extends Component {
                         {options}
                     </datalist>
                 </div>
-
-                <div>
-                    {this.props.currentlySending
-                        ? <div />
-                        : <button className="btn btn-primary" type="submit">
-                            {this.props.btnText}
-                        </button>}
-                </div>
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }

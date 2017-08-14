@@ -328,6 +328,7 @@ server.register(plugins, err => {
                     data.submitApplication(
                         request.payload.jobId,
                         request.payload.residentId,
+                        request.payload.studentId,
                         (err, res) => {
                             if (err) {
                                 reply(
@@ -430,14 +431,14 @@ server.register(plugins, err => {
                 request.cookieAuth.clear();
                 reply({
                     name: 'logout',
-                    message: 'You have been successifully logged out from BEEVR',
+                    message:
+                        'You have been successifully logged out from BEEVR',
                     status: 'success',
                 });
             },
         },
     });
 
-    //student is hardcoded to 2 until we have session management capacity
     server.route({
         method: 'GET',
         path: '/api/myjobs',
@@ -446,12 +447,10 @@ server.register(plugins, err => {
                 strategy: 'session',
             },
             handler: (request, reply) => {
-                console.log(request.auth);
                 if (request.auth.isAuthenticated) {
                     // session data available
                     var session = request.auth.credentials;
-                    console.log(session);
-                    data.getMyJobs((err, res) => {
+                    data.getMyJobs(request.url.query.studentId, (err, res) => {
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
@@ -478,7 +477,7 @@ server.register(plugins, err => {
                                 };
                             }),
                         });
-                    }, 2);
+                    });
                 } else {
                     return reply(
                         Boom.unauthorized('Please log-in to see that')
@@ -492,21 +491,25 @@ server.register(plugins, err => {
         method: 'DELETE',
         path: '/api/myjobs',
         handler: (request, reply) => {
-            data.deleteApplication(request.url.query.jobId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to delete record from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        name: 'jobDeleted',
-                        message: 'Job deleted',
-                        jobDeleted: res,
-                    });
+            data.deleteApplication(
+                request.url.query.studentId,
+                request.url.query.jobId,
+                (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to delete record from database'
+                            )
+                        );
+                    } else {
+                        reply({
+                            name: 'jobDeleted',
+                            message: 'Job deleted',
+                            jobDeleted: res,
+                        });
+                    }
                 }
-            });
+            );
         },
     });
 
@@ -522,12 +525,11 @@ server.register(plugins, err => {
         },
     });
 
-    //resident id hardcoded until we have cookie on the master branch
     server.route({
         method: 'GET',
         path: '/api/mypostedjobs',
         handler: (request, reply) => {
-            data.getMyPostedJobs(2, (err, res) => {
+            data.getMyPostedJobs(request.url.query.residentId, (err, res) => {
                 if (err) {
                     reply(
                         Boom.serverUnavailable(

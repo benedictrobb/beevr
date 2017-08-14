@@ -1,6 +1,8 @@
-import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
-import {SET_SELECTED_JOB} from '../constants/action_types.js';
-import {SET_TERM} from '../constants/action_types.js';
+import {
+    FETCH_STUDENT_JOBS,
+    SET_SELECTED_JOB,
+    SET_TERM,
+} from '../constants/action_types.js';
 
 const initialState = {
     jobsRequest: {},
