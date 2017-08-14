@@ -69,7 +69,7 @@ a {
     height: 80vh;
     padding: 2%;
     background-size: cover;
-    background-image: url('./student_red.jpg');
+    background-image: url('../student_red.jpg');
     margin-bottom: 5%;
 
 }
@@ -78,7 +78,7 @@ a {
     height: 80vh;
     padding: 2%;
     background-size: cover;
-    background-image: url('./resident_emo.jpg');
+    background-image: url('../resident_emo.jpg');
     margin-bottom: 5%;
 
 }
