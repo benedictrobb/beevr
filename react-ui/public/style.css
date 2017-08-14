@@ -251,3 +251,7 @@ input:-webkit-autofill {
     color: #815355 !important;
     font-weight: bold;
 }
+
+.rw-widget {
+    display: flex !important;
+}

@@ -23,7 +23,7 @@ class BrowseStudents extends Component {
     }
 
     onStudentSearchChange(evt) {
-        this.props.setTerm(evt.target.value);
+        this.props.setTerm(evt);
     }
 
     renderStudents(student) {
