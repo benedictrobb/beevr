@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import Form_Register_Student from '../Form_Register_Student.js';
 import * as actions from '../../actions/register_student.js';
 import {connect} from 'react-redux';
+import {Link} from 'react-router';
 
 class RegisterStudent extends Component {
     render() {
