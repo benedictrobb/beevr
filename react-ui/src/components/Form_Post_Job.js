@@ -4,6 +4,7 @@ import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import categories from '../constants/job_categories.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -276,12 +277,13 @@ class Form_Post_Job extends Component {
                         Job description
                     </textarea>
 
-                    <button
-                        className="btn btn-primary post_job_button"
-                        type="submit"
-                    >
-                        SUBMIT
-                    </button>
+                    <div>
+                        {this.props.postJobRequestStatus === 'pending'
+                            ? <LoadingIndicator />
+                            : <button className="btn btn-primary" type="submit">
+                                  Submit
+                            </button>}
+                    </div>
                 </div>
             </form>
         );
@@ -294,6 +296,7 @@ function mapStateToProps(state) {
     return {
         newJob: state.postJob.newJob.response,
         errorMessage: state.errorMessage,
+        postJobRequestStatus: state.postJob.newJob.status,
         residentId,
     };
 }
