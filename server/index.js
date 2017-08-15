@@ -419,7 +419,6 @@ server.register(plugins, err => {
             handler: (request, reply) => {
                 if (request.auth.isAuthenticated) {
                     var session = request.auth.credentials;
-                    console.log(session);
                     data.getMyJobs(request.url.query.studentId, (err, res) => {
                         if (err) {
                             return reply(
