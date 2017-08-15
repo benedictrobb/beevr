@@ -102,6 +102,7 @@ class BrowseJobs extends Component {
                                 onSubmit={this.onSubmit}
                             >
                                 <DropdownList
+                                    className="form-control"
                                     placeholder="Browse Jobs"
                                     data={categories}
                                     textField="value"
@@ -112,7 +113,7 @@ class BrowseJobs extends Component {
                                 <button
                                     type="submit"
                                     id="submit_button"
-                                    className="btn btn-primary"
+                                    className="btn btn-primary submit_button"
                                 >
                                     Submit
                                 </button>

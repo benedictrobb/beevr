@@ -1,55 +1,48 @@
-
 html * {
-    font-family: 'Raleway', sans-serif; !important;
+    font-family: 'Raleway', sans-serif !important;
 }
 
 body {
-  background-color: #DBEBC0;
-  color: #000807;
+    background-color: #dbebc0;
+    color: #000807;
 }
-
-
 
 @media (max-width: 768px) {
+    a {
+        cursor: pointer;
+        color: #523249;
+    }
 
-a {
-  cursor: pointer;
-  color: #523249;
-}
+    .navbar-nav li a:hover {
+        color: #523249;
+        text-decoration: none;
+    }
 
-.navbar-nav li a:hover {
-  color: #523249;
-  text-decoration: none;
-}
-
-#desktop-menu {
-  display: none;
-}
-
+    #desktop-menu {
+        display: none;
+    }
 }
 
 @media (min-width: 769px) {
+    .container-flex-dashboard {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
 
-  .container-flex-dashboard{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
+    a {
+        color: #523249;
+        cursor: pointer;
+    }
 
-  a {
-    color: #523249;
-    cursor: pointer;
-  }
+    .navbar-nav li a:hover {
+        color: #c3b299 !important;
+        text-decoration: none;
+    }
 
-  .navbar-nav li a:hover {
-      color: #C3B299 !important;
-      text-decoration: none;
-  }
-
- #burger-menu {
-   display: none;
- }
-
+    #burger-menu {
+        display: none;
+    }
 }
 .navbar {
     padding-top: 15px;
@@ -63,15 +56,12 @@ a {
     color: #815355;
 }
 
-
-
 .bgimg_student {
     height: 80vh;
     padding: 2%;
     background-size: cover;
     background-image: url('./student_red.jpg');
     margin-bottom: 5%;
-
 }
 
 .bgimg_resident {
@@ -80,12 +70,10 @@ a {
     background-size: cover;
     background-image: url('./resident_emo.jpg');
     margin-bottom: 5%;
-
 }
 
 .front_resident {
-    color:white;
-
+    color: white;
 }
 
 .front_resident:hover {
@@ -93,19 +81,17 @@ a {
 }
 
 .front_student {
-    color:black;
+    color: black;
 }
 
 .front_student:hover {
-    color:#3b3b3b;
+    color: #3b3b3b;
 }
 
 .welcome {
-  margin-bottom:5%;
-  background-color: #dbebc0;
+    margin-bottom: 5%;
+    background-color: #dbebc0;
 }
-
-
 
 .btn-primary {
     background-color: #523249;
@@ -118,10 +104,14 @@ a {
 }
 
 .btn-primary:active {
-    background-color: #815355!important;
-    border-color: #815355!important;
+    background-color: #815355 !important;
+    border-color: #815355 !important;
 }
 
+.btn-primary:focus {
+    background-color: #815355 !important;
+    border-color: #815355 !important;
+}
 
 .search_jobs {
     margin-top: 5%;
@@ -129,6 +119,7 @@ a {
 
 .optional-login {
     display: flex;
+    align-items: baseline;
 }
 
 .pull-right {
@@ -170,12 +161,11 @@ input:-webkit-autofill {
     align-items: center;
 }
 
-.container-flex{
+.container-flex {
     display: flex;
     justify-content: center;
     align-items: center;
-  }
-
+}
 
 .success_message {
     color: #000807;
@@ -195,61 +185,60 @@ input:-webkit-autofill {
 }
 
 .light_brown_title {
-  color: #815355;
+    color: #815355;
 }
 
 .margin_left {
-  margin-left: 3%;
+    margin-left: 3%;
 }
 
 .bm-menu-wrap {
-  width:fit-content !important;
+    width: fit-content !important;
 }
 
 .bm-burger-button {
-  position: relative;
-  float:right;
-  width: 36px;
-  height: 30px;
-  right: 5%;
-  top: 5%;
+    position: relative;
+    float: right;
+    width: 36px;
+    height: 30px;
+    right: 5%;
+    top: 5%;
 }
 
 .bm-burger-bars {
-  background: #CBD4C2;
+    background: #cbd4c2;
 }
 
 .bm-cross-button {
-  height: 24px;
-  width: 24px;
+    height: 24px;
+    width: 24px;
 }
 
 .bm-cross {
-  background: white;
+    background: white;
 }
 
 .bm-menu {
-  background: #C3B299;
-  padding: 2.5em 1.5em 0;
-  font-size: 1.15em;
+    background: #c3b299;
+    padding: 2.5em 1.5em 0;
+    font-size: 1.15em;
 }
 
-
 .bm-item-list {
-  color: #b8b7ad;
-  padding: 0.8em;
+    color: #b8b7ad;
+    padding: 0.8em;
 }
 
 .bm-overlay {
-  background: rgba(0, 0, 0, 0.3);
+    background: rgba(0, 0, 0, 0.3);
 }
 
 .container-desktop {
-  padding-right: 2%;
+    padding-right: 2%;
 }
 
 .profile_image {
-  height: 20vh;
+    height: 20vh;
 }
 
 .Select-option.is-disabled {
@@ -258,6 +247,6 @@ input:-webkit-autofill {
 }
 
 a:hover {
-  text-decoration: none;
-  color: white;
+    text-decoration: none;
+    color: white;
 }
