@@ -97,14 +97,17 @@ class BrowseJobs extends Component {
                 <div className="container-fluid">
                     <article className="row-fluid search_jobs">
                         <section className="col-md-6 col-md-offset-3">
-                            <form className="form-group" onSubmit={this.onSubmit}>
+                            <form
+                                className="form-group"
+                                onSubmit={this.onSubmit}
+                            >
                                 <DropdownList
                                     placeholder="Browse Jobs"
                                     data={categories}
-                                    textField='value'
+                                    textField="value"
                                     onChange={this.onJobSearchChange}
                                     value={this.props.SearchTerm}
-                                    groupBy='group'
+                                    groupBy="group"
                                 />
                                 <button
                                     type="submit"
@@ -140,14 +143,18 @@ class BrowseJobs extends Component {
                                       My applications
                                 </Link>
                             </div>}
+                        <br />
+                        <br />
+                        <br />
                         <form onSubmit={this.onSubmit}>
                             <DropdownList
+                                className="form-control"
                                 placeholder="Browse Jobs"
                                 data={categories}
-                                textField='value'
+                                textField="value"
                                 onChange={this.onJobSearchChange}
                                 value={this.props.SearchTerm}
-                                groupBy='group'
+                                groupBy="group"
                             />
                             <button
                                 type="submit"

@@ -14,7 +14,7 @@ body {
 
 a {
   cursor: pointer;
-  color: white;
+  color: #523249;
 }
 
 .navbar-nav li a:hover {
@@ -115,6 +115,11 @@ a {
 .btn-primary:hover {
     background-color: #815355;
     border-color: #815355;
+}
+
+.btn-primary:active {
+    background-color: #815355!important;
+    border-color: #815355!important;
 }
 
 
@@ -250,4 +255,9 @@ input:-webkit-autofill {
 .Select-option.is-disabled {
     color: #815355 !important;
     font-weight: bold;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
 }
