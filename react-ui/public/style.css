@@ -1,48 +1,56 @@
+/*final version of the css needs to be prefixed*/
+
 html * {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Raleway', sans-serif; !important;
 }
 
 body {
-    background-color: #dbebc0;
-    color: #000807;
+  background-color: #DBEBC0;
+  color: #000807;
 }
 
+
+
 @media (max-width: 768px) {
-    a {
-        cursor: pointer;
-        color: #523249;
-    }
 
-    .navbar-nav li a:hover {
-        color: #523249;
-        text-decoration: none;
-    }
+a {
+  cursor: pointer;
+  color: white;
+}
 
-    #desktop-menu {
-        display: none;
-    }
+.navbar-nav li a:hover {
+  color: #523249;
+  text-decoration: none;
+}
+
+#desktop-menu {
+  display: none;
+}
+
 }
 
 @media (min-width: 769px) {
-    .container-flex-dashboard {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
 
-    a {
-        color: #523249;
-        cursor: pointer;
-    }
+  .container-flex-dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
 
-    .navbar-nav li a:hover {
-        color: #c3b299 !important;
-        text-decoration: none;
-    }
+  a {
+    color: #523249;
+    cursor: pointer;
+  }
 
-    #burger-menu {
-        display: none;
-    }
+  .navbar-nav li a:hover {
+      color: #C3B299 !important;
+      text-decoration: none;
+  }
+
+ #burger-menu {
+   display: none;
+ }
+
 }
 .navbar {
     padding-top: 15px;
@@ -56,12 +64,15 @@ body {
     color: #815355;
 }
 
+
+
 .bgimg_student {
     height: 80vh;
     padding: 2%;
     background-size: cover;
     background-image: url('./student_red.jpg');
     margin-bottom: 5%;
+
 }
 
 .bgimg_resident {
@@ -70,10 +81,12 @@ body {
     background-size: cover;
     background-image: url('./resident_emo.jpg');
     margin-bottom: 5%;
+
 }
 
 .front_resident {
-    color: white;
+    color:white;
+
 }
 
 .front_resident:hover {
@@ -81,17 +94,19 @@ body {
 }
 
 .front_student {
-    color: black;
+    color:black;
 }
 
 .front_student:hover {
-    color: #3b3b3b;
+    color:#3b3b3b;
 }
 
 .welcome {
-    margin-bottom: 5%;
-    background-color: #dbebc0;
+  margin-bottom:5%;
+  background-color: #dbebc0;
 }
+
+
 
 .btn-primary {
     background-color: #523249;
@@ -103,28 +118,13 @@ body {
     border-color: #815355;
 }
 
-.btn-primary:active {
-    background-color: #815355 !important;
-    border-color: #815355 !important;
-}
-
-.btn-primary:focus {
-    background-color: #815355 !important;
-    border-color: #815355 !important;
-}
 
 .search_jobs {
     margin-top: 5%;
 }
 
-.optional-login {
-    display: flex;
-    align-items: baseline;
-}
-
 .pull-right {
     float: right;
-    margin: 0 0 0 5px;
 }
 
 .submit_button {
@@ -161,11 +161,12 @@ input:-webkit-autofill {
     align-items: center;
 }
 
-.container-flex {
+.container-flex{
     display: flex;
     justify-content: center;
     align-items: center;
-}
+  }
+
 
 .success_message {
     color: #000807;
@@ -185,68 +186,59 @@ input:-webkit-autofill {
 }
 
 .light_brown_title {
-    color: #815355;
+  color: #815355;
 }
 
 .margin_left {
-    margin-left: 3%;
+  margin-left: 3%;
 }
 
 .bm-menu-wrap {
-    width: fit-content !important;
+  width:fit-content !important;
 }
 
 .bm-burger-button {
-    position: relative;
-    float: right;
-    width: 36px;
-    height: 30px;
-    right: 5%;
-    top: 5%;
+  position: relative;
+  float:right;
+  width: 36px;
+  height: 30px;
+  right: 5%;
+  top: 5%;
 }
 
 .bm-burger-bars {
-    background: #cbd4c2;
+  background: #CBD4C2;
 }
 
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+  height: 24px;
+  width: 24px;
 }
 
 .bm-cross {
-    background: white;
+  background: white;
 }
 
 .bm-menu {
-    background: #c3b299;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+  background: #C3B299;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
 }
 
+
 .bm-item-list {
-    color: #b8b7ad;
-    padding: 0.8em;
+  color: #b8b7ad;
+  padding: 0.8em;
 }
 
 .bm-overlay {
-    background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.3);
 }
 
 .container-desktop {
-    padding-right: 2%;
+  padding-right: 2%;
 }
 
 .profile_image {
-    height: 20vh;
-}
-
-.Select-option.is-disabled {
-    color: #815355 !important;
-    font-weight: bold;
-}
-
-a:hover {
-    text-decoration: none;
-    color: white;
+  height: 20vh;
 }

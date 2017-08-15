@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
+import categories from '../constants/job_categories.js';
 import {browserHistory} from 'react-router';
 import Multiselect from 'react-widgets/lib/Multiselect';
-import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
@@ -33,7 +32,9 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        student.jobCategories = student.jobCategories[0].map(item => item.value);
+        student.jobCategories = student.jobCategories[0].map(
+            item => item.value
+        );
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
@@ -92,7 +93,6 @@ class Form_Register_Student extends Component {
                 >
                     {this.state.errorMessage}
                 </div>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -245,12 +245,12 @@ class Form_Register_Student extends Component {
                     >
                         Your job categories
                     </label>
-                    <Multiselect 
+                    <Multiselect
                         data={categories}
-                        textField='value'
+                        textField="value"
                         onChange={this.onChangeJobCategories}
                         placeholder="Pick up to 8 jobs categories"
-                        groupBy='group'
+                        groupBy="group"
                     />
                 </div>
                 <button className="btn btn-primary" type="submit">

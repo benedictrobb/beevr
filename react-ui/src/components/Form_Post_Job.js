@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {changeForm} from '../actions/AppActions';
-import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
@@ -19,8 +17,7 @@ class Form_Post_Job extends Component {
         this._onChangeTitle = this._onChangeTitle.bind(this);
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
-        this._onChangeCategory= this._onChangeCategory.bind(this);
-        
+        this._onChangeCategory = this._onChangeCategory.bind(this);
 
         this.state = {
             jobData: {},
@@ -228,13 +225,13 @@ class Form_Post_Job extends Component {
                     </label>
                     <DropdownList
                         data={categories}
-                        textField='value'
+                        textField="value"
                         placeholder="Select a job category"
                         onChange={this._onChangeCategory}
-                        groupBy='group'
+                        groupBy="group"
                     />
                 </div>
-                
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
                         Rate* (in £)
