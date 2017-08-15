@@ -7,7 +7,15 @@ class Nav extends Component {
     showSettings(event) {
         event.preventDefault();
     }
+    
+    componentWillReceiveProps() {
+        this.setState(this.props);
+    }
+    
     render() {
+        console.log(this.props);
+        console.log(this.props.role);
+        console.log(this.state);
         return (
             <div>
                 <nav
@@ -35,12 +43,12 @@ class Nav extends Component {
                                         </Link>}
                                 </li>
                                 <li>
-                                    {!this.props.role
-                                        ? <Link to="/">Home</Link>
+                                    {this.props.role
+                                        ? <Link to="/">HomeBor</Link>
                                         : this.props.role === 'Student'
-                                            ? <Link to="/browsejobs">Home</Link>
+                                            ? <Link to="/browsejobs">Homeres</Link>
                                             : <Link to="/browsestudents">
-                                                Home
+                                                Homestud
                                             </Link>}
                                 </li>
 

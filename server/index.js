@@ -55,8 +55,8 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/auth',
         config: {
-            auth: false,
             handler: (request, reply) => {
+                console.log(request.auth);
                 if (request.auth.isAuthenticated) {
                     var session = request.auth.credentials;
                     data.authRequest(session, (err, res) => {

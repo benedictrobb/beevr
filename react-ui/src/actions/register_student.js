@@ -13,7 +13,7 @@ export const registerStudent = student => dispatch => {
             dispatch({
                 type: REGISTER_STUDENT,
                 status: 'success',
-                response: response.data.confirm,
+                response: response.data,
             });
         })
         .catch(error => {
