@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
 import {browserHistory} from 'react-router';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import categories from '../constants/job_categories.js';
@@ -92,7 +91,6 @@ class Form_Register_Student extends Component {
                 >
                     {this.state.errorMessage}
                 </div>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*

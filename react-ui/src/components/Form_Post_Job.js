@@ -1,6 +1,4 @@
 import React, {Component} from 'react';
-import {changeForm} from '../actions/AppActions';
-import ErrorMessage from './ErrorMessage.js';
 import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
