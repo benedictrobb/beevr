@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../actions/login.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class LoginForm extends Component {
     constructor() {
@@ -73,9 +74,11 @@ class LoginForm extends Component {
                         />
                     </div>
                     <div>
-                        <button className="btn btn-primary" type="submit">
-                            Login
-                        </button>
+                        {this.props.loginRequestStatus === 'pending'
+                            ? <LoadingIndicator />
+                            : <button className="btn btn-primary" type="submit">
+                                  Login
+                            </button>}
                     </div>
                 </form>
             </div>
