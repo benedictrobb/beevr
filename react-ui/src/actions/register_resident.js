@@ -8,7 +8,7 @@ export const registerResident = resident => dispatch => {
     });
 
     axios
-        .post('api/reg-resident', resident)
+        .post('api/resident', resident)
         .then(response => {
             dispatch({
                 type: REGISTER_RESIDENT,
@@ -32,7 +32,7 @@ export const checkIfResidentExists = email => dispatch => {
     });
 
     axios
-        .post('api/resident', {email})
+        .post('api/resident/does-exist', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,
