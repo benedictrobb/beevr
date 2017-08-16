@@ -30,7 +30,7 @@ const store = createStore(
 ReactDOM.render(
     <Provider store={store}>
         <Router history={browserHistory}>
-            <Route component={App}> 
+            <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/registerresident" component={RegisterResident} />

@@ -8,14 +8,7 @@ class Nav extends Component {
         event.preventDefault();
     }
 
-    componentWillReceiveProps() {
-        this.setState(this.props);
-    }
-
     render() {
-        console.log(this.props);
-        console.log(this.props.role);
-        console.log(this.state);
         return (
             <div>
                 <nav
