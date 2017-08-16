@@ -8,12 +8,12 @@ export const registerStudent = student => dispatch => {
     });
 
     axios
-        .post('api/reg-student', student)
+        .post('api/student', student)
         .then(response => {
             dispatch({
                 type: REGISTER_STUDENT,
                 status: 'success',
-                response: response.data.confirm,
+                response: response.data,
             });
         })
         .catch(error => {
@@ -32,7 +32,7 @@ export const checkIfStudentExists = email => dispatch => {
     });
 
     axios
-        .post('api/student', {email})
+        .post('api/student/does-exist', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,

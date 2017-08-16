@@ -97,19 +97,36 @@ class BrowseStudents extends Component {
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
                     <section className="col-md-6 col-md-offset-3">
-                        <Link
-                            to="/postjob"
-                            className="btn btn-primary pull-right submit_button margin_left"
-                        >
-                            Post A Job
-                        </Link>
-
-                        <Link
-                            to="/mypostedjobs"
-                            className="btn btn-primary pull-right submit_button"
-                        >
-                            My posted jobs
-                        </Link>
+                        {this.props.isAuthenticated === true
+                            ? <div>
+                                <Link
+                                    to="/postjob"
+                                    className="btn btn-primary pull-right submit_button margin_left"
+                                >
+                                    Post A Job
+                                </Link>
+                                <Link
+                                    to="/mypostedjobs"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                    My posted jobs
+                                </Link>
+                            </div>
+                            : <div className="optional-login pull-right">
+                                Login to see:
+                                <Link
+                                    to="/login"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                    Post A Job
+                                </Link>
+                                <Link
+                                    to="/login"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                    My posted jobs
+                                </Link>
+                            </div>}
                         <form onSubmit={this.onSubmit}>
                             <input
                                 className="form-control"
@@ -143,9 +160,15 @@ class BrowseStudents extends Component {
 }
 
 function mapStateToProps(state) {
+    const isAuthenticated =
+        state.auth &&
+        state.auth.response &&
+        state.auth.response.isAuthenticated;
+
     return {
         students: state.searchStudents.studentsRequest.response,
         searchTerm: state.searchStudents.searchTerm,
+        isAuthenticated,
     };
 }
 

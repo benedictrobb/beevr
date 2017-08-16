@@ -1,9 +1,12 @@
 import {REGISTER_RESIDENT} from '../constants/action_types.js';
 
 const initialState = {
-    loggedIn: false,
-    isAuthenticated: false,
+    errorMessage: '',
     resident: {},
+    response: {
+        loggedIn: false,
+        isAuthenticated: false,
+    }
 };
 
 export default (state = initialState, action = {}) => {

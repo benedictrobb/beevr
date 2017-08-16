@@ -2,6 +2,29 @@ const dbConnection = require('./db_connection.js');
 
 data = {};
 
+data.authRequest = (session, callback) => {
+    dbConnection.query(
+        `SELECT residents.first_name AS user, 
+        residents.resident_id AS id,
+        residents.email, 'Resident' AS role
+            FROM residents
+            WHERE residents.email = $1
+            UNION ALL
+            SELECT students.first_name AS user, 
+            students.student_id AS id,
+            students.email, 'Student' AS role
+                FROM students
+                WHERE students.email = $1;`,
+        [session.email],
+        (err, res) => {
+            if (err) {
+                return callback(err);
+            }
+            callback(null, res.rows[0]);
+        }
+    );
+};
+
 data.getJobs = (callback, term) => {
     if (!term) {
         dbConnection.query(

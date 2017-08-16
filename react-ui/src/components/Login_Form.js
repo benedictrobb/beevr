@@ -88,7 +88,7 @@ class LoginForm extends Component {
 
 function mapStateToProps(state) {
     return {
-        loginRequestStatus: state.login.status,
+        loginRequestStatus: state.auth.status,
     };
 }
 
