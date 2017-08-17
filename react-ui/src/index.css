@@ -1,0 +1,248 @@
+
+html * {
+    font-family: 'Raleway', sans-serif; !important;
+}
+
+body {
+  background-color: #DBEBC0;
+  color: #000807;
+}
+
+
+
+@media (max-width: 768px) {
+
+a {
+  cursor: pointer;
+  color: white;
+}
+
+.navbar-nav li a:hover {
+  color: #523249;
+  text-decoration: none;
+}
+
+#desktop-menu {
+  display: none;
+}
+
+}
+
+@media (min-width: 769px) {
+
+  .container-flex-dashboard{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  a {
+    color: #523249;
+    cursor: pointer;
+  }
+
+  .navbar-nav li a:hover {
+      color: #C3B299 !important;
+      text-decoration: none;
+  }
+
+ #burger-menu {
+   display: none;
+ }
+
+}
+.navbar {
+    padding-top: 15px;
+    padding-bottom: 15px;
+    border: 0;
+    border-radius: 0;
+    margin-bottom: 0;
+    font-size: 12px;
+    letter-spacing: 5px;
+    background-color: white;
+    color: #815355;
+}
+
+
+
+.bgimg_student {
+    height: 80vh;
+    padding: 2%;
+    background-size: cover;
+    background-image: url('./student_red.jpg');
+    margin-bottom: 5%;
+
+}
+
+.bgimg_resident {
+    height: 80vh;
+    padding: 2%;
+    background-size: cover;
+    background-image: url('./resident_emo.jpg');
+    margin-bottom: 5%;
+
+}
+
+.front_resident {
+    color:white;
+
+}
+
+.front_resident:hover {
+    color: #d3d3d3;
+}
+
+.front_student {
+    color:black;
+}
+
+.front_student:hover {
+    color:#3b3b3b;
+}
+
+.welcome {
+  margin-bottom:5%;
+  background-color: #dbebc0;
+}
+
+
+
+.btn-primary {
+    background-color: #523249;
+    border-color: #523249;
+}
+
+.btn-primary:hover {
+    background-color: #815355;
+    border-color: #815355;
+}
+
+
+.search_jobs {
+    margin-top: 5%;
+}
+
+.optional-login {
+    display: flex;
+}
+
+.pull-right {
+    float: right;
+    margin: 0 0 0 5px;
+}
+
+.submit_button {
+    margin-top: 1%;
+    margin-bottom: 5%;
+}
+
+.search_results_ul {
+    margin-left: -40px;
+}
+
+.register_container {
+    margin-top: 3%;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 30px white inset;
+}
+
+.job_title {
+    color: #815355;
+}
+
+.flex-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.parent-container {
+    height: 80vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.container-flex{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+
+.success_message {
+    color: #000807;
+    margin-top: 7%;
+}
+
+.success_image {
+    height: 30vh;
+}
+
+.job_categories {
+    margin-bottom: 7%;
+}
+
+.post_job_button {
+    margin-top: 5%;
+}
+
+.light_brown_title {
+  color: #815355;
+}
+
+.margin_left {
+  margin-left: 3%;
+}
+
+.bm-menu-wrap {
+  width:fit-content !important;
+}
+
+.bm-burger-button {
+  position: relative;
+  float:right;
+  width: 36px;
+  height: 30px;
+  right: 5%;
+  top: 5%;
+}
+
+.bm-burger-bars {
+  background: #CBD4C2;
+}
+
+.bm-cross-button {
+  height: 24px;
+  width: 24px;
+}
+
+.bm-cross {
+  background: white;
+}
+
+.bm-menu {
+  background: #C3B299;
+  padding: 2.5em 1.5em 0;
+  font-size: 1.15em;
+}
+
+
+.bm-item-list {
+  color: #b8b7ad;
+  padding: 0.8em;
+}
+
+.bm-overlay {
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.container-desktop {
+  padding-right: 2%;
+}
+
+.profile_image {
+  height: 20vh;
+}
