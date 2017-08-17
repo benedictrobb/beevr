@@ -20,6 +20,7 @@ import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 import MyPostedJobs from './components/pages/MyPostedJobs.js';
 import MyJobs from './components/pages/MyJobs.js';
+import  '../../public/style.css';
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStore(
