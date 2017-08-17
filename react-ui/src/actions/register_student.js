@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {REGISTER_STUDENT} from '../constants/action_types.js';
-import {CHECK_EMAIL} from '../constants/action_types.js';
+import {REGISTER_STUDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
 export const registerStudent = student => dispatch => {
     dispatch({
@@ -9,7 +8,7 @@ export const registerStudent = student => dispatch => {
     });
 
     axios
-        .post('api/reg-student', student)
+        .post('api/student', student)
         .then(response => {
             dispatch({
                 type: REGISTER_STUDENT,
@@ -33,7 +32,7 @@ export const checkIfStudentExists = email => dispatch => {
     });
 
     axios
-        .post('api/student', {email})
+        .post('api/student/does-exist', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,

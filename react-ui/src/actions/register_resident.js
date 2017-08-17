@@ -1,6 +1,5 @@
 import axios from 'axios';
-import {REGISTER_RESIDENT} from '../constants/action_types.js';
-import {CHECK_EMAIL} from '../constants/action_types.js';
+import {REGISTER_RESIDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
 export const registerResident = resident => dispatch => {
     dispatch({
@@ -9,12 +8,12 @@ export const registerResident = resident => dispatch => {
     });
 
     axios
-        .post('api/reg-resident', resident)
+        .post('api/resident', resident)
         .then(response => {
             dispatch({
                 type: REGISTER_RESIDENT,
                 status: 'success',
-                response: response.confirm,
+                response: response.data,
             });
         })
         .catch(error => {
@@ -33,7 +32,7 @@ export const checkIfResidentExists = email => dispatch => {
     });
 
     axios
-        .post('api/resident', {email})
+        .post('api/resident/does-exist', {email})
         .then(response => {
             dispatch({
                 type: CHECK_EMAIL,

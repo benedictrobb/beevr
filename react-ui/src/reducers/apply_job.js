@@ -14,7 +14,6 @@ export default (state = initialState, action) => {
                 status: action.status,
             };
         } else {
-            console.log('action.response in reducer is ', action.response);
             return {
                 ...state,
                 status: action.status,

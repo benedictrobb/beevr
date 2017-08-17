@@ -128,7 +128,7 @@ data.loginRequest = (email, callback) => {
     );
 };
 
-data.getMyJobs = (callback, student_id) => {
+data.getMyJobs = (student_id, callback) => {
     dbConnection.query(
         'SELECT * FROM jobs WHERE $1 = ANY (student_id)',
         [student_id],
@@ -319,10 +319,10 @@ data.postJobs = (jobsObject, callback) => {
     );
 };
 
-data.deleteApplication = (job_id, callback) => {
+data.deleteApplication = (student_id, job_id, callback) => {
     dbConnection.query(
-        'UPDATE jobs SET student_id = array_remove(student_id, \'7\') WHERE job_id = $1',
-        [job_id],
+        'UPDATE jobs SET student_id = array_remove(student_id, $1) WHERE job_id = $2',
+        [student_id, job_id],
         (err, res) => {
             if (err) {
                 callback(err);

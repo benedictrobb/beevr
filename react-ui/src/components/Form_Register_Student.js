@@ -1,8 +1,9 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
-import {browserHistory} from 'react-router';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import categories from '../constants/job_categories.js';
+import {browserHistory} from 'react-router';
+import {connect} from 'react-redux';
+import * as actions from '../actions/register_student.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
@@ -92,7 +93,6 @@ class Form_Register_Student extends Component {
                 >
                     {this.state.errorMessage}
                 </div>
-                <ErrorMessage />
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -181,7 +181,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="universitySchool">
                         University/School*
@@ -196,7 +195,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="bio">
                         Bio
@@ -211,7 +209,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="picture">
                         Profile picture url
@@ -226,7 +223,6 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="phoneNumber">
                         Phone number*
@@ -258,14 +254,10 @@ class Form_Register_Student extends Component {
                     />
                 </div>
                 <div>
-                    {this.props.status === 'pending'
+                    {this.props.registerRequestStatus === 'pending'
                         ? <LoadingIndicator />
-                        : <button
-                            className="btn btn-primary"
-                            type="submit"
-                            onClick={this.onSubmit}
-                        >
-                            {this.props.btnText}
+                        : <button className="btn btn-primary" type="submit">
+                              Sign Up
                         </button>}
                 </div>
             </form>
@@ -273,4 +265,10 @@ class Form_Register_Student extends Component {
     }
 }
 
-export default Form_Register_Student;
+function mapStateToProps(state) {
+    return {
+        registerRequestStatus: state.registerStudent.student.status,
+    };
+}
+
+export default connect(mapStateToProps, actions)(Form_Register_Student);

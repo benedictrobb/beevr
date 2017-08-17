@@ -55,10 +55,7 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/auth',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 if (request.auth.isAuthenticated) {
                     var session = request.auth.credentials;
@@ -68,7 +65,6 @@ server.register(plugins, err => {
                                 Boom.serverUnavailable('unavailable' + err)
                             );
                         }
-                        console.log(res);
                         return reply({
                             name: 'successfulAuth',
                             message: `HI ${res.user.toUpperCase()}`,
@@ -96,10 +92,7 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/jobs',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 data.getJobs((err, res) => {
                     if (err) {
@@ -135,9 +128,6 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/jobs',
         config: {
-            auth: {
-                strategy: 'session',
-            },
             handler: (request, reply) => {
                 data.postJobs(request.payload, (err, res) => {
                     if (err) {
@@ -156,10 +146,7 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/get-students',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 data.getStudents((err, res) => {
                     if (err) {
@@ -191,12 +178,9 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
-        path: '/api/student',
+        path: '/api/student/does-exist',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 data.studentExists(request.payload.email, (err, res) => {
                     if (err) {
@@ -210,12 +194,9 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
-        path: '/api/reg-student',
+        path: '/api/student',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
@@ -246,12 +227,9 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
-        path: '/api/resident',
+        path: '/api/resident/does-exist',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 data.residentExists(request.payload.email, (err, res) => {
                     if (err) {
@@ -265,12 +243,9 @@ server.register(plugins, err => {
 
     server.route({
         method: 'POST',
-        path: '/api/reg-resident',
+        path: '/api/resident',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
@@ -302,72 +277,74 @@ server.register(plugins, err => {
     server.route({
         method: 'PUT',
         path: '/api/apply',
-        handler: (request, reply) => {
-            var to = ['rmrajaa@gmail.com'];
-            var from = 'maja.kudlicka@gmail.com';
-            var subject = 'New job application';
-            var text =
-                'Someone has just applied for the job you posted - get in touch!';
+        config: {
+            handler: (request, reply) => {
+                var to = ['rmrajaa@gmail.com'];
+                var from = 'maja.kudlicka@gmail.com';
+                var subject = 'New job application';
+                var text =
+                    'Someone has just applied for the job you posted - get in touch!';
 
-            data.findStudent(request.payload.studentId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to retrieve data from database'
-                        )
-                    );
-                } else {
-                    var message = `${text}
+                data.findStudent(request.payload.studentId, (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to retrieve data from database'
+                            )
+                        );
+                    } else {
+                        var message = `${text}
 
-                     Name: ${res.first_name} ${res.last_name}
-                     University/School:${res.univ_school}
-                     Phone: ${res.phone}
-                     Email: ${res.email}
-                     Bio: ${res.bio}`;
+                         Name: ${res.first_name} ${res.last_name}
+                         University/School:${res.univ_school}
+                         Phone: ${res.phone}
+                         Email: ${res.email}
+                         Bio: ${res.bio}`;
 
-                    data.submitApplication(
-                        request.payload.jobId,
-                        request.payload.residentId,
-                        request.payload.studentId,
-                        (err, res) => {
-                            if (err) {
-                                reply(
-                                    Boom.serverUnavailable(
-                                        'Failed to retrieve data from database'
-                                    )
-                                );
-                            } else {
-                                var updatedTo = res.email;
-                                //this needs to replace 'to' property once proper SES account has been
-                                //established by the product owner
+                        data.submitApplication(
+                            request.payload.jobId,
+                            request.payload.residentId,
+                            request.payload.studentId,
+                            (err, res) => {
+                                if (err) {
+                                    reply(
+                                        Boom.serverUnavailable(
+                                            'Failed to retrieve data from database'
+                                        )
+                                    );
+                                } else {
+                                    var updatedTo = res.email;
+                                    //this needs to replace 'to' property once proper SES account has been
+                                    //established by the product owner
 
-                                sendEmail(
-                                    from,
-                                    to,
-                                    subject,
-                                    message,
-                                    (err, res) => {
-                                        if (err) {
-                                            reply(
-                                                Boom.internal(
-                                                    'Failed to send email',
-                                                    500
-                                                )
-                                            );
-                                        } else {
-                                            reply({
-                                                name: 'applyJob',
-                                                message: 'Email sent!',
-                                                applyJob: res,
-                                            });
+                                    sendEmail(
+                                        from,
+                                        to,
+                                        subject,
+                                        message,
+                                        (err, res) => {
+                                            if (err) {
+                                                reply(
+                                                    Boom.internal(
+                                                        'Failed to send email',
+                                                        500
+                                                    )
+                                                );
+                                            } else {
+                                                reply({
+                                                    name: 'applyJob',
+                                                    message: 'Email sent!',
+                                                    applyJob: res,
+                                                });
+                                            }
                                         }
-                                    }
-                                );
+                                    );
+                                }
                             }
-                        }
-                    );
-                }
-            });
+                        );
+                    }
+                });
+            },
         },
     });
 
@@ -375,10 +352,7 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/login',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 const email = request.payload.email;
                 data.loginRequest(email, (err, res) => {
@@ -393,8 +367,8 @@ server.register(plugins, err => {
                     comparePassword(
                         request.payload.password,
                         user.password_hash,
-                        (err, match) => {
-                            if (err || !match) {
+                        (err, isValid) => {
+                            if (err || !isValid) {
                                 return reply(
                                     Boom.unauthorized(
                                         'Invalid credentials, please retry...' +
@@ -402,7 +376,9 @@ server.register(plugins, err => {
                                     )
                                 );
                             }
-                            request.cookieAuth.set({email});
+                            const id = user.id;
+                            const role = user.role;
+                            request.cookieAuth.set({email, id, role});
                             reply({
                                 name: 'loginRequest',
                                 message: 'Welcome to BEEVR!',
@@ -423,36 +399,27 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/logout',
         config: {
-            auth: {
-                mode: 'optional',
-                strategy: 'session',
-            },
+            auth: false,
             handler: (request, reply) => {
                 request.cookieAuth.clear();
                 reply({
                     name: 'logout',
-                    message: 'You have been successifully logged out from BEEVR',
+                    message:
+                        'You have been successifully logged out from BEEVR',
                     status: 'success',
                 });
             },
         },
     });
 
-    //student is hardcoded to 2 until we have session management capacity
     server.route({
         method: 'GET',
         path: '/api/myjobs',
         config: {
-            auth: {
-                strategy: 'session',
-            },
             handler: (request, reply) => {
-                console.log(request.auth);
                 if (request.auth.isAuthenticated) {
-                    // session data available
                     var session = request.auth.credentials;
-                    console.log(session);
-                    data.getMyJobs((err, res) => {
+                    data.getMyJobs(request.url.query.studentId, (err, res) => {
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
@@ -479,7 +446,7 @@ server.register(plugins, err => {
                                 };
                             }),
                         });
-                    }, 2);
+                    });
                 } else {
                     return reply(
                         Boom.unauthorized('Please log-in to see that')
@@ -492,22 +459,28 @@ server.register(plugins, err => {
     server.route({
         method: 'DELETE',
         path: '/api/myjobs',
-        handler: (request, reply) => {
-            data.deleteApplication(request.url.query.jobId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to delete record from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        name: 'jobDeleted',
-                        message: 'Job deleted',
-                        jobDeleted: res,
-                    });
-                }
-            });
+        config: {
+            handler: (request, reply) => {
+                data.deleteApplication(
+                    request.url.query.studentId,
+                    request.url.query.jobId,
+                    (err, res) => {
+                        if (err) {
+                            reply(
+                                Boom.serverUnavailable(
+                                    'Failed to delete record from database'
+                                )
+                            );
+                        } else {
+                            reply({
+                                name: 'jobDeleted',
+                                message: 'Job deleted',
+                                jobDeleted: res,
+                            });
+                        }
+                    }
+                );
+            },
         },
     });
 
@@ -523,60 +496,63 @@ server.register(plugins, err => {
         },
     });
 
-    //resident id hardcoded until we have cookie on the master branch
     server.route({
         method: 'GET',
         path: '/api/mypostedjobs',
-        handler: (request, reply) => {
-            data.getMyPostedJobs(2, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to retrieve data from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        name: 'myPostedJobsList',
-                        message: 'Welcome to BEEVR!',
-                        myPostedJobsList: res.map(element => {
-                            return {
-                                jobId: element.job_id,
-                                jobTitle: element.job_title,
-                                startDate: element.start_date,
-                                startTime: element.start_time,
-                                endDate: element.end_date,
-                                endTime: element.end_time,
-                                description: element.description,
-                                jobCat: element.category,
-                                rate: element.rate,
-                                studentId: element.student_id,
-                                residentId: element.resident_id,
-                            };
-                        }),
-                    });
-                }
-            });
+        config: {
+            handler: (request, reply) => {
+                data.getMyPostedJobs(request.url.query.residentId, (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to retrieve data from database'
+                            )
+                        );
+                    } else {
+                        reply({
+                            name: 'myPostedJobsList',
+                            message: 'Welcome to BEEVR!',
+                            myPostedJobsList: res.map(element => {
+                                return {
+                                    jobId: element.job_id,
+                                    jobTitle: element.job_title,
+                                    startDate: element.start_date,
+                                    startTime: element.start_time,
+                                    endDate: element.end_date,
+                                    endTime: element.end_time,
+                                    description: element.description,
+                                    jobCat: element.category,
+                                    rate: element.rate,
+                                    studentId: element.student_id,
+                                    residentId: element.resident_id,
+                                };
+                            }),
+                        });
+                    }
+                });
+            },
         },
     });
 
     server.route({
         method: 'DELETE',
         path: '/api/mypostedjobs',
-        handler: (request, reply) => {
-            data.deleteJob(request.url.query.jobId, (err, res) => {
-                if (err) {
-                    reply(
-                        Boom.serverUnavailable(
-                            'Failed to retrieve data from database'
-                        )
-                    );
-                } else {
-                    reply({
-                        message: 'Job deleted',
-                    });
-                }
-            });
+        config: {
+            handler: (request, reply) => {
+                data.deleteJob(request.url.query.jobId, (err, res) => {
+                    if (err) {
+                        reply(
+                            Boom.serverUnavailable(
+                                'Failed to retrieve data from database'
+                            )
+                        );
+                    } else {
+                        reply({
+                            message: 'Job deleted',
+                        });
+                    }
+                });
+            },
         },
     });
 

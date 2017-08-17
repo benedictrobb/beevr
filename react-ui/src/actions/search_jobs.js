@@ -1,7 +1,9 @@
 import axios from 'axios';
-import {FETCH_STUDENT_JOBS} from '../constants/action_types.js';
-import {SET_TERM} from '../constants/action_types.js';
-import {SET_SELECTED_JOB} from '../constants/action_types.js';
+import {
+    FETCH_STUDENT_JOBS,
+    SET_TERM,
+    SET_SELECTED_JOB,
+} from '../constants/action_types.js';
 
 export const fetchJobs = term => dispatch => {
     dispatch({
