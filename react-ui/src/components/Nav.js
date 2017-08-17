@@ -2,6 +2,8 @@ import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {logout} from '../actions/logout.js';
 import {slide as Menu} from 'react-burger-menu';
+import navbar from 'style.css';
+import container from 'style.css';
 
 class Nav extends Component {
     showSettings(event) {
