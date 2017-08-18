@@ -449,6 +449,10 @@ server.register(plugins, err => {
                             }),
                         });
                     });
+                } else {
+                    reply(
+                        Boom.unauthorized('Please log-in to see that')
+                    );
                 }
             },
         },

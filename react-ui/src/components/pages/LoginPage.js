@@ -13,7 +13,6 @@ class LoginPage extends React.Component {
                 browserHistory.push('/browsestudents');
             }
         }
-        this.props.loginRequest.error;
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
