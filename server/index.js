@@ -42,11 +42,14 @@ server.register(plugins, err => {
     server.route({
         method: 'GET',
         path: '/{path*}',
-        handler: {
-            directory: {
-                path: './react-ui/build',
-                listing: false,
-                index: true,
+        config: {
+            auth: false,
+            handler: {
+                directory: {
+                    path: './react-ui/build',
+                    listing: false,
+                    index: true,
+                },
             },
         },
     });
@@ -487,12 +490,14 @@ server.register(plugins, err => {
     server.route({
         method: 'GET',
         path: '/api',
-        handler: (request, reply) => {
-            reply({
-                name: pkg.name,
-                version: pkg.version,
-                message: 'Welcome to BEEVR!',
-            });
+        config: {
+            handler: (request, reply) => {
+                reply({
+                    name: pkg.name,
+                    version: pkg.version,
+                    message: 'Welcome to BEEVR!',
+                });
+            },
         },
     });
 
