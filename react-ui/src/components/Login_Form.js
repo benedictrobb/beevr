@@ -8,7 +8,7 @@ class LoginForm extends Component {
         super();
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
-
+        
         this.state = {
             email: '',
             password: '',
