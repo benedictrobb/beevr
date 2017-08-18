@@ -420,7 +420,6 @@ server.register(plugins, err => {
         config: {
             handler: (request, reply) => {
                 if (request.auth.isAuthenticated) {
-                    console.log('auth', request, 'true');
                     var session = request.auth.credentials;
                     data.getMyJobs(request.url.query.studentId, (err, res) => {
                         if (err) {
@@ -450,10 +449,10 @@ server.register(plugins, err => {
                             });
                         }
                     });
-                } else { 
+                } else {
                     reply(
                         Boom.unauthorized('Please log-in to see that')
-                    );		
+                    );
                 }
             },
         },
