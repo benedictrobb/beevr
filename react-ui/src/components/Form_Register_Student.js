@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import {browserHistory} from 'react-router';
 import Multiselect from 'react-widgets/lib/Multiselect';
 import categories from '../constants/job_categories.js';
+import {browserHistory} from 'react-router';
+import {connect} from 'react-redux';
+import * as actions from '../actions/register_student.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
@@ -259,4 +261,10 @@ class Form_Register_Student extends Component {
     }
 }
 
-export default Form_Register_Student;
+function mapStateToProps(state) {
+    return {
+        registerRequestStatus: state.registerStudent.student.status,
+    };
+}
+
+export default connect(mapStateToProps, actions)(Form_Register_Student);

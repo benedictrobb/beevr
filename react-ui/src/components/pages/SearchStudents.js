@@ -27,6 +27,9 @@ class BrowseStudents extends Component {
     }
 
     renderStudents(student) {
+        if (student && !student.picture) {
+            student.picture = require('../../utils/beaver-1528948_640.jpg');
+        }
         return (
             <div key={student.studentId}>
                 <h3 className="light_brown_title">

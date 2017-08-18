@@ -5,6 +5,7 @@ import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import categories from '../constants/job_categories.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Post_Job extends Component {
     constructor() {
@@ -263,12 +264,13 @@ class Form_Post_Job extends Component {
                         Job description
                     </textarea>
 
-                    <button
-                        className="btn btn-primary post_job_button"
-                        type="submit"
-                    >
-                        SUBMIT
-                    </button>
+                    <div>
+                        {this.props.postJobRequestStatus === 'pending'
+                            ? <LoadingIndicator />
+                            : <button className="btn btn-primary" type="submit">
+                                  Submit
+                            </button>}
+                    </div>
                 </div>
             </form>
         );
@@ -277,10 +279,11 @@ class Form_Post_Job extends Component {
 
 function mapStateToProps(state) {
     var residentId =
-        state.login && state.login.response && state.login.response.id;
+        state.auth && state.auth.response && state.auth.response.id;
     return {
         newJob: state.postJob.newJob.response,
         errorMessage: state.errorMessage,
+        postJobRequestStatus: state.postJob.newJob.status,
         residentId,
     };
 }

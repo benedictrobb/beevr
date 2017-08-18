@@ -7,6 +7,7 @@ class Nav extends Component {
     showSettings(event) {
         event.preventDefault();
     }
+
     render() {
         return (
             <div>
@@ -83,8 +84,13 @@ class Nav extends Component {
                                           Logout
                                     </Link>}
                             </li>
+
                             <li>
-                                <Link to="/">Home</Link>
+                                {!this.props.role
+                                    ? <Link to="/">Home</Link>
+                                    : this.props.role === 'Student'
+                                        ? <Link to="/browsejobs">Home</Link>
+                                        : <Link to="/browsestudents">Home</Link>}
                             </li>
 
                             <li>
