@@ -282,7 +282,7 @@ class Form_Post_Job extends Component {
 
 function mapStateToProps(state) {
     var residentId =
-        state.login && state.login.response && state.login.response.id;
+        state.auth && state.auth.response && state.auth.response.id;
     return {
         newJob: state.postJob.newJob.response,
         errorMessage: state.errorMessage,
