@@ -139,14 +139,6 @@ class Form_Post_Job extends Component {
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
-
         if (!this.state) {
             return <div>Loading</div>;
         }
@@ -243,8 +235,6 @@ class Form_Post_Job extends Component {
                     onChange={this._onChangeCategory}
                 />
                 <datalist id="jobs">
-                    <option value="" disabled />
-                    {options}
                 </datalist>
 
                 <div className="form-group">

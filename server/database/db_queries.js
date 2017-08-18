@@ -185,7 +185,7 @@ data.postStudents = (student, callback) => {
             student.bio,
             student.picture,
             student.phone,
-            student.jobCat,
+            student.jobCategories,
             student.passwordHash,
         ],
         (err, res) => {

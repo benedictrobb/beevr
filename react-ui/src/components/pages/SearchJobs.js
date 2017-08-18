@@ -86,14 +86,6 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        const options = categories.map(function(elem) {
-            return (
-                <option value={categories[elem]}>
-                    {elem}
-                </option>
-            );
-        });
-
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
@@ -113,8 +105,6 @@ class BrowseJobs extends Component {
                                     value={this.props.SearchTerm}
                                 />
                                 <datalist id="jobs">
-                                    <option value="" disabled />
-                                    {options}
                                 </datalist>
                                 <button
                                     type="submit"
