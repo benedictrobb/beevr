@@ -118,7 +118,7 @@ class MyPostedJobs extends Component {
 
 function mapStateToProps(state) {
     var residentId =
-        state.login && state.login.response && state.login.response.id;
+        state.auth && state.auth.response && state.auth.response.id;
     return {
         myPostedJobs: state.fetchMyPostedJobs.jobsPosted.jobs,
         deleteJobRequests: state.fetchMyPostedJobs.deleteJobRequests,

@@ -119,7 +119,7 @@ class MyJobs extends Component {
 
 function mapStateToProps(state) {
     var studentId =
-        state.login && state.login.response && state.login.response.id;
+        state.auth && state.auth.response && state.auth.response.id;
     return {
         myJobs: state.fetchMyJobs.jobsApplied.jobs,
         studentId,
