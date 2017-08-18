@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
-import ErrorMessage from './ErrorMessage.js';
+import {connect} from 'react-redux';
+import * as actions from '../actions/register_resident.js';
+import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Resident extends Component {
     constructor() {
@@ -71,6 +73,7 @@ class Form_Register_Resident extends Component {
                         {this.state.errorMessage}
                     </div>
                 </p>
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="firstName">
                         First Name*
@@ -216,12 +219,22 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
 
-                <button className="btn btn-primary" type="submit">
-                    Sign Up
-                </button>
+                <div>
+                    {this.props.registerRequestStatus === 'pending'
+                        ? <LoadingIndicator />
+                        : <button className="btn btn-primary" type="submit">
+                              Sign Up
+                        </button>}
+                </div>
             </form>
         );
     }
 }
 
-export default Form_Register_Resident;
+function mapStateToProps(state) {
+    return {
+        registerRequestStatus: state.registerResident.resident.status,
+    };
+}
+
+export default connect(mapStateToProps, actions)(Form_Register_Resident);
