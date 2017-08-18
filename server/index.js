@@ -421,6 +421,7 @@ server.register(plugins, err => {
         config: {
             handler: (request, reply) => {
                 if (request.auth.isAuthenticated) {
+                    console.log('auth', request, 'true');
                     var session = request.auth.credentials;
                     data.getMyJobs(request.url.query.studentId, (err, res) => {
                         if (err) {
@@ -429,7 +430,6 @@ server.register(plugins, err => {
                                     'Failed to retrieve data from database'
                                 )
                             );
-                        } else {
                             reply({
                                 name: 'myJobsList',
                                 message: 'Welcome to BEEVR!',
@@ -451,6 +451,10 @@ server.register(plugins, err => {
                             });
                         }
                     });
+                } else { 
+                    reply(
+                        Boom.unauthorized('Please log-in to see that')
+                    );		
                 }
             },
         },
