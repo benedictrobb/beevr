@@ -1,5 +1,4 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';

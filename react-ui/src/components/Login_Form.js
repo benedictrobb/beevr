@@ -22,7 +22,11 @@ class LoginForm extends Component {
         evt.preventDefault();
         var state = this.props.state;
         this.setState({errorMessage: ''});
-        this.props.loginRequest(this.state.email, this.state.password);
+        this.props.loginRequest(this.state.email, this.state.password, () => {
+            this.setState({
+                errorMessage: 'Email/ Password combination is incorrect',
+            });
+        });
     }
 
     onChange(evt) {
@@ -36,7 +40,7 @@ class LoginForm extends Component {
     render() {
         return (
             <div>
-                {this.props.loginRequestStatus === 'error'
+                {this.state.errorMessage 
                     ? <div className="alert alert-danger">
                           Email/ Password combination is incorrect
                     </div>
