@@ -34,7 +34,7 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        student.jobCategories = student.jobCategories[0].map(e => e.value);
+        student.jobCategories = student.jobCategories[0].map(item => item.value);
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
@@ -253,13 +253,9 @@ class Form_Register_Student extends Component {
                         groupBy='group'
                     />
                 </div>
-                <div>
-                    {this.props.registerRequestStatus === 'pending'
-                        ? <LoadingIndicator />
-                        : <button className="btn btn-primary" type="submit">
-                              Sign Up
-                        </button>}
-                </div>
+                <button className="btn btn-primary" type="submit">
+                    Sign Up
+                </button>
             </form>
         );
     }

@@ -1,6 +1,6 @@
 
 html * {
-    font-family: 'Raleway', sans-serif !important;
+    font-family: 'Raleway', sans-serif;
 }
 
 body {
@@ -1050,4 +1050,9 @@ ul.rw-list.rw-list-grouped>li.rw-list-option,.rw-selectlist.rw-list-grouped>li.r
 
 .rw-rtl .rw-multiselect-taglist>li {
     float: right
+}
+
+.Select-option.is-disabled {
+    color: #815355 !important;
+    font-weight: bold;
 }

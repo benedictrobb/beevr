@@ -1,8 +1,8 @@
 import React, {Component} from 'react';
-import axios from 'axios';
 import * as actions from '../actions/post_job.js';
 import {connect} from 'react-redux';
 import {Router, Route, IndexRoute, browserHistory} from 'react-router';
+import DropdownList from 'react-widgets/lib/DropdownList';
 import categories from '../constants/job_categories.js';
 import LoadingIndicator from 'react-loading-indicator';
 
@@ -17,7 +17,8 @@ class Form_Post_Job extends Component {
         this._onChangeTitle = this._onChangeTitle.bind(this);
         this._onChangeRate = this._onChangeRate.bind(this);
         this._onChangeDescription = this._onChangeDescription.bind(this);
-        this._onChangeCategory = this._onChangeCategory.bind(this);
+        this._onChangeCategory= this._onChangeCategory.bind(this);
+        
 
         this.state = {
             jobData: {},
@@ -29,6 +30,7 @@ class Form_Post_Job extends Component {
         evt.preventDefault();
 
         var {jobData} = this.state;
+        jobData.category = jobData.category.value;
 
         if (!jobData.start_date) {
             var error_message = 'Start Date cannot be empty';
@@ -133,16 +135,12 @@ class Form_Post_Job extends Component {
         this.setState({
             jobData: {
                 ...jobData,
-                category: evt.target.value,
+                category: evt,
             },
         });
     }
 
     render() {
-        if (!this.state) {
-            return <div>Loading</div>;
-        }
-
         return (
             <form className="form-group" onSubmit={this._onSubmit}>
                 <p>
@@ -222,21 +220,19 @@ class Form_Post_Job extends Component {
                     />
                 </div>
 
-                <label className="control-label" htmlFor="Job categories">
-                    Job category*
-                </label>
-                <input
-                    className="form-control job_categories"
-                    id="job_categories"
-                    type="text"
-                    placeholder="Select a job category"
-                    list="jobs"
-                    value={this.state.jobData.category}
-                    onChange={this._onChangeCategory}
-                />
-                <datalist id="jobs">
-                </datalist>
-
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Job categories">
+                        Job category*
+                    </label>
+                    <DropdownList
+                        data={categories}
+                        textField='value'
+                        placeholder="Select a job category"
+                        onChange={this._onChangeCategory}
+                        groupBy='group'
+                    />
+                </div>
+                
                 <div className="form-group">
                     <label className="control-label" htmlFor="Rate">
                         Rate* (in £)

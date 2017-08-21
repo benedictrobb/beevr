@@ -428,29 +428,29 @@ server.register(plugins, err => {
                                     'Failed to retrieve data from database'
                                 )
                             );
+                            reply({
+                                name: 'myJobsList',
+                                message: 'Welcome to BEEVR!',
+                                myJobsList: res.map(element => {
+                                    return {
+                                        jobId: element.job_id,
+                                        jobTitle: element.job_title,
+                                        startDate: element.start_date,
+                                        startTime: element.start_time,
+                                        endDate: element.end_date,
+                                        endTime: element.end_time,
+                                        description: element.description,
+                                        jobCat: element.category,
+                                        rate: element.rate,
+                                        studentId: element.student_id,
+                                        residentId: element.resident_id,
+                                    };
+                                }),
+                            });
                         }
-                        return reply({
-                            name: 'myJobsList',
-                            message: 'Welcome to BEEVR!',
-                            myJobsList: res.map(element => {
-                                return {
-                                    jobId: element.job_id,
-                                    jobTitle: element.job_title,
-                                    startDate: element.start_date,
-                                    startTime: element.start_time,
-                                    endDate: element.end_date,
-                                    endTime: element.end_time,
-                                    description: element.description,
-                                    jobCat: element.category,
-                                    rate: element.rate,
-                                    studentId: element.student_id,
-                                    residentId: element.resident_id,
-                                };
-                            }),
-                        });
                     });
                 } else {
-                    return reply(
+                    reply(
                         Boom.unauthorized('Please log-in to see that')
                     );
                 }
