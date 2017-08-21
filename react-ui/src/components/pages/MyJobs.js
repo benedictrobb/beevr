@@ -81,6 +81,27 @@ class MyJobs extends Component {
                 </div>
             );
         }
+
+        if (myJobs.length === 0) {
+            return (
+                <div className="parent-container">
+                    <div>
+                        <div className="flex-container">
+                            <img
+                                className="success_image"
+                                src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+                            />
+                        </div>
+
+                        <div className="flex-container">
+                            <h5 className="success_message">
+                                You have no outstanding job applications
+                            </h5>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">

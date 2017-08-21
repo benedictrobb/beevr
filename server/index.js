@@ -204,9 +204,12 @@ server.register(plugins, err => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
+                    var jobCategories = request.payload.jobCategories[0].map(
+                        item => item.value
+                    );
                     data.postStudents(
                         Object.assign({}, request.payload, {
-                            passwordHash: hash,
+                            jobCategories: jobCategories, passwordHash: hash,
                         }),
                         (err, res) => {
                             if (err) {
@@ -428,31 +431,29 @@ server.register(plugins, err => {
                                     'Failed to retrieve data from database'
                                 )
                             );
-                            reply({
-                                name: 'myJobsList',
-                                message: 'Welcome to BEEVR!',
-                                myJobsList: res.map(element => {
-                                    return {
-                                        jobId: element.job_id,
-                                        jobTitle: element.job_title,
-                                        startDate: element.start_date,
-                                        startTime: element.start_time,
-                                        endDate: element.end_date,
-                                        endTime: element.end_time,
-                                        description: element.description,
-                                        jobCat: element.category,
-                                        rate: element.rate,
-                                        studentId: element.student_id,
-                                        residentId: element.resident_id,
-                                    };
-                                }),
-                            });
                         }
+                        reply({
+                            name: 'myJobsList',
+                            message: 'Welcome to BEEVR!',
+                            myJobsList: res.map(element => {
+                                return {
+                                    jobId: element.job_id,
+                                    jobTitle: element.job_title,
+                                    startDate: element.start_date,
+                                    startTime: element.start_time,
+                                    endDate: element.end_date,
+                                    endTime: element.end_time,
+                                    description: element.description,
+                                    jobCat: element.category,
+                                    rate: element.rate,
+                                    studentId: element.student_id,
+                                    residentId: element.resident_id,
+                                };
+                            }),
+                        });
                     });
                 } else {
-                    reply(
-                        Boom.unauthorized('Please log-in to see that')
-                    );
+                    reply(Boom.unauthorized('Please log-in to see that'));
                 }
             },
         },
@@ -505,35 +506,38 @@ server.register(plugins, err => {
         path: '/api/mypostedjobs',
         config: {
             handler: (request, reply) => {
-                data.getMyPostedJobs(request.url.query.residentId, (err, res) => {
-                    if (err) {
-                        reply(
-                            Boom.serverUnavailable(
-                                'Failed to retrieve data from database'
-                            )
-                        );
-                    } else {
-                        reply({
-                            name: 'myPostedJobsList',
-                            message: 'Welcome to BEEVR!',
-                            myPostedJobsList: res.map(element => {
-                                return {
-                                    jobId: element.job_id,
-                                    jobTitle: element.job_title,
-                                    startDate: element.start_date,
-                                    startTime: element.start_time,
-                                    endDate: element.end_date,
-                                    endTime: element.end_time,
-                                    description: element.description,
-                                    jobCat: element.category,
-                                    rate: element.rate,
-                                    studentId: element.student_id,
-                                    residentId: element.resident_id,
-                                };
-                            }),
-                        });
+                data.getMyPostedJobs(
+                    request.url.query.residentId,
+                    (err, res) => {
+                        if (err) {
+                            reply(
+                                Boom.serverUnavailable(
+                                    'Failed to retrieve data from database'
+                                )
+                            );
+                        } else {
+                            reply({
+                                name: 'myPostedJobsList',
+                                message: 'Welcome to BEEVR!',
+                                myPostedJobsList: res.map(element => {
+                                    return {
+                                        jobId: element.job_id,
+                                        jobTitle: element.job_title,
+                                        startDate: element.start_date,
+                                        startTime: element.start_time,
+                                        endDate: element.end_date,
+                                        endTime: element.end_time,
+                                        description: element.description,
+                                        jobCat: element.category,
+                                        rate: element.rate,
+                                        studentId: element.student_id,
+                                        residentId: element.resident_id,
+                                    };
+                                }),
+                            });
+                        }
                     }
-                });
+                );
             },
         },
     });
