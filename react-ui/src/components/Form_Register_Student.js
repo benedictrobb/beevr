@@ -34,9 +34,6 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        student.jobCategories = student.jobCategories[0].map(
-            item => item.value
-        );
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
