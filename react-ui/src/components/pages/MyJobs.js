@@ -73,7 +73,6 @@ class MyJobs extends Component {
 
     render() {
         let {myJobs} = this.props;
-        console.log('MyJobs are', myJobs);
 
         if (!myJobs) {
             return (

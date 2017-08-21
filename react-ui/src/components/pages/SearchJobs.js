@@ -42,7 +42,6 @@ class BrowseJobs extends Component {
     }
 
     onJobSearchChange(evt) {
-        console.log(evt.value);
         this.props.setTerm(evt.value);
     }
 
@@ -88,7 +87,6 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        console.log(this.props);
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
