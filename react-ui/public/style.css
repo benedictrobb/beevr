@@ -379,6 +379,14 @@ button.rw-input::-moz-focus-inner,input.rw-input::-moz-focus-inner {
     background-color: #fff
 }
 
+#browseStudentsForm .rw-input {
+    line-height: 1.42857143em;
+}
+
+#browseJobsForm .rw-input {
+    line-height: 1.42857143em;
+}
+
 .rw-input[disabled] {
     -webkit-box-shadow: none;
     box-shadow: none;

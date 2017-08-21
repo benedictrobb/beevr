@@ -49,7 +49,6 @@ class BrowseStudents extends Component {
     }
 
     render() {
-        console.log(this.props);
         let {students} = this.props;
         let studentList = students && students.studentList;
 
@@ -65,17 +64,16 @@ class BrowseStudents extends Component {
                                 Post A Job
                             </Link>
                             <form onSubmit={this.onSubmit}>
-                                <input
+                                <DropdownList
+                                    id="browseStudentsForm"
                                     className="form-control"
-                                    id="Browse Students"
-                                    type="text"
+                                    data={categories}
+                                    textField='value'
                                     placeholder="Browse Students"
-                                    list="students"
                                     onChange={this.onStudentSearchChange}
                                     value={this.props.searchTerm}
+                                    groupBy='group'
                                 />
-                                <datalist id="students">
-                                </datalist>
                                 <button
                                     type="submit"
                                     className="btn btn-primary submit_button"
@@ -124,6 +122,7 @@ class BrowseStudents extends Component {
                             </div>}
                         <form onSubmit={this.onSubmit}>
                             <DropdownList
+                                id="browseStudentsForm"
                                 className="form-control"
                                 data={categories}
                                 textField='value'
