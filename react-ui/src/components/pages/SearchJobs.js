@@ -42,7 +42,6 @@ class BrowseJobs extends Component {
     }
 
     onJobSearchChange(evt) {
-        console.log(evt.value);
         this.props.setTerm(evt.value);
     }
 
@@ -88,7 +87,6 @@ class BrowseJobs extends Component {
     }
 
     render() {
-        console.log(this.props);
         let {jobs} = this.props;
         let jobsList = jobs && jobs.jobsList;
 
@@ -97,19 +95,23 @@ class BrowseJobs extends Component {
                 <div className="container-fluid">
                     <article className="row-fluid search_jobs">
                         <section className="col-md-6 col-md-offset-3">
-                            <form className="form-group" onSubmit={this.onSubmit}>
+                            <form
+                                className="form-group"
+                                onSubmit={this.onSubmit}
+                            >
                                 <DropdownList
+                                    className="form-control"
                                     placeholder="Browse Jobs"
                                     data={categories}
-                                    textField='value'
+                                    textField="value"
                                     onChange={this.onJobSearchChange}
                                     value={this.props.SearchTerm}
-                                    groupBy='group'
+                                    groupBy="group"
                                 />
                                 <button
                                     type="submit"
                                     id="submit_button"
-                                    className="btn btn-primary"
+                                    className="btn btn-primary submit_button"
                                 >
                                     Submit
                                 </button>
@@ -140,14 +142,18 @@ class BrowseJobs extends Component {
                                       My applications
                                 </Link>
                             </div>}
+                        <br />
+                        <br />
+                        <br />
                         <form onSubmit={this.onSubmit}>
                             <DropdownList
+                                className="form-control"
                                 placeholder="Browse Jobs"
                                 data={categories}
-                                textField='value'
+                                textField="value"
                                 onChange={this.onJobSearchChange}
                                 value={this.props.SearchTerm}
-                                groupBy='group'
+                                groupBy="group"
                             />
                             <button
                                 type="submit"

@@ -8,10 +8,23 @@ class RegisterResident extends Component {
     render() {
         if (this.props.registered === 'success') {
             return (
-                <div className="row">
-                    <div className="col-md-4 col-md-offset-4">
-                        <div>Registration successful!</div>
-                        <Link to="/login">Login to continue</Link>
+                <div className="parent-container">
+                    <div>
+                        <div className="flex-container">
+                            <img
+                                className="success_image"
+                                src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+                            />
+                        </div>
+
+                        <div className="flex-container">
+                            <h3 className="success_message">
+                                REGISTRATION SUCCESSFUL!
+                            </h3>
+                        </div>
+                        <div className="flex-container">
+                            <h6>Log in to continue</h6>
+                        </div>
                     </div>
                 </div>
             );

@@ -34,7 +34,6 @@ class Form_Register_Student extends Component {
     onSubmit(evt) {
         evt.preventDefault();
         var student = this.state.student;
-        student.jobCategories = student.jobCategories[0].map(item => item.value);
 
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
@@ -245,12 +244,12 @@ class Form_Register_Student extends Component {
                     >
                         Your job categories
                     </label>
-                    <Multiselect 
+                    <Multiselect
                         data={categories}
-                        textField='value'
+                        textField="value"
                         onChange={this.onChangeJobCategories}
                         placeholder="Pick up to 8 jobs categories"
-                        groupBy='group'
+                        groupBy="group"
                     />
                 </div>
                 <button className="btn btn-primary" type="submit">
