@@ -3,6 +3,7 @@ import {connect} from 'react-redux';
 import * as actions from '../../actions/search_students.js';
 import {Link} from 'react-router';
 import categories from '../../constants/job_categories.js';
+import DropdownList from 'react-widgets/lib/DropdownList';
 
 class BrowseStudents extends Component {
     constructor() {
@@ -22,7 +23,7 @@ class BrowseStudents extends Component {
     }
 
     onStudentSearchChange(evt) {
-        this.props.setTerm(evt.target.value);
+        this.props.setTerm(evt);
     }
 
     renderStudents(student) {
@@ -53,7 +54,7 @@ class BrowseStudents extends Component {
 
         if (!studentList) {
             return (
-                <div className="container-fluid">
+                <div >
                     <article className="row-fluid search_jobs">
                         <section className="col-md-6 col-md-offset-3">
                             <Link
@@ -63,17 +64,16 @@ class BrowseStudents extends Component {
                                 Post A Job
                             </Link>
                             <form onSubmit={this.onSubmit}>
-                                <input
+                                <DropdownList
+                                    id="browseStudentsForm"
                                     className="form-control"
-                                    id="Browse Students"
-                                    type="text"
+                                    data={categories}
+                                    textField='value'
                                     placeholder="Browse Students"
-                                    list="students"
                                     onChange={this.onStudentSearchChange}
                                     value={this.props.searchTerm}
+                                    groupBy='group'
                                 />
-                                <datalist id="students">
-                                </datalist>
                                 <button
                                     type="submit"
                                     className="btn btn-primary submit_button"
@@ -121,17 +121,16 @@ class BrowseStudents extends Component {
                                 </Link>
                             </div>}
                         <form onSubmit={this.onSubmit}>
-                            <input
+                            <DropdownList
+                                id="browseStudentsForm"
                                 className="form-control"
-                                id="Browse Students"
-                                type="text"
+                                data={categories}
+                                textField='value'
                                 placeholder="Browse Students"
-                                list="students"
                                 onChange={this.onStudentSearchChange}
                                 value={this.props.searchTerm}
+                                groupBy='group'
                             />
-                            <datalist id="students">
-                            </datalist>
 
                             <button
                                 type="submit"

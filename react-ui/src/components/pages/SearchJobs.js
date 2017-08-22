@@ -100,6 +100,7 @@ class BrowseJobs extends Component {
                                 onSubmit={this.onSubmit}
                             >
                                 <DropdownList
+                                    id="browseJobsForm"
                                     className="form-control"
                                     placeholder="Browse Jobs"
                                     data={categories}
@@ -147,6 +148,7 @@ class BrowseJobs extends Component {
                         <br />
                         <form onSubmit={this.onSubmit}>
                             <DropdownList
+                                id="browseJobsForm"
                                 className="form-control"
                                 placeholder="Browse Jobs"
                                 data={categories}

@@ -379,6 +379,14 @@ button.rw-input::-moz-focus-inner,input.rw-input::-moz-focus-inner {
     background-color: #fff
 }
 
+#browseStudentsForm .rw-input {
+    line-height: 1.42857143em;
+}
+
+#browseJobsForm .rw-input {
+    line-height: 1.42857143em;
+}
+
 .rw-input[disabled] {
     -webkit-box-shadow: none;
     box-shadow: none;
@@ -1047,4 +1055,13 @@ ul.rw-list.rw-list-grouped>li.rw-list-option,.rw-selectlist.rw-list-grouped>li.r
 
 .rw-rtl .rw-multiselect-taglist>li {
     float: right
+}
+
+.Select-option.is-disabled {
+    color: #815355 !important;
+    font-weight: bold;
+}
+
+.rw-widget {
+    display: flex !important;
 }
