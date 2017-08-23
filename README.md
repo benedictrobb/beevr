@@ -34,7 +34,7 @@ npm test
 1. Click on the "Commit changes" button.
 1. After a couple of minutes the changes should appear in the app.
 
-Please note that the points at Add/modify step are VERY important and all and every punctuation/parenthesis HAVE to be in the right place.
+Please note that the points of the Add/modify step are VERY important and ALL and EVERY punctuation/parenthesis HAVE to be right for the App to work.
 
 ## Built With
 
