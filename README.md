@@ -51,7 +51,7 @@ ___Please note that the points of the Add/modify step are VERY important and ALL
 * [Redux](http://redux.js.org/)
 * Node.js
 * Hapi.js
-* Postgres-SQL [Database schema](https://app.quickdatabasediagrams.com/#/schema/9klWQjlbdUC-GABVZxLzPg)
+* Postgres-SQL - [Database schema](https://app.quickdatabasediagrams.com/#/schema/9klWQjlbdUC-GABVZxLzPg)
 
 
 ## Contributors
