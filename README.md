@@ -29,7 +29,7 @@ npm test
     ```
     * The format of list items is:
     ```js
-    {group: '<NAME OF THE HEADER>', value: '<NAME OF THE CATEGORY>'},
+    {group: 'NAME OF THE HEADER', value: 'NAME OF THE CATEGORY'},
     ```
     * The list ends with:
     ```js
