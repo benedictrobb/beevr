@@ -123,6 +123,10 @@ body {
     margin-top: 5%;
 }
 
+.optional-login {
+    display: flex;
+}
+
 .pull-right {
     float: right;
     margin: 0 0 0 5px;

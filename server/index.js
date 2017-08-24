@@ -148,7 +148,9 @@ server.register(plugins, err => {
         method: 'GET',
         path: '/api/get-students',
         config: {
-            auth: false,
+            auth: {
+                mode: 'optional',
+            },
             handler: (request, reply) => {
                 data.getStudents((err, res) => {
                     if (err) {
@@ -156,6 +158,7 @@ server.register(plugins, err => {
                             Boom.serverUnavailable('unavailable: ' + err)
                         );
                     } else {
+                        console.log(res);
                         reply({
                             name: 'studentList',
                             message: 'Welcome to BEEVR!',
@@ -164,16 +167,18 @@ server.register(plugins, err => {
                                     studentId: element.student_id,
                                     firstName: element.first_name,
                                     lastName: element.last_name,
+                                    email: element.email,
                                     dob: element.dob,
                                     univSchool: element.univ_school,
                                     bio: element.bio,
                                     picture: element.picture,
+                                    phone: element.phone,
                                     jobCat: element.job_cat,
                                 };
                             }),
                         });
                     }
-                }, request.url.query.searchTerm);
+                }, request.url.query.searchTerm, request.auth.credentials.id);
             },
         },
     });

@@ -57,8 +57,8 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getStudents = (callback, term) => {
-    if (!term) {
+data.getStudents = (callback, term, id) => {
+    if (!term && !id) {
         dbConnection.query(
             `SELECT
                 students.student_id,
@@ -79,7 +79,7 @@ data.getStudents = (callback, term) => {
                 callback(null, res.rows);
             }
         );
-    } else {
+    } else if (term && !id) {
         dbConnection.query(
             `SELECT
                 students.student_id,
@@ -102,7 +102,30 @@ data.getStudents = (callback, term) => {
                 }
             }
         );
+    } else {
+        dbConnection.query(
+            `SELECT
+                students.first_name,
+                students.last_name,
+                students.email,
+                students.dob,
+                students.univ_school,
+                students.bio,
+                students.picture,
+                students.phone,
+                students.job_cat
+                    FROM students WHERE student_id = $1;`,
+            [id],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
     }
+
 };
 
 data.loginRequest = (email, callback) => {

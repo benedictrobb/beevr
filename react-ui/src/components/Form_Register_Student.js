@@ -23,7 +23,7 @@ class Form_Register_Student extends Component {
             },
         };
     }
-
+    
     checkEmail(value) {
         value = this.state.student.email;
         if (value !== '') {
@@ -82,6 +82,14 @@ class Form_Register_Student extends Component {
     }
 
     render() {
+        console.log('form props',this.props);
+        console.log('form state',this.state);
+        let studentToUpdate = new Object();
+        
+        for (var key in this.props.studentToUpdate) {
+            studentToUpdate[key] =this.props.studentToUpdate[key];
+        };
+        
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -102,7 +110,7 @@ class Form_Register_Student extends Component {
                         id="firstName"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.student.firstName}
+                        value={this.state.student.firstName || studentToUpdate.firstName}
                         onChange={this.onChange}
                     />
                 </div>
@@ -116,7 +124,7 @@ class Form_Register_Student extends Component {
                         id="lastName"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.student.lastName}
+                        value={this.state.student.lastName || studentToUpdate.lastName }
                         onChange={this.onChange}
                     />
                 </div>
@@ -129,7 +137,7 @@ class Form_Register_Student extends Component {
                         name="email"
                         id="email"
                         type="email"
-                        value={this.state.student.email}
+                        value={this.state.student.email || studentToUpdate.email}
                         placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
@@ -176,7 +184,7 @@ class Form_Register_Student extends Component {
                         id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.student.DOB}
+                        value={this.state.student.DOB || studentToUpdate.dob}
                         onChange={this.onChange}
                     />
                 </div>
@@ -190,7 +198,7 @@ class Form_Register_Student extends Component {
                         id="universitySchool"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.student.univSchool}
+                        value={this.state.student.univSchool || studentToUpdate.univSchool}
                         onChange={this.onChange}
                     />
                 </div>
@@ -204,7 +212,7 @@ class Form_Register_Student extends Component {
                         id="bio"
                         type="text"
                         placeholder="Tell us more about you..."
-                        value={this.state.student.bio}
+                        value={this.state.student.bio || studentToUpdate.bio}
                         onChange={this.onChange}
                     />
                 </div>
@@ -218,7 +226,7 @@ class Form_Register_Student extends Component {
                         id="picture"
                         type="text"
                         placeholder="Paste url of your picture"
-                        value={this.state.student.picture}
+                        value={this.state.student.picture || studentToUpdate.picture}
                         onChange={this.onChange}
                     />
                 </div>
@@ -232,7 +240,7 @@ class Form_Register_Student extends Component {
                         id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
-                        value={this.state.student.phone}
+                        value={this.state.student.phone || studentToUpdate.phone}
                         onChange={this.onChange}
                     />
                 </div>
@@ -245,6 +253,10 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
+                        value={studentToUpdate
+                            ? studentToUpdate.jobCat
+                            : null
+                        }
                         data={categories}
                         textField="value"
                         onChange={this.onChangeJobCategories}
@@ -252,9 +264,15 @@ class Form_Register_Student extends Component {
                         groupBy="group"
                     />
                 </div>
-                <button className="btn btn-primary" type="submit">
-                    Sign Up
-                </button>
+                <div>
+                    {this.props.studentToUpdate
+                        ? <button className="btn btn-primary" type="submit">
+                              Update
+                        </button>
+                        : <button className="btn btn-primary" type="submit">
+                              Sign Up
+                        </button>}
+                </div>
             </form>
         );
     }
