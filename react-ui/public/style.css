@@ -15,7 +15,8 @@ body {
         color: #815355;
     }
 
-    .navbar-nav li a:hover {
+    .navbar-nav li a:hover,
+    .navbar-nav li a:focus {
         color: white;
         text-decoration: none;
     }
