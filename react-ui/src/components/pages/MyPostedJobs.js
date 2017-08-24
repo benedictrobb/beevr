@@ -78,11 +78,10 @@ class MyPostedJobs extends Component {
     render() {
         let {myPostedJobs} = this.props;
 
-        if (!myPostedJobs) {
-            return <div>Loading</div>;
-        }
-
-        if (myPostedJobs.length === 0) {
+        if (
+            this.props.myPostedJobsStatus === 'success' &&
+            myPostedJobs.length === 0
+        ) {
             return (
                 <div className="parent-container">
                     <div>
@@ -102,6 +101,15 @@ class MyPostedJobs extends Component {
                 </div>
             );
         }
+
+        if (myPostedJobs.length === 0) {
+            return (
+                <div className="register_container flex-container">
+                    <LoadingIndicator />
+                </div>
+            );
+        }
+
         return (
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
@@ -121,6 +129,7 @@ function mapStateToProps(state) {
         state.auth && state.auth.response && state.auth.response.id;
     return {
         myPostedJobs: state.fetchMyPostedJobs.jobsPosted.jobs,
+        myPostedJobsStatus: state.fetchMyPostedJobs.jobsPosted.requestStatus,
         deleteJobRequests: state.fetchMyPostedJobs.deleteJobRequests,
         residentId,
     };
