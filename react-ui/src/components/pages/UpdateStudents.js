@@ -6,11 +6,10 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 class UpdateStudents extends Component {
-
     componentWillMount() {
         this.props.fetchStudents();
     }
-    
+
     render() {
         console.log(this.props);
         console.log(this.state);
@@ -40,8 +39,13 @@ class UpdateStudents extends Component {
 }
 
 function mapStateToProps(state) {
-    
-    let studentToUpdate = state.searchStudents.studentsRequest.response && state.searchStudents.studentsRequest.response.studentList[0];
+    let studentToUpdate =
+        state.searchStudents.studentsRequest.response &&
+        state.searchStudents.studentsRequest.response.studentList[0];
+
+    if (studentToUpdate) {
+        studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
+    }
 
     return {
         student: state.registerStudent.student.response,
@@ -50,4 +54,6 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {registerStudent, fetchStudents})(UpdateStudents);
+export default connect(mapStateToProps, {registerStudent, fetchStudents})(
+    UpdateStudents
+);
