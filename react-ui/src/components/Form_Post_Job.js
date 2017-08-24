@@ -264,7 +264,10 @@ class Form_Post_Job extends Component {
                     <div>
                         {this.props.postJobRequestStatus === 'pending'
                             ? <LoadingIndicator />
-                            : <button className="btn btn-primary" type="submit">
+                            : <button
+                                className="btn btn-primary post_button"
+                                type="submit"
+                            >
                                   Submit
                             </button>}
                     </div>

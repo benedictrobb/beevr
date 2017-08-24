@@ -12,7 +12,7 @@ class Dashboard extends Component {
                     <div className="container-flex-dashboard">
                         <div className="col-sm-5 bgimg_student">
                             <Link to="/browsejobs" className="front_student">
-                                <h1>Student</h1>
+                                <h1 className="front_title_student">Student</h1>
                             </Link>
                         </div>
                         <div className="col-sm-1" />
@@ -21,7 +21,9 @@ class Dashboard extends Component {
                                 to="/browsestudents"
                                 className="front_resident"
                             >
-                                <h1>Resident</h1>
+                                <h1 className="front_title_resident">
+                                    Resident
+                                </h1>
                             </Link>
                         </div>
                     </div>
@@ -30,6 +32,5 @@ class Dashboard extends Component {
         );
     }
 }
-
 
 export default Dashboard;

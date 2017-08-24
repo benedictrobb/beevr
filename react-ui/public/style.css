@@ -132,6 +132,14 @@ body {
     margin-top: 5%;
 }
 
+.front_title_resident:hover {
+    color: #dbebc0;
+}
+
+.front_title_student:hover {
+    color: #523249;
+}
+
 .pull-right {
     float: right;
     margin: 0 0 0 5px;
@@ -140,6 +148,10 @@ body {
 .submit_button {
     margin-top: 1%;
     margin-bottom: 5%;
+}
+
+.post_button {
+    margin-top: 5%;
 }
 
 .search_results_ul {
