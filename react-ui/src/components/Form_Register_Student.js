@@ -146,34 +146,38 @@ class Form_Register_Student extends Component {
                         spellCheck="false"
                     />
                 </div>
-                <div className="form-group">
-                    <label className="control-label" htmlFor="password">
-                        Password*
-                    </label>
-                    <input
-                        className="form-control"
-                        name="password"
-                        id="password"
-                        type="password"
-                        value={this.state.student.password}
-                        placeholder="Password"
-                        onChange={this.onChange}
-                    />
-                </div>
-                <div className="form-group">
-                    <label className="control-label" htmlFor="confirmPassword">
-                        Confirm password*
-                    </label>
-                    <input
-                        className="form-control"
-                        name="confirmPassword"
-                        id="password"
-                        type="password"
-                        value={this.state.student.confirmPassword}
-                        placeholder="Confirm password"
-                        onChange={this.onChange}
-                    />
-                </div>
+                {!this.props.studentToUpdate
+                    ? <div className="form-group">
+                        <label className="control-label" htmlFor="password">
+                            Password*
+                        </label>
+                        <input
+                            className="form-control"
+                            name="password"
+                            id="password"
+                            type="password"
+                            value={this.state.student.password}
+                            placeholder="Password"
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    : null}
+                {!this.props.studentToUpdate
+                    ? <div className="form-group">
+                        <label className="control-label" htmlFor="confirmPassword">
+                            Confirm password*
+                        </label>
+                        <input
+                            className="form-control"
+                            name="confirmPassword"
+                            id="password"
+                            type="password"
+                            value={this.state.student.confirmPassword}
+                            placeholder="Confirm password"
+                            onChange={this.onChange}
+                        />
+                    </div>
+                    : null}
                 <div className="form-group">
                     <label className="control-label" htmlFor="dateOfBirth">
                         Date of Birth
