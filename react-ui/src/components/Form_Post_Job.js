@@ -152,19 +152,6 @@ class Form_Post_Job extends Component {
                     </div>
                 </p>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Start Date">
-                        Start Date*
-                    </label>
-                    <input
-                        className="form-control"
-                        id="Start Date"
-                        type="date"
-                        placeholder="Start Date"
-                        value={this.state.jobData.start_date}
-                        onChange={this._onChangeStartDate}
-                    />
-                </div>
-                <div className="form-group">
                     <label className="control-label" htmlFor="Job Title">
                         Job Title*
                     </label>
@@ -178,19 +165,18 @@ class Form_Post_Job extends Component {
                     />
                 </div>
                 <div className="form-group">
-                    <label className="control-label" htmlFor="Start Time">
-                        Start Time*
+                    <label className="control-label" htmlFor="Start Date">
+                        Start Date*
                     </label>
                     <input
                         className="form-control"
-                        id="Start Time"
-                        type="time"
-                        placeholder="Start Time"
-                        value={this.state.jobData.stat_time}
-                        onChange={this._onChangeStartTime}
+                        id="Start Date"
+                        type="date"
+                        placeholder="Start Date"
+                        value={this.state.jobData.start_date}
+                        onChange={this._onChangeStartDate}
                     />
                 </div>
-
                 <div className="form-group">
                     <label className="control-label" htmlFor="End Date">
                         End Date*
@@ -202,6 +188,19 @@ class Form_Post_Job extends Component {
                         placeholder="End Date"
                         value={this.state.jobData.end_date}
                         onChange={this._onChangeEndDate}
+                    />
+                </div>
+                <div className="form-group">
+                    <label className="control-label" htmlFor="Start Time">
+                        Start Time*
+                    </label>
+                    <input
+                        className="form-control"
+                        id="Start Time"
+                        type="time"
+                        placeholder="Start Time"
+                        value={this.state.jobData.stat_time}
+                        onChange={this._onChangeStartTime}
                     />
                 </div>
 
