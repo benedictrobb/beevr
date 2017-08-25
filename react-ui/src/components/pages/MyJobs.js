@@ -74,15 +74,7 @@ class MyJobs extends Component {
     render() {
         let {myJobs} = this.props;
 
-        if (!myJobs) {
-            return (
-                <div className="register_container flex-container">
-                    <LoadingIndicator />
-                </div>
-            );
-        }
-
-        if (myJobs.length === 0) {
+        if (this.props.myJobsStatus === 'success' && myJobs.length === 0) {
             return (
                 <div className="parent-container">
                     <div>
@@ -102,6 +94,14 @@ class MyJobs extends Component {
                 </div>
             );
         }
+
+        if (myJobs.length === 0) {
+            return (
+                <div className="register_container flex-container">
+                    <LoadingIndicator />
+                </div>
+            );
+        }
         return (
             <div className="container-fluid">
                 <article className="row-fluid search_jobs">
@@ -117,10 +117,11 @@ class MyJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    var studentId =
-        state.auth && state.auth.response && state.auth.response.id;
+    var studentId = state.auth && state.auth.response && state.auth.response.id;
+
     return {
         myJobs: state.fetchMyJobs.jobsApplied.jobs,
+        myJobsStatus: state.fetchMyJobs.jobsApplied.requestStatus,
         studentId,
     };
 }
