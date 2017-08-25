@@ -25,13 +25,6 @@ class Form_Register_Student extends Component {
         };
     }
 
-    componentWillMount() {
-        console.log('CWM', this.props.studentToUpdate);
-        //var student = this.props.studentToUpdate;
-        //console.log(student);
-        //this.setState({student});
-    }
-
     checkEmail(value) {
         value = this.state.student.email;
         if (value !== '') {
@@ -46,35 +39,38 @@ class Form_Register_Student extends Component {
             lastName,
             dob,
             email,
+            password,
             bio,
+            picture,
             phone,
             univSchool,
-            jobCat,
-            picture,
+            jobCategories,
         } = this.props.studentToUpdate;
 
         var firstName = this.state.student.firstName || firstName;
         var lastName = this.state.student.lastName || lastName;
+        var email = this.state.student.email || email;
+        var password = this.state.student.password || password;
         var dob = this.state.student.dob || dob;
         var bio = this.state.student.bio || bio;
+        var picture = this.state.student.picture || picture;
         var phone = this.state.student.phone || phone;
         var univSchool = this.state.student.univSchool || univSchool;
-        var email = this.state.student.email || email;
-        var jobCat = this.state.student.jobCat || jobCat;
-        var picture = this.state.student.picture || picture;
+        var jobCategories = this.state.student.jobCategories || jobCategories;
 
         this.setState(
             {
                 student: {
                     firstName,
                     lastName,
+                    email,
+                    password,
                     dob,
                     bio,
+                    picture,
                     phone,
                     univSchool,
-                    email,
-                    jobCat,
-                    picture,
+                    jobCategories,
                 },
             },
             () => {
@@ -103,7 +99,7 @@ class Form_Register_Student extends Component {
         }
 
         if (!this.state.errorMessage) {
-            this.props.registerStudent(this.state.student);
+            this.props.registerStudent(student);
         }
     }
     //onSubmit(evt) {
@@ -358,7 +354,7 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
-                        value={studentToUpdate ? studentToUpdate.jobCat : null}
+                        value={studentToUpdate ? studentToUpdate.jobCategories : null}
                         data={categories}
                         textField="value"
                         onChange={this.onChangeJobCategories}

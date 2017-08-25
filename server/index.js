@@ -203,18 +203,23 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/student',
         config: {
-            auth: false,
+            auth: {
+                mode:'optional',
+            },
             handler: (request, reply) => {
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
-                    var jobCategories = request.payload.jobCat || request.payload.jobCategories[0].map(
-                        item => item.value
-                    );
-                    data.postStudents(
+                    if (request.auth.credentials.id) {
+                        var studentId = request.auth.credentials.id;
+                    }
+                    //var jobCategories = request.payload.jobCategories || request.payload.jobCategories[0].map(
+                        //item => item.value
+                    //);
+                    data.postStudents(studentId,
                         Object.assign({}, request.payload, {
-                            jobCategories: jobCategories,
+                            //jobCategories: jobCategories,
                             passwordHash: hash,
                         }),
                         (err, res) => {
