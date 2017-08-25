@@ -13,8 +13,10 @@ class Form_Update_Student extends Component {
         this.onChange = this.onChange.bind(this);
         this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
+        // this.displayJobCategories = this.displayJobCategories.bind(this);
 
         this.state = {
+            count: 0,
             errorMessage: '',
             loggedIn: false,
             isAuthenticated: false,
@@ -29,6 +31,10 @@ class Form_Update_Student extends Component {
         if (value !== '') {
             this.props.checkIfStudentExists(value);
         }
+    }
+
+    componentDidMount() {
+        console.log(this.props, 'PROPPPPPS');
     }
 
     onSubmit(evt) {
@@ -111,15 +117,36 @@ class Form_Update_Student extends Component {
     }
 
     onChangeJobCategories(evt) {
+        console.log(evt);
+        if (this.state.count < 1) {
+            console.log('inside if loop');
+            var arrayItems = evt.pop();
+            var arrayvalue = arrayItems.value;
+            var allItems = evt.concat([[arrayvalue]]);
+            this.setState({
+                count: 1,
+            });
+
+            console.log('arrayvalue are ', allItems);
+        } else {
+            var arrayItems = evt.pop();
+            var arrayvalue = arrayItems.value;
+            var allItems = allItems.concat([[arrayvalue]]);
+        }
+
         var student = this.state.student;
         var jobCategories = student.jobCategories;
         this.setState({
             student: {
                 ...student,
-                jobCategories: [evt],
+                jobCategories: [allItems],
             },
         });
     }
+
+    // displayJobCategories {
+    //
+    // }
 
     render() {
         let studentToUpdate = new Object();
@@ -128,6 +155,7 @@ class Form_Update_Student extends Component {
             studentToUpdate[key] = this.props.studentToUpdate[key];
         }
 
+        console.log(this.state, '<<<<<<<');
         // console.log('state is', this.state);
         // console.log('props is ', this.props);
 
@@ -317,8 +345,8 @@ class Form_Update_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
-                        value={studentToUpdate ? studentToUpdate.jobCat : null}
                         data={categories}
+                        value={studentToUpdate ? studentToUpdate.jobCat : null}
                         textField="value"
                         onChange={this.onChangeJobCategories}
                         placeholder="Pick up to 8 jobs categories"

@@ -35,7 +35,7 @@ class MyJobs extends Component {
                     {job.jobTitle}
                 </h3>
                 <p className="light_brown_title">
-                    {job.jobCat}
+                    {job.jobCategories}
                 </p>
                 <p>
                     {job.description}
@@ -117,8 +117,7 @@ class MyJobs extends Component {
 }
 
 function mapStateToProps(state) {
-    var studentId =
-        state.auth && state.auth.response && state.auth.response.id;
+    var studentId = state.auth && state.auth.response && state.auth.response.id;
     return {
         myJobs: state.fetchMyJobs.jobsApplied.jobs,
         studentId,

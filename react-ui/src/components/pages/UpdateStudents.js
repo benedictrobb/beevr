@@ -6,11 +6,13 @@ import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 class UpdateStudents extends Component {
-    componentDidMount() {
+    componentWillMount() {
         this.props.fetchStudents();
     }
 
     render() {
+        console.log(this.props, 'updateStudents props');
+        console.log(this.state, 'updateStudent state');
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
@@ -52,7 +54,6 @@ function mapStateToProps(state) {
     };
 }
 
-export default connect(mapStateToProps, {
-    registerStudent,
-    fetchStudents,
-})(UpdateStudents);
+export default connect(mapStateToProps, {registerStudent, fetchStudents})(
+    UpdateStudents
+);
