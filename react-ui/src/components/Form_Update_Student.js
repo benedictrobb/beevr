@@ -33,14 +33,40 @@ class Form_Update_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        console.log(this.props.studentToUpdate);
+        var {
+            firstName,
+            lastName,
+            dob,
+            email,
+            bio,
+            phone,
+            univSchool,
+            jobCat,
+            picture,
+        } = this.props.studentToUpdate;
 
-        var a = this.props.studentToUpdate;
+        var firstName = this.state.student.firstName || firstName;
+        var lastName = this.state.student.lastName || lastName;
+        var dob = this.state.student.dob || dob;
+        var bio = this.state.student.bio || bio;
+        var phone = this.state.student.phone || phone;
+        var univSchool = this.state.student.univSchool || univSchool;
+        var email = this.state.student.email || email;
+        var jobCat = this.state.student.email || jobCat;
+        var picture = this.state.studentpicture || picture;
+
         this.setState(
             {
                 student: {
-                    ...student,
-                    a,
+                    firstName,
+                    lastName,
+                    dob,
+                    bio,
+                    phone,
+                    univSchool,
+                    email,
+                    jobCat,
+                    picture,
                 },
             },
             () => {
@@ -69,7 +95,7 @@ class Form_Update_Student extends Component {
         }
 
         if (!this.state.errorMessage) {
-            this.props.registerStudent(this.props.studentToUpdate);
+            this.props.registerStudent(this.state.student);
         }
     }
 
