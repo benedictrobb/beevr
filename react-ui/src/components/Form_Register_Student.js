@@ -4,16 +4,18 @@ import categories from '../constants/job_categories.js';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from '../actions/register_student.js';
+import {fetchStudents} from '../actions/register_student.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
+        
         this.state = {
             errorMessage: '',
             loggedIn: false,
@@ -22,6 +24,13 @@ class Form_Register_Student extends Component {
                 jobCategories: {},
             },
         };
+    }
+
+    componentWillMount() {
+        console.log('CWM',this.props.studentToUpdate);
+        //var student = this.props.studentToUpdate;
+        //console.log(student);
+        //this.setState({student});
     }
     
     checkEmail(value) {
@@ -33,24 +42,31 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        var student = this.state.student;
 
-        if (!student.firstName) {
-            var errorMessage = 'First Name cannot be empty';
-        } else if (!student.lastName) {
-            errorMessage = 'Last Name cannot be empty';
-        } else if (!student.email) {
-            errorMessage = 'Email cannot be empty';
-        } else if (!student.password) {
-            errorMessage = 'Password cannot be empty';
-        } else if (!student.confirmPassword) {
-            errorMessage = 'Please confirm the password';
-        } else if (student.password !== student.confirmPassword) {
-            errorMessage = 'Passwords do not match';
-        } else if (!student.univSchool) {
-            errorMessage = 'University/ School field cannot be empty';
-        } else if (!student.phone) {
-            errorMessage = 'Phone cannot be empty';
+        var student = this.state.student;
+        
+        if (this.props.studentToUpdate) {
+            this.setState({
+                student: this.props.studentToUpdate,
+            });
+        } else {
+            if (!student.firstName) {
+                var errorMessage = 'First Name cannot be empty';
+            } else if (!student.lastName) {
+                errorMessage = 'Last Name cannot be empty';
+            } else if (!student.email) {
+                errorMessage = 'Email cannot be empty';
+            } else if (!student.password) {
+                errorMessage = 'Password cannot be empty';
+            } else if (!student.confirmPassword) {
+                errorMessage = 'Please confirm the password';
+            } else if (student.password !== student.confirmPassword) {
+                errorMessage = 'Passwords do not match';
+            } else if (!student.univSchool) {
+                errorMessage = 'University/ School field cannot be empty';
+            } else if (!student.phone) {
+                errorMessage = 'Phone cannot be empty';
+            }
         }
 
         this.setState({errorMessage: errorMessage});
@@ -87,8 +103,14 @@ class Form_Register_Student extends Component {
         let studentToUpdate = new Object();
         
         for (var key in this.props.studentToUpdate) {
-            studentToUpdate[key] =this.props.studentToUpdate[key];
+            studentToUpdate[key] = this.props.studentToUpdate[key];
         };
+        
+        //if (studentToUpdate) {
+            //this.setState({
+                //studentToUpdate,
+            //});
+        //}    
         
         return (
             <form className="form" onSubmit={this.onSubmit}>
@@ -146,38 +168,35 @@ class Form_Register_Student extends Component {
                         spellCheck="false"
                     />
                 </div>
-                {!this.props.studentToUpdate
-                    ? <div className="form-group">
-                        <label className="control-label" htmlFor="password">
-                            Password*
-                        </label>
-                        <input
-                            className="form-control"
-                            name="password"
-                            id="password"
-                            type="password"
-                            value={this.state.student.password}
-                            placeholder="Password"
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    : null}
-                {!this.props.studentToUpdate
-                    ? <div className="form-group">
-                        <label className="control-label" htmlFor="confirmPassword">
-                            Confirm password*
-                        </label>
-                        <input
-                            className="form-control"
-                            name="confirmPassword"
-                            id="password"
-                            type="password"
-                            value={this.state.student.confirmPassword}
-                            placeholder="Confirm password"
-                            onChange={this.onChange}
-                        />
-                    </div>
-                    : null}
+                <div className="form-group">
+                    <label className="control-label" htmlFor="password">
+                        Password*
+                    </label>
+                    <input
+                        className="form-control"
+                        name="password"
+                        id="password"
+                        type="password"
+                        value={this.state.student.password}
+                        placeholder="Password"
+                        onChange={this.onChange}
+                    />
+                </div>
+                
+                <div className="form-group">
+                    <label className="control-label" htmlFor="confirmPassword">
+                        Confirm password*
+                    </label>
+                    <input
+                        className="form-control"
+                        name="confirmPassword"
+                        id="password"
+                        type="password"
+                        value={this.state.student.confirmPassword}
+                        placeholder="Confirm password"
+                        onChange={this.onChange}
+                    />
+                </div>
                 <div className="form-group">
                     <label className="control-label" htmlFor="dateOfBirth">
                         Date of Birth

@@ -40,11 +40,11 @@ class UpdateStudents extends Component {
 }
 
 function mapStateToProps(state) {
-    
     let studentToUpdate = state.searchStudents.studentsRequest.response && state.searchStudents.studentsRequest.response.studentList[0];
 
     return {
-        student: state.registerStudent.student.response,
+        //student: state.registerStudent.student.response,
+        student: state.searchStudents.studentsRequest.response,
         registered: state.registerStudent.student.status,
         studentToUpdate,
     };

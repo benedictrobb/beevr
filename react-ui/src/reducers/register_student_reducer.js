@@ -1,4 +1,4 @@
-import {REGISTER_STUDENT} from '../constants/action_types.js';
+import {REGISTER_STUDENT, FETCH_STUDENTS} from '../constants/action_types.js';
 
 const initialState = {
     errorMessage: '',
@@ -12,6 +12,15 @@ const initialState = {
 export default (state = initialState, action = {}) => {
     switch (action.type) {
     case REGISTER_STUDENT:
+        return {
+            ...state,
+            student: {
+                status: action.status,
+                error: action.error,
+                response: action.response,
+            },
+        };
+    case FETCH_STUDENTS:
         return {
             ...state,
             student: {
