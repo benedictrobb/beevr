@@ -7,23 +7,26 @@ class Dashboard extends Component {
             <article>
                 <section className="container text-center">
                     <div className="welcome">
-                        <h1>WELCOME TO BEEVR</h1>
+                        <h2>
+                            <b>A JOBS PLATFORM FOR STUDENTS & RESIDENTS</b>
+                        </h2>
                     </div>
                     <div className="container-flex-dashboard">
-                        <div className="col-sm-5 bgimg_student">
-                            <Link to="/browsejobs" className="front_student">
-                                <h1 className="front_title_student">Student</h1>
+                        <div>
+                            <Link
+                                to="/browsejobs"
+                                className="btn btn-primary front-button"
+                            >
+                                Student
                             </Link>
                         </div>
                         <div className="col-sm-1" />
-                        <div className="col-sm-5 bgimg_resident">
+                        <div>
                             <Link
                                 to="/browsestudents"
-                                className="front_resident"
+                                className="btn btn-primary front-button"
                             >
-                                <h1 className="front_title_resident">
-                                    Resident
-                                </h1>
+                                Resident
                             </Link>
                         </div>
                     </div>

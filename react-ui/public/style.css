@@ -154,6 +154,10 @@ body {
     margin-top: 5%;
 }
 
+.front-button {
+    border-radius: 40%;
+}
+
 .search_results_ul {
     margin-left: -40px;
 }
