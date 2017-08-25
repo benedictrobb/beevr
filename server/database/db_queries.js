@@ -4,13 +4,13 @@ data = {};
 
 data.authRequest = (session, callback) => {
     dbConnection.query(
-        `SELECT residents.first_name AS user, 
+        `SELECT residents.first_name AS user,
         residents.resident_id AS id,
         residents.email, 'Resident' AS role
             FROM residents
             WHERE residents.email = $1
             UNION ALL
-            SELECT students.first_name AS user, 
+            SELECT students.first_name AS user,
             students.student_id AS id,
             students.email, 'Student' AS role
                 FROM students
@@ -125,7 +125,6 @@ data.getStudents = (callback, term, id) => {
             }
         );
     }
-
 };
 
 data.loginRequest = (email, callback) => {
@@ -193,32 +192,61 @@ data.findStudent = (student_id, callback) => {
     );
 };
 
-data.postStudents = (student, callback) => {
-    dbConnection.query(
-        `INSERT INTO students(
+data.postStudents = (id, student, callback) => {
+    console.log(student);
+    if (id) {
+        dbConnection.query(
+            `INSERT INTO students(
+            first_name, last_name, email, DOB, univ_school,
+            bio, picture, phone, job_cat)
+            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9) WHERE student_id = $10;`,
+            [
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.DOB,
+                student.univSchool,
+                student.bio,
+                student.picture,
+                student.phone,
+                student.jobCat,
+                id,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
+    } else {
+        dbConnection.query(
+            `INSERT INTO students(
             first_name, last_name, email, DOB, univ_school,
             bio, picture, phone, job_cat, password_hash)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
-        [
-            student.firstName,
-            student.lastName,
-            student.email,
-            student.DOB,
-            student.univSchool,
-            student.bio,
-            student.picture,
-            student.phone,
-            student.jobCategories,
-            student.passwordHash,
-        ],
-        (err, res) => {
-            if (err) {
-                return callback(err);
-            } else {
-                callback(null, res.rows);
+            [
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.DOB,
+                student.univSchool,
+                student.bio,
+                student.picture,
+                student.phone,
+                student.jobCategories,
+                student.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
             }
-        }
-    );
+        );
+    }
 };
 
 data.residentExists = (email, callback) => {
