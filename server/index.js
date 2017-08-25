@@ -209,7 +209,7 @@ server.register(plugins, err => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
-                    var jobCategories = request.payload.jobCategories[0].map(
+                    var jobCategories = request.payload.jobCat || request.payload.jobCategories[0].map(
                         item => item.value
                     );
                     data.postStudents(

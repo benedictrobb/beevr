@@ -15,7 +15,6 @@ class Form_Register_Student extends Component {
         this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
         this.checkEmail = this.checkEmail.bind(this);
 
-        
         this.state = {
             errorMessage: '',
             loggedIn: false,
@@ -27,12 +26,12 @@ class Form_Register_Student extends Component {
     }
 
     componentWillMount() {
-        console.log('CWM',this.props.studentToUpdate);
+        console.log('CWM', this.props.studentToUpdate);
         //var student = this.props.studentToUpdate;
         //console.log(student);
         //this.setState({student});
     }
-    
+
     checkEmail(value) {
         value = this.state.student.email;
         if (value !== '') {
@@ -42,38 +41,105 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
+        var {
+            firstName,
+            lastName,
+            dob,
+            email,
+            bio,
+            phone,
+            univSchool,
+            jobCat,
+            picture,
+        } = this.props.studentToUpdate;
+
+        var firstName = this.state.student.firstName || firstName;
+        var lastName = this.state.student.lastName || lastName;
+        var dob = this.state.student.dob || dob;
+        var bio = this.state.student.bio || bio;
+        var phone = this.state.student.phone || phone;
+        var univSchool = this.state.student.univSchool || univSchool;
+        var email = this.state.student.email || email;
+        var jobCat = this.state.student.jobCat || jobCat;
+        var picture = this.state.student.picture || picture;
+
+        this.setState(
+            {
+                student: {
+                    firstName,
+                    lastName,
+                    dob,
+                    bio,
+                    phone,
+                    univSchool,
+                    email,
+                    jobCat,
+                    picture,
+                },
+            },
+            () => {
+                console.log(this.state);
+            }
+        );
 
         var student = this.state.student;
-        
-        if (this.props.studentToUpdate) {
-            this.setState({
-                student: this.props.studentToUpdate,
-            });
-        } else {
-            if (!student.firstName) {
-                var errorMessage = 'First Name cannot be empty';
-            } else if (!student.lastName) {
-                errorMessage = 'Last Name cannot be empty';
-            } else if (!student.email) {
-                errorMessage = 'Email cannot be empty';
-            } else if (!student.password) {
-                errorMessage = 'Password cannot be empty';
-            } else if (!student.confirmPassword) {
-                errorMessage = 'Please confirm the password';
-            } else if (student.password !== student.confirmPassword) {
-                errorMessage = 'Passwords do not match';
-            } else if (!student.univSchool) {
-                errorMessage = 'University/ School field cannot be empty';
-            } else if (!student.phone) {
-                errorMessage = 'Phone cannot be empty';
-            }
+
+        if (!student.firstName) {
+            var errorMessage = 'First Name cannot be empty';
+        } else if (!student.lastName) {
+            errorMessage = 'Last Name cannot be empty';
+        } else if (!student.email) {
+            errorMessage = 'Email cannot be empty';
+        } else if (!student.password) {
+            errorMessage = 'Password cannot be empty';
+        } else if (!student.confirmPassword) {
+            errorMessage = 'Please confirm the password';
+        } else if (student.password !== student.confirmPassword) {
+            errorMessage = 'Passwords do not match';
+        } else if (!student.univSchool) {
+            errorMessage = 'University/ School field cannot be empty';
+        } else if (!student.phone) {
+            errorMessage = 'Phone cannot be empty';
         }
 
-        this.setState({errorMessage: errorMessage});
         if (!this.state.errorMessage) {
-            this.props.registerStudent(student);
+            this.props.registerStudent(this.state.student);
         }
     }
+    //onSubmit(evt) {
+    //evt.preventDefault();
+
+    //var student = this.state.student;
+
+    //if (this.props.studentToUpdate) {
+    //this.setState({
+    //student: this.props.studentToUpdate,
+    //});
+    //} else {
+    //if (!student.firstName) {
+    //var errorMessage = 'First Name cannot be empty';
+    //} else if (!student.lastName) {
+    //errorMessage = 'Last Name cannot be empty';
+    //} else if (!student.email) {
+    //errorMessage = 'Email cannot be empty';
+    //} else if (!student.password) {
+    //errorMessage = 'Password cannot be empty';
+    //} else if (!student.confirmPassword) {
+    //errorMessage = 'Please confirm the password';
+    //} else if (student.password !== student.confirmPassword) {
+    //errorMessage = 'Passwords do not match';
+    //} else if (!student.univSchool) {
+    //errorMessage = 'University/ School field cannot be empty';
+    //} else if (!student.phone) {
+    //errorMessage = 'Phone cannot be empty';
+    //}
+    //}
+
+    //this.setState({errorMessage: errorMessage});
+    //if (!this.state.errorMessage) {
+    //this.props.registerStudent(student);
+    //}
+    //}
 
     onChange(evt) {
         var {student} = this.state;
@@ -98,20 +164,20 @@ class Form_Register_Student extends Component {
     }
 
     render() {
-        console.log('form props',this.props);
-        console.log('form state',this.state);
+        console.log('form props', this.props);
+        console.log('form state', this.state);
         let studentToUpdate = new Object();
-        
+
         for (var key in this.props.studentToUpdate) {
             studentToUpdate[key] = this.props.studentToUpdate[key];
-        };
-        
+        }
+
         //if (studentToUpdate) {
-            //this.setState({
-                //studentToUpdate,
-            //});
-        //}    
-        
+        //this.setState({
+        //studentToUpdate,
+        //});
+        //}
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -132,7 +198,10 @@ class Form_Register_Student extends Component {
                         id="firstName"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.student.firstName || studentToUpdate.firstName}
+                        value={
+                            this.state.student.firstName ||
+                            studentToUpdate.firstName
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -146,7 +215,10 @@ class Form_Register_Student extends Component {
                         id="lastName"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.student.lastName || studentToUpdate.lastName }
+                        value={
+                            this.state.student.lastName ||
+                            studentToUpdate.lastName
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -159,7 +231,9 @@ class Form_Register_Student extends Component {
                         name="email"
                         id="email"
                         type="email"
-                        value={this.state.student.email || studentToUpdate.email}
+                        value={
+                            this.state.student.email || studentToUpdate.email
+                        }
                         placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
@@ -182,7 +256,7 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
-                
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="confirmPassword">
                         Confirm password*
@@ -221,7 +295,10 @@ class Form_Register_Student extends Component {
                         id="universitySchool"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.student.univSchool || studentToUpdate.univSchool}
+                        value={
+                            this.state.student.univSchool ||
+                            studentToUpdate.univSchool
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -249,7 +326,10 @@ class Form_Register_Student extends Component {
                         id="picture"
                         type="text"
                         placeholder="Paste url of your picture"
-                        value={this.state.student.picture || studentToUpdate.picture}
+                        value={
+                            this.state.student.picture ||
+                            studentToUpdate.picture
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -263,7 +343,9 @@ class Form_Register_Student extends Component {
                         id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
-                        value={this.state.student.phone || studentToUpdate.phone}
+                        value={
+                            this.state.student.phone || studentToUpdate.phone
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -276,10 +358,7 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
-                        value={studentToUpdate
-                            ? studentToUpdate.jobCat
-                            : null
-                        }
+                        value={studentToUpdate ? studentToUpdate.jobCat : null}
                         data={categories}
                         textField="value"
                         onChange={this.onChangeJobCategories}
