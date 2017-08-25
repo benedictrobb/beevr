@@ -35,7 +35,7 @@ class MyPostedJobs extends Component {
                     {job.jobTitle}
                 </h3>
                 <p className="light_brown_title">
-                    {job.jobCat}
+                    {job.jobCategories}
                 </p>
                 <p>
                     {job.description}

@@ -114,7 +114,7 @@ server.register(plugins, err => {
                                 endDate: element.end_date,
                                 endTime: element.end_time,
                                 description: element.description,
-                                jobCat: element.category,
+                                jobCategories: element.category,
                                 rate: element.rate,
                                 studentId: element.student_id,
                                 residentId: element.resident_id,
@@ -168,7 +168,7 @@ server.register(plugins, err => {
                                     univSchool: element.univ_school,
                                     bio: element.bio,
                                     picture: element.picture,
-                                    jobCat: element.job_cat,
+                                    jobCategories: element.job_cat,
                                 };
                             }),
                         });
@@ -209,7 +209,8 @@ server.register(plugins, err => {
                     );
                     data.postStudents(
                         Object.assign({}, request.payload, {
-                            jobCategories: jobCategories, passwordHash: hash,
+                            jobCategories: jobCategories,
+                            passwordHash: hash,
                         }),
                         (err, res) => {
                             if (err) {
@@ -444,7 +445,7 @@ server.register(plugins, err => {
                                     endDate: element.end_date,
                                     endTime: element.end_time,
                                     description: element.description,
-                                    jobCat: element.category,
+                                    jobCategories: element.category,
                                     rate: element.rate,
                                     studentId: element.student_id,
                                     residentId: element.resident_id,
@@ -528,7 +529,7 @@ server.register(plugins, err => {
                                         endDate: element.end_date,
                                         endTime: element.end_time,
                                         description: element.description,
-                                        jobCat: element.category,
+                                        jobCategories: element.category,
                                         rate: element.rate,
                                         studentId: element.student_id,
                                         residentId: element.resident_id,

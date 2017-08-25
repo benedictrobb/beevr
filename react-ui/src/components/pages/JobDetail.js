@@ -74,7 +74,7 @@ class JobDetail extends Component {
                     {job.jobTitle}
                 </h3>
                 <h5 className="job_title">
-                    {job.jobCat}
+                    {job.jobCategories}
                 </h5>
                 <p>
                     {job.description}
@@ -151,8 +151,7 @@ class JobDetail extends Component {
 
 //studentId disappears on page reload
 function mapStateToProps(state, ownProps) {
-    var studentId =
-        state.auth && state.auth.response && state.auth.response.id;
+    var studentId = state.auth && state.auth.response && state.auth.response.id;
 
     var searchJobs =
         state.searchJobs.jobsRequest &&
