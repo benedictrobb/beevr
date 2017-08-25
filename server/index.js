@@ -425,7 +425,7 @@ server.register(plugins, err => {
             handler: (request, reply) => {
                 if (request.auth.isAuthenticated) {
                     var session = request.auth.credentials;
-                    data.getMyJobs(request.url.query.studentId, (err, res) => {
+                    data.getMyJobs(request.auth.credentials.id, (err, res) => {
                         if (err) {
                             return reply(
                                 Boom.serverUnavailable(
@@ -508,7 +508,7 @@ server.register(plugins, err => {
         config: {
             handler: (request, reply) => {
                 data.getMyPostedJobs(
-                    request.url.query.residentId,
+                    request.auth.credentials.id,
                     (err, res) => {
                         if (err) {
                             reply(

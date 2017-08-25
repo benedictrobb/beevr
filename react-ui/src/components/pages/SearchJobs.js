@@ -64,10 +64,10 @@ class BrowseJobs extends Component {
                 </p>
 
                 <label>
-                    <u>Start Time</u>
+                    <u>Start Date</u>
                 </label>
                 <p>
-                    {this.formatTime(job.startTime)}
+                    {this.formatDate(job.startDate)}
                 </p>
                 <label>
                     <u>End Date</u>
