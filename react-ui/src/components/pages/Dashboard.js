@@ -4,7 +4,7 @@ import {Link} from 'react-router';
 class Dashboard extends Component {
     render() {
         return (
-            <article>
+            <article className="horizontal">
                 <section className="container text-center max-width bgimg_student">
                     <div className="welcome">
                         <h2>

@@ -45,6 +45,12 @@ body {
         align-items: center;
     }
 
+    .horizontal {
+        height: 88vh;
+        background-size: cover;
+        background-image: url('./dark.jpg');
+    }
+
     a {
         color: #815355;
         cursor: pointer;
