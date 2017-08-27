@@ -5,7 +5,7 @@ class Dashboard extends Component {
     render() {
         return (
             <article>
-                <section className="container text-center bgimg_student">
+                <section className="container text-center max-width bgimg_student">
                     <div className="welcome">
                         <h2>
                             <b>A JOBS PLATFORM FOR STUDENTS & RESIDENTS</b>

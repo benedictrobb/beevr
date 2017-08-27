@@ -8,6 +8,11 @@ body {
 }
 
 @media (max-width: 768px) {
+    .bgimg_student {
+        height: 88vh;
+        background-size: cover;
+        background-image: url('./student_dark.jpg');
+    }
     .wrapper {
         background-color: #667744;
     }
@@ -76,10 +81,8 @@ body {
     height: 12vh;
 }
 
-.bgimg_student {
-    height: 88vh;
-    background-size: cover;
-    background-image: url('./student_dark.jpg');
+.max-width {
+    max-width: 800px;
 }
 
 .bgimg_resident {
