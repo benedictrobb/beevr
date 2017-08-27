@@ -1,7 +1,5 @@
-/*final version of the css needs to be prefixed*/
-
 html * {
-    font-family: 'Raleway', sans-serif;
+    font-family: Futura, sans-serif;
 }
 
 body {
@@ -10,6 +8,10 @@ body {
 }
 
 @media (max-width: 768px) {
+    .wrapper {
+        background-color: #667744;
+    }
+
     a {
         cursor: pointer;
         color: #815355;
@@ -54,7 +56,7 @@ body {
     }
 
     .navbar-nav li a {
-        color: #523249 !important;
+        color: white !important;
     }
 
     #burger-menu {
@@ -69,16 +71,15 @@ body {
     margin-bottom: 0;
     font-size: 12px;
     letter-spacing: 5px;
-    background-color: white;
+    background-color: #667744;
     color: #815355;
+    height: 12vh;
 }
 
 .bgimg_student {
-    height: 80vh;
-    padding: 2%;
+    height: 88vh;
     background-size: cover;
-    background-image: url('./student_red.jpg');
-    margin-bottom: 5%;
+    background-image: url('./student_dark.jpg');
 }
 
 .bgimg_resident {
@@ -107,7 +108,9 @@ body {
 
 .welcome {
     margin-bottom: 5%;
-    background-color: #dbebc0;
+    position: absolute;
+    top: 25%;
+    color: white;
 }
 
 .btn-primary {
@@ -155,7 +158,16 @@ body {
 }
 
 .front-button {
-    border-radius: 40%;
+    height: 46px;
+    width: 172px;
+    border-radius: 25px;
+    background-color: #99aa88;
+    border: none;
+    margin-top: 7%;
+}
+
+.sign-in-button {
+    background-color: #333322;
 }
 
 .search_results_ul {
@@ -265,6 +277,21 @@ input:-webkit-autofill {
 
 .profile_image {
     height: 20vh;
+}
+
+.button-group {
+    position: absolute;
+    top: 70%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.button-text {
+    height: 31px;
+    font-size: 24px;
+    font-weight: 250;
+    line-height: 32px;
+    text-align: center;
 }
 
 /*********************************/
