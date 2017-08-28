@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {REGISTER_STUDENT, CHECK_EMAIL, UPDATE_STUDENT} from '../constants/action_types.js';
+import {REGISTER_STUDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
 export const registerStudent = student => dispatch => {
     dispatch({
@@ -47,11 +47,4 @@ export const checkIfStudentExists = email => dispatch => {
                 error: error.message,
             });
         });
-};
-
-export const updateStudent = student => dispatch => {
-    dispatch({
-        type: UPDATE_STUDENT,
-        student: student,    
-    });
 };

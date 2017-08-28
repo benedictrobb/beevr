@@ -47,7 +47,7 @@ class Form_Register_Student extends Component {
             jobCategories,
         } = this.props.studentToUpdate;
 
-        var firstName = this.state.student.firstName || firstName;
+        var firstName = this.state.student.firstName || firstName; 
         var lastName = this.state.student.lastName || lastName;
         var email = this.state.student.email || email;
         var password = this.state.student.password || password;
