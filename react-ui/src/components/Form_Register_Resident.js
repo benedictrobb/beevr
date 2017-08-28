@@ -219,7 +219,7 @@ class Form_Register_Resident extends Component {
                     />
                 </div>
 
-                <div>
+                <div className="button" >
                     {this.props.registerRequestStatus === 'pending'
                         ? <LoadingIndicator />
                         : <button className="btn btn-primary" type="submit">
