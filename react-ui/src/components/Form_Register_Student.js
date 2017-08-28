@@ -168,12 +168,6 @@ class Form_Register_Student extends Component {
             studentToUpdate[key] = this.props.studentToUpdate[key];
         }
 
-        //if (studentToUpdate) {
-        //this.setState({
-        //studentToUpdate,
-        //});
-        //}
-
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -362,14 +356,16 @@ class Form_Register_Student extends Component {
                         groupBy="group"
                     />
                 </div>
-                <div>
-                    {this.props.studentToUpdate
-                        ? <button className="btn btn-primary" type="submit">
-                              Update
-                        </button>
-                        : <button className="btn btn-primary" type="submit">
-                              Sign Up
-                        </button>}
+                <div className="button" >
+                    {this.props.registerRequestStatus === 'pending'
+                        ? <LoadingIndicator />
+                        : this.props.studentToUpdate
+                            ? <button className="btn btn-primary" type="submit">
+                                Update
+                            </button>
+                            : <button className="btn btn-primary" type="submit">
+                                Sign Up
+                            </button>}
                 </div>
             </form>
         );

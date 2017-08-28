@@ -31,10 +31,10 @@ class RegisterStudent extends Component {
         }
 
         return (
-            <div className="container-fluid register_container">
+            <div className="register_container">
                 <div className="row-fluid">
-                    <div className="col-md-4 col-md-offset-4 ">
-                        <h3>Student Registration</h3>
+                    <div className="col-md-4 col-md-offset-4">
+                        <h2>Register as a Student</h2>
 
                         <p>
                             <i>Fields marked with * are mandatory</i>

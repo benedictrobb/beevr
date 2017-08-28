@@ -77,7 +77,7 @@ class LoginForm extends Component {
                             onChange={this.onChange}
                         />
                     </div>
-                    <div>
+                    <div className="button">
                         {this.props.loginRequestStatus === 'pending'
                             ? <LoadingIndicator />
                             : <button className="btn btn-primary" type="submit">

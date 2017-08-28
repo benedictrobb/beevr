@@ -4,26 +4,38 @@ import {Link} from 'react-router';
 class Dashboard extends Component {
     render() {
         return (
-            <article>
-                <section className="container text-center">
+            <article className="horizontal">
+                <section className="container text-center max-width bgimg_student">
                     <div className="welcome">
-                        <h1>WELCOME TO BEEVR</h1>
+                        <h2>
+                            <b>A JOBS PLATFORM FOR STUDENTS & RESIDENTS</b>
+                        </h2>
                     </div>
-                    <div className="container-flex-dashboard">
-                        <div className="col-sm-5 bgimg_student">
-                            <Link to="/browsejobs" className="front_student">
-                                <h1 className="front_title_student">Student</h1>
+                    <div className="container-flex-dashboard button-group">
+                        <div>
+                            <Link
+                                to="/browsejobs"
+                                className="btn btn-primary front-button"
+                            >
+                                <div className="button-text">Student</div>
                             </Link>
                         </div>
                         <div className="col-sm-1" />
-                        <div className="col-sm-5 bgimg_resident">
+                        <div>
                             <Link
                                 to="/browsestudents"
-                                className="front_resident"
+                                className="btn btn-primary front-button"
                             >
-                                <h1 className="front_title_resident">
-                                    Resident
-                                </h1>
+                                <div className="button-text">Resident</div>
+                            </Link>
+                        </div>
+                        <div className="col-sm-1" />
+                        <div>
+                            <Link
+                                to="/login"
+                                className="btn btn-primary front-button sign-in-button"
+                            >
+                                <div className="button-text"> Sign In </div>
                             </Link>
                         </div>
                     </div>

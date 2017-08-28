@@ -33,7 +33,7 @@ class RegisterResident extends Component {
             <div className="container-fluid register_container">
                 <div className="row-fluid">
                     <div className="col-md-4 col-md-offset-4 ">
-                        <h3>Resident Registration</h3>
+                        <h2>Register as a Resident</h2>
 
                         <p>
                             <i>Fields marked with * are mandatory</i>
