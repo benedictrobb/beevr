@@ -214,12 +214,12 @@ server.register(plugins, err => {
                     if (request.auth.credentials.id) {
                         var studentId = request.auth.credentials.id;
                     }
-                    //var jobCategories = request.payload.jobCategories || request.payload.jobCategories[0].map(
-                        //item => item.value
-                    //);
+                    var jobCategories = request.payload.jobCategories || request.payload.jobCategories[0].map(
+                        item => item.value
+                    );
                     data.postStudents(studentId,
                         Object.assign({}, request.payload, {
-                            //jobCategories: jobCategories,
+                            jobCategories: jobCategories,
                             passwordHash: hash,
                         }),
                         (err, res) => {
