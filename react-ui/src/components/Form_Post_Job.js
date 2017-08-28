@@ -261,7 +261,7 @@ class Form_Post_Job extends Component {
                         Job description
                     </textarea>
 
-                    <div>
+                    <div className="button">
                         {this.props.postJobRequestStatus === 'pending'
                             ? <LoadingIndicator />
                             : <button

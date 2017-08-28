@@ -13,10 +13,7 @@ body {
         background-size: cover;
         background-image: url('./student_dark.jpg');
     }
-    .wrapper {
-        background-color: #667744;
-    }
-
+    
     a {
         cursor: pointer;
         color: #815355;
@@ -24,7 +21,7 @@ body {
 
     .navbar-nav li a:hover,
     .navbar-nav li a:focus {
-        color: white;
+        color: #F6F6F6;
         text-decoration: none;
     }
 
@@ -67,19 +64,20 @@ body {
     }
 
     .navbar-nav li a {
-        color: white !important;
+        color: #F6F6F6 !important;
     }
 
     #burger-menu {
         display: none;
     }
 }
+
 .navbar {
     border: 0;
     margin-bottom: 0;
     border-radius: 0;
     background-color: #667744;
-    color: white;
+    color: #F6F6F6;
     /*color: #815355;*/
     height: 12vh;
     max-height: 12vh;
@@ -96,7 +94,7 @@ body {
 }
 
 .navbar-brand>h1 {
-    color: white;
+    color: #F6F6F6;
     font-weight: bolder;
 }
 
@@ -118,7 +116,7 @@ body {
 }
 
 .front_resident {
-    color: white;
+    color: #F6F6F6;
 }
 
 .front_resident:hover {
@@ -137,7 +135,7 @@ body {
     margin-bottom: 5%;
     position: absolute;
     top: 25%;
-    color: white;
+    color: #F6F6F6;
 }
 
 .button {
@@ -147,6 +145,7 @@ body {
 .btn {
     border-radius: 25px;
 }
+
 .btn-primary {
     background-color: #333322;
     border-color: #333322;
@@ -167,6 +166,10 @@ body {
 
 .search_jobs {
     margin-top: 5%;
+}
+
+.job-wrapper {
+    background-color: #F6F6F6;
 }
 
 .front_title_resident:hover {
@@ -213,7 +216,7 @@ body {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #F4F3F3 inset;
+    -webkit-box-shadow: 0 0 0 30px #F6F6F6 inset;
 }
 
 .form-control {
@@ -303,7 +306,7 @@ input:-webkit-autofill {
 }
 
 .bm-cross {
-    background: white;
+    background: #F6F6F6;
 }
 
 .bm-menu {
@@ -321,7 +324,7 @@ input:-webkit-autofill {
     background: rgba(0, 0, 0, 0.3);
 }
 
-.container-desktop {
+.container-fluid {
     display: flex;
     justify-content: space-between;
     align-items: center;

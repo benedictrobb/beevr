@@ -12,11 +12,17 @@ class Nav extends Component {
         return (
             <div>
                 <nav
-                    className="navbar navbar-default"
+                    className="navbar navbar-default navbar-static-top"
                     role="navigation"
                     id="burger-menu"
                 >
-                    <div className="container">
+                    <div className="container-fluid">
+                        <div className="navbar-header navbar-left">
+                            <div className="navbar-brand">
+                                <img src="./lemmling-Cartoon-beaver.svg" />
+                                <h1>BEEVR</h1>
+                            </div>
+                        </div>
                         <ul className="nav navbar-nav navbar-right">
                             <Menu right>
                                 <li>
