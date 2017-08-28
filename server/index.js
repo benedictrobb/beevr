@@ -152,15 +152,6 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
-                if (request.url.query.searchTerm) {
-                    var term = request.url.query.searchTerm;
-                } else var term = null;
-                if (
-                    request.auth.credentials &&
-                    request.auth.credentials.role === 'Student'
-                ) {
-                    var id = request.auth.credentials.id;
-                } else var id = null;
                 data.getStudents(
                     (err, res) => {
                         if (err) {
@@ -189,8 +180,8 @@ server.register(plugins, err => {
                             });
                         }
                     },
-                    term,
-                    id
+                    request.url.query.searchTerm,
+                    request.auth.credentials.id
                 );
             },
         },
@@ -224,7 +215,11 @@ server.register(plugins, err => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
-                    if (request.auth.credentials.id) {
+                    if (
+                        request.auth &&
+                        request.auth.credentials &&
+                        request.auth.credentials.id
+                    ) {
                         var studentId = request.auth.credentials.id;
                     }
                     var jobCategories =
