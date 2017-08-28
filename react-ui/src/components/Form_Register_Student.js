@@ -17,6 +17,7 @@ class Form_Register_Student extends Component {
 
         this.state = {
             count: 0,
+            allItems: [],
             errorMessage: '',
             loggedIn: false,
             isAuthenticated: false,
@@ -150,21 +151,27 @@ class Form_Register_Student extends Component {
     }
 
     onChangeJobCategories(evt) {
-        console.log(evt);
-        if (this.state.count < 1) {
-            console.log('inside if loop');
-            var arrayItems = evt.pop();
-            var arrayvalue = arrayItems.value;
-            var allItems = evt.concat([[arrayvalue]]);
-            this.setState({
-                count: 1,
-            });
+        console.log('evt is  ', evt);
+        var arrayItem = evt.pop();
+        var arrayvalue = arrayItem.value;
 
-            console.log('arrayvalue are ', allItems);
+        if (arrayvalue) {
+            if (this.state.count < 1) {
+                var allItems = evt.concat([[arrayvalue]]);
+                this.setState({
+                    count: 1,
+                    allItems: allItems,
+                });
+            } else {
+                // console.log(arrayItem.value, evt);
+
+                var allItems = this.state.allItems.concat([[arrayvalue]]);
+                this.setState({
+                    allItems: allItems,
+                });
+            }
         } else {
-            var arrayItems = evt.pop();
-            var arrayvalue = arrayItems.value;
-            var allItems = allItems.concat([[arrayvalue]]);
+            var allItems = evt;
         }
 
         var student = this.state.student;
