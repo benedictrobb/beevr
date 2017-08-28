@@ -113,11 +113,11 @@ class JobDetail extends Component {
                     <div className="rectangle-3">
                         £{job.rate}
                     </div>
-                    <div>
+                    <div className="apply">
                         {this.props.status === 'pending'
                             ? <LoadingIndicator />
                             : <button
-                                className="btn btn-primary"
+                                className="btn btn-primary apply-button"
                                 onClick={() =>
                                     this.submitJobApplication(
                                         job.jobId,
