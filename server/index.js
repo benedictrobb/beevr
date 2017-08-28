@@ -152,33 +152,46 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
-                data.getStudents((err, res) => {
-                    if (err) {
-                        return reply(
-                            Boom.serverUnavailable('unavailable: ' + err)
-                        );
-                    } else {
-                        console.log(res);
-                        reply({
-                            name: 'studentList',
-                            message: 'Welcome to BEEVR!',
-                            studentList: res.map(element => {
-                                return {
-                                    studentId: element.student_id,
-                                    firstName: element.first_name,
-                                    lastName: element.last_name,
-                                    email: element.email,
-                                    dob: element.dob,
-                                    univSchool: element.univ_school,
-                                    bio: element.bio,
-                                    picture: element.picture,
-                                    phone: element.phone,
-                                    jobCategories: element.job_cat,
-                                };
-                            }),
-                        });
-                    }
-                }, request.url.query.searchTerm, request.auth.credentials.id);
+                if (request.url.query.searchTerm) {
+                    var term = request.url.query.searchTerm;
+                } else var term = null;
+                if (
+                    request.auth.credentials &&
+                    request.auth.credentials.role === 'Student'
+                ) {
+                    var id = request.auth.credentials.id;
+                } else var id = null;
+                data.getStudents(
+                    (err, res) => {
+                        if (err) {
+                            return reply(
+                                Boom.serverUnavailable('unavailable: ' + err)
+                            );
+                        } else {
+                            console.log(res);
+                            reply({
+                                name: 'studentList',
+                                message: 'Welcome to BEEVR!',
+                                studentList: res.map(element => {
+                                    return {
+                                        studentId: element.student_id,
+                                        firstName: element.first_name,
+                                        lastName: element.last_name,
+                                        email: element.email,
+                                        dob: element.dob,
+                                        univSchool: element.univ_school,
+                                        bio: element.bio,
+                                        picture: element.picture,
+                                        phone: element.phone,
+                                        jobCategories: element.job_cat,
+                                    };
+                                }),
+                            });
+                        }
+                    },
+                    term,
+                    id
+                );
             },
         },
     });
@@ -204,7 +217,7 @@ server.register(plugins, err => {
         path: '/api/student',
         config: {
             auth: {
-                mode:'optional',
+                mode: 'optional',
             },
             handler: (request, reply) => {
                 hashPassword(request.payload.password, (err, hash) => {
@@ -214,10 +227,13 @@ server.register(plugins, err => {
                     if (request.auth.credentials.id) {
                         var studentId = request.auth.credentials.id;
                     }
-                    var jobCategories = request.payload.jobCategories || request.payload.jobCategories[0].map(
-                        item => item.value
-                    );
-                    data.postStudents(studentId,
+                    var jobCategories =
+                        request.payload.jobCategories ||
+                        request.payload.jobCategories[0].map(
+                            item => item.value
+                        );
+                    data.postStudents(
+                        studentId,
                         Object.assign({}, request.payload, {
                             jobCategories: jobCategories,
                             passwordHash: hash,

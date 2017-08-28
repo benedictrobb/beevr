@@ -30,9 +30,9 @@ class RegisterResident extends Component {
             );
         }
         return (
-            <div className="container-fluid register_container">
+            <div className="container register_container">
                 <div className="row-fluid">
-                    <div className="col-md-4 col-md-offset-4 ">
+                    <div className="col-md-8 col-md-offset-2 ">
                         <h2>Register as a Resident</h2>
 
                         <p>
