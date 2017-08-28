@@ -366,9 +366,9 @@ class Form_Register_Student extends Component {
                     <Multiselect
                         data={categories}
                         value={
-                            studentToUpdate
-                                ? studentToUpdate.jobCategories
-                                : null
+                            this.state.allItems.length > 0
+                                ? this.state.allItems
+                                : studentToUpdate.jobCategories
                         }
                         textField="value"
                         onChange={this.onChangeJobCategories}
