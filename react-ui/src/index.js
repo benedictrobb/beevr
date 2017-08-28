@@ -8,6 +8,7 @@ import {composeWithDevTools} from 'redux-devtools-extension';
 import homeReducer from './reducers/index.js';
 import LoginPage from './components/pages/LoginPage.js';
 import RegisterStudent from './components/pages/RegisterStudent.js';
+import UpdateStudents from './components/pages/UpdateStudents.js';
 import Dashboard from './components/pages/Dashboard.js';
 import NotFound from './components/pages/NotFound.js';
 import App from './components/app.js';
@@ -33,6 +34,7 @@ ReactDOM.render(
             <Route component={App}>
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
+                <Route path="/updatestudents" component={UpdateStudents} />
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route
                     path="/browsejobs"

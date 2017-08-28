@@ -19,7 +19,7 @@ class BrowseStudents extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        this.props.fetchStudents(this.props.searchTerm);
+        this.props.fetchStudents(this.props.searchTerm.value);
     }
 
     onStudentSearchChange(evt) {
@@ -31,17 +31,17 @@ class BrowseStudents extends Component {
             student.picture = require('../../utils/beaver-1528948_640.jpg');
         }
         return (
-            <div key={student.studentId}>
-                <h3 className="light_brown_title">
+            <div className="student_wrapper" key={student.studentId}>
+                <h3>
                     {student.firstName}
                 </h3>
-                <h5 className="light_brown_title">
+                <h4 className="italic">
                     {student.univSchool}
-                </h5>
-                <p>
+                </h4>
+                <p className="italic">
                     <img className="profile_image" src={student.picture} />
                 </p>
-                <p>
+                <p className="italic">
                     {student.bio}
                 </p>
             </div>
@@ -54,9 +54,9 @@ class BrowseStudents extends Component {
 
         if (!studentList) {
             return (
-                <div >
+                <div>
                     <article className="row-fluid search_jobs">
-                        <section className="col-md-6 col-md-offset-3">
+                        <section className="col-md-8 col-md-offset-2">
                             <Link
                                 to="/postjob"
                                 className="btn btn-primary pull-right submit_button"
@@ -68,11 +68,11 @@ class BrowseStudents extends Component {
                                     id="browseStudentsForm"
                                     className="form-control"
                                     data={categories}
-                                    textField='value'
+                                    textField="value"
                                     placeholder="Browse Students"
                                     onChange={this.onStudentSearchChange}
                                     value={this.props.searchTerm}
-                                    groupBy='group'
+                                    groupBy="group"
                                 />
                                 <button
                                     type="submit"
@@ -87,37 +87,37 @@ class BrowseStudents extends Component {
             );
         }
         return (
-            <div className="container-fluid">
+            <div className="container">
                 <article className="row-fluid search_jobs">
-                    <section className="col-md-6 col-md-offset-3">
+                    <section className="col-md-8 col-md-offset-2">
                         {this.props.isAuthenticated === true
                             ? <div>
                                 <Link
                                     to="/postjob"
                                     className="btn btn-primary pull-right submit_button margin_left"
                                 >
-                                    Post A Job
+                                      Post A Job
                                 </Link>
                                 <Link
                                     to="/mypostedjobs"
                                     className="btn btn-primary pull-right submit_button"
                                 >
-                                    My posted jobs
+                                      My posted jobs
                                 </Link>
                             </div>
                             : <div className="optional-login pull-right">
-                                Login to see:
+                                  Login to see:
                                 <Link
                                     to="/login"
                                     className="btn btn-primary pull-right submit_button"
                                 >
-                                    Post A Job
+                                      Post A Job
                                 </Link>
                                 <Link
                                     to="/login"
                                     className="btn btn-primary pull-right submit_button"
                                 >
-                                    My posted jobs
+                                      My posted jobs
                                 </Link>
                             </div>}
                         <form onSubmit={this.onSubmit}>
@@ -125,11 +125,11 @@ class BrowseStudents extends Component {
                                 id="browseStudentsForm"
                                 className="form-control"
                                 data={categories}
-                                textField='value'
+                                textField="value"
                                 placeholder="Browse Students"
                                 onChange={this.onStudentSearchChange}
                                 value={this.props.searchTerm}
-                                groupBy='group'
+                                groupBy="group"
                             />
 
                             <button

@@ -7,6 +7,10 @@ body {
     color: #000807;
 }
 
+.italic {
+    font-style: italic;
+}
+
 @media (max-width: 768px) {
     .bgimg_student {
         height: 88vh;
@@ -123,6 +127,11 @@ body {
     color: #d3d3d3;
 }
 
+.student_wrapper {
+    background-color: #F6F6F6;
+     padding: 0 1.5vw 0.5vh 1.5vw;
+}
+
 .front_student {
     color: black;
 }
@@ -168,8 +177,8 @@ body {
     margin-top: 5%;
 }
 
-.job-wrapper {
-    background-color: #F6F6F6;
+.optional-login {
+    display: flex;
 }
 
 .front_title_resident:hover {
@@ -275,10 +284,6 @@ input:-webkit-autofill {
     margin-top: 5%;
 }
 
-.light_brown_title {
-    color: #815355;
-}
-
 .margin_left {
     margin-left: 3%;
 }
@@ -328,7 +333,7 @@ input:-webkit-autofill {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 0 2%;
+    /*padding: 0 2%;*/
 }
 
 .profile_image {

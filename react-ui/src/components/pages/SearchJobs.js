@@ -128,14 +128,29 @@ class BrowseJobs extends Component {
                 <article className="row-fluid search_jobs">
                     <section className="col-md-6 col-md-offset-3">
                         {this.props.isAuthenticated === true
-                            ? <Link
-                                to="/jobsapplied"
-                                className="btn btn-primary pull-right submit_button"
-                            >
-                                  My applications
-                            </Link>
+                            ? <div className="optional-login pull-right">
+                                <Link
+                                    to="/updatestudents"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      Update your profile
+                                </Link>
+                                <Link
+                                    to="/jobsapplied"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      My applications
+                                </Link>
+                            </div>
                             : <div className="optional-login pull-right">
-                                  Login to see:
+                                  Login to
+                                <Link
+                                    to="/login"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      Update your profile
+                                </Link>
+                                <p className="pull-right">or see:</p>
                                 <Link
                                     to="/login"
                                     className="btn btn-primary pull-right submit_button"

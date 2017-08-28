@@ -4,11 +4,12 @@ import categories from '../constants/job_categories.js';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from '../actions/register_student.js';
+import {fetchStudents} from '../actions/register_student.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Register_Student extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         this.onSubmit = this.onSubmit.bind(this);
         this.onChange = this.onChange.bind(this);
         this.onChangeJobCategories = this.onChangeJobCategories.bind(this);
@@ -33,6 +34,50 @@ class Form_Register_Student extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
+        var {
+            firstName,
+            lastName,
+            dob,
+            email,
+            password,
+            bio,
+            picture,
+            phone,
+            univSchool,
+            jobCategories,
+        } = this.props.studentToUpdate;
+
+        var firstName = this.state.student.firstName || firstName;
+        var lastName = this.state.student.lastName || lastName;
+        var email = this.state.student.email || email;
+        var password = this.state.student.password || password;
+        var dob = this.state.student.dob || dob;
+        var bio = this.state.student.bio || bio;
+        var picture = this.state.student.picture || picture;
+        var phone = this.state.student.phone || phone;
+        var univSchool = this.state.student.univSchool || univSchool;
+        var jobCategories = this.state.student.jobCategories || jobCategories;
+
+        this.setState(
+            {
+                student: {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    dob,
+                    bio,
+                    picture,
+                    phone,
+                    univSchool,
+                    jobCategories,
+                },
+            },
+            () => {
+                console.log(this.state);
+            }
+        );
+
         var student = this.state.student;
 
         if (!student.firstName) {
@@ -53,11 +98,44 @@ class Form_Register_Student extends Component {
             errorMessage = 'Phone cannot be empty';
         }
 
-        this.setState({errorMessage: errorMessage});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
         }
     }
+    //onSubmit(evt) {
+    //evt.preventDefault();
+
+    //var student = this.state.student;
+
+    //if (this.props.studentToUpdate) {
+    //this.setState({
+    //student: this.props.studentToUpdate,
+    //});
+    //} else {
+    //if (!student.firstName) {
+    //var errorMessage = 'First Name cannot be empty';
+    //} else if (!student.lastName) {
+    //errorMessage = 'Last Name cannot be empty';
+    //} else if (!student.email) {
+    //errorMessage = 'Email cannot be empty';
+    //} else if (!student.password) {
+    //errorMessage = 'Password cannot be empty';
+    //} else if (!student.confirmPassword) {
+    //errorMessage = 'Please confirm the password';
+    //} else if (student.password !== student.confirmPassword) {
+    //errorMessage = 'Passwords do not match';
+    //} else if (!student.univSchool) {
+    //errorMessage = 'University/ School field cannot be empty';
+    //} else if (!student.phone) {
+    //errorMessage = 'Phone cannot be empty';
+    //}
+    //}
+
+    //this.setState({errorMessage: errorMessage});
+    //if (!this.state.errorMessage) {
+    //this.props.registerStudent(student);
+    //}
+    //}
 
     onChange(evt) {
         var {student} = this.state;
@@ -82,6 +160,14 @@ class Form_Register_Student extends Component {
     }
 
     render() {
+        console.log('form props', this.props);
+        console.log('form state', this.state);
+        let studentToUpdate = new Object();
+
+        for (var key in this.props.studentToUpdate) {
+            studentToUpdate[key] = this.props.studentToUpdate[key];
+        }
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <div
@@ -102,7 +188,10 @@ class Form_Register_Student extends Component {
                         id="firstName"
                         type="text"
                         placeholder="First Name"
-                        value={this.state.student.firstName}
+                        value={
+                            this.state.student.firstName ||
+                            studentToUpdate.firstName
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -116,7 +205,10 @@ class Form_Register_Student extends Component {
                         id="lastName"
                         type="text"
                         placeholder="Last Name"
-                        value={this.state.student.lastName}
+                        value={
+                            this.state.student.lastName ||
+                            studentToUpdate.lastName
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -129,7 +221,9 @@ class Form_Register_Student extends Component {
                         name="email"
                         id="email"
                         type="email"
-                        value={this.state.student.email}
+                        value={
+                            this.state.student.email || studentToUpdate.email
+                        }
                         placeholder="Email"
                         onChange={this.onChange}
                         onBlur={this.checkEmail}
@@ -152,6 +246,7 @@ class Form_Register_Student extends Component {
                         onChange={this.onChange}
                     />
                 </div>
+
                 <div className="form-group">
                     <label className="control-label" htmlFor="confirmPassword">
                         Confirm password*
@@ -176,7 +271,7 @@ class Form_Register_Student extends Component {
                         id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.student.DOB}
+                        value={this.state.student.DOB || studentToUpdate.dob}
                         onChange={this.onChange}
                     />
                 </div>
@@ -190,7 +285,10 @@ class Form_Register_Student extends Component {
                         id="universitySchool"
                         type="text"
                         placeholder="University/School"
-                        value={this.state.student.univSchool}
+                        value={
+                            this.state.student.univSchool ||
+                            studentToUpdate.univSchool
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -204,7 +302,7 @@ class Form_Register_Student extends Component {
                         id="bio"
                         type="text"
                         placeholder="Tell us more about you..."
-                        value={this.state.student.bio}
+                        value={this.state.student.bio || studentToUpdate.bio}
                         onChange={this.onChange}
                     />
                 </div>
@@ -218,7 +316,10 @@ class Form_Register_Student extends Component {
                         id="picture"
                         type="text"
                         placeholder="Paste url of your picture"
-                        value={this.state.student.picture}
+                        value={
+                            this.state.student.picture ||
+                            studentToUpdate.picture
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -232,7 +333,9 @@ class Form_Register_Student extends Component {
                         id="phoneNumber"
                         type="text"
                         placeholder="Phone number"
-                        value={this.state.student.phone}
+                        value={
+                            this.state.student.phone || studentToUpdate.phone
+                        }
                         onChange={this.onChange}
                     />
                 </div>
@@ -245,6 +348,7 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
+                        value={studentToUpdate ? studentToUpdate.jobCategories : null}
                         data={categories}
                         textField="value"
                         onChange={this.onChangeJobCategories}
@@ -255,9 +359,13 @@ class Form_Register_Student extends Component {
                 <div className="button" >
                     {this.props.registerRequestStatus === 'pending'
                         ? <LoadingIndicator />
-                        : <button className="btn btn-primary" type="submit">
-                              Sign Up
-                        </button>}
+                        : this.props.studentToUpdate
+                            ? <button className="btn btn-primary" type="submit">
+                                Update
+                            </button>
+                            : <button className="btn btn-primary" type="submit">
+                                Sign Up
+                            </button>}
                 </div>
             </form>
         );
