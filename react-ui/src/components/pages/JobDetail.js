@@ -19,7 +19,11 @@ class JobDetail extends Component {
     }
 
     formatDate(date) {
-        return date.slice(0, 10);
+        const year = date.slice(0, 4);
+        const month = date.slice(5, 7);
+        const day = date.slice(8, 10);
+
+        return `${day}/${month}/${year}`;
     }
 
     formatTime(time) {
@@ -71,10 +75,13 @@ class JobDetail extends Component {
         return (
             <div>
                 <div key={job.jobId} className="container-brown">
-                    <div className="job-title">
-                        {job.jobTitle}
+                    <div className="container-fluid">
+                        <div className="job-title">
+                            {job.jobTitle}
+                        </div>
                     </div>
-                    <div className="job-type">
+
+                    <div className="job-type container-fluid">
                         {job.jobCategories}
                     </div>
                 </div>
@@ -92,6 +99,8 @@ class JobDetail extends Component {
                             {this.formatDate(job.startDate)}
                         </div>
 
+                        <div>-</div>
+
                         <div className="date-item">
                             {this.formatDate(job.endDate)}
                         </div>
@@ -104,6 +113,8 @@ class JobDetail extends Component {
                         <div className="date-item">
                             {this.formatTime(job.startTime)}
                         </div>
+
+                        <div>-</div>
 
                         <div className="date-item">
                             {this.formatTime(job.endTime)}

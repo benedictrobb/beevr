@@ -364,6 +364,14 @@ input:-webkit-autofill {
     width: 100%;
     background-color: #774422;
     text-align: center;
+    height: 20vh;
+    width: 100%;
+    background-color: #774422;
+    text-align: center;
+    flex-direction: column;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
 }
 
 .job-title {
@@ -373,7 +381,7 @@ input:-webkit-autofill {
     font-size: 24px;
     font-weight: bold;
     line-height: 32px;
-    padding-top: 10%;
+    margin-bottom: 1%;
 }
 
 .job-type {
@@ -388,6 +396,15 @@ input:-webkit-autofill {
 
 .job_description {
     padding: 10%;
+    margin: auto;
+}
+
+@media (min-width: 769px) {
+    .job_description {
+        padding: 5%;
+        max-width: 1000px;
+        margin: auto;
+    }
 }
 
 .calendar-icon {
@@ -402,7 +419,8 @@ input:-webkit-autofill {
 }
 
 .date-item {
-    margin-left: 5%;
+    margin-left: 2.5%;
+    margin-right: 2.5%;
 }
 
 .rectangle-3 {
