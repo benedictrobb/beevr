@@ -16,8 +16,6 @@ class Form_Register_Student extends Component {
         this.checkEmail = this.checkEmail.bind(this);
 
         this.state = {
-            count: 0,
-            allItems: [],
             errorMessage: '',
             loggedIn: false,
             isAuthenticated: false,
@@ -151,40 +149,19 @@ class Form_Register_Student extends Component {
     }
 
     onChangeJobCategories(evt) {
-        console.log('evt is  ', evt);
-        var arrayItem = evt.pop();
-        var arrayvalue = arrayItem.value;
-
-        if (arrayvalue) {
-            if (this.state.count < 1) {
-                var allItems = evt.concat([[arrayvalue]]);
-                this.setState({
-                    count: 1,
-                    allItems: allItems,
-                });
-            } else {
-                // console.log(arrayItem.value, evt);
-
-                var allItems = this.state.allItems.concat([[arrayvalue]]);
-                this.setState({
-                    allItems: allItems,
-                });
-            }
-        } else {
-            var allItems = evt;
-        }
-
         var student = this.state.student;
         var jobCategories = student.jobCategories;
         this.setState({
             student: {
                 ...student,
-                jobCategories: [allItems],
+                jobCategories: [evt],
             },
         });
     }
 
     render() {
+        console.log('form props', this.props);
+        console.log('form state', this.state);
         let studentToUpdate = new Object();
 
         for (var key in this.props.studentToUpdate) {
@@ -371,12 +348,12 @@ class Form_Register_Student extends Component {
                         Your job categories
                     </label>
                     <Multiselect
-                        data={categories}
                         value={
-                            this.state.allItems.length > 0
-                                ? this.state.allItems
-                                : studentToUpdate.jobCategories
+                            studentToUpdate
+                                ? studentToUpdate.jobCategories
+                                : null
                         }
+                        data={categories}
                         textField="value"
                         onChange={this.onChangeJobCategories}
                         placeholder="Pick up to 8 jobs categories"
@@ -400,12 +377,6 @@ class Form_Register_Student extends Component {
 }
 
 function mapStateToProps(state) {
-    let studentToUpdate =
-        state.searchStudents.studentsRequest.response &&
-        state.searchStudents.studentsRequest.response.studentList[0];
-    if (studentToUpdate) {
-        studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
-    }
     return {
         registerRequestStatus: state.registerStudent.student.status,
     };
