@@ -143,7 +143,7 @@ class Form_Register_Student extends Component {
         this.setState({
             student: {
                 ...student,
-                [evt.target.name]: evt.target.value,
+                [evt.target.name]: evt.target.value || [],
             },
         });
     }
