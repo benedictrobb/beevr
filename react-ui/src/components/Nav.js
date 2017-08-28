@@ -89,23 +89,28 @@ class Nav extends Component {
                                         ? <div />
                                         : <Link to="/login">Login</Link>}
                                 </li>
-                            
+
                                 <li>
                                     {!this.props.loggedIn
                                         ? <div />
-                                        : <Link to="/" onClick={this.props.logout}>
+                                        : <Link
+                                            to="/"
+                                            onClick={this.props.logout}
+                                        >
                                               Logout
                                         </Link>}
                                 </li>
-                            
+
                                 <li>
                                     {!this.props.role
                                         ? <Link to="/">Home</Link>
                                         : this.props.role === 'Student'
                                             ? <Link to="/browsejobs">Home</Link>
-                                            : <Link to="/browsestudents">Home</Link>}
+                                            : <Link to="/browsestudents">
+                                                Home
+                                            </Link>}
                                 </li>
-                            
+
                                 <li>
                                     {this.props.loggedIn
                                         ? <div />
@@ -113,7 +118,7 @@ class Nav extends Component {
                                               Register As Student
                                         </Link>}
                                 </li>
-                            
+
                                 <li>
                                     {this.props.loggedIn
                                         ? <div />
