@@ -57,8 +57,8 @@ data.getJobs = (callback, term) => {
     }
 };
 
-data.getStudents = (callback, term) => {
-    if (!term) {
+data.getStudents = (callback, term, id) => {
+    if (!term && !id) {
         dbConnection.query(
             `SELECT
                 students.student_id,
@@ -79,7 +79,7 @@ data.getStudents = (callback, term) => {
                 callback(null, res.rows);
             }
         );
-    } else {
+    } else if (term && !id) {
         dbConnection.query(
             `SELECT
                 students.student_id,
@@ -102,7 +102,30 @@ data.getStudents = (callback, term) => {
                 }
             }
         );
+    } else {
+        dbConnection.query(
+            `SELECT
+                students.first_name,
+                students.last_name,
+                students.email,
+                students.dob,
+                students.univ_school,
+                students.bio,
+                students.picture,
+                students.phone,
+                students.job_cat
+                    FROM students WHERE student_id = $1;`,
+            [id],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
     }
+
 };
 
 data.loginRequest = (email, callback) => {
@@ -170,32 +193,72 @@ data.findStudent = (student_id, callback) => {
     );
 };
 
-data.postStudents = (student, callback) => {
-    dbConnection.query(
-        `INSERT INTO students(
-            first_name, last_name, email, DOB, univ_school,
-            bio, picture, phone, job_cat, password_hash)
-            VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
-        [
-            student.firstName,
-            student.lastName,
-            student.email,
-            student.DOB,
-            student.univSchool,
-            student.bio,
-            student.picture,
-            student.phone,
-            student.jobCategories,
-            student.passwordHash,
-        ],
-        (err, res) => {
-            if (err) {
-                return callback(err);
-            } else {
-                callback(null, res.rows);
+data.postStudents = (id, student, callback) => {
+    if (!id) {
+        dbConnection.query(
+            `INSERT INTO students(
+                first_name, last_name, email, DOB, univ_school,
+                bio, picture, phone, job_cat, password_hash)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10);`,
+            [
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.DOB,
+                student.univSchool,
+                student.bio,
+                student.picture,
+                student.phone,
+                student.jobCategories,
+                student.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
             }
-        }
-    );
+        );
+    } else {
+        dbConnection.query(
+            `INSERT INTO students(
+                student_id, first_name, last_name, email, DOB,
+                univ_school,bio, picture, phone, job_cat, password_hash)
+                VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
+                    ON CONFLICT (student_id) 
+                    DO UPDATE SET 
+                        first_name=EXCLUDED.first_name, 
+                        last_name=EXCLUDED.last_name, 
+                        email=EXCLUDED.email, 
+                        DOB=EXCLUDED.DOB, 
+                        univ_school=EXCLUDED.univ_school, 
+                        bio=EXCLUDED.bio, picture=EXCLUDED.picture, 
+                        phone=EXCLUDED.phone, 
+                        job_cat=EXCLUDED.job_cat, 
+                        password_hash=EXCLUDED.password_hash;`,
+            [
+                id,
+                student.firstName,
+                student.lastName,
+                student.email,
+                student.DOB,
+                student.univSchool,
+                student.bio,
+                student.picture,
+                student.phone,
+                student.jobCategories,
+                student.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
+    } 
 };
 
 data.residentExists = (email, callback) => {
