@@ -3,7 +3,7 @@ html * {
 }
 
 body {
-    background-color: #E4E4E4;
+    background-color: #e4e4e4;
     color: #000807;
 }
 
@@ -13,7 +13,7 @@ body {
         background-size: cover;
         background-image: url('./student_dark.jpg');
     }
-    
+
     a {
         cursor: pointer;
         color: #815355;
@@ -21,7 +21,7 @@ body {
 
     .navbar-nav li a:hover,
     .navbar-nav li a:focus {
-        color: #F6F6F6;
+        color: #f6f6f6;
         text-decoration: none;
     }
 
@@ -64,7 +64,7 @@ body {
     }
 
     .navbar-nav li a {
-        color: #F6F6F6 !important;
+        color: #f6f6f6 !important;
     }
 
     #burger-menu {
@@ -77,7 +77,7 @@ body {
     margin-bottom: 0;
     border-radius: 0;
     background-color: #667744;
-    color: #F6F6F6;
+    color: #f6f6f6;
     /*color: #815355;*/
     height: 12vh;
     max-height: 12vh;
@@ -93,12 +93,12 @@ body {
     align-items: center;
 }
 
-.navbar-brand>h1 {
-    color: #F6F6F6;
+.navbar-brand > h1 {
+    color: #f6f6f6;
     font-weight: bolder;
 }
 
-.navbar-brand>img {
+.navbar-brand > img {
     padding: 5px;
     height: 10vh;
 }
@@ -116,7 +116,7 @@ body {
 }
 
 .front_resident {
-    color: #F6F6F6;
+    color: #f6f6f6;
 }
 
 .front_resident:hover {
@@ -135,11 +135,11 @@ body {
     margin-bottom: 5%;
     position: absolute;
     top: 25%;
-    color: #F6F6F6;
+    color: #f6f6f6;
 }
 
 .button {
-    text-align:center;
+    text-align: center;
 }
 
 .btn {
@@ -169,7 +169,7 @@ body {
 }
 
 .job-wrapper {
-    background-color: #F6F6F6;
+    background-color: #f6f6f6;
 }
 
 .front_title_resident:hover {
@@ -216,7 +216,7 @@ body {
 }
 
 input:-webkit-autofill {
-    -webkit-box-shadow: 0 0 0 30px #F6F6F6 inset;
+    -webkit-box-shadow: 0 0 0 30px #f6f6f6 inset;
 }
 
 .form-control {
@@ -306,7 +306,7 @@ input:-webkit-autofill {
 }
 
 .bm-cross {
-    background: #F6F6F6;
+    background: #f6f6f6;
 }
 
 .bm-menu {
@@ -350,6 +350,65 @@ input:-webkit-autofill {
     text-align: center;
 }
 
+.container-brown {
+    height: 20vh;
+    width: 100%;
+    background-color: #774422;
+    text-align: center;
+}
+
+.job-title {
+    /*height: 31px;*/
+    color: #f6f6f6;
+    font-family: Futura;
+    font-size: 24px;
+    font-weight: bold;
+    line-height: 32px;
+    padding-top: 10%;
+}
+
+.job-type {
+    height: 19px;
+    color: #f6f6f6;
+    font-family: Futura;
+    font-size: 14px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 19px;
+}
+
+.job_description {
+    padding: 10%;
+}
+
+.calendar-icon {
+    height: 18px;
+    width: 17px;
+}
+
+.date {
+    margin-top: 5%;
+    display: flex;
+    justify-content: left;
+}
+
+.date-item {
+    margin-left: 5%;
+}
+
+.rectangle-3 {
+    height: 55px;
+    width: 88px;
+    border-radius: 2px;
+    background-color: #774422;
+    font-family: Futura;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: #f6f6f6;
+    padding-top: 16px;
+}
+
 /*********************************/
 /*inserted from react-widgets.css*/
 /*********************************/
@@ -357,7 +416,7 @@ input:-webkit-autofill {
 .rw-btn,
 .rw-input {
     height: 96%;
-    margin: 1px 0 0 0;  
+    margin: 1px 0 0 0;
     color: inherit;
     font: inherit;
     margin: 0;
@@ -1227,8 +1286,9 @@ ul.rw-list.rw-list-grouped > li.rw-list-option,
     text-align: center;
     white-space: nowrap;
     border-radius: 3px;
-    border: 1px solid #ccc;
-    background-color: #ccc;
+    border: 1px solid #774422;
+    background-color: #774422;
+    color: white;
     cursor: pointer;
 }
 

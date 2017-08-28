@@ -69,68 +69,65 @@ class JobDetail extends Component {
         var job = jobObj[this.props.jobId];
 
         return (
-            <div key={job.jobId} className="col-md-6 col-md-offset-3">
-                <h3 className="job_title">
-                    {job.jobTitle}
-                </h3>
-                <h5 className="job_title">
-                    {job.jobCategories}
-                </h5>
-                <p>
-                    {job.description}
-                </p>
+            <div>
+                <div key={job.jobId} className="container-brown">
+                    <div className="job-title">
+                        {job.jobTitle}
+                    </div>
+                    <div className="job-type">
+                        {job.jobCategories}
+                    </div>
+                </div>
+                <div className="job_description">
+                    <p>
+                        <i>{job.description}</i>{' '}
+                    </p>
+                    <div className="date">
+                        <img
+                            className="calendar-icon"
+                            src={require('../../utils/if_72-Calendar_2123904.svg')}
+                        />
 
-                <label>
-                    <u>Start Date</u>
-                </label>
+                        <div className="date-item">
+                            {this.formatDate(job.startDate)}
+                        </div>
 
-                <p>
-                    {this.formatDate(job.startDate)}
-                </p>
-                <label>
-                    <u>Start Time</u>
-                </label>
-                <p>
-                    {this.formatTime(job.startTime)}
-                </p>
-                <u>
-                    <label>
-                        <u>End Date</u>
-                    </label>
-                </u>
-                <p>
-                    {this.formatDate(job.endDate)}
-                </p>
-                <u>
-                    <label>
-                        <u>End Time</u>
-                    </label>
-                </u>
-                <p>
-                    {this.formatTime(job.endTime)}
-                </p>
-                <u>
-                    <label>
-                        <u>Rate</u>
-                    </label>
-                </u>
-                <p>
-                    {job.rate}
-                </p>
-                <div>
-                    {this.props.status === 'pending'
-                        ? <LoadingIndicator />
-                        : <button
-                            className="btn btn-primary"
-                            onClick={() =>
-                                this.submitJobApplication(
-                                    job.jobId,
-                                    job.residentId,
-                                    this.props.studentId
-                                )}
-                        >
-                              APPLY
-                        </button>}
+                        <div className="date-item">
+                            {this.formatDate(job.endDate)}
+                        </div>
+                    </div>
+                    <div className="date">
+                        <img
+                            className="calendar-icon"
+                            src={require('../../utils/if_10_171505.svg')}
+                        />
+                        <div className="date-item">
+                            {this.formatTime(job.startTime)}
+                        </div>
+
+                        <div className="date-item">
+                            {this.formatTime(job.endTime)}
+                        </div>
+                    </div>
+
+                    <div className="rectangle-3">
+                        £{job.rate}
+                    </div>
+                    <div>
+                        {this.props.status === 'pending'
+                            ? <LoadingIndicator />
+                            : <button
+                                className="btn btn-primary"
+                                onClick={() =>
+                                    this.submitJobApplication(
+                                        job.jobId,
+                                        job.residentId,
+                                        this.props.studentId
+                                    )}
+                            >
+                                  APPLY
+                            </button>}
+                    </div>
                 </div>
             </div>
         );
@@ -138,16 +135,14 @@ class JobDetail extends Component {
 
     render() {
         return (
-            <div className="container-fluid register_container">
-                <article className="row-fluid">
-                    <section>
-                        {this.renderJob()}
-                    </section>
-                </article>
-            </div>
+            <section>
+                {this.renderJob()}
+            </section>
         );
     }
 }
+// <div className="container-fluid register_container">
+//   <article className="row-fluid">
 
 //studentId disappears on page reload
 function mapStateToProps(state, ownProps) {
