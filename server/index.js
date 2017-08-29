@@ -152,6 +152,15 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
+                if (request.url.query.searchTerm) {
+                    var term = request.url.query.searchTerm;
+                } else var term = null;
+                if (
+                    request.auth.credentials &&
+                    request.auth.credentials.role === 'Student'
+                ) {
+                    var id = request.auth.credentials.id;
+                } else var id = null;
                 data.getStudents(
                     (err, res) => {
                         if (err) {
@@ -159,6 +168,7 @@ server.register(plugins, err => {
                                 Boom.serverUnavailable('unavailable: ' + err)
                             );
                         } else {
+                            console.log(res);
                             reply({
                                 name: 'studentList',
                                 message: 'Welcome to BEEVR!',
@@ -179,8 +189,8 @@ server.register(plugins, err => {
                             });
                         }
                     },
-                    request.url.query.searchTerm,
-                    request.auth.credentials.id
+                    term,
+                    id
                 );
             },
         },
@@ -235,7 +245,6 @@ server.register(plugins, err => {
                         }),
                         (err, res) => {
                             if (err) {
-                                console.log(err);
                                 return reply(
                                     Boom.badRequest('Bad request: ' + err)
                                 );
@@ -322,7 +331,6 @@ server.register(plugins, err => {
                         );
                     } else {
                         var message = `${text}
-
                          Name: ${res.first_name} ${res.last_name}
                          University/School:${res.univ_school}
                          Phone: ${res.phone}
