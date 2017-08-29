@@ -1,7 +1,7 @@
 import axios from 'axios';
 import {REGISTER_STUDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
-export const registerStudent = student => dispatch => {
+export const registerStudent = (student, cb) => dispatch => {
     dispatch({
         type: REGISTER_STUDENT,
         status: 'pending',
@@ -15,6 +15,7 @@ export const registerStudent = student => dispatch => {
                 status: 'success',
                 response: response.data,
             });
+            cb();
         })
         .catch(error => {
             dispatch({

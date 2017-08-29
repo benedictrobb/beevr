@@ -104,7 +104,9 @@ class Form_Update_Student extends Component {
 
                 this.setState({errorMessage: errorMessage});
                 if (!this.state.errorMessage) {
-                    this.props.registerStudent(student);
+                    this.props.registerStudent(student, () => {
+                        browserHistory.push('/');
+                    });
                 }
             }
         );
@@ -376,7 +378,7 @@ function mapStateToProps(state) {
         studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
     }
     return {
-        registerRequestStatus: state.registerStudent.student.status,
+        updateRequestStatus: state.registerStudent.student.status,
     };
 }
 

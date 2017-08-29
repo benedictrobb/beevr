@@ -11,6 +11,26 @@ class UpdateStudents extends Component {
     }
 
     render() {
+        // if (UpdateStudents && this.props.registered === 'success') {
+        //     return (
+        //         <div className="parent-container">
+        //             <div>
+        //                 <div className="flex-container">
+        //                     <img
+        //                         className="success_image"
+        //                         src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+        //                     />
+        //                 </div>
+        //
+        //                 <div className="flex-container">
+        //                     <h3 className="success_message">
+        //                         PROFILE UPDATED SUCCESSFULLY!
+        //                     </h3>
+        //                 </div>
+        //             </div>
+        //         </div>
+        //     );
+        // }
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
