@@ -60,8 +60,10 @@ class Form_Update_Student extends Component {
         var phone = this.state.student.phone || phone;
         var univSchool = this.state.student.univSchool || univSchool;
         var jobCategories = this.state.student.jobCategories || jobCategories;
-        // var confirmPassword =
-        //     this.state.student.confirmPassword || confirmPassword;
+        var confirmPassword =
+            this.state.student.confirmPassword || confirmPassword;
+
+        console.log(this.state.student.confirmPassword);
 
         this.setState(
             {
@@ -76,38 +78,36 @@ class Form_Update_Student extends Component {
                     phone,
                     univSchool,
                     jobCategories,
-                    // confirmPassword,
                 },
             },
             () => {
                 console.log('this.state is ', this.state);
+                var student = this.state.student;
+
+                if (!student.firstName) {
+                    var errorMessage = 'First Name cannot be empty';
+                } else if (!student.lastName) {
+                    errorMessage = 'Last Name cannot be empty';
+                } else if (!student.email) {
+                    errorMessage = 'Email cannot be empty';
+                } else if (!student.password) {
+                    errorMessage = 'Password cannot be empty';
+                } else if (!confirmPassword) {
+                    errorMessage = 'Please confirm the password';
+                } else if (student.password !== confirmPassword) {
+                    errorMessage = 'Passwords do not match';
+                } else if (!student.univSchool) {
+                    errorMessage = 'University/ School field cannot be empty';
+                } else if (!student.phone) {
+                    errorMessage = 'Phone cannot be empty';
+                }
+
+                this.setState({errorMessage: errorMessage});
+                if (!this.state.errorMessage) {
+                    this.props.registerStudent(student);
+                }
             }
         );
-
-        var student = this.state.student;
-
-        if (!student.firstName) {
-            var errorMessage = 'First Name cannot be empty';
-        } else if (!student.lastName) {
-            errorMessage = 'Last Name cannot be empty';
-        } else if (!student.email) {
-            errorMessage = 'Email cannot be empty';
-        } else if (!student.password) {
-            errorMessage = 'Password cannot be empty';
-        } else if (!student.confirmPassword) {
-            errorMessage = 'Please confirm the password';
-        } else if (student.password !== student.confirmPassword) {
-            errorMessage = 'Passwords do not match';
-        } else if (!student.univSchool) {
-            errorMessage = 'University/ School field cannot be empty';
-        } else if (!student.phone) {
-            errorMessage = 'Phone cannot be empty';
-        }
-
-        // this.setState({errorMessage: errorMessage});
-        if (!this.state.errorMessage) {
-            this.props.registerStudent(student);
-        }
     }
 
     onChange(evt) {
