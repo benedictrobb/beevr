@@ -4,6 +4,7 @@ import categories from '../constants/job_categories.js';
 import {browserHistory} from 'react-router';
 import {connect} from 'react-redux';
 import * as actions from '../actions/update_student.js';
+import {fetchStudents} from '../actions/register_student.js';
 import LoadingIndicator from 'react-loading-indicator';
 
 class Form_Update_Student extends Component {
@@ -101,10 +102,11 @@ class Form_Update_Student extends Component {
                     errorMessage = 'Phone cannot be empty';
                 }
 
-                this.setState({errorMessage: errorMessage});
-                if (!this.state.errorMessage) {
-                    this.props.registerStudent(student);
-                }
+                this.setState({errorMessage: errorMessage}, () => {
+                    if (!this.state.errorMessage) {
+                        this.props.registerStudent(student);
+                    }
+                });
             }
         );
     }
