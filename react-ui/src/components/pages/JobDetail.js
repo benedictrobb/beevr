@@ -75,19 +75,14 @@ class JobDetail extends Component {
         return (
             <div>
                 <div key={job.jobId} className="container-brown">
-                    <div className="container-fluid">
-                        <div className="job-title">
-                            {job.jobTitle}
-                        </div>
-                    </div>
-
-                    <div className="job-type container-fluid">
-                        {job.jobCategories}
-                    </div>
+                    <h3>
+                        {job.jobTitle}
+                    </h3>
+                    {job.jobCategories}
                 </div>
                 <div className="job_description">
                     <p>
-                        <i>{job.description}</i>{' '}
+                        <i>{job.description}</i>
                     </p>
                     <div className="date">
                         <img
