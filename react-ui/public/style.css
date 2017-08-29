@@ -37,6 +37,11 @@ body {
     #desktop-menu {
         display: none;
     }
+
+    .view-details {
+        float: right;
+        margin-top: -12%;
+    }
 }
 
 @media (min-width: 769px) {
@@ -128,6 +133,11 @@ body {
 }
 
 .student_wrapper {
+    background-color: #f6f6f6;
+    padding: 0 1.5vw 0.5vh 1.5vw;
+}
+
+.job_wrapper {
     background-color: #f6f6f6;
     padding: 0 1.5vw 0.5vh 1.5vw;
 }
@@ -363,10 +373,7 @@ input:-webkit-autofill {
     height: 20vh;
     width: 100%;
     background-color: #774422;
-    text-align: center;
-    height: 20vh;
-    width: 100%;
-    background-color: #774422;
+    color: #f6f6f6;
     text-align: center;
     flex-direction: column;
     display: flex;
@@ -399,11 +406,20 @@ input:-webkit-autofill {
     margin: auto;
 }
 
+.description {
+    padding-bottom: 3%;
+}
+
 @media (min-width: 769px) {
     .job_description {
         padding: 5%;
         max-width: 1000px;
         margin: auto;
+    }
+
+    .view-details {
+        float: right;
+        margin-top: -6%;
     }
 }
 
@@ -418,6 +434,12 @@ input:-webkit-autofill {
     justify-content: left;
 }
 
+.date_searchJobs {
+    display: flex;
+    justify-content: left;
+    padding-bottom: 2%;
+}
+
 .date-item {
     margin-left: 2.5%;
     margin-right: 2.5%;
@@ -428,7 +450,6 @@ input:-webkit-autofill {
     width: 88px;
     border-radius: 2px;
     background-color: #774422;
-    font-family: Futura;
     font-size: 18px;
     font-weight: 500;
     text-align: center;
@@ -450,6 +471,10 @@ input:-webkit-autofill {
     bottom: 5%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.job_title {
+    padding-top: 3%;
 }
 
 /*********************************/
