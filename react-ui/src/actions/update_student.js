@@ -1,9 +1,9 @@
 import axios from 'axios';
-import {REGISTER_STUDENT, CHECK_EMAIL} from '../constants/action_types.js';
+import {UPDATE_STUDENT, CHECK_EMAIL} from '../constants/action_types.js';
 
 export const registerStudent = student => dispatch => {
     dispatch({
-        type: REGISTER_STUDENT,
+        type: UPDATE_STUDENT,
         status: 'pending',
     });
 
@@ -11,14 +11,14 @@ export const registerStudent = student => dispatch => {
         .post('api/student', student)
         .then(response => {
             dispatch({
-                type: REGISTER_STUDENT,
+                type: UPDATE_STUDENT,
                 status: 'success',
                 response: response.data,
             });
         })
         .catch(error => {
             dispatch({
-                type: REGISTER_STUDENT,
+                type: UPDATE_STUDENT,
                 status: 'error',
                 error: error.message,
             });
@@ -47,4 +47,11 @@ export const checkIfStudentExists = email => dispatch => {
                 error: error.message,
             });
         });
+};
+
+export const updateStudent = student => dispatch => {
+    dispatch({
+        type: UPDATE_STUDENT,
+        student: student,
+    });
 };

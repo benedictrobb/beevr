@@ -331,7 +331,6 @@ server.register(plugins, err => {
                         );
                     } else {
                         var message = `${text}
-
                          Name: ${res.first_name} ${res.last_name}
                          University/School:${res.univ_school}
                          Phone: ${res.phone}
