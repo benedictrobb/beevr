@@ -47,6 +47,7 @@ class Form_Update_Student extends Component {
             phone,
             univSchool,
             jobCategories,
+            // confirmPassword,
         } = this.props.studentToUpdate;
 
         var firstName = this.state.student.firstName || firstName;
@@ -59,6 +60,8 @@ class Form_Update_Student extends Component {
         var phone = this.state.student.phone || phone;
         var univSchool = this.state.student.univSchool || univSchool;
         var jobCategories = this.state.student.jobCategories || jobCategories;
+        // var confirmPassword =
+        //     this.state.student.confirmPassword || confirmPassword;
 
         this.setState(
             {
@@ -73,10 +76,11 @@ class Form_Update_Student extends Component {
                     phone,
                     univSchool,
                     jobCategories,
+                    // confirmPassword,
                 },
             },
             () => {
-                console.log(this.state);
+                console.log('this.state is ', this.state);
             }
         );
 
@@ -100,12 +104,14 @@ class Form_Update_Student extends Component {
             errorMessage = 'Phone cannot be empty';
         }
 
+        // this.setState({errorMessage: errorMessage});
         if (!this.state.errorMessage) {
             this.props.registerStudent(student);
         }
     }
 
     onChange(evt) {
+        console.log('evt is', evt.target.name, evt.target.value);
         var {student} = this.state;
 
         this.setState({
@@ -117,7 +123,6 @@ class Form_Update_Student extends Component {
     }
 
     onChangeJobCategories(evt) {
-        console.log('evt is  ', evt);
         var arrayItem = evt.pop();
         var arrayvalue = arrayItem.value;
 
@@ -129,8 +134,6 @@ class Form_Update_Student extends Component {
                     allItems: allItems,
                 });
             } else {
-                // console.log(arrayItem.value, evt);
-
                 var allItems = this.state.allItems.concat([[arrayvalue]]);
                 this.setState({
                     allItems: allItems,
@@ -152,6 +155,13 @@ class Form_Update_Student extends Component {
 
     render() {
         let studentToUpdate = new Object();
+
+        // if (this.props.studentToUpdate) {
+        //     this.props.studentToUpdate.dob = this.props.studentToUpdate.dob.slice(
+        //         0,
+        //         10
+        //     );
+        // }
 
         for (var key in this.props.studentToUpdate) {
             studentToUpdate[key] = this.props.studentToUpdate[key];
@@ -256,11 +266,11 @@ class Form_Update_Student extends Component {
                     </label>
                     <input
                         className="form-control"
-                        name="DOB"
+                        name="dob"
                         id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.student.DOB || studentToUpdate.dob}
+                        value={this.state.student.dob || studentToUpdate.dob}
                         onChange={this.onChange}
                     />
                 </div>
@@ -366,12 +376,12 @@ class Form_Update_Student extends Component {
 }
 
 function mapStateToProps(state) {
-    let studentToUpdate =
-        state.searchStudents.studentsRequest.response &&
-        state.searchStudents.studentsRequest.response.studentList[0];
-    if (studentToUpdate) {
-        studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
-    }
+    // let studentToUpdate =
+    //     state.searchStudents.studentsRequest.response &&
+    //     state.searchStudents.studentsRequest.response.studentList[0];
+    // if (studentToUpdate) {
+    //     studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
+    // }
     return {
         registerRequestStatus: state.registerStudent.student.status,
     };

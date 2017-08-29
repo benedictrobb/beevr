@@ -159,7 +159,6 @@ server.register(plugins, err => {
                                 Boom.serverUnavailable('unavailable: ' + err)
                             );
                         } else {
-                            console.log(res);
                             reply({
                                 name: 'studentList',
                                 message: 'Welcome to BEEVR!',
@@ -211,6 +210,7 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
+                console.log('request payload is', request.payload);
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
@@ -235,6 +235,7 @@ server.register(plugins, err => {
                         }),
                         (err, res) => {
                             if (err) {
+                                console.log(err);
                                 return reply(
                                     Boom.badRequest('Bad request: ' + err)
                                 );
