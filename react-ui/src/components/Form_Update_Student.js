@@ -54,7 +54,7 @@ class Form_Update_Student extends Component {
         var lastName = this.state.student.lastName || lastName;
         var email = this.state.student.email || email;
         var password = this.state.student.password || password;
-        var dob = this.state.student.dob || dob;
+        var DOB = this.state.student.DOB || dob;
         var bio = this.state.student.bio || bio;
         var picture = this.state.student.picture || picture;
         var phone = this.state.student.phone || phone;
@@ -72,7 +72,7 @@ class Form_Update_Student extends Component {
                     lastName,
                     email,
                     password,
-                    dob,
+                    DOB,
                     bio,
                     picture,
                     phone,
@@ -260,11 +260,11 @@ class Form_Update_Student extends Component {
                     </label>
                     <input
                         className="form-control"
-                        name="dob"
+                        name="DOB"
                         id="dateOfBirth"
                         type="date"
                         placeholder="Date Of Birth"
-                        value={this.state.student.dob || studentToUpdate.dob}
+                        value={this.state.student.DOB || studentToUpdate.dob}
                         onChange={this.onChange}
                     />
                 </div>
