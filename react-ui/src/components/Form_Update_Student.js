@@ -111,7 +111,7 @@ class Form_Update_Student extends Component {
     }
 
     onChange(evt) {
-        console.log('evt is', evt.target.name, evt.target.value);
+        // console.log('evt is', evt.target.name, evt.target.value);
         var {student} = this.state;
 
         this.setState({
@@ -155,13 +155,6 @@ class Form_Update_Student extends Component {
 
     render() {
         let studentToUpdate = new Object();
-
-        // if (this.props.studentToUpdate) {
-        //     this.props.studentToUpdate.dob = this.props.studentToUpdate.dob.slice(
-        //         0,
-        //         10
-        //     );
-        // }
 
         for (var key in this.props.studentToUpdate) {
             studentToUpdate[key] = this.props.studentToUpdate[key];
@@ -376,12 +369,12 @@ class Form_Update_Student extends Component {
 }
 
 function mapStateToProps(state) {
-    // let studentToUpdate =
-    //     state.searchStudents.studentsRequest.response &&
-    //     state.searchStudents.studentsRequest.response.studentList[0];
-    // if (studentToUpdate) {
-    //     studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
-    // }
+    let studentToUpdate =
+        state.searchStudents.studentsRequest.response &&
+        state.searchStudents.studentsRequest.response.studentList[0];
+    if (studentToUpdate && studentToUpdate.dob) {
+        studentToUpdate.dob = studentToUpdate.dob.slice(0, 10);
+    }
     return {
         registerRequestStatus: state.registerStudent.student.status,
     };

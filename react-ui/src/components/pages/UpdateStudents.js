@@ -11,8 +11,6 @@ class UpdateStudents extends Component {
     }
 
     render() {
-        console.log(this.props);
-        console.log(this.state);
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
