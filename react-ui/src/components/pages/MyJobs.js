@@ -103,9 +103,9 @@ class MyJobs extends Component {
             );
         }
         return (
-            <div className="container-fluid">
-                <article className="row-fluid search_jobs">
-                    <section className="col-md-6 col-md-offset-3">
+            <div className="container">
+                <article className="row search_jobs">
+                    <section className="col col-md-8">
                         <ul>
                             {myJobs.map(this.renderJobs)}
                         </ul>

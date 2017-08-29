@@ -12,7 +12,7 @@ class Nav extends Component {
         return (
             <div>
                 <nav
-                    className="navbar navbar-default"
+                    className="navbar sticky-top"
                     role="navigation"
                     id="burger-menu"
                 >
@@ -81,31 +81,51 @@ class Nav extends Component {
                     </div>
                 </nav>
                 <nav
-                    className="navbar navbar-default"
+                    className="navbar sticky-top"
                     role="navigation"
                     id="desktop-menu"
                 >
                     <div className="container-fluid container-desktop">
                         <div className="row justify-content-between align-items-baseline">
                             <div className="navbar-header">
-                                <div className="navbar-brand">
-                                    <img src="./lemmling-Cartoon-beaver.svg" />
-                                    <h1>BEEVR</h1>
-                                </div>
+                                {!this.props.role
+                                    ? <Link to="/">
+                                        <div className="navbar-brand">
+                                            <img src="./lemmling-Cartoon-beaver.svg" />
+                                            <h1>BEEVR</h1>
+                                        </div>
+                                    </Link>
+                                    : this.props.role === 'Student'
+                                        ? <Link to="/browsejobs">
+                                            <div className="navbar-brand">
+                                                <img src="./lemmling-Cartoon-beaver.svg" />
+                                                <h1>BEEVR</h1>
+                                            </div>
+                                        </Link>
+                                        : <Link to="/browsestudents">
+                                            <div className="navbar-brand">
+                                                <img src="./lemmling-Cartoon-beaver.svg" />
+                                                <h1>BEEVR</h1>
+                                            </div>
+                                        </Link>}
                             </div>
                             <div>
                                 <ul className="nav navbar-right">
                                     <li>
                                         {this.props.loggedIn
-                                            ? <Link
+                                            ? <div />
+                                            : <Link to="/login">Login</Link>}
+                                    </li>
+                                    <li>
+                                        {!this.props.loggedIn
+                                            ? <div />
+                                            : <Link
                                                 to="/"
                                                 onClick={this.props.logout}
                                             >
                                                   Logout
-                                            </Link>
-                                            : <Link to="/login">Login</Link>}
+                                            </Link>}
                                     </li>
-
                                     <li>
                                         {!this.props.role
                                             ? <Link to="/">Home</Link>
@@ -117,7 +137,6 @@ class Nav extends Component {
                                                     Home
                                                 </Link>}
                                     </li>
-
                                     <li>
                                         {this.props.loggedIn
                                             ? <div />

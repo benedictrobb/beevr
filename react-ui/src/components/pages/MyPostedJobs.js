@@ -111,9 +111,9 @@ class MyPostedJobs extends Component {
         }
 
         return (
-            <div className="container-fluid">
-                <article className="row-fluid search_jobs">
-                    <section className="col-md-6 col-md-offset-3">
+            <div className="container">
+                <article className="row justify-content-md-center search_jobs">
+                    <section className="col col-md-8">
                         <ul>
                             {myPostedJobs.map(this.renderJob)}
                         </ul>

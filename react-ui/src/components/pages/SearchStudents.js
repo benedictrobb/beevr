@@ -55,8 +55,8 @@ class BrowseStudents extends Component {
         if (!studentList) {
             return (
                 <div>
-                    <article className="row-fluid search_jobs">
-                        <section className="col-md-8 col-md-offset-2">
+                    <article className="row justify-content-md-center search_jobs">
+                        <section className="col col-md-8">
                             <Link
                                 to="/postjob"
                                 className="btn btn-primary pull-right submit_button"
@@ -88,8 +88,8 @@ class BrowseStudents extends Component {
         }
         return (
             <div className="container">
-                <article className="row-fluid search_jobs">
-                    <section className="col-md-8 col-md-offset-2">
+                <article className="row justify-content-md-center search_jobs">
+                    <section className="col col-md-8">
                         {this.props.isAuthenticated === true
                             ? <div>
                                 <Link

@@ -32,9 +32,9 @@ class UpdateStudents extends Component {
             );
         }
         return (
-            <div className="container-fluid register_container">
-                <div className="row-fluid">
-                    <div className="col-md-4 col-md-offset-4 ">
+            <div className="container register_container">
+                <div className="row justify-content-md-center">
+                    <div className="col col-md-8 ">
                         <h3>Update your student profile</h3>
 
                         <p>
