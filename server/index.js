@@ -227,6 +227,9 @@ server.register(plugins, err => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
+                    if (!request.payload.jobCategories) {
+                        return reply(Boom.badData('jobCategories missing'));
+                    }
                     if (studentId) {
                         var jobCategories = request.payload.jobCategories;
                     } else {
