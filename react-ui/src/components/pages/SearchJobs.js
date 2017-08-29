@@ -4,6 +4,7 @@ import * as actions from '../../actions/search_jobs.js';
 import {Link} from 'react-router';
 import DropdownList from 'react-widgets/lib/DropdownList';
 import categories from '../../constants/job_categories.js';
+import LoadingIndicator from 'react-loading-indicator';
 const numberOfCharacters = 220;
 
 class BrowseJobs extends Component {
@@ -22,7 +23,11 @@ class BrowseJobs extends Component {
     }
 
     formatDate(date) {
-        return date.slice(0, 10);
+        const year = date.slice(0, 4);
+        const month = date.slice(5, 7);
+        const day = date.slice(8, 10);
+
+        return `${day}/${month}/${year}`;
     }
 
     formatTime(time) {
@@ -47,41 +52,36 @@ class BrowseJobs extends Component {
 
     renderJobs(job) {
         return (
-            <div key={job.jobId}>
-                <h3>
-                    <Link to={`/jobdetail/${job.jobId}`}>
-                        {job.jobTitle}
-                    </Link>
+            <div className="job_wrapper" key={job.jobId}>
+                <h3 className="job_title">
+                    {job.jobTitle}
                 </h3>
-                <h5 className="light_brown_title">
+                <h5 className="light_brown_title italic">
                     {job.jobCat}
                 </h5>
-                <label>
-                    <u>Job description</u>
-                </label>
-                <p>
+                <p className="italic description">
                     {this.formatDesc(job.description)}
                 </p>
 
-                <label>
-                    <u>Start Date</u>
-                </label>
-                <p>
-                    {this.formatDate(job.startDate)}
-                </p>
-                <label>
-                    <u>End Date</u>
-                </label>
-                <p>
-                    {this.formatDate(job.endDate)}
-                </p>
+                <div className="date_searchJobs">
+                    <img
+                        className="calendar-icon"
+                        src={require('../../utils/if_10_171505.svg')}
+                    />
+                    <div className="date-item">
+                        {this.formatDate(job.startDate)}
+                    </div>
 
-                <label>
-                    <u>Rate</u>
-                </label>
-                <p>
-                    {job.rate}
-                </p>
+                    <div>
+                        {this.formatTime(job.startTime)}
+                    </div>
+                </div>
+                <Link
+                    className="btn btn-primary view-details"
+                    to={`/jobdetail/${job.jobId}`}
+                >
+                    View details
+                </Link>
             </div>
         );
     }
@@ -92,33 +92,8 @@ class BrowseJobs extends Component {
 
         if (!jobsList) {
             return (
-                <div className="container-fluid">
-                    <article className="row-fluid search_jobs">
-                        <section className="col-md-6 col-md-offset-3">
-                            <form
-                                className="form-group"
-                                onSubmit={this.onSubmit}
-                            >
-                                <DropdownList
-                                    id="browseJobsForm"
-                                    className="form-control"
-                                    placeholder="Browse Jobs"
-                                    data={categories}
-                                    textField="value"
-                                    onChange={this.onJobSearchChange}
-                                    value={this.props.SearchTerm}
-                                    groupBy="group"
-                                />
-                                <button
-                                    type="submit"
-                                    id="submit_button"
-                                    className="btn btn-primary submit_button"
-                                >
-                                    Submit
-                                </button>
-                            </form>
-                        </section>
-                    </article>
+                <div className="register_container flex-container">
+                    <LoadingIndicator />
                 </div>
             );
         }

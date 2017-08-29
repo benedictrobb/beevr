@@ -220,18 +220,23 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
+                if (request.auth.credentials) {
+                    var studentId = request.auth.credentials.id;
+                } else var studentId = null;
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
-                    if (request.auth.credentials.id) {
-                        var studentId = request.auth.credentials.id;
+                    if (!request.payload.jobCategories) {
+                        return reply(Boom.badData('jobCategories missing'));
                     }
-                    var jobCategories =
-                        request.payload.jobCategories ||
-                        request.payload.jobCategories[0].map(
+                    if (studentId) {
+                        var jobCategories = request.payload.jobCategories;
+                    } else {
+                        var jobCategories = request.payload.jobCategories[0].map(
                             item => item.value
                         );
+                    }
                     data.postStudents(
                         studentId,
                         Object.assign({}, request.payload, {
@@ -326,7 +331,6 @@ server.register(plugins, err => {
                         );
                     } else {
                         var message = `${text}
-
                          Name: ${res.first_name} ${res.last_name}
                          University/School:${res.univ_school}
                          Phone: ${res.phone}

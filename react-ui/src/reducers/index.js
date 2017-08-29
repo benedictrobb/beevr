@@ -9,6 +9,7 @@ import searchStudents from './search_students_reducer.js';
 import applyJob from './apply_job.js';
 import fetchMyPostedJobs from './my_posted_jobs.js';
 import fetchMyJobs from './my_jobs.js';
+import updateStudent from './update_student_reducer.js';
 
 export default combineReducers({
     searchJobs,
@@ -20,4 +21,5 @@ export default combineReducers({
     searchStudents,
     fetchMyPostedJobs,
     fetchMyJobs,
+    updateStudent,
 });
