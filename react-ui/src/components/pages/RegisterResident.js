@@ -31,8 +31,8 @@ class RegisterResident extends Component {
         }
         return (
             <div className="container register_container">
-                <div className="row-fluid">
-                    <div className="col-md-8 col-md-offset-2 ">
+                <div className="row justify-content-md-center">
+                    <div className="col col-md-8">
                         <h2>Register as a Resident</h2>
 
                         <p>

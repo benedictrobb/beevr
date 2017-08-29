@@ -23,8 +23,8 @@ body {
         color: #815355;
     }
 
-    .navbar-nav li a:hover,
-    .navbar-nav li a:focus {
+    .nav li a:hover,
+    .nav li a:focus {
         color: #f6f6f6;
         text-decoration: none;
     }
@@ -62,12 +62,16 @@ body {
         color: #523249;
     }
 
-    .navbar-nav li a:hover {
+    .nav li {
+        padding-left: 10px;
+    }
+    
+    .nav li a:hover {
         color: #c3b299 !important;
         text-decoration: none;
     }
 
-    .navbar-nav li a {
+    .nav li a {
         color: #f6f6f6 !important;
     }
 
@@ -82,14 +86,13 @@ body {
     border-radius: 0;
     background-color: #667744;
     color: #f6f6f6;
-    /*color: #815355;*/
     height: 12vh;
     max-height: 12vh;
 }
-.navbar-right {
-    font-size: 12px;
-    padding-top: 15px;
-    letter-spacing: 5px;
+
+#desktop-menu .navbar-right {
+    font-size: 14px;
+    letter-spacing: 2px;
 }
 
 .navbar-brand {
@@ -100,6 +103,7 @@ body {
 .navbar-brand > h1 {
     color: #f6f6f6;
     font-weight: bolder;
+    margin: 0;
 }
 
 .navbar-brand > img {
@@ -242,7 +246,11 @@ input:-webkit-autofill {
     border-radius: 0;
 }
 
-.row-fluid h2 {
+.navbar .row {
+    width: 100%;
+}
+
+.row h2 {
     color: #774422;
     font-weight: bolder;
     text-align: center;

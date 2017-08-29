@@ -15,8 +15,8 @@ class LoginPage extends React.Component {
         }
         return (
             <div className="container register_container">
-                <div className="row-fluid">
-                    <div className="col-sm-8 col-sm-offset-2 ">
+                <div className="row justify-content-md-center">
+                    <div className="col col-md-8">
                         <LoginForm />
                     </div>
                 </div>
