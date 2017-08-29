@@ -38,19 +38,23 @@ class Form_Register_Student extends Component {
         if (!student.firstName) {
             var errorMessage = 'First Name cannot be empty';
         } else if (!student.lastName) {
-            errorMessage = 'Last Name cannot be empty';
+            var errorMessage = 'Last Name cannot be empty';
         } else if (!student.email) {
-            errorMessage = 'Email cannot be empty';
+            var errorMessage = 'Email cannot be empty';
         } else if (!student.password) {
-            errorMessage = 'Password cannot be empty';
+            var errorMessage = 'Password cannot be empty';
         } else if (!student.confirmPassword) {
-            errorMessage = 'Please confirm the password';
+            var errorMessage = 'Please confirm the password';
         } else if (student.password !== student.confirmPassword) {
-            errorMessage = 'Passwords do not match';
+            var errorMessage = 'Passwords do not match';
         } else if (!student.univSchool) {
-            errorMessage = 'University/ School field cannot be empty';
+            var errorMessage = 'University/ School field cannot be empty';
         } else if (!student.phone) {
-            errorMessage = 'Phone cannot be empty';
+            var errorMessage = 'Phone cannot be empty';
+        } else if (!Array.isArray(student.jobCategories)) {
+            var errorMessage = 'Please select at least one job category';
+        } else if (student.jobCategories[0].length < 1) {
+            var errorMessage = 'Please select at least one job category';
         }
 
         this.setState({errorMessage: errorMessage});
@@ -242,7 +246,7 @@ class Form_Register_Student extends Component {
                         name="category"
                         htmlFor="jobCategories"
                     >
-                        Your job categories
+                        Your job categories*
                     </label>
                     <Multiselect
                         data={categories}
