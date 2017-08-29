@@ -11,26 +11,26 @@ class UpdateStudents extends Component {
     }
 
     render() {
-        // if (UpdateStudents && this.props.registered === 'success') {
-        //     return (
-        //         <div className="parent-container">
-        //             <div>
-        //                 <div className="flex-container">
-        //                     <img
-        //                         className="success_image"
-        //                         src={require('../../utils/lemmling-Cartoon-beaver.svg')}
-        //                     />
-        //                 </div>
-        //
-        //                 <div className="flex-container">
-        //                     <h3 className="success_message">
-        //                         PROFILE UPDATED SUCCESSFULLY!
-        //                     </h3>
-        //                 </div>
-        //             </div>
-        //         </div>
-        //     );
-        // }
+        if (this.props.status === 'success') {
+            return (
+                <div className="parent-container">
+                    <div>
+                        <div className="flex-container">
+                            <img
+                                className="success_image"
+                                src={require('../../utils/lemmling-Cartoon-beaver.svg')}
+                            />
+                        </div>
+
+                        <div className="flex-container">
+                            <h3 className="success_message">
+                                PROFILE UPDATED SUCCESSFULLY!
+                            </h3>
+                        </div>
+                    </div>
+                </div>
+            );
+        }
         return (
             <div className="container-fluid register_container">
                 <div className="row-fluid">
@@ -57,6 +57,7 @@ class UpdateStudents extends Component {
 }
 
 function mapStateToProps(state) {
+    console.log(state.updateStudent);
     let studentToUpdate =
         state.searchStudents.studentsRequest.response &&
         state.searchStudents.studentsRequest.response.studentList[0];
@@ -64,7 +65,7 @@ function mapStateToProps(state) {
     return {
         //student: state.registerStudent.student.response,
         student: state.searchStudents.studentsRequest.response,
-        registered: state.registerStudent.student.status,
+        status: state.updateStudent.student.status,
         studentToUpdate,
     };
 }

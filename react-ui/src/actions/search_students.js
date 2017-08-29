@@ -2,7 +2,6 @@ import axios from 'axios';
 import {SET_TERM, FETCH_STUDENTS} from '../constants/action_types.js';
 
 export const fetchStudents = searchTerm => dispatch => {
-    console.log('inside actions');
     dispatch({
         type: FETCH_STUDENTS,
         status: 'pending',
