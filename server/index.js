@@ -224,7 +224,12 @@ server.register(plugins, err => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
-                    if (request.auth.credentials.id) {
+                    if (
+                        request &&
+                        request.auth &&
+                        request.auth.credentials &&
+                        request.auth.credentials.id
+                    ) {
                         var studentId = request.auth.credentials.id;
                     }
                     var jobCategories =
