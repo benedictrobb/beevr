@@ -196,6 +196,49 @@ server.register(plugins, err => {
     });
 
     server.route({
+        method: 'GET',
+        path: '/api/get-residents',
+        config: {
+            auth: {
+                mode: 'optional',
+            },
+            handler: (request, reply) => {
+                if (
+                    request.auth.credentials &&
+                    request.auth.credentials.role === 'Resident'
+                ) {
+                    var id = request.auth.credentials.id;
+                } else var id = null;
+                data.getResidents((err, res) => {
+                    if (err) {
+                        return reply(
+                            Boom.serverUnavailable('unavailable: ' + err)
+                        );
+                    } else {
+                        reply({
+                            name: 'studentList',
+                            message: 'Welcome to BEEVR!',
+                            residentList: res.map(element => {
+                                return {
+                                    residentId: element.resident_id,
+                                    firstName: element.first_name,
+                                    lastName: element.last_name,
+                                    email: element.email,
+                                    dob: element.dob,
+                                    address: element.address,
+                                    bio: element.bio,
+                                    picture: element.picture,
+                                    phone: element.phone,
+                                };
+                            }),
+                        });
+                    }
+                }, id);
+            },
+        },
+    });
+
+    server.route({
         method: 'POST',
         path: '/api/student/does-exist',
         config: {
@@ -230,7 +273,9 @@ server.register(plugins, err => {
                         return reply(Boom.badData('jobCategories missing'));
                     }
                     if (studentId) {
-                        var jobCategories = _.flattenDeep(request.payload.jobCategories);
+                        var jobCategories = _.flattenDeep(
+                            request.payload.jobCategories
+                        );
                     } else {
                         var jobCategories = request.payload.jobCategories[0].map(
                             item => item.value
@@ -281,13 +326,20 @@ server.register(plugins, err => {
         method: 'POST',
         path: '/api/resident',
         config: {
-            auth: false,
+            auth: {
+                mode: 'optional',
+            },
             handler: (request, reply) => {
+                if (request.auth.credentials) {
+                    var residentId = request.auth.credentials.id;
+                } else var residentId = null;
                 hashPassword(request.payload.password, (err, hash) => {
                     if (err) {
                         return reply(Boom.badData('bcrypt error'));
                     }
+
                     data.postResidents(
+                        residentId,
                         Object.assign({}, request.payload, {
                             passwordHash: hash,
                         }),
