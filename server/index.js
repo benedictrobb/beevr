@@ -168,7 +168,6 @@ server.register(plugins, err => {
                                 Boom.serverUnavailable('unavailable: ' + err)
                             );
                         } else {
-                            console.log(res);
                             reply({
                                 name: 'studentList',
                                 message: 'Welcome to BEEVR!',
@@ -231,7 +230,7 @@ server.register(plugins, err => {
                         return reply(Boom.badData('jobCategories missing'));
                     }
                     if (studentId) {
-                        var jobCategories = request.payload.jobCategories;
+                        var jobCategories = _.flattenDeep(request.payload.jobCategories);
                     } else {
                         var jobCategories = request.payload.jobCategories[0].map(
                             item => item.value
