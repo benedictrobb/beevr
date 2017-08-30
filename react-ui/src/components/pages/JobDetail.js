@@ -74,15 +74,15 @@ class JobDetail extends Component {
 
         return (
             <div>
-                <div key={job.jobId} className="container-brown">
+                <div key={job.jobId} className="container_brown">
                     <h3>
                         {job.jobTitle}
                     </h3>
                     {job.jobCategories}
                 </div>
                 <div className="job_description">
-                    <p>
-                        <i>{job.description}</i>
+                    <p className="italic">
+                        {job.description}
                     </p>
                     <div className="date">
                         <img

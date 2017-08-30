@@ -40,7 +40,7 @@ body {
 
     .view-details {
         float: right;
-        margin-top: -12%;
+        margin-top: -10%;
     }
 }
 
@@ -198,8 +198,10 @@ body {
     margin-top: 5%;
 }
 
-.myjob-wrapper {
+.myjob_wrapper {
     background-color: #f6f6f6;
+    padding: 0 1.5vw 0.1vh 1.5vw;
+    margin: 0 0 1.5vh 0;
 }
 
 .optional-login {
@@ -384,7 +386,7 @@ input:-webkit-autofill {
     text-align: center;
 }
 
-.container-brown {
+.container_brown {
     height: 20vh;
     width: 100%;
     background-color: #774422;
@@ -434,7 +436,7 @@ input:-webkit-autofill {
 
     .view-details {
         float: right;
-        margin-top: -6%;
+        margin-top: -8%;
     }
 }
 
