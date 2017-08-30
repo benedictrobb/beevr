@@ -88,6 +88,7 @@ body {
 .navbar {
     border: 0;
     margin-bottom: 0;
+    padding: 0.5rem 0 0.5rem 0.5rem;
     border-radius: 0;
     background-color: #667744;
     color: #f6f6f6;
@@ -138,12 +139,17 @@ body {
 
 .student_wrapper {
     background-color: #f6f6f6;
-    padding: 0 1.5vw 0.5vh 1.5vw;
+    padding: 0 1.5vw 0.1vh 1.5vw;
+    margin: 0 0 1.5vh 0;
 }
 
+.student_wrapper p {
+    margin-bottom:0.5rem;
+}
 .job_wrapper {
     background-color: #f6f6f6;
     padding: 0 1.5vw 0.5vh 1.5vw;
+    margin: 0 0 1.5vh 0;
 }
 
 .front_student {
@@ -163,6 +169,7 @@ body {
 
 .button {
     text-align: center;
+    margin: 2vh auto;
 }
 
 .btn {
@@ -191,7 +198,7 @@ body {
     margin-top: 5%;
 }
 
-.job-wrapper {
+.myjob-wrapper {
     background-color: #f6f6f6;
 }
 
@@ -324,7 +331,7 @@ input:-webkit-autofill {
 }
 
 .bm-burger-bars {
-    background: #cbd4c2;
+    background: #f6f6f6;
 }
 
 .bm-cross-button {
@@ -337,9 +344,9 @@ input:-webkit-autofill {
 }
 
 .bm-menu {
-    background: #c3b299;
-    padding: 2.5em 1.5em 0;
-    font-size: 1.15em;
+    background: #c3b299;*/
+    padding: 2.5em 1.5em 0;*/
+    font-size: 1.15em;*/
 }
 
 .bm-item-list {
@@ -347,7 +354,7 @@ input:-webkit-autofill {
     padding: 0.8em;
 }
 
-.bm-overlay {
+.bm-overlay {*/
     background: rgba(0, 0, 0, 0.3);
 }
 

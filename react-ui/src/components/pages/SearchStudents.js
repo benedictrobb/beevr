@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_students.js';
 import {Link} from 'react-router';
+import LoadingIndicator from 'react-loading-indicator';
 import categories from '../../constants/job_categories.js';
 import DropdownList from 'react-widgets/lib/DropdownList';
 
@@ -132,12 +133,13 @@ class BrowseStudents extends Component {
                                 groupBy="group"
                             />
 
-                            <button
-                                type="submit"
-                                className="btn btn-primary submit_button"
-                            >
-                                Submit
-                            </button>
+                            <div className="button" >
+                                {this.props.students.status === 'pending'
+                                    ? <LoadingIndicator />
+                                    : <button className="btn btn-primary" type="submit">
+                                        Submit
+                                    </button>}
+                            </div>
                         </form>
                         <ul className="search_results_ul">
                             {studentList.map(this.renderStudents)}

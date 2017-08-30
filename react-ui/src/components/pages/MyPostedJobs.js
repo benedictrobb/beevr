@@ -30,7 +30,7 @@ class MyPostedJobs extends Component {
 
     renderJob(job) {
         return (
-            <div className="job-wrapper" key={job.jobId}>
+            <div className="myjob-wrapper" key={job.jobId}>
                 <h3 className="light_brown_title">
                     {job.jobTitle}
                 </h3>

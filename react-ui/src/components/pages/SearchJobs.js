@@ -118,14 +118,13 @@ class BrowseJobs extends Component {
                                 </Link>
                             </div>
                             : <div className="optional-login pull-right">
-                                  Login to
+                                  Login to:
                                 <Link
                                     to="/login"
                                     className="btn btn-primary pull-right submit_button"
                                 >
                                       Update your profile
                                 </Link>
-                                <p className="pull-right">or see:</p>
                                 <Link
                                     to="/login"
                                     className="btn btn-primary pull-right submit_button"
@@ -147,12 +146,13 @@ class BrowseJobs extends Component {
                                 value={this.props.SearchTerm}
                                 groupBy="group"
                             />
-                            <button
-                                type="submit"
-                                className="btn btn-primary submit_button"
-                            >
-                                Submit
-                            </button>
+                            <div className="button" >
+                                {this.props.jobs.status === 'pending'
+                                    ? <LoadingIndicator />
+                                    : <button className="btn btn-primary" type="submit">
+                                        Submit
+                                    </button>}
+                            </div>
                         </form>
                         <ul className="search_results_ul">
                             {jobsList.map(this.renderJobs)}
