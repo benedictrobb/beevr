@@ -125,12 +125,12 @@ data.getStudents = (callback, term, id) => {
             }
         );
     }
-
 };
 
-data.getResidents = (callback, id) =>
-        dbConnection.query(
-            `SELECT
+data.getResidents = (callback, id) => {
+    console.log('inside database');
+    dbConnection.query(
+        `SELECT
                 residents.first_name,
                 residents.last_name,
                 residents.email,
@@ -140,17 +140,16 @@ data.getResidents = (callback, id) =>
                 residents.picture,
                 residents.phone
                     FROM residents WHERE resident_id = $1;`,
-            [id],
-            (err, res) => {
-                if (err) {
-                    return callback(err);
-                } else {
-                    callback(null, res.rows);
-                }
+        [id],
+        (err, res) => {
+            if (err) {
+                console.log(err);
+                return callback(err);
+            } else {
+                callback(null, res.rows);
             }
-        );
-    }
-
+        }
+    );
 };
 
 data.loginRequest = (email, callback) => {
@@ -302,34 +301,34 @@ data.residentExists = (email, callback) => {
 };
 
 data.postResidents = (id, resident, callback) => {
-  if(!id){
-    dbConnection.query(
-        `INSERT INTO residents(
+    if (!id) {
+        dbConnection.query(
+            `INSERT INTO residents(
             first_name, last_name, email, DOB,
             address, bio, picture, phone, password_hash)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
-        [
-            resident.firstName,
-            resident.lastName,
-            resident.email,
-            resident.DOB,
-            resident.address,
-            resident.bio,
-            resident.picture,
-            resident.phone,
-            resident.passwordHash,
-        ],
-        (err, res) => {
-            if (err) {
-                return callback(err);
-            } else {
-                callback(null, res.rows);
+            [
+                resident.firstName,
+                resident.lastName,
+                resident.email,
+                resident.DOB,
+                resident.address,
+                resident.bio,
+                resident.picture,
+                resident.phone,
+                resident.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
             }
-        }
-    );
-  } else {
-      dbConnection.query(
-          `INSERT INTO residents(
+        );
+    } else {
+        dbConnection.query(
+            `INSERT INTO residents(
               resident_id, first_name, last_name, email, DOB,
               address, bio, picture, phone, password_hash)
               VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
@@ -343,27 +342,27 @@ data.postResidents = (id, resident, callback) => {
                       bio=EXCLUDED.bio, picture=EXCLUDED.picture,
                       phone=EXCLUDED.phone,
                       password_hash=EXCLUDED.password_hash;`,
-          [
-              id,
-              resident.firstName,
-              resident.lastName,
-              resident.email,
-              resident.DOB,
-              resident.address,
-              resident.bio,
-              resident.picture,
-              resident.phone,
-              resident.passwordHash,
-          ],
-          (err, res) => {
-              if (err) {
-                  return callback(err);
-              } else {
-                  callback(null, res.rows);
-              }
-          }
-      );
-  }
+            [
+                id,
+                resident.firstName,
+                resident.lastName,
+                resident.email,
+                resident.DOB,
+                resident.address,
+                resident.bio,
+                resident.picture,
+                resident.phone,
+                resident.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
+    }
 };
 
 data.getMyPostedJobs = (resident_id, callback) => {

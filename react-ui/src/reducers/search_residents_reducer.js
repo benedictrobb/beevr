@@ -10,7 +10,7 @@ export default (state = initialState, action) => {
     case FETCH_RESIDENTS:
         return {
             ...state,
-            studentsRequest: {
+            residentsRequest: {
                 status: action.status,
                 error: action.error,
                 response: action.response,

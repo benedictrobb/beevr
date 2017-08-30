@@ -1,8 +1,8 @@
-import {UPDATE_STUDENT} from '../constants/action_types.js';
+import {UPDATE_RESIDENT} from '../constants/action_types.js';
 
 const initialState = {
     errorMessage: '',
-    student: {},
+    resident: {},
     response: {
         isLogged: false,
         isAuthenticated: false,
@@ -11,10 +11,10 @@ const initialState = {
 
 export default (state = initialState, action = {}) => {
     switch (action.type) {
-    case UPDATE_STUDENT:
+    case UPDATE_RESIDENT:
         return {
             ...state,
-            student: {
+            resident: {
                 status: action.status,
                 error: action.error,
                 response: action.response,

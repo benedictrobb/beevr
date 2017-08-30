@@ -203,20 +203,23 @@ server.register(plugins, err => {
                 mode: 'optional',
             },
             handler: (request, reply) => {
+                console.log('inside server');
                 if (
                     request.auth.credentials &&
                     request.auth.credentials.role === 'Resident'
                 ) {
                     var id = request.auth.credentials.id;
                 } else var id = null;
+                console.log('id is ', id);
                 data.getResidents((err, res) => {
+                    console.log('res is ', res);
                     if (err) {
                         return reply(
                             Boom.serverUnavailable('unavailable: ' + err)
                         );
                     } else {
                         reply({
-                            name: 'studentList',
+                            name: 'residentList',
                             message: 'Welcome to BEEVR!',
                             residentList: res.map(element => {
                                 return {

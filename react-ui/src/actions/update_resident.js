@@ -53,17 +53,16 @@ export const checkIfResidentExists = email => dispatch => {
         });
 };
 
-export const fetchResidents = searchTerm => dispatch => {
+export const fetchResidents = () => dispatch => {
     dispatch({
         type: FETCH_RESIDENTS,
         status: 'pending',
     });
 
     axios
-        .get('/api/get-residents', {
-            params: {searchTerm: searchTerm},
-        })
+        .get('/api/get-residents')
         .then(response => {
+            console.log(response.data);
             dispatch({
                 type: FETCH_RESIDENTS,
                 status: 'success',

@@ -1,13 +1,13 @@
 import React, {Component} from 'react';
 import Form_Update_Resident from '../Form_Update_Resident.js';
 import {registerResident} from '../../actions/register_resident.js';
-// import {fetchResidents} from '../../actions/update_resident.js';
+import {fetchResidents} from '../../actions/update_resident.js';
 import {connect} from 'react-redux';
 import {Link} from 'react-router';
 
 class UpdateResidents extends Component {
     componentWillMount() {
-        // this.props.fetchResidents();
+        this.props.fetchResidents();
     }
 
     render() {
@@ -57,13 +57,12 @@ class UpdateResidents extends Component {
 }
 
 function mapStateToProps(state) {
-    // let residentToUpdate =
-    //     state.updateResident.residentsRequest.response &&
-    //     state.updateResident.residentsRequest.response.residentList[0];
+    let residentToUpdate =
+        state.searchResidents.residentsRequest.response &&
+        state.searchResidents.residentsRequest.response.residentList[0];
 
     return {
-        //resident: state.registerResident.resident.response,
-        resident: state.updateResident.residentssRequest.response,
+        resident: state.searchResidents.residentsRequest.response,
         status: state.updateResident.resident.status,
         residentToUpdate,
     };

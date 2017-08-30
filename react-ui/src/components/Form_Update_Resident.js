@@ -63,6 +63,12 @@ class Form_Update_Resident extends Component {
     }
 
     render() {
+        let residentToUpdate = new Object();
+
+        for (var key in this.props.residentToUpdate) {
+            residentToUpdate[key] = this.props.residentToUpdate[key];
+        }
+
         return (
             <form className="form" onSubmit={this.onSubmit}>
                 <p>
@@ -246,7 +252,7 @@ class Form_Update_Resident extends Component {
                     {this.props.registerRequestStatus === 'pending'
                         ? <LoadingIndicator />
                         : <button className="btn btn-primary" type="submit">
-                              Sign Up
+                              Update
                         </button>}
                 </div>
             </form>
@@ -255,6 +261,13 @@ class Form_Update_Resident extends Component {
 }
 
 function mapStateToProps(state) {
+    let residentToUpdate =
+        state.searchResidents.residentsRequest.response &&
+        state.searchResidents.residentsRequest.response.residentList[0];
+
+    if (residentToUpdate && residentToUpdate.dob) {
+        residentToUpdate.dob = residentToUpdate.dob.slice(0, 10);
+    }
     return {
         registerRequestStatus: state.registerResident.resident.status,
     };
