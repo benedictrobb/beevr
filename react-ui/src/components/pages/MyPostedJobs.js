@@ -35,8 +35,8 @@ class MyPostedJobs extends Component {
 
     renderJob(job) {
         return (
-            <div className="myjob_wrapper container_brown" key={job.jobId}>
-                <div className="myjob_title">
+            <div className="myjob_wrapper" key={job.jobId}>
+                <div className="myjob_title container_brown">
                     <h3>
                         {job.jobTitle}
                     </h3>
@@ -80,7 +80,7 @@ class MyPostedJobs extends Component {
                         </div>
                     </div>
 
-                    <div className="rectangle-3">
+                    <div className="rectangle-4">
                         £{job.rate}
                     </div>
                     <div className="button">
@@ -139,7 +139,7 @@ class MyPostedJobs extends Component {
             <div className="container">
                 <article className="row justify-content-md-center search_jobs">
                     <section className="col col-md-8">
-                        <ul>
+                        <ul className="search_results_ul">
                             {myPostedJobs.map(this.renderJob)}
                         </ul>
                     </section>

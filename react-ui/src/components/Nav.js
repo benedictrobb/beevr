@@ -1,44 +1,18 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router';
 import {logout} from '../actions/logout.js';
-import BurgerMenu from './Menu.js';
-import Menu from 'react-burger-menu/lib/menus/slide';
+import BurgerMenu from './BurgerMenu.js';
 
 class Nav extends Component {
-    //constructor() {
-        //super();
-        //this.state = {
-            //menu: {
-                //isOpen: false,
-            //}
-        //};
-    
-        //this.toggleMenu = this.toggleMenu.bind(this);
-    //}
-
-    //toggleMenu() {
-        //var menu = this.state.menu.isOpen;
-        //if (!menu) {
-            //this.setState({menu:true});
-        //} 
-        //this.setState({menu:false});
-    //}
-
     render() {
-        console.log(this.props);
-        console.log(this.state);
-        var isMenuOpen = function(state) {
-            return state.isOpen;
-        };
-
         return (
-            <div>
+            <div id="outer-container">
                 <nav
                     className="navbar sticky-top"
                     role="navigation"
                     id="burger-menu"
                 >
-                    <div className="container-fluid">
+                    <div className="container-fluid page-wrap">
                         <div className="row justify-content-between align-items-center">
                             <div className="navbar-header">
                                 {!this.props.role
@@ -63,9 +37,10 @@ class Nav extends Component {
                                         </Link>}
                             </div>
                             <div>
-                                <BurgerMenu right
+                                <BurgerMenu
                                     loggedIn={this.props.loggedIn}
                                     logout={this.props.logout}
+                                    isOpen={this.props.isOpen}
                                 />
                             </div>
                         </div>

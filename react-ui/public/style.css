@@ -200,8 +200,11 @@ body {
 
 .myjob_wrapper {
     background-color: #f6f6f6;
-    padding: 0 1.5vw 0.1vh 1.5vw;
     margin: 0 0 1.5vh 0;
+}
+
+.myjob_title {
+    padding: 0.5vh 1.5vw 
 }
 
 .optional-login {
@@ -227,7 +230,8 @@ body {
 }
 
 .post_button {
-    margin-top: 5%;
+    margin-top: 3%;
+    margin-bottom: 5%;
 }
 
 .front-button {
@@ -321,6 +325,8 @@ input:-webkit-autofill {
 
 .bm-menu-wrap {
     width: fit-content !important;
+    margin-top: -5vh !important;
+    height: 105vh !important;
 }
 
 .bm-burger-button {
@@ -337,8 +343,8 @@ input:-webkit-autofill {
 }
 
 .bm-cross-button {
-    height: 24px;
-    width: 24px;
+    right: 5% !important;
+    top: 3% !important;
 }
 
 .bm-cross {
@@ -346,17 +352,17 @@ input:-webkit-autofill {
 }
 
 .bm-menu {
-    background: #c3b299;*/
-    padding: 2.5em 1.5em 0;*/
-    font-size: 1.15em;*/
+    background: #c3b299;
+    padding: 2.5em 0.5em 0;
+    font-size: 1.15em;
 }
 
 .bm-item-list {
     color: #b8b7ad;
-    padding: 0.8em;
+    padding: 0.5em;
 }
 
-.bm-overlay {*/
+.bm-overlay {
     background: rgba(0, 0, 0, 0.3);
 }
 
@@ -364,7 +370,6 @@ input:-webkit-autofill {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    /*padding: 0 2%;*/
 }
 
 .profile_image {
@@ -433,7 +438,13 @@ input:-webkit-autofill {
         max-width: 1000px;
         margin: auto;
     }
-
+    
+    .myjob_wrapper > .job_description {
+        margin: auto;
+        max-width: 1000px;
+        padding: 5% 5% 1% 5%;
+    }
+    
     .view-details {
         float: right;
         margin-top: -8%;
@@ -476,6 +487,20 @@ input:-webkit-autofill {
     bottom: 12%;
     left: 50%;
     transform: translate(-50%, -50%);
+}
+
+.rectangle-4 {
+    height: 55px;
+    width: 88px;
+    position: relative;
+    margin: 1vh auto;
+    border-radius: 2px;
+    background-color: #774422;
+    font-size: 18px;
+    font-weight: 500;
+    text-align: center;
+    color: #f6f6f6;
+    padding-top: 16px;
 }
 
 .apply-button {

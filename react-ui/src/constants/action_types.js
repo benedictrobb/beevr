@@ -19,3 +19,4 @@ export const DELETE_APPLICATION = 'DELETE_APPLICATION';
 export const FETCH_JOBS = 'FETCH_JOBS';
 export const DELETE_JOB = 'DELETE_JOB';
 export const UPDATE_STUDENT = 'UPDATE_STUDENT';
+export const TOGGLE_MENU = 'TOGGLE_MENU';
