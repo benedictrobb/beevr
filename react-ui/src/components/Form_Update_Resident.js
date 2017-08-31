@@ -25,31 +25,76 @@ class Form_Update_Resident extends Component {
 
     onSubmit(evt) {
         evt.preventDefault();
-        var {resident} = this.state;
+        var {
+            firstName,
+            lastName,
+            dob,
+            email,
+            password,
+            bio,
+            picture,
+            phone,
+            address,
+            // confirmPassword,
+        } = this.props.residentToUpdate;
 
-        if (!resident.firstName) {
-            var errorMessage = 'First Name cannot be empty';
-        } else if (!resident.lastName) {
-            errorMessage = 'Last Name cannot be empty';
-        } else if (!resident.email) {
-            errorMessage = 'Email cannot be empty';
-        } else if (!resident.password) {
-            errorMessage = 'Password cannot be empty';
-        } else if (!resident.confirmPassword) {
-            errorMessage = 'Please confirm the password';
-        } else if (resident.password !== resident.confirmPassword) {
-            errorMessage = 'Passwords do not match';
-        } else if (!resident.address) {
-            errorMessage = 'Address cannot be empty';
-        } else if (!resident.phone) {
-            errorMessage = 'Phone cannot be empty';
-        }
+        var firstName = this.state.resident.firstName || firstName;
+        var lastName = this.state.resident.lastName || lastName;
+        var email = this.state.resident.email || email;
+        var password = this.state.resident.password || password;
+        var DOB = this.state.resident.DOB || dob;
+        var bio = this.state.resident.bio || bio;
+        var picture = this.state.resident.picture || picture;
+        var phone = this.state.resident.phone || phone;
+        var univSchool = this.state.resident.address || address;
+        var confirmPassword =
+            this.state.resident.confirmPassword || confirmPassword;
 
-        this.setState({errorMessage: errorMessage}, () => {
-            if (!errorMessage) {
-                this.props.registerResident(this.state.resident);
+        this.setState(
+            {
+                resident: {
+                    firstName,
+                    lastName,
+                    email,
+                    password,
+                    DOB,
+                    bio,
+                    picture,
+                    phone,
+                    address,
+                    confirmPassword,
+                },
+            },
+            () => {
+                var resident = this.state.resident;
+
+                var {resident} = this.state;
+
+                if (!resident.firstName) {
+                    var errorMessage = 'First Name cannot be empty';
+                } else if (!resident.lastName) {
+                    errorMessage = 'Last Name cannot be empty';
+                } else if (!resident.email) {
+                    errorMessage = 'Email cannot be empty';
+                } else if (!resident.password) {
+                    errorMessage = 'Password cannot be empty';
+                } else if (!this.state.resident.confirmPassword) {
+                    errorMessage = 'Please confirm the password';
+                } else if (resident.password !== resident.confirmPassword) {
+                    errorMessage = 'Passwords do not match';
+                } else if (!resident.address) {
+                    errorMessage = 'Address cannot be empty';
+                } else if (!resident.phone) {
+                    errorMessage = 'Phone cannot be empty';
+                }
+
+                this.setState({errorMessage: errorMessage}, () => {
+                    if (!errorMessage) {
+                        this.props.registerResident(this.state.resident);
+                    }
+                });
             }
-        });
+        );
     }
 
     onChange(evt) {
