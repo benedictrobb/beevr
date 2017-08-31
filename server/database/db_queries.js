@@ -4,13 +4,13 @@ data = {};
 
 data.authRequest = (session, callback) => {
     dbConnection.query(
-        `SELECT residents.first_name AS user, 
+        `SELECT residents.first_name AS user,
         residents.resident_id AS id,
         residents.email, 'Resident' AS role
             FROM residents
             WHERE residents.email = $1
             UNION ALL
-            SELECT students.first_name AS user, 
+            SELECT students.first_name AS user,
             students.student_id AS id,
             students.email, 'Student' AS role
                 FROM students
@@ -125,7 +125,31 @@ data.getStudents = (callback, term, id) => {
             }
         );
     }
+};
 
+data.getResidents = (callback, id) => {
+    console.log('inside database');
+    dbConnection.query(
+        `SELECT
+                residents.first_name,
+                residents.last_name,
+                residents.email,
+                residents.dob,
+                residents.address,
+                residents.bio,
+                residents.picture,
+                residents.phone
+                    FROM residents WHERE resident_id = $1;`,
+        [id],
+        (err, res) => {
+            if (err) {
+                console.log(err);
+                return callback(err);
+            } else {
+                callback(null, res.rows);
+            }
+        }
+    );
 };
 
 data.loginRequest = (email, callback) => {
@@ -226,16 +250,16 @@ data.postStudents = (id, student, callback) => {
                 student_id, first_name, last_name, email, DOB,
                 univ_school,bio, picture, phone, job_cat, password_hash)
                 VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10, $11)
-                    ON CONFLICT (student_id) 
-                    DO UPDATE SET 
-                        first_name=EXCLUDED.first_name, 
-                        last_name=EXCLUDED.last_name, 
-                        email=EXCLUDED.email, 
-                        DOB=EXCLUDED.DOB, 
-                        univ_school=EXCLUDED.univ_school, 
-                        bio=EXCLUDED.bio, picture=EXCLUDED.picture, 
-                        phone=EXCLUDED.phone, 
-                        job_cat=EXCLUDED.job_cat, 
+                    ON CONFLICT (student_id)
+                    DO UPDATE SET
+                        first_name=EXCLUDED.first_name,
+                        last_name=EXCLUDED.last_name,
+                        email=EXCLUDED.email,
+                        DOB=EXCLUDED.DOB,
+                        univ_school=EXCLUDED.univ_school,
+                        bio=EXCLUDED.bio, picture=EXCLUDED.picture,
+                        phone=EXCLUDED.phone,
+                        job_cat=EXCLUDED.job_cat,
                         password_hash=EXCLUDED.password_hash;`,
             [
                 id,
@@ -258,7 +282,7 @@ data.postStudents = (id, student, callback) => {
                 }
             }
         );
-    } 
+    }
 };
 
 data.residentExists = (email, callback) => {
@@ -276,31 +300,69 @@ data.residentExists = (email, callback) => {
     );
 };
 
-data.postResidents = (resident, callback) => {
-    dbConnection.query(
-        `INSERT INTO residents(
+data.postResidents = (id, resident, callback) => {
+    if (!id) {
+        dbConnection.query(
+            `INSERT INTO residents(
             first_name, last_name, email, DOB,
             address, bio, picture, phone, password_hash)
             VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9);`,
-        [
-            resident.firstName,
-            resident.lastName,
-            resident.email,
-            resident.DOB,
-            resident.address,
-            resident.bio,
-            resident.picture,
-            resident.phone,
-            resident.passwordHash,
-        ],
-        (err, res) => {
-            if (err) {
-                return callback(err);
-            } else {
-                callback(null, res.rows);
+            [
+                resident.firstName,
+                resident.lastName,
+                resident.email,
+                resident.DOB,
+                resident.address,
+                resident.bio,
+                resident.picture,
+                resident.phone,
+                resident.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
             }
-        }
-    );
+        );
+    } else {
+        dbConnection.query(
+            `INSERT INTO residents(
+              resident_id, first_name, last_name, email, DOB,
+              address, bio, picture, phone, password_hash)
+              VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)
+                  ON CONFLICT (resident_id)
+                  DO UPDATE SET
+                      first_name=EXCLUDED.first_name,
+                      last_name=EXCLUDED.last_name,
+                      email=EXCLUDED.email,
+                      DOB=EXCLUDED.DOB,
+                      address=EXCLUDED.address,
+                      bio=EXCLUDED.bio, picture=EXCLUDED.picture,
+                      phone=EXCLUDED.phone,
+                      password_hash=EXCLUDED.password_hash;`,
+            [
+                id,
+                resident.firstName,
+                resident.lastName,
+                resident.email,
+                resident.DOB,
+                resident.address,
+                resident.bio,
+                resident.picture,
+                resident.phone,
+                resident.passwordHash,
+            ],
+            (err, res) => {
+                if (err) {
+                    return callback(err);
+                } else {
+                    callback(null, res.rows);
+                }
+            }
+        );
+    }
 };
 
 data.getMyPostedJobs = (resident_id, callback) => {

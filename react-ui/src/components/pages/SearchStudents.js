@@ -57,12 +57,6 @@ class BrowseStudents extends Component {
                 <div>
                     <article className="row-fluid search_jobs">
                         <section className="col-md-8 col-md-offset-2">
-                            <Link
-                                to="/postjob"
-                                className="btn btn-primary pull-right submit_button"
-                            >
-                                Post A Job
-                            </Link>
                             <form onSubmit={this.onSubmit}>
                                 <DropdownList
                                     id="browseStudentsForm"
@@ -103,6 +97,12 @@ class BrowseStudents extends Component {
                                     className="btn btn-primary pull-right submit_button"
                                 >
                                       My posted jobs
+                                </Link>
+                                <Link
+                                    to="/updateresidents"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      Update your profile
                                 </Link>
                             </div>
                             : <div className="optional-login pull-right">
