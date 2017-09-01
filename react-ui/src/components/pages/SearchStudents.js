@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import * as actions from '../../actions/search_students.js';
 import {Link} from 'react-router';
+import LoadingIndicator from 'react-loading-indicator';
 import categories from '../../constants/job_categories.js';
 import DropdownList from 'react-widgets/lib/DropdownList';
 
@@ -55,8 +56,14 @@ class BrowseStudents extends Component {
         if (!studentList) {
             return (
                 <div>
-                    <article className="row-fluid search_jobs">
-                        <section className="col-md-8 col-md-offset-2">
+                    <article className="row justify-content-md-center search_jobs">
+                        <section className="col col-md-8">
+                            <Link
+                                to="/postjob"
+                                className="btn btn-primary pull-right submit_button"
+                            >
+                                Post A Job
+                            </Link>
                             <form onSubmit={this.onSubmit}>
                                 <DropdownList
                                     id="browseStudentsForm"
@@ -82,8 +89,8 @@ class BrowseStudents extends Component {
         }
         return (
             <div className="container">
-                <article className="row-fluid search_jobs">
-                    <section className="col-md-8 col-md-offset-2">
+                <article className="row justify-content-md-center search_jobs">
+                    <section className="col col-md-8">
                         {this.props.isAuthenticated === true
                             ? <div>
                                 <Link
@@ -132,12 +139,13 @@ class BrowseStudents extends Component {
                                 groupBy="group"
                             />
 
-                            <button
-                                type="submit"
-                                className="btn btn-primary submit_button"
-                            >
-                                Submit
-                            </button>
+                            <div className="button" >
+                                {this.props.students.status === 'pending'
+                                    ? <LoadingIndicator />
+                                    : <button className="btn btn-primary" type="submit">
+                                        Submit
+                                    </button>}
+                            </div>
                         </form>
                         <ul className="search_results_ul">
                             {studentList.map(this.renderStudents)}

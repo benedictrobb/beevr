@@ -256,9 +256,14 @@ class Form_Register_Student extends Component {
                         groupBy="group"
                     />
                 </div>
-                <button className="btn btn-primary" type="submit">
-                    Sign Up
-                </button>
+                
+                <div className="button" >
+                    {this.props.registerRequestStatus === 'pending'
+                        ? <LoadingIndicator />
+                        : <button className="btn btn-primary" type="submit">
+                              Sign Up
+                        </button>}
+                </div>
             </form>
         );
     }

@@ -31,6 +31,7 @@ class App extends Component {
                     loggedIn={this.props.isAuthenticated}
                     role={this.props.role}
                     logout={this.props.logout}
+                    isOpen={this.props.isOpen}
                 />
                 {this.props.children}
             </div>
@@ -46,10 +47,15 @@ function mapStateToProps(state) {
     
     const role =
         state.auth && state.auth.response && state.auth.response.role;
+    
+    const isOpen =
+        state.burgerMenu && state.burgerMenu.isOpen;
+    
     return {
         isLogged: state.auth,
         isAuthenticated,
         role,
+        isOpen,
     };
 }
 

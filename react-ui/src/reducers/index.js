@@ -11,6 +11,7 @@ import applyJob from './apply_job.js';
 import fetchMyPostedJobs from './my_posted_jobs.js';
 import fetchMyJobs from './my_jobs.js';
 import updateStudent from './update_student_reducer.js';
+import {reducer as burgerMenu} from 'redux-burger-menu';
 import updateResident from './update_resident_reducer.js';
 
 export default combineReducers({
@@ -24,6 +25,7 @@ export default combineReducers({
     fetchMyPostedJobs,
     fetchMyJobs,
     updateStudent,
+    burgerMenu,
     updateResident,
     searchResidents,
 });
