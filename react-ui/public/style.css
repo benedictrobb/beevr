@@ -38,10 +38,6 @@ body {
         display: none;
     }
 
-    .view-details {
-        float: right;
-        margin-top: -10%;
-    }
 }
 
 @media (min-width: 769px) {
@@ -207,21 +203,12 @@ body {
     padding: 0.5vh 1.5vw 
 }
 
-.optional-login {
-    display: flex;
-}
-
 .front_title_resident:hover {
     color: #dbebc0;
 }
 
 .front_title_student:hover {
     color: #523249;
-}
-
-.pull-right {
-    float: right;
-    margin: 0 0 0 5px;
 }
 
 .submit_button {
@@ -317,10 +304,6 @@ input:-webkit-autofill {
 
 .post_job_button {
     margin-top: 5%;
-}
-
-.margin_left {
-    margin-left: 3%;
 }
 
 .bm-menu-wrap {
@@ -444,11 +427,7 @@ input:-webkit-autofill {
         max-width: 1000px;
         padding: 5% 5% 1% 5%;
     }
-    
-    .view-details {
-        float: right;
-        margin-top: -8%;
-    }
+
 }
 
 .calendar-icon {
@@ -1321,6 +1300,7 @@ ul.rw-list.rw-list-grouped > li.rw-list-option,
     border-radius: 4px;
     position: relative;
     cursor: text;
+    height: fit-content !important;
 }
 
 .rw-multiselect-wrapper:before,

@@ -5,14 +5,15 @@ import BurgerMenu from './BurgerMenu.js';
 
 class Nav extends Component {
     render() {
+        console.log(this.props);
         return (
-            <div id="outer-container">
+            <div>
                 <nav
-                    className="navbar sticky-top"
+                    className="navbar"
                     role="navigation"
                     id="burger-menu"
                 >
-                    <div className="container-fluid page-wrap">
+                    <div className="container-fluid">
                         <div className="row justify-content-between align-items-center">
                             <div className="navbar-header">
                                 {!this.props.role
@@ -47,7 +48,7 @@ class Nav extends Component {
                     </div>
                 </nav>
                 <nav
-                    className="navbar sticky-top"
+                    className="navbar"
                     role="navigation"
                     id="desktop-menu"
                 >
@@ -78,21 +79,6 @@ class Nav extends Component {
                             <div>
                                 <ul className="nav navbar-right">
                                     <li>
-                                        {this.props.loggedIn
-                                            ? <div />
-                                            : <Link to="/login">Login</Link>}
-                                    </li>
-                                    <li>
-                                        {!this.props.loggedIn
-                                            ? <div />
-                                            : <Link
-                                                to="/"
-                                                onClick={this.props.logout}
-                                            >
-                                                  Logout
-                                            </Link>}
-                                    </li>
-                                    <li>
                                         {!this.props.role
                                             ? <Link to="/">Home</Link>
                                             : this.props.role === 'Student'
@@ -102,6 +88,16 @@ class Nav extends Component {
                                                 : <Link to="/browsestudents">
                                                     Home
                                                 </Link>}
+                                    </li>
+                                    <li>
+                                        {!this.props.loggedIn
+                                            ? <Link to="/login">Login</Link>
+                                            : <Link
+                                                to="/"
+                                                onClick={this.props.logout}
+                                            >
+                                                  Logout
+                                            </Link>}
                                     </li>
                                     <li>
                                         {this.props.loggedIn

@@ -112,7 +112,6 @@ class Form_Update_Student extends Component {
     }
 
     onChange(evt) {
-        // console.log('evt is', evt.target.name, evt.target.value);
         var {student} = this.state;
 
         this.setState({
@@ -356,13 +355,9 @@ class Form_Update_Student extends Component {
                 <div className="button">
                     {this.props.registerRequestStatus === 'pending'
                         ? <LoadingIndicator />
-                        : this.props.studentToUpdate
-                            ? <button className="btn btn-primary" type="submit">
+                        : <button className="btn btn-primary" type="submit">
                                 Update
-                            </button>
-                            : <button className="btn btn-primary" type="submit">
-                                Sign Up
-                            </button>}
+                        </button>}
                 </div>
             </form>
         );

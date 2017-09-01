@@ -58,12 +58,23 @@ class BrowseStudents extends Component {
                 <div>
                     <article className="row justify-content-md-center search_jobs">
                         <section className="col col-md-8">
-                            <Link
-                                to="/postjob"
-                                className="btn btn-primary pull-right submit_button"
-                            >
-                                Post A Job
-                            </Link>
+                            {this.props.isAuthenticated === true
+                                ? <div className="row px-3 justify-content-center justify-content-md-end">
+                                    <Link
+                                        to="/postjob"
+                                        className="btn btn-primary pull-right submit_button"
+                                    >
+                                        Post A Job
+                                    </Link>
+                                </div>
+                                : <div className="row px-3 justify-content-center justify-content-md-end">
+                                    <Link
+                                        to="/login"
+                                        className="btn btn-primary submit_button"
+                                    >
+                                        Login to your profile
+                                    </Link>
+                                </div>}
                             <form onSubmit={this.onSubmit}>
                                 <DropdownList
                                     id="browseStudentsForm"
@@ -92,39 +103,32 @@ class BrowseStudents extends Component {
                 <article className="row justify-content-md-center search_jobs">
                     <section className="col col-md-8">
                         {this.props.isAuthenticated === true
-                            ? <div>
+                            ? <div className="row px-3 justify-content-center justify-content-md-end">
                                 <Link
                                     to="/postjob"
-                                    className="btn btn-primary pull-right submit_button margin_left"
+                                    className="btn btn-primary ml-2 submit_button"
                                 >
                                       Post A Job
                                 </Link>
                                 <Link
                                     to="/mypostedjobs"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary ml-2 submit_button"
                                 >
                                       My posted jobs
                                 </Link>
                                 <Link
                                     to="/updateresidents"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary ml-2 submit_button"
                                 >
                                       Update your profile
                                 </Link>
                             </div>
-                            : <div className="optional-login pull-right">
-                                  Login to see:
+                            : <div className="row px-3 justify-content-center justify-content-md-end">
                                 <Link
                                     to="/login"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary submit_button"
                                 >
-                                      Post A Job
-                                </Link>
-                                <Link
-                                    to="/login"
-                                    className="btn btn-primary pull-right submit_button"
-                                >
-                                      My posted jobs
+                                    Login to your profile
                                 </Link>
                             </div>}
                         <form onSubmit={this.onSubmit}>

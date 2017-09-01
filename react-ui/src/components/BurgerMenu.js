@@ -13,6 +13,7 @@ class BurgerMenu extends Component {
     }
 
     render() {
+        console.log(this.props);
         return (
             <Menu right noOverlay>
                 <ul className="nav navbar-right">
@@ -46,10 +47,12 @@ class BurgerMenu extends Component {
                                 Login
                             </Link>
                             : <Link to="/"
-                                onClick={this.props.logout,
-                                    () => this.closeMenu()}
+                                onClick={() => {
+                                    this.props.logout();
+                                    this.closeMenu();
+                                }}
                             >
-                                  Logout
+                              Logout
                             </Link>}
                     </li>
 

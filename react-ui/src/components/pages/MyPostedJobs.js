@@ -69,6 +69,7 @@ class MyPostedJobs extends Component {
                             className="calendar-icon"
                             src={require('../../utils/if_10_171505.svg')}
                         />
+                    
                         <div className="date-item">
                             {this.formatTime(job.startTime)}
                         </div>
