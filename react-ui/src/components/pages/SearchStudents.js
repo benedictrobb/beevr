@@ -105,6 +105,12 @@ class BrowseStudents extends Component {
                                 >
                                       My posted jobs
                                 </Link>
+                                <Link
+                                    to="/updateresidents"
+                                    className="btn btn-primary pull-right submit_button"
+                                >
+                                      Update your profile
+                                </Link>
                             </div>
                             : <div className="optional-login pull-right">
                                   Login to see:

@@ -21,6 +21,7 @@ import JobPostSuccess from './components/pages/JobPostSuccess.js';
 import JobDetail from './components/pages/JobDetail.js';
 import MyPostedJobs from './components/pages/MyPostedJobs.js';
 import MyJobs from './components/pages/MyJobs.js';
+import UpdateResidents from './components/pages/UpdateResidents.js';
 
 //const createStoreWithMiddleware = applyMiddleware(thunk)(createStore);
 const store = createStore(
@@ -35,6 +36,7 @@ ReactDOM.render(
                 <Route path="/login" component={LoginPage} />
                 <Route path="/registerstudent" component={RegisterStudent} />
                 <Route path="/updatestudents" component={UpdateStudents} />
+                <Route path="/updateresidents" component={UpdateResidents} />
                 <Route path="/registerresident" component={RegisterResident} />
                 <Route
                     path="/browsejobs"

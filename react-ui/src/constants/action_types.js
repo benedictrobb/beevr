@@ -20,3 +20,5 @@ export const FETCH_JOBS = 'FETCH_JOBS';
 export const DELETE_JOB = 'DELETE_JOB';
 export const UPDATE_STUDENT = 'UPDATE_STUDENT';
 export const TOGGLE_MENU = 'TOGGLE_MENU';
+export const UPDATE_RESIDENT = 'UPDATE_RESIDENT';
+export const FETCH_RESIDENTS = 'FETCH_RESIDENTS';
