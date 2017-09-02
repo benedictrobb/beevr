@@ -53,10 +53,10 @@ class BrowseJobs extends Component {
     renderJobs(job) {
         return (
             <div className="job_wrapper" key={job.jobId}>
-                <h3 className="job_title">
+                <h3 className="pt-2 brown_title">
                     {job.jobTitle}
                 </h3>
-                <h5 className="light_brown_title italic">
+                <h5 className="italic">
                     {job.jobCategories}
                 </h5>
                 <p className="italic description">

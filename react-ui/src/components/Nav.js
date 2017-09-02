@@ -42,6 +42,7 @@ class Nav extends Component {
                                     loggedIn={this.props.loggedIn}
                                     logout={this.props.logout}
                                     isOpen={this.props.isOpen}
+                                    role={this.props.role}
                                 />
                             </div>
                         </div>

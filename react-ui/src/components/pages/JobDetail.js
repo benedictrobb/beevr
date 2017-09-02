@@ -75,7 +75,7 @@ class JobDetail extends Component {
         return (
             <div>
                 <div key={job.jobId} className="container_brown">
-                    <h3>
+                    <h3 className="mt-2">
                         {job.jobTitle}
                     </h3>
                     {job.jobCategories}

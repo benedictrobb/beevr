@@ -31,8 +31,8 @@ class MyJobs extends Component {
     renderJobs(job) {
         return (
             <div className="myjob_wrapper" key={job.jobId}>
-                <div className="myjob_title container_brown ">
-                    <h3>
+                <div className="container_brown ">
+                    <h3 className="mt-2">
                         {job.jobTitle}
                     </h3>
                     <p>
@@ -79,7 +79,7 @@ class MyJobs extends Component {
                     </div>
                     <div className="button">
                         <button
-                            className="btn btn-danger"
+                            className="mt-2 btn btn-danger"
                             onClick={() =>
                                 this.deleteApplication(
                                     job.jobId,

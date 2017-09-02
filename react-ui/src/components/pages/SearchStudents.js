@@ -33,12 +33,12 @@ class BrowseStudents extends Component {
         }
         return (
             <div className="student_wrapper" key={student.studentId}>
-                <h3>
+                <h3 className="pt-2 brown_title">
                     {student.firstName}
                 </h3>
-                <h4 className="italic">
+                <h5  className="italic">
                     {student.univSchool}
-                </h4>
+                </h5>
                 <p className="italic">
                     <img className="profile_image" src={student.picture} />
                 </p>
