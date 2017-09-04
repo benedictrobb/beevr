@@ -37,7 +37,6 @@ body {
     #desktop-menu {
         display: none;
     }
-
 }
 
 @media (min-width: 769px) {
@@ -66,7 +65,7 @@ body {
     .nav li {
         padding-left: 10px;
     }
-    
+
     .nav li a:hover {
         color: #c3b211 !important;
         text-decoration: none;
@@ -140,7 +139,7 @@ body {
 }
 
 .student_wrapper p {
-    margin-bottom:0.5rem;
+    margin-bottom: 0.5rem;
 }
 
 .job_wrapper {
@@ -412,19 +411,22 @@ input:-webkit-autofill {
     padding-bottom: 3%;
 }
 
+.job_description {
+    padding: 5%;
+}
+
 @media (min-width: 769px) {
     .job_description {
         padding: 5%;
         max-width: 1000px;
         margin: auto;
     }
-    
+
     .myjob_wrapper > .job_description {
         margin: auto;
         max-width: 1000px;
         padding: 5% 5% 1% 5%;
     }
-
 }
 
 .calendar-icon {
@@ -459,10 +461,7 @@ input:-webkit-autofill {
     text-align: center;
     color: #f6f6f6;
     padding-top: 16px;
-    position: absolute;
-    bottom: 12%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 10%;
 }
 
 .rectangle-4 {
@@ -485,10 +484,7 @@ input:-webkit-autofill {
 
 .apply {
     text-align: center;
-    position: absolute;
-    bottom: 5%;
-    left: 50%;
-    transform: translate(-50%, -50%);
+    margin-top: 3%;
 }
 
 /*********************************/
