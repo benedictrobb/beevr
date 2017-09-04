@@ -30,43 +30,66 @@ class MyJobs extends Component {
 
     renderJobs(job) {
         return (
-            <div key={job.jobId}>
-                <h3 className="light_brown_title">
-                    {job.jobTitle}
-                </h3>
-                <p className="light_brown_title">
-                    {job.jobCat}
-                </p>
-                <p>
-                    {job.description}
-                </p>
-                <label>Start Date</label>
-                <p>
-                    {this.formatDate(job.startDate)}
-                </p>
-                <label>Start Time</label>
-                <p>
-                    {this.formatTime(job.startTime)}
-                </p>
-                <label>End Date</label>
-                <p>
-                    {this.formatDate(job.endDate)}
-                </p>
-                <label>End Time</label>
-                <p>
-                    {this.formatTime(job.endTime)}
-                </p>
-                <label>Rate</label>
-                <p>
-                    {job.rate}
-                </p>
-                <button
-                    className="btn btn-danger"
-                    onClick={() =>
-                        this.deleteApplication(job.jobId, this.props.studentId)}
-                >
-                    Delete application
-                </button>
+            <div className="myjob_wrapper" key={job.jobId}>
+                <div className="container_brown ">
+                    <h3 className="mt-2">
+                        {job.jobTitle}
+                    </h3>
+                    <p>
+                        {job.jobCategories}
+                    </p>
+                </div>
+                <div className="job_description">
+                    <p className="italic">
+                        {job.description}
+                    </p>
+                    <div className="date">
+                        <img
+                            className="calendar-icon"
+                            src={require('../../utils/if_72-Calendar_2123904.svg')}
+                        />
+
+                        <div className="date-item">
+                            {this.formatDate(job.startDate)}
+                        </div>
+
+                        <div>-</div>
+                        <div className="date-item">
+                            {this.formatDate(job.endDate)}
+                        </div>
+                    </div>
+                    <div className="date">
+                        <img
+                            className="calendar-icon"
+                            src={require('../../utils/if_10_171505.svg')}
+                        />
+
+                        <div className="date-item">
+                            {this.formatTime(job.startTime)}
+                        </div>
+
+                        <div>-</div>
+
+                        <div>
+                            {this.formatTime(job.endTime)}
+                        </div>
+                    </div>
+                    <div className="rectangle-4">
+                        £{job.rate}
+                    </div>
+                    <div className="button">
+                        <button
+                            className="mt-2 btn btn-danger"
+                            onClick={() =>
+                                this.deleteApplication(
+                                    job.jobId,
+                                    this.props.studentId
+                                )}
+                        >
+                            Delete application
+                        </button>
+                    </div>
+                </div>
             </div>
         );
     }
@@ -104,9 +127,9 @@ class MyJobs extends Component {
         }
         return (
             <div className="container">
-                <article className="row search_jobs">
+                <article className="row justify-content-md-center search_jobs">
                     <section className="col col-md-8">
-                        <ul>
+                        <ul className="search_results_ul">
                             {myJobs.map(this.renderJobs)}
                         </ul>
                     </section>

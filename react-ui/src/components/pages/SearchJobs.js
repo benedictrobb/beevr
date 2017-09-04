@@ -53,35 +53,39 @@ class BrowseJobs extends Component {
     renderJobs(job) {
         return (
             <div className="job_wrapper" key={job.jobId}>
-                <h3 className="job_title">
+                <h3 className="pt-2 brown_title">
                     {job.jobTitle}
                 </h3>
-                <h5 className="light_brown_title italic">
-                    {job.jobCat}
+                <h5 className="italic">
+                    {job.jobCategories}
                 </h5>
                 <p className="italic description">
                     {this.formatDesc(job.description)}
                 </p>
 
-                <div className="date_searchJobs">
-                    <img
-                        className="calendar-icon"
-                        src={require('../../utils/if_10_171505.svg')}
-                    />
-                    <div className="date-item">
-                        {this.formatDate(job.startDate)}
-                    </div>
-
-                    <div>
-                        {this.formatTime(job.startTime)}
+                <div className="container">
+                    <div className="row justify-content-between align-items-baseline">
+                        <div className="date_searchJobs">
+                            <img
+                                className="calendar-icon"
+                                src={require('../../utils/if_10_171505.svg')}
+                            />
+                            <div className="date-item">
+                                {this.formatDate(job.startDate)}
+                            </div>
+                        
+                            <div>
+                                {this.formatTime(job.startTime)}
+                            </div>
+                        </div>
+                        <Link
+                            className="btn btn-primary view-details"
+                            to={`/jobdetail/${job.jobId}`}
+                        >
+                            View details
+                        </Link>
                     </div>
                 </div>
-                <Link
-                    className="btn btn-primary view-details"
-                    to={`/jobdetail/${job.jobId}`}
-                >
-                    View details
-                </Link>
             </div>
         );
     }
@@ -103,38 +107,28 @@ class BrowseJobs extends Component {
                 <article className="row justify-content-md-center search_jobs">
                     <section className="col col-md-8">
                         {this.props.isAuthenticated === true
-                            ? <div className="optional-login pull-right">
+                            ? <div className="row px-3 justify-content-center justify-content-md-end pull-right">
                                 <Link
                                     to="/updatestudents"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary ml-2 submit_button"
                                 >
                                       Update your profile
                                 </Link>
                                 <Link
                                     to="/jobsapplied"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary ml-2 submit_button"
                                 >
                                       My applications
                                 </Link>
                             </div>
-                            : <div className="optional-login pull-right">
-                                  Login to:
+                            : <div className="row px-3 justify-content-center justify-content-md-end">
                                 <Link
                                     to="/login"
-                                    className="btn btn-primary pull-right submit_button"
+                                    className="btn btn-primary submit_button"
                                 >
-                                      Update your profile
-                                </Link>
-                                <Link
-                                    to="/login"
-                                    className="btn btn-primary pull-right submit_button"
-                                >
-                                      My applications
+                                    Login to your profile
                                 </Link>
                             </div>}
-                        <br />
-                        <br />
-                        <br />
                         <form onSubmit={this.onSubmit}>
                             <DropdownList
                                 id="browseJobsForm"

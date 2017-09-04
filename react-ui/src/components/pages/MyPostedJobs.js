@@ -22,7 +22,6 @@ class MyPostedJobs extends Component {
         const day = date.slice(8, 10);
 
         return `${day}/${month}/${year}`;
-        //return date.slice(0, 10);
     }
 
     formatTime(time) {
@@ -36,8 +35,8 @@ class MyPostedJobs extends Component {
     renderJob(job) {
         return (
             <div className="myjob_wrapper" key={job.jobId}>
-                <div className="myjob_title container_brown">
-                    <h3>
+                <div className="container_brown">
+                    <h3 className="mt-2">
                         {job.jobTitle}
                     </h3>
                     <p>
@@ -69,6 +68,7 @@ class MyPostedJobs extends Component {
                             className="calendar-icon"
                             src={require('../../utils/if_10_171505.svg')}
                         />
+                    
                         <div className="date-item">
                             {this.formatTime(job.startTime)}
                         </div>
@@ -89,7 +89,7 @@ class MyPostedJobs extends Component {
                             'pending'
                             ? <LoadingIndicator />
                             : <button
-                                className="btn btn-primary"
+                                className="mt-2 btn btn-primary"
                                 onClick={() => this.deleteJob(job.jobId)}
                             >
                                   Delete the job
