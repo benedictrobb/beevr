@@ -23,9 +23,7 @@ class UpdateStudents extends Component {
                         </div>
 
                         <div className="flex-container">
-                            <h3 className="success_message">
-                                PROFILE UPDATED SUCCESSFULLY!
-                            </h3>
+                            PROFILE UPDATED SUCCESSFULLY!
                         </div>
                     </div>
                 </div>
