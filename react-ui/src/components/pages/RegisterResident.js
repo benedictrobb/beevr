@@ -18,12 +18,12 @@ class RegisterResident extends Component {
                         </div>
 
                         <div className="flex-container">
-                            <h3 className="success_message">
-                                REGISTRATION SUCCESSFUL!
-                            </h3>
+                            REGISTRATION SUCCESSFUL!
                         </div>
                         <div className="flex-container">
-                            <h6>Log in to continue</h6>
+                            <Link to="/login">
+                                <h6>Log in to continue</h6>
+                            </Link>
                         </div>
                     </div>
                 </div>
