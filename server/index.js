@@ -368,8 +368,8 @@ server.register(plugins, err => {
         path: '/api/apply',
         config: {
             handler: (request, reply) => {
-                var to = ['rmrajaa@gmail.com'];
-                var from = 'maja.kudlicka@gmail.com';
+                var to = ['maja.kudlicka@gmail.com'];
+                var from = 'benedict.robb@outlook.com';
                 var subject = 'New job application';
                 var text =
                     'Someone has just applied for the job you posted - get in touch!';
