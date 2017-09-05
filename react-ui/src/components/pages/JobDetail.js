@@ -113,24 +113,27 @@ class JobDetail extends Component {
                             {this.formatTime(job.endTime)}
                         </div>
                     </div>
-
-                    <div className="rectangle-3">
-                        £{job.rate}
+                    <div className="flex-container">
+                        <div className="rectangle-3">
+                            £{job.rate}
+                        </div>
                     </div>
-                    <div className="apply">
-                        {this.props.status === 'pending'
-                            ? <LoadingIndicator />
-                            : <button
-                                className="btn btn-primary apply-button"
-                                onClick={() =>
-                                    this.submitJobApplication(
-                                        job.jobId,
-                                        job.residentId,
-                                        this.props.studentId
-                                    )}
-                            >
-                                  APPLY
-                            </button>}
+                    <div className="flex-container">
+                        <div className="apply">
+                            {this.props.status === 'pending'
+                                ? <LoadingIndicator />
+                                : <button
+                                    className="btn btn-primary apply-button"
+                                    onClick={() =>
+                                        this.submitJobApplication(
+                                            job.jobId,
+                                            job.residentId,
+                                            this.props.studentId
+                                        )}
+                                >
+                                      APPLY
+                                </button>}
+                        </div>
                     </div>
                 </div>
             </div>
